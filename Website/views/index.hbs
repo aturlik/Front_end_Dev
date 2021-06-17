@@ -1,5 +1,22 @@
+<style>
+.collapsiable{
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
 
-
+.content{
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+}
+</style>
 
 <div class="text-center">
 <h1 class="display-1">MongoDB</h1>
@@ -52,6 +69,11 @@
     <div>
         {{# each items }}
             <article class="item">
+              <!--<button type="button" class="collapsiable">{{this.Titile}}</button>
+              <div class="content">
+                <div class="content">URL: {{ this.URL }}</div>
+                <div class="conetnt">Provider: {{ this.Provider }}</div>
+              </div>-->
                 <div>Title: {{ this.Title }}</div>
                 <div>URL: {{ this.URL }}</div>
                 <div>Provider: {{ this.Provider }}</div>
