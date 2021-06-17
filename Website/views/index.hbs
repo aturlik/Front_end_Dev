@@ -1,10 +1,4 @@
-
-
-
-<div class="text-center">
-<h1 class="display-1">MongoDB</h1>
-<p class="lead">A proof of concept UI for interfacing the database</p>
-</div>
+<h1>MONGODB - EXERCISE</h1>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,15 +9,15 @@
     <form action="/insert" method="post">
         <div class="input">
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="$var">
+            <input type="text" id="title" name="title">
         </div>
         <div class="input">
             <label for="content">Content</label>
-            <input type="text" id="content" name="content" value="$var">
+            <input type="text" id="content" name="content">
         </div>
         <div class="input">
             <label for="author">Author</label>
-            <input type="text" id="author" name="author" value="$var">
+            <input type="text" id="author" name="author">
         </div>
         <button type="submit">INSERT</button>
     </form>
@@ -32,15 +26,27 @@
 <section class="specify">
     <h3>Specify Search</h3>
     <form action="/specify" method="post">
-        <select class="form-select" aria-label="Default select example" form-select-border-width:25% >
-  	     <option selected>Pick an option</option>
-  	     <option value="1">Data Topics</option>
-  	     <option value="2">Title</option>
- 	     <option value="3">Language</option>
-        </select>
+            <select class="DTA" name="DTA">
+                <option selected>Title</option>
+                <option value="URL">URL</option>
+                <option value="Public/DOD">Public/DOD</option>
+                <option value="Time Commitment (Hours)">Time Commitment (Hours)</option>
+                <option value="Certificate/Degree Program">Certificate/Degree Program</option>
+                <option value="Data Topic Area">Data Topic Area</option>
+                <option value="Programming Language">Programming Language</option>
+                <option value="Base of Operations">Base of Operations</option>
+                <option value="Barrier to Entry">Barrier to Entry</option>
+                <option value="Self Paced vs Instructor Led">Self Paced vs Instructor Led</option>
+                <option value="Learning type">Learning type</option>
+                <option value="In person vs Remote">In person vs Remote</option>
+                <option value="Useful Training?">Useful Training?</option>
+                <option value="Comment">Comment</option>
+                <option value="Topics for Graphing">Topics for Graphing</option>
+            </select>
+        </div>
         <div class="input">
             <label for="SpefString">Specific String</label>
-            <input type="text" id="SpefString" name="SpefString" value="$var">
+            <input type="text" id="SpefString" name="SpefString">
         </div>
         <button type="submit">INSERT</button>
     </form>
@@ -81,19 +87,19 @@
     <form action="/update" method="post">
         <div class="input">
             <label for="id">ID</label>
-            <input type="text" id="id" name="id" value="$var">
+            <input type="text" id="id" name="id">
         </div>
         <div class="input">
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="$var">
+            <input type="text" id="title" name="title">
         </div>
         <div class="input">
             <label for="content">Content</label>
-            <input type="text" id="content" name="content" value="$var">
+            <input type="text" id="content" name="content">
         </div>
         <div class="input">
             <label for="author">Author</label>
-            <input type="text" id="author" name="author" value="$var">
+            <input type="text" id="author" name="author">
         </div>
         <button type="submit">UPDATE</button>
     </form>
@@ -105,7 +111,7 @@
     <form action="/delete" method="post">
         <div class="input">
             <label for="id">ID</label>
-            <input type="text" id="id" name="id" value="$var">
+            <input type="text" id="id" name="id">
         </div>
         <button type="submit">DELETE</button>
     </form>
