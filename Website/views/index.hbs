@@ -1,4 +1,15 @@
-<h1>MONGODB - EXERCISE</h1>
+
+
+
+<div class="text-center">
+<h1 class="display-1">MongoDB</h1>
+<p class="lead">A proof of concept UI for interfacing the database</p>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <section class="insert">
     <h3>Insert Data</h3>
     <form action="/insert" method="post">
@@ -21,20 +32,12 @@
 <section class="specify">
     <h3>Specify Search</h3>
     <form action="/specify" method="post">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
-        <div class="input"></div>
-            <label for="DTA">Data Topic Area</label>
-            <input type="text" id="DTA" name="DTA">
-        </div>
+        <select class="form-select" aria-label="Default select example" form-select-border-width:25% >
+  	     <option selected>Pick an option</option>
+  	     <option value="1">Data Topics</option>
+  	     <option value="2">Title</option>
+ 	     <option value="3">Language</option>
+        </select>
         <div class="input">
             <label for="SpefString">Specific String</label>
             <input type="text" id="SpefString" name="SpefString">
