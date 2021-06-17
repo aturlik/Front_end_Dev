@@ -21,7 +21,17 @@
 <section class="specify">
     <h3>Specify Search</h3>
     <form action="/specify" method="post">
-        <div class="input">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+        <div class="input"></div>    
             <label for="DTA">Data Topic Area</label>
             <input type="text" id="DTA" name="DTA">
         </div>
