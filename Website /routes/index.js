@@ -6,6 +6,8 @@ var assert = require('assert');
 let mongoose = require('mongoose');
 
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+var spectopic = '';
+var specdata = '';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,10 +16,14 @@ router.get('/', function(req, res, next) {
 
 router.get('/get-data', function(req, res, next) {
   var resultArray = [];
+  var query = {};
+  query[spectopic] = RegExp(specdata);
+  console.log(specdata);
+  console.log(spectopic);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    var cursor = db.collection('RawData1').find({"Data Topic Area": {$regex: "Data Science"}});
+    var cursor = db.collection('RawData1').find(query);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
       resultArray.push(doc);
@@ -48,6 +54,13 @@ router.post('/insert', function(req, res, next) {
   res.redirect('/');
 });
 
+router.post('/specify', function(req, res, next) {
+  spectopic = req.body.DTA;
+  specdata = req.body.SpefString;
+  res.redirect('/');
+});
+
+
 router.post('/update', function(req, res, next) {
   var item = {
     title: req.body.title,
@@ -65,6 +78,7 @@ router.post('/update', function(req, res, next) {
       client.close();
     });
   });
+  res.redirect('/');
 });
 
 router.post('/delete', function(req, res, next) {
@@ -79,6 +93,7 @@ router.post('/delete', function(req, res, next) {
       client.close();
     });
   });
+  res.redirect('/');
 });
 
 module.exports = router;
