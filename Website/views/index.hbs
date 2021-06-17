@@ -1,7 +1,4 @@
-
-
-
-<div class="text-center">
+<div style="text-align:center;">
 <h1 class="display-1">MongoDB</h1>
 <p class="lead">A proof of concept UI for interfacing the database</p>
 </div>
@@ -10,6 +7,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" type="text/css"  href="layouts/custom.css">
+
+<div class="container">
 <section class="insert">
     <h3>Insert Data</h3>
     <form action="/insert" method="post">
@@ -28,15 +28,16 @@
         <button type="submit">INSERT</button>
     </form>
 </section>
+</div>
 
+<div class="container">
 <section class="specify">
     <h3>Specify Search</h3>
     <form action="/specify" method="post">
-        <select class="form-select" aria-label="Default select example" form-select-border-width:25% >
-  	     <option selected>Pick an option</option>
-  	     <option value="1">Data Topics</option>
-  	     <option value="2">Title</option>
- 	     <option value="3">Language</option>
+        <select class="form-select" aria-label="Default select example">
+  	     <option selected>Data Topics</option>
+  	     <option value="1">Title</option>
+ 	     <option value="2">Language</option>
         </select>
         <div class="input">
             <label for="SpefString">Specific String</label>
@@ -45,7 +46,9 @@
         <button type="submit">INSERT</button>
     </form>
 </section>
+</div>
 
+<div class="container">
 <section class="get">
     <h3>Get Data</h3>
     <a href="/get-data">LOAD DATA</a>
@@ -75,7 +78,9 @@
         {{/each}}
     </div>
 </section>
+</div>
 
+<div class="container">
 <section class="update">
     <h3>Update Data</h3>
     <form action="/update" method="post">
@@ -99,7 +104,9 @@
     </form>
 </section>
 </section>
+</div>
 
+<div class="container">
 <section class="delete">
     <h3>Delete Data</h3>
     <form action="/delete" method="post">
@@ -110,3 +117,4 @@
         <button type="submit">DELETE</button>
     </form>
 </section>
+</div>
