@@ -17,6 +17,22 @@
         <button type="submit">INSERT</button>
     </form>
 </section>
+
+<section class="specify">
+    <h3>Specify Search</h3>
+    <form action="/specify" method="post">
+        <div class="input">
+            <label for="DTA">Data Topic Area</label>
+            <input type="text" id="DTA" name="DTA">
+        </div>
+        <div class="input">
+            <label for="SpefString">Specific String</label>
+            <input type="text" id="SpefString" name="SpefString">
+        </div>
+        <button type="submit">INSERT</button>
+    </form>
+</section>
+
 <section class="get">
     <h3>Get Data</h3>
     <a href="/get-data">LOAD DATA</a>
@@ -46,6 +62,7 @@
         {{/each}}
     </div>
 </section>
+
 <section class="update">
     <h3>Update Data</h3>
     <form action="/update" method="post">
@@ -69,6 +86,7 @@
     </form>
 </section>
 </section>
+
 <section class="delete">
     <h3>Delete Data</h3>
     <form action="/delete" method="post">
