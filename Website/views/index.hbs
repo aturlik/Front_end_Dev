@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"> Database</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="margin-left: 10px"> <b>Database</b></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Query</span></a>
+        <a class="nav-link" href="/"><b>Query</b></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/get-data">Results</a>
@@ -27,8 +27,9 @@
 
 <div class="container">
 <section class="specify">
-    <h3>Specify Search</h3>
+    <h3>Search</h3>
     <form action="/specify" method="post">
+            <label for="DTA">Meta tags</label>
             <select class="DTA" name="DTA">
                 <option selected>Title</option>
                 <option value="URL">URL</option>
@@ -46,10 +47,8 @@
                 <option value="Comment">Comment</option>
                 <option value="Topics for Graphing">Topics for Graphing</option>
             </select>
-        <div class="input">
-            <label for="SpefString">Specific String</label>
-            <input type="text" id="SpefString" name="SpefString">
-        </div>
+            <label for="SpefString">Search</label>
+            <input type="text" id="SpefString" name="SpefString" size="60">
         <form action="/get-data">
             <button type="submit">Submit</button>
         </form>
