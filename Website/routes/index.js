@@ -73,9 +73,6 @@ router.post('/insert', function(req, res, next) {
       client.close();
     });
   });
-  var alertNode = req.body.myalert;
-  var alert = bootstrap.Alert.getInstance(alertNode);
-  alert.open();
   res.redirect('/insert');
 });
 
