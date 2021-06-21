@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('express-handlebars');
 
+var asnitize = require('mongo-sanitize');
 
 var indexRouter = require('./routes/index');
 
