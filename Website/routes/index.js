@@ -14,6 +14,10 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/others', function(req, res, next) {
+  res.render('others');
+});
+
 router.get('/get-data', function(req, res, next) {
   var resultArray = [];
   var query = {};
@@ -65,12 +69,13 @@ router.post('/insert', function(req, res, next) {
     });
   });
 
-  res.redirect('/');
+  res.render('others');
 });
 
 router.post('/specify', function(req, res, next) {
   spectopic = req.body.DTA;
   specdata = req.body.SpefString;
+  res.redirect('/get-data');
 });
 
 
@@ -91,7 +96,7 @@ router.post('/update', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/');
+  res.redirect('/others');
 });
 
 router.post('/delete', function(req, res, next) {
@@ -106,7 +111,7 @@ router.post('/delete', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/');
+  res.redirect('/others');
 });
 
 module.exports = router;
