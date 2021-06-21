@@ -4,9 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('express-handlebars');
-
 var sanitize = require('mongo-sanitize');
-var clean = sanitize(req.params.username);
+
 
 var indexRouter = require('./routes/index');
 

@@ -4,6 +4,7 @@ var mongo = require('mongodb').MongoClient;
 var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
+var sanitize = require('mongo-sanitize');
 
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 var spectopic = '';
@@ -14,10 +15,14 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/others', function(req, res, next) {
+  res.render('others');
+});
+
 router.get('/get-data', function(req, res, next) {
   var resultArray = [];
   var query = {};
-  query[spectopic] = RegExp(specdata);
+  query[spectopic] = RegExp(sanitize(specdata));
   console.log(specdata);
   console.log(spectopic);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
@@ -29,7 +34,7 @@ router.get('/get-data', function(req, res, next) {
       resultArray.push(doc);
     }, function() {
       client.close();
-      res.render('index', {items: resultArray});
+      res.render('get', {items: resultArray});
     });
   });
 });
@@ -37,8 +42,22 @@ router.get('/get-data', function(req, res, next) {
 router.post('/insert', function(req, res, next) {
   var item = {
     title: req.body.title,
-    content: req.body.content,
-    author: req.body.author
+    url: req.body.url,
+    provider: req.body.provider,
+    cost: req.body.cost,
+    PublicDOD: req.body.PDOD,
+    TimeCom: req.body.TCH,
+    Cert: req.body.CDP,
+    Data: req.body.DTA,
+    Program: req.body.PL,
+    Base: req.body.BOO,
+    Barrier: req.body.BE,
+    Pacing: req.body.SPIL,
+    Learning: req.body.LT,
+    Person: req.body.PR,
+    Useful: req.body.UT,
+    Comment: req.body.comment,
+    Topics: req.body.TG
   };
   
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
@@ -51,21 +70,35 @@ router.post('/insert', function(req, res, next) {
     });
   });
 
-  res.redirect('/');
+  res.redirect('/others');
 });
 
 router.post('/specify', function(req, res, next) {
   spectopic = req.body.DTA;
   specdata = req.body.SpefString;
-  res.redirect('/');
+  res.redirect('/get-data');
 });
 
 
 router.post('/update', function(req, res, next) {
   var item = {
     title: req.body.title,
-    content: req.body.content,
-    author: req.body.author
+    url: req.body.url,
+    provider: req.body.provider,
+    cost: req.body.cost,
+    PublicDOD: req.body.PDOD,
+    TimeCom: req.body.TCH,
+    Cert: req.body.CDP,
+    Data: req.body.DTA,
+    Program: req.body.PL,
+    Base: req.body.BOO,
+    Barrier: req.body.BE,
+    Pacing: req.body.SPIL,
+    Learning: req.body.LT,
+    Person: req.body.PR,
+    Useful: req.body.UT,
+    Comment: req.body.comment,
+    Topics: req.body.TG
   };
   var id = req.body.id;
 
@@ -78,7 +111,7 @@ router.post('/update', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/');
+  res.redirect('/others');
 });
 
 router.post('/delete', function(req, res, next) {
@@ -93,7 +126,7 @@ router.post('/delete', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/');
+  res.redirect('/others');
 });
 
 module.exports = router;

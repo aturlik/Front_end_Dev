@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section class="get">
     <h3>Get Data</h3>
     <a href="/">Back</a>
@@ -35,6 +36,54 @@
             <div>ID: {{ this._id }}</div>
             <br>-->
         </div>
+=======
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="margin-left: 10px"> <b>Database</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Query</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/get-data"><b>Results</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/others">Others</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<section class="get">
+    <h3>Get Data</h3>
+    <div>
+        {{# each items }}
+            <article class="item">
+                <div>Title: {{ this.Title }}</div>
+                <div>URL: <a href={{this.URL}}>{{ this.URL}}</a></div>
+                <div>Provider: {{ this.Provider }}</div>
+                <div>Cost: {{ this.Cost }}</div>
+                <div>Public/DOD: {{ this.[Public/DOD] }}</div>
+                <div>Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}</div>
+                <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
+                <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
+                <div>Programming Language: {{ this.[Programming Language] }}</div>
+                <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+                <div>Barrier to Entry: {{ this.[Barrier to Entry] }}</div>
+                <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
+                <div>Learning type: {{ this.[Learning type] }}</div>
+                <div>In person vs Remote: {{ this.[In person vs Remote] }}</div>
+                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                <div>Comment: {{ this.Comment }}</div>
+                <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+                <div>ID: {{ this._id }}</div>
+                <br>
+            </article>
+>>>>>>> 2e171a318452420f8748340b2fe55e6c4053341c
         {{/each}}
     </div>
 </section>
