@@ -1,0 +1,40 @@
+<section class="get">
+    <h3>Get Data</h3>
+    <a href="/">Back</a>
+    <div id="accordion">
+        {{# each items }}
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              {{ this.Title }}
+            </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            URL: {{ this.URL }}
+          </div>
+            <!--<div>Title: {{ this.Title }}</div>
+            <div>URL: {{ this.URL }}</div>
+            <div>Provider: {{ this.Provider }}</div>
+            <div>Cost: {{ this.Cost }}</div>
+            <div>Public/DOD: {{ this.[Public/DOD] }}</div>
+            <div>Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}</div>
+            <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
+            <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
+            <div>Programming Language: {{ this.[Programming Language] }}</div>
+            <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+            <div>Barrier to Entry: {{ this.[Barrier to Entry] }}</div>
+            <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
+            <div>Learning type: {{ this.[Learning type] }}</div>
+            <div>In person vs Remote: {{ this.[In person vs Remote] }}</div>
+            <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+            <div>Comment: {{ this.Comment }}</div>
+            <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+            <div>ID: {{ this._id }}</div>
+            <br>-->
+        </div>
+        {{/each}}
+    </div>
+</section>
