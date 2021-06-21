@@ -27,8 +27,9 @@
 
 <div class="container">
 <section class="specify">
-    <h3>Specify Search</h3>
+    <h3>Search</h3>
     <form action="/specify" method="post">
+            <label for="DTA">Meta tags</label>
             <select class="DTA" name="DTA">
                 <option selected>Title</option>
                 <option value="URL">URL</option>
@@ -46,10 +47,8 @@
                 <option value="Comment">Comment</option>
                 <option value="Topics for Graphing">Topics for Graphing</option>
             </select>
-        <div class="input">
-            <label for="SpefString">Specific String</label>
-            <input type="text" id="SpefString" name="SpefString">
-        </div>
+            <label for="SpefString">Search</label>
+            <input type="text" id="SpefString" name="SpefString" size="60">
         <form action="/get-data">
             <button type="submit">Submit</button>
         </form>
