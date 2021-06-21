@@ -12,7 +12,7 @@
         <a class="nav-link" href="/get-data">Results</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/others">Others</a>
+        <a class="nav-link" href="/others"><b>Others</b></a>
       </li>
     </ul>
   </div>
@@ -23,23 +23,77 @@
     <h3>Insert Data</h3>
     <form action="/insert" method="post">
         <div class="input">
-            <label for="title">Title</label>
+            <label for="title">Title:</label>
             <input type="text" id="title" name="title">
         </div>
         <div class="input">
-            <label for="content">Content</label>
-            <input type="text" id="content" name="content">
+            <label for="url">URL:</label>
+            <input type="text" id="url" name="url">
         </div>
         <div class="input">
-            <label for="author">Author</label>
-            <input type="text" id="author" name="author">
+            <label for="provider">Provider:</label>
+            <input type="text" id="provider" name="provider">
+        </div>
+        <div class="input">
+            <label for="cost">Cost:</label>
+            <input type="text" id="cost" name="cost">
+        </div>
+        <div class="input">
+            <label for="PDOD">Public/DOD:</label>
+            <input type="text" id="PDOD" name="PDOD">
+        </div>
+        <div class="input">
+            <label for="TCH">Time Commitment (Hours):</label>
+            <input type="text" id="TCH" name="TCH">
+        </div>
+        <div class="input">
+            <label for="CDP">Certificate/Degree Program:</label>
+            <input type="text" id="CDP" name="CDP">
+        </div>
+        <div class="input">
+            <label for="DTA">Data Topic Area:</label>
+            <input type="text" id="DTA" name="DTA">
+        </div>
+        <div class="input">
+            <label for="PL">Programming Language: </label>
+            <input type="text" id="PL" name="PL">
+        </div>
+        <div class="input">
+            <label for="BOO">Base of Operations:</label>
+            <input type="text" id="BOO" name="BOO">
+        </div>
+        <div class="input">
+            <label for="BE">Barrier to Entry</label>
+            <input type="text" id="BE" name="BE">
+        </div>
+        <div class="input">
+            <label for="SPIL">Self Paced vs Instructor Led:</label>
+            <input type="text" id="SPIL" name="SPIL">
+        </div>
+        <div class="input">
+            <label for="LT">Learning type:</label>
+            <input type="text" id="LT" name="LT">
+        </div>
+        <div class="PR">
+            <label for="cost">In person vs Remote:</label>
+            <input type="text" id="PR" name="PR">
+        </div>
+        <div class="input">
+            <label for="UT">Useful Training: </label>
+            <input type="text" id="UT" name="UT">
+        </div>
+        <div class="input">
+            <label for="comment">Comment:</label>
+            <input type="text" id="comment" name="comment">
+        </div>
+        <div class="input">
+            <label for="TG">Topics for Graphing:</label>
+            <input type="text" id="TG" name="TG">
         </div>
         <button type="submit">INSERT</button>
     </form>
 </section>
-</div>
 
-<div class="container">
 <section class="update">
     <h3>Update Data</h3>
     <form action="/update" method="post">
@@ -48,22 +102,78 @@
             <input type="text" id="id" name="id">
         </div>
         <div class="input">
-            <label for="title">Title</label>
+            <label for="title">Title:</label>
             <input type="text" id="title" name="title">
         </div>
         <div class="input">
-            <label for="content">Content</label>
-            <input type="text" id="content" name="content">
+            <label for="url">URL:</label>
+            <input type="text" id="url" name="url">
         </div>
         <div class="input">
-            <label for="author">Author</label>
-            <input type="text" id="author" name="author">
+            <label for="provider">Provider:</label>
+            <input type="text" id="provider" name="provider">
+        </div>
+        <div class="input">
+            <label for="cost">Cost:</label>
+            <input type="text" id="cost" name="cost">
+        </div>
+        <div class="input">
+            <label for="PDOD">Public/DOD:</label>
+            <input type="text" id="PDOD" name="PDOD">
+        </div>
+        <div class="input">
+            <label for="TCH">Time Commitment (Hours):</label>
+            <input type="text" id="TCH" name="TCH">
+        </div>
+        <div class="input">
+            <label for="CDP">Certificate/Degree Program:</label>
+            <input type="text" id="CDP" name="CDP">
+        </div>
+        <div class="input">
+            <label for="DTA">Data Topic Area:</label>
+            <input type="text" id="DTA" name="DTA">
+        </div>
+        <div class="input">
+            <label for="PL">Programming Language: </label>
+            <input type="text" id="PL" name="PL">
+        </div>
+        <div class="input">
+            <label for="BOO">Base of Operations:</label>
+            <input type="text" id="BOO" name="BOO">
+        </div>
+        <div class="input">
+            <label for="BE">Barrier to Entry</label>
+            <input type="text" id="BE" name="BE">
+        </div>
+        <div class="input">
+            <label for="SPIL">Self Paced vs Instructor Led:</label>
+            <input type="text" id="SPIL" name="SPIL">
+        </div>
+        <div class="input">
+            <label for="LT">Learning type:</label>
+            <input type="text" id="LT" name="LT">
+        </div>
+        <div class="PR">
+            <label for="cost">In person vs Remote:</label>
+            <input type="text" id="PR" name="PR">
+        </div>
+        <div class="input">
+            <label for="UT">Useful Training: </label>
+            <input type="text" id="UT" name="UT">
+        </div>
+        <div class="input">
+            <label for="comment">Comment:</label>
+            <input type="text" id="comment" name="comment">
+        </div>
+        <div class="input">
+            <label for="TG">Topics for Graphing:</label>
+            <input type="text" id="TG" name="TG">
         </div>
         <button type="submit">UPDATE</button>
     </form>
 </section>
-</section>
 </div>
+
 
 <div class="container">
 <section class="delete">
