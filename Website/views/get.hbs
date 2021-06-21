@@ -25,7 +25,7 @@
         {{# each items }}
             <article class="item">
                 <div>Title: {{ this.Title }}</div>
-                <div>URL: {{ this.URL }}</div>
+                <div>URL: <a href={{this.URL}}>{{ this.URL}}</a></div>
                 <div>Provider: {{ this.Provider }}</div>
                 <div>Cost: {{ this.Cost }}</div>
                 <div>Public/DOD: {{ this.[Public/DOD] }}</div>
