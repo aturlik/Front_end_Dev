@@ -37,8 +37,22 @@ router.get('/get-data', function(req, res, next) {
 router.post('/insert', function(req, res, next) {
   var item = {
     title: req.body.title,
-    content: req.body.content,
-    author: req.body.author
+    url: req.body.url,
+    provider: req.body.provider,
+    cost: req.body.cost,
+    PublicDOD: req.body.PDOD,
+    TimeCom: req.body.TCH,
+    Cert: req.body.CDP,
+    Data: req.body.DTA,
+    Program: req.body.PL,
+    Base: req.body.BOO,
+    Barrier: req.body.BE,
+    Pacing: req.body.SPIL,
+    Learning: req.body.LT,
+    Person: req.body.PR,
+    Useful: req.body.UT,
+    Comment: req.body.comment,
+    Topics: req.body.TG,
   };
   
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
