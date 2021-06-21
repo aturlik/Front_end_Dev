@@ -4,6 +4,7 @@ var mongo = require('mongodb').MongoClient;
 var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
+var sanitize = require('mongo-sanitize');
 
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 var spectopic = '';
@@ -17,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.get('/get-data', function(req, res, next) {
   var resultArray = [];
   var query = {};
-  query[spectopic] = RegExp(specdata);
+  query[spectopic] = RegExp(sanitize(specdata));
   console.log(specdata);
   console.log(spectopic);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
