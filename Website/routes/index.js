@@ -29,7 +29,7 @@ router.get('/get-data', function(req, res, next) {
       resultArray.push(doc);
     }, function() {
       client.close();
-      res.render('index', {items: resultArray});
+      res.render('get', {items: resultArray});
     });
   });
 });
@@ -52,7 +52,7 @@ router.post('/insert', function(req, res, next) {
     Person: req.body.PR,
     Useful: req.body.UT,
     Comment: req.body.comment,
-    Topics: req.body.TG,
+    Topics: req.body.TG
   };
   
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
@@ -71,7 +71,6 @@ router.post('/insert', function(req, res, next) {
 router.post('/specify', function(req, res, next) {
   spectopic = req.body.DTA;
   specdata = req.body.SpefString;
-  res.redirect('/');
 });
 
 
