@@ -31,9 +31,10 @@
 <div class="container">
 <section class="specify">
     <h3>Search</h3>
-    <form action="/specify" method="post">
-            <label for="DTA">Meta tags</label>
-            <select class="DTA" name="DTA">
+    <form action="/specify" method="post" class="row g-3">
+          <div class="col-md-2">
+	    <label for="form-select">Meta tags</label>
+            <select class="form-select" name="DTA">
                 <option selected>Title</option>
                 <option value="URL">URL</option>
                 <option value="Public/DOD">Public/DOD</option>
@@ -50,11 +51,16 @@
                 <option value="Comment">Comment</option>
                 <option value="Topics for Graphing">Topics for Graphing</option>
             </select>
-            <label for="SpefString">Search</label>
-            <input type="text" id="SpefString" name="SpefString" size="60">
-        <form action="/get-data">
-            <button type="submit">Submit</button>
-        </form>
+	  </div>
+          <div class="col-md-10">  
+	    <label for="SpefString">Search</label>
+            <input class="form-control" type="text" id="SpefString" name="SpefString" size="60">
+          </div>
+	  <div class="col-md-4">
+	    <form action="/get-data">
+            <button type="submit" class="btn btn-secondary">Submit</button>
+          </div>
+	</form>
     </form>
 </section>
 </div>
