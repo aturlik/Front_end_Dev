@@ -1,10 +1,18 @@
-<<<<<<< HEAD
 <section class="get">
     <h3>Get Data</h3>
     <a href="/">Back</a>
+    <!--<div>
+      {{# each items}}
+      <button type="button" class="collapsible">
+        {{this.Title}}
+      </button>
+      <div class="content">
+        {{this.URL}}
+      </div>
+    </div>-->
     <div id="accordion">
-        {{# each items }}
-        <div class="card">
+      {{# each items}}
+        <div class="item">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
             <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapseOne" aria-expanded="false" aria-controls="collapseOne">
@@ -16,6 +24,23 @@
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             URL: {{ this.URL }}
           </div>
+
+          <!--<script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for(i = 0; i < coll.length; i++){
+              coll[i].addEventListener("click", function(){
+                this.classList.toggle("active");
+                var content = this.nextElementsSibling;
+                if(content.style.display == "block") {
+                  content.style.display = "none";
+                }else{
+                  content.style.display = "block";
+                }
+              });
+            }
+          </script>-->
             <!--<div>Title: {{ this.Title }}</div>
             <div>URL: {{ this.URL }}</div>
             <div>Provider: {{ this.Provider }}</div>
@@ -36,54 +61,6 @@
             <div>ID: {{ this._id }}</div>
             <br>-->
         </div>
-=======
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" style="margin-left: 10px"> <b>Database</b></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Query</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/get-data"><b>Results</b></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/others">Others</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-
-<section class="get">
-    <h3>Get Data</h3>
-    <div>
-        {{# each items }}
-            <article class="item">
-                <div>Title: {{ this.Title }}</div>
-                <div>URL: <a href={{this.URL}}>{{ this.URL}}</a></div>
-                <div>Provider: {{ this.Provider }}</div>
-                <div>Cost: {{ this.Cost }}</div>
-                <div>Public/DOD: {{ this.[Public/DOD] }}</div>
-                <div>Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}</div>
-                <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
-                <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
-                <div>Programming Language: {{ this.[Programming Language] }}</div>
-                <div>Base of Operations: {{ this.[Base of Operations] }}</div>
-                <div>Barrier to Entry: {{ this.[Barrier to Entry] }}</div>
-                <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
-                <div>Learning type: {{ this.[Learning type] }}</div>
-                <div>In person vs Remote: {{ this.[In person vs Remote] }}</div>
-                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
-                <div>Comment: {{ this.Comment }}</div>
-                <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
-                <div>ID: {{ this._id }}</div>
-                <br>
-            </article>
->>>>>>> 2e171a318452420f8748340b2fe55e6c4053341c
         {{/each}}
     </div>
 </section>
