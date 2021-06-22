@@ -33,38 +33,29 @@
     <h3>Search</h3>
       <form action="/specify" method="post">
 	<div class="row">
-	 <div class="col-md-3">
-	   <label for="form-select">Meta tags</label>
+	 <div class="col-sm-3">
+	   <label for="form-select">Search Field</label>
              <select class="form-select" name="DTA">
                 <option selected>Title</option>
-                <option value="URL">URL</option>
-                <option value="Public/DOD">Public/DOD</option>
-                <option value="Time Commitment (Hours)">Time Commitment (Hours)</option>
                 <option value="Certificate/Degree Program">Certificate/Degree Program</option>
                 <option value="Data Topic Area">Data Topic Area</option>
                 <option value="Programming Language">Programming Language</option>
-                <option value="Base of Operations">Base of Operations</option>
                 <option value="Barrier to Entry">Barrier to Entry</option>
-                <option value="Self Paced vs Instructor Led">Self Paced vs Instructor Led</option>
-                <option value="Learning type">Learning type</option>
-                <option value="In person vs Remote">In person vs Remote</option>
-                <option value="Useful Training?">Useful Training?</option>
-                <option value="Comment">Comment</option>
-                <option value="Topics for Graphing">Topics for Graphing</option>
+                <option value="Comment">Comments</option>
              </select>
 	 </div>
-         
-	 <div class="col-md">  
-	   <label for="SpefString">Search</label>
+      
+	 <div class="col-sm">  
+	   <label for="SpefString">Search Terms</label>
            <input class="form-control" type="text" id="SpefString" name="SpefString" size="60">
          </div>
  
 	</div>
 
-        <div class="row justify-content-end mt-2"> 
-	  <div class="col-md-auto">
+        <div class="row justify-content-end mt-2 align-self-end"> 
+	  <div class="col col-sm-auto d-grid">
 	    <form action="/get-data">
-            <button type="submit" class="btn btn-secondary" >Submit</button>
+            <button type="submit" class="btn btn-outline-secondary" >Submit</button>
           </div>
 	</div>
      
@@ -73,8 +64,7 @@
 </div>
 
 
-
-
+    
 <div style="position: fixed; bottom: 0; width:100%; text-align: center">
 <p>Distribution Statement  A:  Approved for Public Release; distribution unlimited.</p>
 </div>
