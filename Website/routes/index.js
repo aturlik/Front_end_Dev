@@ -15,8 +15,12 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/others', function(req, res, next) {
-  res.render('others');
+router.get('/insert', function(req, res, next) {
+  res.render('add');
+});
+
+router.get('/admin', function(req, res, next) {
+  res.render('admin');
 });
 
 router.get('/get-data', function(req, res, next) {
@@ -69,8 +73,7 @@ router.post('/insert', function(req, res, next) {
       client.close();
     });
   });
-
-  res.redirect('/others');
+  res.redirect('/insert');
 });
 
 router.post('/specify', function(req, res, next) {
