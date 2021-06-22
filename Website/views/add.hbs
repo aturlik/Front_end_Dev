@@ -44,7 +44,7 @@
 
 
 
-<div class="container" >
+<div class="container">
 <section class="insert">
     <br>
 	<div class="row">
@@ -53,19 +53,74 @@
 		</div>
 	</div>
 	<br>
-	<div class="row">
+	<form action="/insert" method="post">
+	<div class="row mb-2">
+		<div class="col">
+			<input type="text" id="title" name="title" class="form-control" placeholder="Title" aria-label="title">
+		</div>
+		<div class="col">
+			<input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url">
+		</div>
 	</div>
-    <form action="/insert" method="post">
-        <div class="box">
-            <h5 class="custom">Title:</h5>
-            <input type="text" id="title" name="title" class="translucent">
-        </div>
-        <br>
-        <div class="box">
-            <h5 class="custom">URL:</h5>
-            <input type="text" id="url" name="url" class="translucent">
-        </div>
-        <br>
+	<div class="row mb-2">
+		<div class="col">
+			<input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)" aria-label="TCH">
+		</div>
+		<div class="col">
+			<input type="number" id="cost" name="cost" class="form-control" placeholder="Cost in $" aria-label="cost">
+		</div>
+		<div class="col" align="center">
+			<div class="btn-group" role="group" aria-label="Self paced or instructor led">
+				<input class="btn-check" type="radio" name="SPIL" id="SPILSelf">
+				<label class="btn btn-outline-secondary" for="SPILSelf">
+					Self-Paced
+				</label>
+				<input class="btn-check" type="radio" name="SPIL" id="SPILIns">
+				<label class="btn btn-outline-secondary" for="SPILIns">
+					Instructor Led
+				</label>
+			</div>	
+		</div>
+		<div class="col" align="center">
+			<div class="btn-group" role="group" aria-label="Does training offer Certificate or Degree">
+				<input class="btn-check" type="checkbox" name="CDP" value="Certificate" id="CDPCert">
+				<label class="btn btn-outline-secondary" for="CDPCert">
+					Certificate
+				</label>			
+				<input class="btn-check" type="checkbox" name="CDP" value="Degree" id="CDPDeg">
+				<label class="btn btn-outline-secondary" for="CDPDeg">
+					Degree
+				</label>
+			</div>	
+		</div> 
+	</div>
+	<div class="row mb-2">
+		<div class="btn-group" role="group" aria-label="Barrier to Entry Select">
+			<input type="radio" class="btn-check" name="BE" id="BEBeg" autocomplete="off" checked>
+			<label class="btn btn-outline-secondary" for="BEBeg">Beginner</label>
+			<input type="radio" class="btn-check" name="BE" id="BEInter" autocomplete="off">
+			<label class="btn btn-outline-secondary" for="BEInter">Intermediate</label>
+			<input type="radio" class="btn-check" name="BE" id="BEAdv" autocomplete="off">
+			<label class="btn btn-outline-secondary" for="BEAdv">Advanced</label>
+			<input type="radio" class="btn-check" name="BE" id="BEExp" autocomplete="off">
+			<label class="btn btn-outline-secondary" for="BEExp">Expert</label>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+     
         <div class="box">
             <h5 class="custom">Provider:</h5>
             <input type="text" id="provider" name="provider" class="translucent">
@@ -80,10 +135,7 @@
             <h5 class="custom">Public/DOD:</h5>
             <input type="text" id="PDOD" name="PDOD" class="translucent">
         </div><br>
-        <div class="box">
-            <h5 class="custom">Time Commitment (Hours):</h5>
-            <input type="text" id="TCH" name="TCH" class="translucent">
-        </div><br>
+        
         <div class="box">
             <h5 class="custom">Certificate/Degree Program:</h5>
             <input type="text" id="CDP" name="CDP" class="translucent">
