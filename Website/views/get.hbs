@@ -1,5 +1,17 @@
-<<<<<<< HEAD
-=======
+<style>
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" style="margin-left: 10px"> <b>Database</b></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,10 +20,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Query</a>
+        <a class="nav-link" href="/"><b>Query</b></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/get-data"><b>Results</b></a>
+        <a class="nav-link" href="/get-data">Results</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/insert">Add Data</a>
@@ -23,43 +35,61 @@
   </div>
 </nav>
 
+<!--The start of the accordion style content-->
+<section class="get" id="accordionItems">
+  {{# each items }}
+  <div class="item">
+    <h2 class="collapsible" id="headingItem">
+      <button class="collapsible" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItem{{this._id}}" aria-expanded="false" aria-controls="collapseItem{{this._id}}">
+        {{this.Title}}
+      </button>
+    </h2>
+    <div id="collapseItem{{this._id}}" class="accordion-collapse collapse show" aria-labelledby="headingItem collapseItem" data-bs-parent="#accordionItems">
+      <div class="accordion-body">
+        <div>URL: {{ this.URL }}</div>
+        <div>Provider: {{ this.Provider }}</div>
+        <div>Cost: {{ this.Cost }}</div>
+        <div>Public/DOD: {{ this.[Public/DOD] }}</div>
+        <div>Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}</div>
+        <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
+        <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
+        <div>Programming Language: {{ this.[Programming Language] }}</div>
+        <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+        <div>Barrier to Entry: {{ this.[Barrier to Entry] }}</div>
+        <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
+        <div>Learning type: {{ this.[Learning type] }}</div>
+        <div>In person vs Remote: {{ this.[In person vs Remote] }}</div>
+        <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+        <div>Comment: {{ this.Comment }}</div>
+        <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+        <div>ID: {{ this._id }}</div>
+        <br>
+      </div>
+    </div>
+  </div>
 
->>>>>>> 2c5b1990c5969d3f768bcaf4d9f23d5a9ad3cb18
-<section class="get">
+  {{/each}}
+</section>
+<!--<section class="get">
     <h3>Get Data</h3>
-    <a href="/">Back</a>
     <div id="accordion">
       {{# each items }}
         <div class="item">
           <div class="card-header" id="headingOne">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapsiable" aria-expanded="false" aria-controls="collapsiable">
               {{ this.Title }}
             </button>
           </div>
 
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div id="collapsiable" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               URL: {{ this.URL }}
+              Provider: {{ this.Provider }}
+              Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}
             </div>
           </div>
 
-          <!--<script>
-            var coll = document.getElementsByClassName("collapsible");
-            var i;
-
-            for(i = 0; i < coll.length; i++){
-              coll[i].addEventListener("click", function(){
-                this.classList.toggle("active");
-                var content = this.nextElementsSibling;
-                if(content.style.display == "block") {
-                  content.style.display = "none";
-                }else{
-                  content.style.display = "block";
-                }
-              });
-            }
-          </script>-->
-            <!--<div>Title: {{ this.Title }}</div>
+            <div>Title: {{ this.Title }}</div>
             <div>URL: {{ this.URL }}</div>
             <div>Provider: {{ this.Provider }}</div>
             <div>Cost: {{ this.Cost }}</div>
@@ -77,11 +107,11 @@
             <div>Comment: {{ this.Comment }}</div>
             <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
             <div>ID: {{ this._id }}</div>
-            <br>-->
+            <br>
         </div>
       {{/each}}
     </div>
-</section>
+</section>-->
 
 <div style="position: static; bottom: 0; width:100%; text-align: center">
 <p>Distribution Statement  A:  Approved for Public Release; distribution unlimited.</p>
