@@ -1,28 +1,19 @@
 <section class="get">
     <h3>Get Data</h3>
     <a href="/">Back</a>
-    <!--<div>
-      {{# each items}}
-      <button type="button" class="collapsible">
-        {{this.Title}}
-      </button>
-      <div class="content">
-        {{this.URL}}
-      </div>
-    </div>-->
     <div id="accordion">
-      {{# each items}}
+      {{# each items }}
         <div class="item">
           <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target=".collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
               {{ this.Title }}
             </button>
-            </h5>
           </div>
 
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-            URL: {{ this.URL }}
+            <div class="card-body">
+              URL: {{ this.URL }}
+            </div>
           </div>
 
           <!--<script>
@@ -61,6 +52,6 @@
             <div>ID: {{ this._id }}</div>
             <br>-->
         </div>
-        {{/each}}
+      {{/each}}
     </div>
 </section>
