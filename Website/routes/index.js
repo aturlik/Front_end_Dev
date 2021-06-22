@@ -5,10 +5,12 @@ var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
+const Window = require('window');
 
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 var spectopic = '';
 var specdata = '';
+const window = new Window();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -70,6 +72,7 @@ router.post('/insert', function(req, res, next) {
     db.collection('User Inputs').insertOne(item, function(err, result) {
       assert.strictEqual(null, err);
       console.log('Item inserted');
+      this.alert("Item Inserted")
       client.close();
     });
   });
