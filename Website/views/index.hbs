@@ -37,39 +37,41 @@
         <table>
             <td><h3>Search</h3></td>
             <td>
-                <button type="button" class="btn" data-toggle="tooltip" data-placement="left"
-                        title="Enter your desired terms and specify the field, then click Submit to show a list of resources">
+                <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                      title="Enter your desired terms and specify the field, then click Submit to show a list of resources.">
+                <button type="button" class="btn" data-toggle="tooltip" disabled>
                     <img src="https://img.icons8.com/ios/26/000000/help.png" alt="help">
                 </button>
+                </span>
             </td>
         </table>
-            <form action="/specify" method="post">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <label for="form-select">Search Field</label>
-                        <select class="form-select" name="DTA">
-                            <option selected>Title</option>
-                            <option value="Certificate/Degree Program">Certificate/Degree Program</option>
-                            <option value="Data Topic Area">Data Topic Area</option>
-                            <option value="Programming Language">Programming Language</option>
-                            <option value="Barrier to Entry">Barrier to Entry</option>
-                            <option value="Comment">Comments</option>
-                        </select>
-                    </div>
-
-                    <div class="col-sm">
-                        <label for="SpefString">Search Terms</label>
-                        <input class="form-control" type="text" id="SpefString" name="SpefString" size="60">
-                    </div>
+        <form action="/specify" method="post">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="form-select">Search Field</label>
+                    <select class="form-select" name="DTA">
+                        <option selected>Title</option>
+                        <option value="Certificate/Degree Program">Certificate/Degree Program</option>
+                        <option value="Data Topic Area">Data Topic Area</option>
+                        <option value="Programming Language">Programming Language</option>
+                        <option value="Barrier to Entry">Barrier to Entry</option>
+                        <option value="Comment">Comments</option>
+                    </select>
                 </div>
 
-                <div class="row justify-content-end mt-2 align-self-end">
-                    <div class="col col-sm-auto d-grid">
-                        <form action="/get-data">
-                            <button type="submit" class="btn btn-outline-secondary">Submit</button>
-                        </form>
-                    </div>
+                <div class="col-sm">
+                    <label for="SpefString">Search Terms</label>
+                    <input class="form-control" type="text" id="SpefString" name="SpefString" size="60">
                 </div>
+            </div>
+
+            <div class="row justify-content-end mt-2 align-self-end">
+                <div class="col col-sm-auto d-grid">
+                    <form action="/get-data">
+                        <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                    </form>
+                </div>
+            </div>
 </div>
 
 </form>
