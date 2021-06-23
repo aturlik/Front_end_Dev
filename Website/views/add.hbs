@@ -60,18 +60,18 @@ $('.nav-item-c a').addClass("active");
 		</div>
 		<div class="col" align="center">
 			<div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
-				<input class="btn-check" type="radio" name="SPIL" id="SPILSelf">
-				<label class="btn btn-outline-secondary" for="SPILSelf">
+				<input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced"> 
+				<label class="btn btn-outline-secondary" for="SPILself">
 					Self-Paced
 				</label>
-				<input class="btn-check" type="radio" name="SPIL" id="SPILIns">
-				<label class="btn btn-outline-secondary" for="SPILIns">
+				<input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led">
+				<label class="btn btn-outline-secondary" for="SPILins">
 					Instructor Led
 				</label>
 			</div>	
 		</div>
 		<div class="col" align="center">
-			<div class="btn-group d-flex" role="group" aria-label="Does training offer Certificate or Degree">
+			<div class="btn-group d-flex" role="group" aria-label="Does training offer Certificate or Degree" id="CDP">
 				<input class="btn-check" type="checkbox" name="CDP" value="Certificate" id="CDPCert">
 				<label class="btn btn-outline-secondary" for="CDPCert">
 					Certificate
@@ -84,23 +84,23 @@ $('.nav-item-c a').addClass("active");
 		</div> 
 	</div>
 	<div class="row mb-2">
-		<div class="btn-group d-flex" role="group" aria-label="Barrier to Entry Select">
-			<input type="radio" class="btn-check" name="BE" id="BEBeg" autocomplete="off" checked>
+		<div class="btn-group d-flex" role="group" aria-label="Barrier to Entry Select" id="BE">
+			<input type="radio" class="btn-check" name="BE" id="BEBeg" autocomplete="off" value="Beginner" checked>
 			<label class="btn btn-outline-secondary" for="BEBeg">Beginner</label>
-			<input type="radio" class="btn-check" name="BE" id="BEInter" autocomplete="off">
+			<input type="radio" class="btn-check" name="BE" id="BEInter" autocomplete="off" value="Intermediate">
 			<label class="btn btn-outline-secondary" for="BEInter">Intermediate</label>
-			<input type="radio" class="btn-check" name="BE" id="BEAdv" autocomplete="off">
+			<input type="radio" class="btn-check" name="BE" id="BEAdv" autocomplete="off" value="Advanced" >
 			<label class="btn btn-outline-secondary" for="BEAdv">Advanced</label>
-			<input type="radio" class="btn-check" name="BE" id="BEExp" autocomplete="off">
+			<input type="radio" class="btn-check" name="BE" id="BEExp" autocomplete="off" value="Expert" >
 			<label class="btn btn-outline-secondary" for="BEExp">Expert</label>
 		</div>
 	</div>
 	<div class="row mb-2">
 		<div class="col">
-			<div class="btn-group d-flex" role="group" aria-label="Public or DOD">
-				<input type="radio" class="btn-check" name="PDOD" id="PDODP" autocomplete="off" checked>
+			<div class="btn-group d-flex" role="group" aria-label="Public or DOD" id="PDOD">
+				<input type="radio" class="btn-check" name="PDOD" id="PDODP" autocomplete="off" value="Public" checked>
 				<label class="btn btn-outline-secondary" for="PDODP">Public</label>
-				<input type="radio" class="btn-check" name="PDOD" id="PDODD" autocomplete="off">
+				<input type="radio" class="btn-check" name="PDOD" id="PDODD" autocomplete="off" value="DOD">
 				<label class="btn btn-outline-secondary" for="PDODD">DOD</label>
 			</div>
 		</div>
@@ -113,15 +113,15 @@ $('.nav-item-c a').addClass("active");
 	</div>
 	<div class="row mb-2">
 		<div class="col-4">
-			<div class="btn-group d-flex" role="group" aria-label="Public or DOD">
-				<input type="radio" class="btn-check" name="PR" id="PRR" autocomplete="off" checked>
+			<div class="btn-group d-flex" role="group" aria-label="In Person or Remote" id="PR">
+				<input type="radio" class="btn-check" name="PR" id="PRR" autocomplete="off" value="Remote" checked>
 				<label class="btn btn-outline-secondary" for="PRR">Remote</label>
-				<input type="radio" class="btn-check" name="PR" id="PRP" autocomplete="off">
+				<input type="radio" class="btn-check" name="PR" id="PRP" autocomplete="off" value="In Person">
 				<label class="btn btn-outline-secondary" for="PRP">In Person</label>
 			</div>
 		</div>
 		<div class="col">
-			<div class="btn-group d-flex" role="group" aria-label="Learning Type">
+			<div class="btn-group d-flex" role="group" aria-label="Learning Type" id="LT">
 				<input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT">
 				<label class="btn btn-outline-secondary" for="LTT">Text</label>
 				<input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV">

@@ -48,21 +48,23 @@ router.get('/get-data', function(req, res, next) {
 });
 
 router.post('/insert', function(req, res, next) {
+  var test = req.body.LT
+  test = test.join();
   var item = {
-    title: req.body.title,
-    url: req.body.url,
-    provider: req.body.provider,
-    cost: req.body.cost,
-    PublicDOD: req.body.PDOD,
-    TimeCom: req.body.TCH,
-    Cert: req.body.CDP,
-    Data: req.body.DTA,
-    Program: req.body.PL,
-    Base: req.body.BOO,
+    Title: req.body.title,
+    URL: req.body.url,
+    Provider: req.body.provider,
+    Cost: req.body.cost,
+    PublicOrDOD: req.body.PDOD,
+    TimeCommitment: req.body.TCH,
+    Cert_Degree: req.body.CDP,
+    Data_Topics: req.body.DTA,
+    Programming_Language: req.body.PL,
+    Base_of_Operations: req.body.BOO,
     Barrier: req.body.BE,
-    Pacing: req.body.SPIL,
-    Learning: req.body.LT,
-    Person: req.body.PR,
+    Self_Paced: req.body.SPIL,
+    Learning_Type: test,
+    InPerson: req.body.PR,
     Useful: req.body.UT,
     Comment: req.body.comment,
     Topics: req.body.TG
