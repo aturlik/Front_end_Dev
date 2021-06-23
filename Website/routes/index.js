@@ -23,6 +23,10 @@ router.get('/admin', function(req, res, next) {
   res.render('admin');
 });
 
+router.get('/request', function(req, res, next) {
+  res.render('request');
+});
+
 router.get('/get-data', function(req, res, next) {
   var resultArray = [];
   var query = {};
@@ -82,6 +86,24 @@ router.post('/specify', function(req, res, next) {
   res.redirect('/get-data');
 });
 
+
+router.post('/request', function(req, res, next) {
+  var item = {
+    Request: req.body.request,
+    Comments: req.body.comments
+  };
+  
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings');
+    assert.strictEqual(null, err);
+    db.collection('User Requests').insertOne(item, function(err, result) {
+      assert.strictEqual(null, err);
+      console.log('Item inserted');
+      client.close();
+    });
+  });
+  res.redirect('/request');
+});
 
 router.post('/update', function(req, res, next) {
   var item = {
