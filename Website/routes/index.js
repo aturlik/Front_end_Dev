@@ -48,8 +48,10 @@ router.get('/get-data', function(req, res, next) {
 });
 
 router.post('/insert', function(req, res, next) {
-  var test = req.body.LT
-  test = test.join();
+  var learning = req.body.LT
+  if(learning != null){
+    learning = learning.join(", ");
+  }
   var item = {
     Title: req.body.title,
     URL: req.body.url,
@@ -63,9 +65,8 @@ router.post('/insert', function(req, res, next) {
     Base_of_Operations: req.body.BOO,
     Barrier: req.body.BE,
     Self_Paced: req.body.SPIL,
-    Learning_Type: test,
+    Learning_Type: learning,
     InPerson: req.body.PR,
-    Useful: req.body.UT,
     Comment: req.body.comment,
     Topics: req.body.TG
   };
