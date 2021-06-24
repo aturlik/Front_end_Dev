@@ -25,12 +25,15 @@
   margin: center;
 }
 
+
+
 </style>
 
 <script>
 $('.nav-item-c a').addClass("active");
-</script>
 
+
+</script>
 
 
 <div class="container">
@@ -39,6 +42,12 @@ $('.nav-item-c a').addClass("active");
 	<div class="row">
 		<div class="col d-flex justify-content-center">
 			<h1 class="display-3">New Data Point</h1>
+      <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+        title="Enter your desired terms and specify the field, then click Submit to show a list of resources.">
+        <button type="button" class="btn" data-toggle="tooltip" disabled>
+          <img src="images/Help_Icon.png" alt="help">
+        </button>
+      </span>
 		</div>
 	</div>
 	<br>
@@ -227,9 +236,6 @@ $('.nav-item-c a').addClass("active");
 </form>
 </section>
 
-    <div style="position: static; bottom: 0; width:100%; text-align: center">
-        <p>Distribution Statement A: Approved for Public Release; distribution unlimited.</p>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
