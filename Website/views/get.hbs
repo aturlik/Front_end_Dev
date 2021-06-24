@@ -1,31 +1,68 @@
 <style>
-.collapsible {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
+    .results {
+        margin-top: 25px;
+    }
 
+    .item {
+        border-width: 1px;
+        border-style: solid;
+        border-color: black;
+    }
 
+    .collapsible-heading {
+        background-color: #eee;
+        text-align: left;
+        font-size: 25px;
+    }
 
+    .collapsible {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        width: 50%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        text-align: center;
+    }
 
+        .collapsible:hover {
+            background-color: #ddd;
+        }
+
+    .arrow {
+        border: solid black;
+        border-width: 0 4px 4px 0;
+        display: inline-block;
+        padding: 3px;
+        float: right;
+    }
+
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+
+    .pos {
+        position: absolute;
+        top: 90px;
+        right: 20px;
+        font-weight: 500;
+        font-size: 17px
+    }
 </style>
 <script>
-$('.nav-item-b a').addClass("active");
+    $('.nav-item-b a').addClass("active");
 </script>
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
           title="Use these filters to hone in on your desired training resource.">
-    <button type="button" class="btn" data-toggle="tooltip" data-placement="right" disabled>
-        <img src="images/Help_Icon.png" alt="help">
-    </button>
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="right" disabled>
+            <img src="images/Help_Icon.png" alt="help">
+        </button>
     </span>
     <a class="navbar-brand" style="margin-left: 10px"> <b>Filters</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
@@ -208,85 +245,67 @@ $('.nav-item-b a').addClass("active");
 
 
 <!--The start of the accordion style content-->
-<section class="get" id="accordionItems">
+<section class="results" id="accordionItems">
     {{# each items }}
-        <div class="item">
-            <h2 class="collapsible" id="headingItem">
-                <button class="collapsible" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseItem{{this._id}}" aria-expanded="false"
-                        aria-controls="collapseItem{{this._id}}">
-                    {{this.Title}}
-                </button>
-            </h2>
-            <div id="collapseItem{{this._id}}" class="accordion-collapse collapse show"
-                 aria-labelledby="headingItem collapseItem" data-bs-parent="#accordionItems">
-                <div class="accordion-body">
-                    <div>URL: {{ this.URL }}</div>
-                    <div>Provider: {{ this.Provider }}</div>
-                    <div>Cost: {{ this.Cost }}</div>
-                    <div>Public/DOD: {{ this.[Public/DOD] }}</div>
-                    <div>Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}</div>
-                    <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
-                    <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
-                    <div>Programming Language: {{ this.[Programming Language] }}</div>
-                    <div>Base of Operations: {{ this.[Base of Operations] }}</div>
-                    <div>Barrier to Entry: {{ this.[Barrier to Entry] }}</div>
-                    <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
-                    <div>Learning type: {{ this.[Learning type] }}</div>
-                    <div>In person vs Remote: {{ this.[In person vs Remote] }}</div>
-                    <div>Useful Training?: {{ this.[Useful Training?] }}</div>
-                    <div>Comment: {{ this.Comment }}</div>
-                    <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
-                    <div>ID: {{ this._id }}</div>
-                    <br>
-                </div>
+    <!--Adding how many terms there are-->
+    <div>
+        {{#if @last}}
+        <div class="pos">There are <span id="result"></span> results</div>
+
+        <script>
+            var position = {{@index}}
+            document.getElementById("result").innerHTML = position + 1;
+        </script>
+        {{/if}}
+    </div>
+
+    <div class="item">
+        <div class="collapsible-heading">
+            <table>
+                <tr>
+                    <p>{{this.Title}}</p>
+                </tr>
+                <tr>
+                    <button class="collapsible" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
+                        <p> Details <i class="arrow down"></i></p>
+                    </button>
+                    <button class="collapsible" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemAcc{{this._id}}" aria-expanded="false" aria-controls="collapseItemAcc{{this._id}}">
+                        <p> Accessibility <i class="arrow down"></i></p>
+                    </button>
+                </tr>
+            </table>
+        </div>
+        <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
+            <div class="accordion-body">
+                <div>Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}</div>
+                <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
+                <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
+                <div>Programming Language: {{ this.[Programming Language] }}</div>
+                <div>Barrier to Entry: {{ this.[Barrier to Entry] }}</div>
+                <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
+                <div>Learning type: {{ this.[Learning type] }}</div>
+                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                <div>Comment: {{ this.Comment }}</div>
+                <br>
             </div>
         </div>
+        <div id="collapseItemAcc{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
+            <div class="accordion-body">
+                <div>URL: {{ this.URL }}</div>
+                <div>Provider: {{ this.Provider }}</div>
+                <div>Cost: {{ this.Cost }}</div>
+                <div>Public/DOD: {{ this.[Public/DOD] }}</div>
+                <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+                <div>In person vs Remote: {{ this.[In person vs Remote] }}</div>
+                <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+                <div>ID: {{ this._id }}</div>
+                <br>
+            </div>
+        </div>
+    </div>
 
     {{/each}}
 </section>
-<!--<section class="get">
-    <h3>Get Data</h3>
-    <div id="accordion">
-      {{# each items }}
-        <div class="item">
-          <div class="card-header" id="headingOne">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapsiable" aria-expanded="false" aria-controls="collapsiable">
-              {{ this.Title }}
-            </button>
-          </div>
-
-          <div id="collapsiable" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body">
-              URL: {{ this.URL }}
-              Provider: {{ this.Provider }}
-              Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}
-            </div>
-          </div>
-
-            <div>Title: {{ this.Title }}</div>
-            <div>URL: {{ this.URL }}</div>
-            <div>Provider: {{ this.Provider }}</div>
-            <div>Cost: {{ this.Cost }}</div>
-            <div>Public/DOD: {{ this.[Public/DOD] }}</div>
-            <div>Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}</div>
-            <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
-            <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
-            <div>Programming Language: {{ this.[Programming Language] }}</div>
-            <div>Base of Operations: {{ this.[Base of Operations] }}</div>
-            <div>Barrier to Entry: {{ this.[Barrier to Entry] }}</div>
-            <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
-            <div>Learning type: {{ this.[Learning type] }}</div>
-            <div>In person vs Remote: {{ this.[In person vs Remote] }}</div>
-            <div>Useful Training?: {{ this.[Useful Training?] }}</div>
-            <div>Comment: {{ this.Comment }}</div>
-            <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
-            <div>ID: {{ this._id }}</div>
-            <br>
-        </div>
-      {{/each}}
-    </div>
-</section>-->
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
