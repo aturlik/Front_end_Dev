@@ -51,7 +51,15 @@ router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
   if(learning != null){
     learning = learning.join(", ");
-  }
+  };
+  var language = req.body.LPS;
+  var topic = req.body.DTA;
+  if(language != null){
+    language = language.join(", ");
+  };
+  if(topic != null){
+    topic = topic.join(", ");
+  };
   var item = {
     Title: req.body.title,
     URL: req.body.url,
@@ -60,8 +68,8 @@ router.post('/insert', function(req, res, next) {
     PublicOrDOD: req.body.PDOD,
     TimeCommitment: req.body.TCH,
     Cert_Degree: req.body.CDP,
-    Data_Topics: req.body.DTA,
-    Programming_Language: req.body.PL,
+    Data_Topics: topic,
+    Programming_Language: language,
     Base_of_Operations: req.body.BOO,
     Barrier: req.body.BE,
     Self_Paced: req.body.SPIL,

@@ -149,15 +149,15 @@ $('.nav-item-c a').addClass("active");
 	<div class="row mb-2">
 		<div class="col">
 			<div class="accordion" id="accordionExample">
-				<div class="accordion-item">
+				<div class="accordion-item" id="DPA">
 					<h2 class="accordion-header" id="headingOne">
 						<button class="collapsible" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 							<small class="text-muted" style="vertical-align: top;">Programs, Languages, and other Data Topics</small>	
 						</button>
 					</h2>
 					<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-						<div class="accordion-body">
-							<div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group" aria-label="Data Topic Select Menus">
+						<div class="accordion-body" >
+							<div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group" aria-label="Data Topic Select Menus" id="DTA">
 								<input class="btn-check" type="checkbox" name="DTA" value="Data Science" id="DTADataSci">
 								<label class="btn btn-outline-secondary" for="DTADataSci">Data Science</label>
 								<input class="btn-check" type="checkbox" name="DTA" value="Tutorial" id="DTATut">
@@ -171,7 +171,7 @@ $('.nav-item-c a').addClass("active");
 								<input class="btn-check" type="checkbox" name="DTA" value="Program Skills" id="DTAProSkil">
 								<label class="btn btn-outline-secondary" for="DTAProSkil">Program Skills</label>
 							</div>
-							<div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group" aria-label="Language and Program Select Menus">
+							<div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group" aria-label="Language and Program Select Menus" id="LPS">
 								<input class="btn-check" type="checkbox" name="LPS" value="Microsoft Office" id="LPSOffice">
 								<label class="btn btn-outline-secondary" for="LPSOffice">Microsoft Office</label>
 								<input class="btn-check" type="checkbox" name="LPS" value="Excel" id="LPSExcel">
