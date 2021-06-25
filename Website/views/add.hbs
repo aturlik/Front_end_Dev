@@ -28,10 +28,42 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 
 <script>
 $('.nav-item-c a').addClass("active");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -65,35 +97,75 @@ $('.nav-item-c a').addClass("active");
                                 <br><br>
                                 <b>Don't understand what a specific data input does? </b>
                                 <br>
-                                Click on following buttons for an explanation on that that input data point.
+                                Click on following buttons below for an explanation on that input data point.
                                 <br><br>
                                 <div class="btn-group d-flex" role="group" aria-label="First Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Title</button>
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">URL</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalTitle"
+                                            data-toggle="modal" data-dismiss="modal">Title
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalURL"
+                                            data-toggle="modal" data-dismiss="modal">URL
+                                    </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Second Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Time Commitment</button>
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Costs</button>
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Pacing</button>
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Certifications</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalTC"
+                                            data-toggle="modal" data-dismiss="modal">Time
+                                        Commitment
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalCost"
+                                            data-toggle="modal" data-dismiss="modal">Costs
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalPacing"
+                                            data-toggle="modal" data-dismiss="modal">
+                                        Pacing
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalCert"
+                                            data-toggle="modal" data-dismiss="modal">
+                                        Certifications
+                                    </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Third Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Experience Level</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalExp"
+                                            data-toggle="modal" data-dismiss="modal">
+                                        Experience Level
+                                    </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Fourth Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Clearance</button>
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Provider</button>
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Provider Location</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalClear"
+                                            data-toggle="modal" data-dismiss="modal">
+                                        Clearance
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                            data-target="#myModalProvider" data-toggle="modal" data-dismiss="modal">
+                                        Provider
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalLoc"
+                                            data-toggle="modal" data-dismiss="modal">
+                                        Provider Location
+                                    </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Fifth Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Medium</button>
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Learning Type</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalMed"
+                                            data-toggle="modal" data-dismiss="modal">
+                                        Medium
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                            data-target="#myModalLearning" data-toggle="modal" data-dismiss="modal">
+                                        Learning Type
+                                    </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Sixth Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Keywords</button><br>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalKey"
+                                            data-toggle="modal" data-dismiss="modal">
+                                        Keywords
+                                    </button>
+                                    <br>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Seventh Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Comments</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalCom"
+                                            data-toggle="modal" data-dismiss="modal">
+                                        Comments
+                                    </button>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -102,6 +174,366 @@ $('.nav-item-c a').addClass("active");
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="myModalTitle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Title</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Title" input is where you put the name for the training resource.
+                                (i.e. Python Tutorials, Intro to Machine Learning, etc.)
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalURL" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">URL</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "URL" input is where you put the hyperlinks that directs you to the training
+                                resource. (i.e. www.youtube.com. www.udemy.com, etc.)
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalTC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Time Commitment</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Time Commitment (Hours)" input where you put how long it took for you to finish the
+                                resources. If the resource does not time required (i.e. Video Length, Time Completion
+                                Estimate, etc.), please input a rough estimate of how long it took you to finish the
+                                training resource.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalCost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Cost</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Cost in $" input is where you put in how much money you paid to finish this
+                                resource (i.e $50, $100). Please only put numbers and do not add the "$" symbol. If the
+                                resource is free, please put in "0".
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalPacing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Pacing</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Self-Paced" and "Instructor Led" buttons is where you choose whether the training
+                                resource is one of the two.
+                                <br><br>
+                                <b>Self-Paced</b> is for resources that go on your time. It is for resources where the
+                                user decides how fast or slaw they can go.
+                                <br><br>
+                                <b>Instructor Led</b> is for resources that have a teacher that decides the pace of
+                                learning.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalCert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Certifications</h4>
+                            </div>
+                            <div class="modal-body">
+                                Some training resources offer tangible evidence showing that you finished the training.
+                                Please specify if you can acquire a <b>"Certificate"</b>, <b>"Degree"</b>, or both while
+                                undergoing the training.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalExp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Experience Level</h4>
+                            </div>
+                            <div class="modal-body">
+                                Some training resources require the user to have prerequisites or have knowledge of the
+                                topic before taking their resource. This is where you specify what level a person needs
+                                to be to understand the course.
+                                <br><br>
+                                <b>Beginner</b> is those who are learning the topic for the first time and have no prior
+                                experience of the topic.
+                                <br><br>
+                                <b>Intermediate</b> is those who have some knowledge of the topic but are not proficient
+                                in it.
+                                <br><br>
+                                <b>Advanced</b> is those who are proficient in the topics and can fully understand
+                                real-life examples.
+                                <br><br>
+                                <b>Expert</b> is those who are actively working in the field of the topic and understand
+                                leading edge examples.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalClear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Clearance</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Public" and "DOD" button are used to specify where you are able to access this
+                                resource.
+                                <br><br>
+                                <b>Public</b> is for resources where you can access in internet with no sercurity
+                                concerns.
+                                <br><br>
+                                <b>DOD</b> is for resources that are protected by the government and they can only be
+                                accessed on base or through a CAC.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalProvider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Provider</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Service/Training Provider" input is where you put which person/company is offering
+                                the training resource. (i.e. Google, Linkedin, etc.)
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalLoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Location</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Location of Provider" input is where you put where the provider's headquarters
+                                location. (i.e. United States, Japan, etc.)
+                                <br><br>
+                                <b>Please make sure that the resource you are adding does not originate from an
+                                    adversary state. (i.e. China, Russia, etc.)</b>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalMed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Medium</h4>
+                            </div>
+                            <div class="modal-body">
+                                The Medium buttons are where you specify where one can take the training resource.
+                                <br><br>
+                                <b>Remote</b> is for resources where one can take online.
+                                <br><br>
+                                <b>In Person</b> is for resources where one must go to a physical location to take the
+                                course.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalLearning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Learning Type</h4>
+                            </div>
+                            <div class="modal-body">
+                                The Learning Type buttons is where you specify what way does the resource teach a user.
+                                Some resources may need to be under multiple types.
+                                <br><br>
+                                <b>Text</b> is for resources that teach by online text dialogs.
+                                <br><br>
+                                <b>Video</b> is for resources that teach by watching a recording.
+                                <br><br>
+                                <b>Book</b> is for resources that can be read by a physical item.
+                                <br><br>
+                                <b>Lecture</b> is for resources that are taught by a teacher in a classroom format.
+                                <br><br>
+                                <b>Interactice</b> is for resources where one can be hands-on and interact with the
+                                resource to learn.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModalKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Keywords</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Programs, Languages, and other Data Topics" dropdown is where you specify what
+                                topics the resource teaches.
+                                You can choose the common topics by clicking the related button or add your own topics
+                                in the "Other" textbox.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="myModalCom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Comments</h4>
+                            </div>
+                            <div class="modal-body">
+                                The "Put any comments here" input is where you can tell any other pieces of advice to
+                                other users about the resource. (i.e. The location of the resource if it is physical,
+                                how good the resource is, things to avoid while taking the resource, etc.)
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                        data-toggle="modal" data-dismiss="modal">
+                                    Go Back
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <br>
