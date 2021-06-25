@@ -7,8 +7,6 @@ let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
 
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-var spectopic = '';
-var specdata = '';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,12 +25,12 @@ router.get('/request', function(req, res, next) {
   res.render('request');
 });
 
-router.get('/get-data', function(req, res, next) {
+router.get("/get-data", function(req, res, next) {
+  var spectopic = req.query.topic;
+  var specdata = req.query.data; 
   var resultArray = [];
   var query = {};
   query[spectopic] = RegExp(sanitize(specdata));
-  console.log(specdata);
-  console.log(spectopic);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
@@ -51,7 +49,15 @@ router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
   if(learning != null){
     learning = learning.join(", ");
-  }
+  };
+  var language = req.body.LPS;
+  var topic = req.body.DTA;
+  if(language != null){
+    language = language.join(", ");
+  };
+  if(topic != null){
+    topic = topic.join(", ");
+  };
   var item = {
     Title: req.body.title,
     URL: req.body.url,
@@ -60,8 +66,8 @@ router.post('/insert', function(req, res, next) {
     PublicOrDOD: req.body.PDOD,
     TimeCommitment: req.body.TCH,
     Cert_Degree: req.body.CDP,
-    Data_Topics: req.body.DTA,
-    Programming_Language: req.body.PL,
+    Data_Topics: topic,
+    Programming_Language: language,
     Base_of_Operations: req.body.BOO,
     Barrier: req.body.BE,
     Self_Paced: req.body.SPIL,
@@ -86,7 +92,8 @@ router.post('/insert', function(req, res, next) {
 router.post('/specify', function(req, res, next) {
   spectopic = req.body.DTA;
   specdata = req.body.SpefString;
-  res.redirect('/get-data');
+  console.log('/get-data/top/{spectopic}/data/{specdata}');
+  res.redirect("/get-data?topic=" + spectopic + "&data=" + specdata);
 });
 
 
