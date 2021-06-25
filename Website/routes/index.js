@@ -7,8 +7,6 @@ let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
 
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-var spectopic = '';
-var specdata = '';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,12 +25,15 @@ router.get('/request', function(req, res, next) {
   res.render('request');
 });
 
-router.get('/get-data', function(req, res, next) {
+router.get("/get-data", function(req, res, next) {
+  console.log('gothere');
+  var spectopic = req.query.topic;
+  var specdata = req.query.data; 
+  console.log(spectopic);
+  console.log(specdata);
   var resultArray = [];
   var query = {};
   query[spectopic] = RegExp(sanitize(specdata));
-  console.log(specdata);
-  console.log(spectopic);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
@@ -94,7 +95,8 @@ router.post('/insert', function(req, res, next) {
 router.post('/specify', function(req, res, next) {
   spectopic = req.body.DTA;
   specdata = req.body.SpefString;
-  res.redirect('/get-data');
+  console.log('/get-data/top/{spectopic}/data/{specdata}');
+  res.redirect("/get-data?topic=" + spectopic + "&data=" + specdata);
 });
 
 
