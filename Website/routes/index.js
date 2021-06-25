@@ -31,16 +31,28 @@ router.get("/get-data", function(req, res, next) {
   var resultArray = [];
   var query = {};
   query[spectopic] = RegExp(sanitize(specdata));
+  var FOP = req.query.cost;
+  var convertFOP = '';
+  if (FOP == "Free"){
+    query["Cost"] = {$in: ["0", "$0"]};
+  }
+  else if (FOP == "Paid" ) {
+    query["Cost"] = {'$ne': '0'};
+  };
+  console.log(query);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
+    console.log(query);
     var cursor = db.collection('RawData1').find(query);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
       resultArray.push(doc);
     }, function() {
       client.close();
-      res.render('get', {items: resultArray});
+      specdata = specdata.replace(/ /g, "_");
+      spectopic = spectopic.replace(/ /g, "_");
+      res.render('get', {items: resultArray, specdata, spectopic});
     });
   });
 });
@@ -92,7 +104,6 @@ router.post('/insert', function(req, res, next) {
 router.post('/specify', function(req, res, next) {
   spectopic = req.body.DTA;
   specdata = req.body.SpefString;
-  console.log('/get-data/top/{spectopic}/data/{specdata}');
   res.redirect("/get-data?topic=" + spectopic + "&data=" + specdata);
 });
 
@@ -113,6 +124,40 @@ router.post('/request', function(req, res, next) {
     });
   });
   res.redirect('/request');
+});
+
+router.post('/get_data', function(req, res, next) {
+  var cost = req.body.TST;
+  var level = req.body.LVL;
+  var public = req.body.PDOD;
+  var remote = req.body.RIP;
+  var selfp = req.body.SPIL;
+  var learn = req.body.LRN;
+  var st = req.body.ST;
+  var sd = req.body.SD; 
+  st = st.replace(/_/g, " ")
+  sd = sd.replace(/_/g, " ")
+  console.log(st);
+  var urladditives = "";
+  if(cost != null){
+    urladditives = urladditives.concat("&cost=" + cost)
+  };
+  if(level != null){
+    urladditives = urladditives.concat("&level=" + level)
+  };
+  if(public != null){
+    urladditives = urladditives.concat("&public=" + public)
+  };
+  if(remote != null){
+    urladditives = urladditives.concat("&remote=" + remote)
+  };
+  if(selfp != null){
+    urladditives = urladditives.concat("&self=" + selfp)
+  };
+  if(learn != null){
+    urladditives = urladditives.concat("&learn=" + learn)
+  };
+  res.redirect("/get-data?topic=" + st + "&data=" + sd + urladditives);
 });
 
 router.post('/update', function(req, res, next) {
