@@ -26,11 +26,8 @@ router.get('/request', function(req, res, next) {
 });
 
 router.get("/get-data", function(req, res, next) {
-  console.log('gothere');
   var spectopic = req.query.topic;
   var specdata = req.query.data; 
-  console.log(spectopic);
-  console.log(specdata);
   var resultArray = [];
   var query = {};
   query[spectopic] = RegExp(sanitize(specdata));
