@@ -39,11 +39,39 @@ router.get("/get-data", function(req, res, next) {
   else if (FOP == "Paid" ) {
     query["Cost"] = {'$ne': '0'};
   };
+  var skill = req.query.level;
+  if (skill != null){
+    query["Barrier to Entry"] = skill;
+  }
+  var Pubdod = req.query.public;
+  if (Pubdod == "Public"){
+    query["Public/DOD"] = Pubdod;
+  }
+  else if (Pubdod != null){
+    query["Public/DOD"] = Pubdod;
+  };
+  var remoteornah = req.query.remote;
+  if (remoteornah == "Remote"){
+    query["In person vs Remote"] = "Remote";
+  }
+  else if (remoteornah != null){
+    query["In person vs Remote"] = remoteornah;
+  };
+  var selfornah = req.query.self;
+  if (selfornah == "Remote"){
+    query["Self Paced vs Instructor Led"] = selfornah;
+  }
+  else if (selfornah != null){
+    query["Self Paced vs Instructor Led"] = selfornah;
+  };
+  var learnornah = req.query.learn;
+  if (learnornah != null){
+    query["Learning type"] = learnornah;
+  }
   console.log(query);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    console.log(query);
     var cursor = db.collection('RawData1').find(query);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
