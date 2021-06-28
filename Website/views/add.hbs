@@ -435,7 +435,7 @@ $('.nav-item-c a').addClass("active");
                                 <br><br>
                                 <b>Lecture</b> is for resources that are taught by a teacher in a classroom format.
                                 <br><br>
-                                <b>Interactice</b> is for resources where one can be hands-on and interact with the
+                                <b>Interactive</b> is for resources where one can be hands-on and interact with the
                                 resource to learn.
                             </div>
                             <div class="modal-footer">
@@ -708,9 +708,22 @@ $('.nav-item-c a').addClass("active");
 
 
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" style="margin:20px" class="btn btn-secondary">Submit</button>
+                <button type="submit" style="margin:20px" class="btn btn-secondary" data-target="#myModalSub" data-toggle="modal">Submit</button>
             </div>
 
+            <div class="modal fade" id="myModalSub" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Entry Added</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </form>
     </section>
