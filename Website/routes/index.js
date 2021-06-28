@@ -67,7 +67,8 @@ router.post('/insert', function(req, res, next) {
   if(language != null){
     language = language.join(", ");
   };
-  if(topic != null){
+  if(topic.length != 0){
+    topic.pop();
     topic = topic.join(", ");
   };
   var item = {
