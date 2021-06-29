@@ -384,17 +384,15 @@
          ---=========================================================-->
         <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
             <div class="accordion-body">
-                Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}
-                <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
-                <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
-                <div>Programming Language: {{ this.[Programming Language] }}</div>
-                <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
-                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                <h5>{{ this.URL }}</h5>
+                <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
+                <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
+                <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
+
                 <div>Comment: {{ this.Comment }}</div>
-                <div>URL: {{ this.URL }}</div>
+                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
                 <div>Provider: {{ this.Provider }}</div>
                 <div>Cost: {{ this.Cost }}</div>
-                <div>Public/DOD: </div>
                 <div>Base of Operations: {{ this.[Base of Operations] }}</div>
                 <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
                 <div>ID: {{ this._id }}</div>
