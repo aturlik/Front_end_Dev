@@ -1,3 +1,4 @@
+<!-- Styling for each search result -->
 <style>
     /*****************************************************************
         Creating the container specifications the contains the results
@@ -115,13 +116,16 @@
         font-size: 17px
     }
 </style>
+
+<!-- Navigation bar to show that current tab is active -->
 <script>
     $('.nav-item-b a').addClass("active");
 </script>
+
+<!-- Filter Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
-          title="Use these filters to hone in on your desired training resource.">
-        <button type="button" class="btn" data-toggle="tooltip" data-placement="right" disabled>
+    <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1">
+        <button type="button" class="btn" data-toggle="modal" disabled>
             <img src="images/Help_Icon.png" alt="help">
         </button>
     </span>
