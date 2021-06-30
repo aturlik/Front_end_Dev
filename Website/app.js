@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('express-handlebars');
 var sanitize = require('mongo-sanitize');
+const Handlebars = require('handlebars')
 
 
 var indexRouter = require('./routes/index');
@@ -22,21 +23,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(function (req, res, next) {
-  // check if client sent cookie
-  var cookie = req.cookies.cookieName;
-  if (cookie === undefined) {
-    // no: set a new cookie
-    var randomNumber=Math.random().toString();
-    randomNumber=randomNumber.substring(2,randomNumber.length);
-    res.cookie('cookieName',randomNumber, { maxAge: 900000, httpOnly: true });
-    console.log('cookie created successfully');
-  } else {
-    // yes, cookie was already present 
-    console.log('cookie exists', cookie);
-  } 
-  next(); // <-- important!
-});
 
 app.use('/', indexRouter);
 
@@ -54,7 +40,6 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  res.cookie('cookiename', 'cookievalue', { maxAge: 900000, httpOnly: true });
   // render the error page
   res.status(err.status || 500);
   res.render('error');
