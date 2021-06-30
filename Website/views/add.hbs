@@ -396,6 +396,7 @@ $('.nav-item-c a').addClass("active");
                     </div>
                 </div>
 
+                <!-- Placement Modal for the the In person and Remote Buttons -->
                 <div class="modal fade" id="myModalMed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -404,12 +405,10 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Medium</h4>
                             </div>
                             <div class="modal-body">
-                                The Medium buttons are where you specify where one can take the training resource.
-                                <br><br>
-                                <b>Remote</b> is for resources where one can take online.
-                                <br><br>
-                                <b>In Person</b> is for resources where one must go to a physical location to take the
-                                course.
+                                <p>The Medium buttons are where you specify where one can take the training resource.</p>
+                                <p><b>Remote</b> is for resources where one can take online.</p>
+                                <p><b>In Person</b> is for resources where one must go to a physical location to take the
+                                    course.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -422,6 +421,7 @@ $('.nav-item-c a').addClass("active");
                     </div>
                 </div>
 
+                <!-- Learning Type Modal for Text, Video, Book, Lecture, Interactive -->
                 <div class="modal fade" id="myModalLearning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -430,19 +430,14 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Learning Type</h4>
                             </div>
                             <div class="modal-body">
-                                The Learning Type buttons is where you specify what way does the resource teach a user.
-                                Some resources may need to be under multiple types.
-                                <br><br>
-                                <b>Text</b> is for resources that teach by online text dialogs.
-                                <br><br>
-                                <b>Video</b> is for resources that teach by watching a recording.
-                                <br><br>
-                                <b>Book</b> is for resources that can be read by a physical item.
-                                <br><br>
-                                <b>Lecture</b> is for resources that are taught by a teacher in a classroom format.
-                                <br><br>
-                                <b>Interactive</b> is for resources where one can be hands-on and interact with the
-                                resource to learn.
+                                <p>The Learning Type buttons is where you specify what way does the resource teach a user.
+                                    Some resources may need to be under multiple types.</p>
+                                <p><b>Text</b> is for resources that teach by online text dialogs.</p>
+                                <p><b>Video</b> is for resources that teach by watching a recording.</p>
+                                <p><b>Book</b> is for resources that can be read by a physical item.</p>
+                                <p><b>Lecture</b> is for resources that are taught by a teacher in a classroom format.</p>
+                                <p><b>Interactive</b> is for resources where one can be hands-on and interact with the
+                                    resource to learn.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -455,6 +450,7 @@ $('.nav-item-c a').addClass("active");
                     </div>
                 </div>
 
+                <!-- Keywords Modal  -->
                 <div class="modal fade" id="myModalKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -479,7 +475,7 @@ $('.nav-item-c a').addClass("active");
                     </div>
                 </div>
 
-
+                <!-- Comments Modal -->
                 <div class="modal fade" id="myModalCom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -506,6 +502,8 @@ $('.nav-item-c a').addClass("active");
             </div>
         </div>
         <br>
+
+        <!-- Form Input -->
         <form action="/insert" method="post">
             <div class="row mb-2">
                 <div class="col">
@@ -604,8 +602,6 @@ $('.nav-item-c a').addClass("active");
                         <label class="btn btn-outline-secondary" for="LTB">Book</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL">
                         <label class="btn btn-outline-secondary" for="LTL">Lecture</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Classroom" id="LTC">
-                        <label class="btn btn-outline-secondary" for="LTC">Classroom</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI">
                         <label class="btn btn-outline-secondary" for="LTI">Interactive</label>
                     </div>
@@ -712,17 +708,18 @@ $('.nav-item-c a').addClass("active");
                 </div>
             </div>
 
-
+            <!-- Button to insert data into database and call on submit Modal -->
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" style="margin:20px" class="btn btn-secondary" data-target="#myModalSub" data-toggle="modal">Submit</button>
             </div>
 
+            <!-- WIP: Modal for when entry is submitted -->
             <div class="modal fade" id="myModalSub" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Entry Added</h4>
+                                <h4 class="modal-title" id="myModalLabel">Entry Submitted</h4>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
