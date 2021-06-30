@@ -97,11 +97,10 @@ router.get("/get-data", function(req, res, next) {
       query["Learning type"] = learnornah;
     };
   }
-  console.log(query);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    var cursor = db.collection('RawData1').find(query);
+    var cursor = db.collection('RawData1').aggregate([{'$search': {'text': {'query': specdata,'path': {'wildcard': '*'}}}}]);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
       resultArray.push(doc);
