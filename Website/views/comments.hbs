@@ -1,0 +1,71 @@
+<style>.test{
+    height: 200px;}
+
+
+</style>
+
+<script>
+    $('.nav-item-b a').addClass("active");
+</script>
+
+
+<div class="container overflow-hidden">
+    <section class="specify">
+        <form action="/comments" method="post">
+            <div class="col-sm mb-2 mt-4">
+                <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
+                          placeholder="Comments or Bugs"></textarea>
+            </div>
+            <div class="row justify-content-end mt-2 align-self-end">
+                <div class="col col-sm-auto d-grid">
+                    <table>
+                        <td>
+                            <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
+                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
+                                    <img src="images/Help_Icon.png" alt="help">
+                                </button>
+                            </span>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            Input in the "Request" box what topic you would like to see more training
+                                            resources of. Add any additional comments to help those find the right resource
+                                            for you.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                        </td>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
