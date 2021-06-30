@@ -79,6 +79,14 @@
             font-weight: 500;
         }
 
+    .inner_collapse{
+        cursor: pointer;
+        width: 25%;
+        border: none;
+        outline: none;
+        padding: 10px
+    }
+
     .collapsible-heading2 {
         font-size: 25px;
         color: #232354;
@@ -367,37 +375,48 @@
          ---=========================================================-->
         <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
             <div class="accordion-body">
-                Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}
-                <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
-                <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
-                <div>Programming Language: {{ this.[Programming Language] }}</div>
-                <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
-                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
-                <div>Comment: {{ this.Comment }}</div>
-                <div>URL: {{ this.URL }}</div>
-                <div>Provider: {{ this.Provider }}</div>
-                <div>Cost: {{ this.Cost }}</div>
-                <div>Public/DOD: </div>
-                <div>Base of Operations: {{ this.[Base of Operations] }}</div>
-                <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
-                <div>ID: {{ this._id }}</div>
-                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
+                        <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
+                        <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
+                        <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
+                        <div><b>Provider:</b> {{ this.Provider }}</div>
+                        <div><b>Cost:</b> {{ this.Cost }}</div>
+                        <div><b>Comment:</b> {{ this.Comment }}</div>
+                        <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                    </div>
+
+                    <div class="col-sm">
+                        <form action="/get-data/vote" method="post" id="{{this._id}}">
+                            <input class="btn-check" type="radio" name="Vote" id="upVote" value="Liked">
+                            <label class="btn btn-outline-secondary" for="upVote">
+                                Liked
+                            </label>
+                            <input class="btn-check" type="radio" name="Vote" id="downVote" value="Disliked">
+                            <label class="btn btn-outline-secondary" for="downVote">
+                                Disliked
+                            </label>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+                <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
+                    Admin Details
+                </button>
+                <div id="collapseItemAdmin{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item">
+                    <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+                    <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+                    <div>ID: {{ this._id }}</div>
+                    <br>
+                </div>
             </div>
         </div>
     </div>
 
     {{/each}}
 </section>
-
-<script>
-    Handlebars.registerHelper("if", function(conditional, options) {
-      if (options.hash.desired === options.hash.type) {
-        options.fn(this);
-      } else {
-        options.inverse(this);
-      }
-    });
-</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
