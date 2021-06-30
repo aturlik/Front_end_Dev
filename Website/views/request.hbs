@@ -1,13 +1,10 @@
 <style>.test{
     height: 200px;}
-
-
 </style>
 
 <script>
     $('.nav-item-e a').addClass("active");
 </script>
-
 
 <div class="container overflow-hidden">
     <section class="specify">
@@ -24,7 +21,8 @@
                     <table>
                         <td>
                             <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
-                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
+                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
+                                        disabled>
                                     <img src="images/Help_Icon.png" alt="help">
                                 </button>
                             </span>
@@ -41,7 +39,8 @@
 
                                         <div class="modal-body">
                                             Input in the "Request" box what topic you would like to see more training
-                                            resources of. Add any additional comments to help those find the right resource
+                                            resources of. Add any additional comments to help those find the right
+                                            resource
                                             for you.
                                         </div>
                                         <div class="modal-footer">
@@ -54,6 +53,22 @@
                         </td>
                         <td>
                             <button type="submit" class="btn btn-outline-secondary">Submit</button>
+
+                            <div class="modal fade" id="myModalSub" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Request Sent</h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </table>
                 </div>
