@@ -1,11 +1,6 @@
 <script>
     $('.nav-item-a a').addClass("active");
 
-    $(function () {
-        $('[data-toggle="popover"]').popover();
-    });
-
-
 </script>
 
 <div class="text-center">
@@ -20,13 +15,14 @@
         <table>
             <td><h3>Search</h3></td>
             <td>
+                <!-- Button to call on Help Modal -->
                 <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                     <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
                         <img src="images/Help_Icon.png" alt="help">
                     </button>
                 </span>
 
-                <!-- Modal -->
+                <!-- Contents of Help Modal -->
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog">
@@ -36,15 +32,13 @@
                             </div>
 
                             <div class="modal-body">
-                                Enter the Training Resource you would like to acquire in "Search Terms".
+                                <p>Enter the Training Resource you would like to acquire in "Search Terms".
                                 Next, Specify how that search term is related in "Search Field". Finally, click "Submit"
-                                to be shown a list of results.
-                                <br><br>
-                                <b>Have resource of your own that you would like to add to the database?</b>
-                                <br>Click "Add Data" on the top of the page.
-                                <br><br>
-                                <b>Want more resources on a certain topic?</b>
-                                <br>Click "Request" on the top of the page.
+                                to be shown a list of results.</p>
+                                <p><b>Have resource of your own that you would like to add to the database?</b>
+                                    <br>Click "Add Data" on the top of the page.</p>
+                                <p><b>Want more resources on a certain topic?</b>
+                                    <br>Click "Request" on the top of the page.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -54,6 +48,7 @@
                 </div>
             </td>
         </table>
+
         <form action="/specify" method="post">
             <div class="row">
                 <div class="col-sm-3">
