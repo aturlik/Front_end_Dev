@@ -1,4 +1,6 @@
+<!-- Styling for each search result -->
 <style>
+
     /*****************************************************************
         Creating the container specifications the contains the results
     *****************************************************************/
@@ -71,12 +73,13 @@
             background-color: #aaa;
         }
 
-    /* Text Attributes */
-    .collapsible-heading {
-        font-size: 25px;
-        color: #232323;
-        font-weight: 500;
-    }
+        .collapsible:
+        /* Text Attributes */
+        .collapsible-heading {
+            font-size: 25px;
+            color: #232323;
+            font-weight: 500;
+        }
 
     .collapsible-heading2 {
         font-size: 25px;
@@ -115,18 +118,22 @@
         font-size: 17px
     }
 </style>
+
+<!-- Navigation bar to show that current tab is active -->
 <script>
-    $('.nav-item-b a').addClass("active");
+    $('.nav-item-a a').addClass("active");
 </script>
+
+<!-- Filter Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
-          title="Use these filters to hone in on your desired training resource.">
-        <button type="button" class="btn" data-toggle="tooltip" data-placement="right" disabled>
+    <!-- Button to call on Help Tutorial Modal/Pop-up -->
+    <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1">
+        <button type="button" class="btn" data-toggle="modal" disabled>
             <img src="images/Help_Icon.png" alt="help">
         </button>
     </span>
 
-    <!-- Modal -->
+    <!-- Modal for the Help Tutorial Contents -->
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -136,10 +143,9 @@
                 </div>
 
                 <div class="modal-body">
-                    Here are the results of training resources from your search. Click on each resource to see the details
-                    of said resource.
-                    <br><br>
-                    Use the filters below the navigation bar to specify your search even further.
+                    <p>Here are the results of training resources from your search. Click on each resource to see the details
+                        of said resource.</p>
+                    <p>Use the filters at the top of the page and below the navigation bar to specify your search even further.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -148,23 +154,25 @@
         </div>
     </div>
 
+    <!-- Filter Categories -->
     <a class="navbar-brand" style="margin-left: 10px"> <b>Filters</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
 <form action="/get_data" method="post">
     <div class="collapse navbar-collapse" id="navbarFilter" role="group">
         <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+            <li class="nav-item-dropdown-1">
                 <a class="nav-link dropdown-toggle" href="#" id="CostDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Cost
                 </a>
                 <div class="dropdown-menu" aria-labelledby="CostDropdownMenuLink" role="group" id="TST">
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input"  name="TST" id="FreedropdownCheck" value="Free">
+                    <a class="dropdown-item" id="Tester">
+                        <div class="form-check 1" id="Tester2">
+                            <input type="checkbox" class="form-check-input 1"  name="TST" id="FreedropdownCheck" value="Free">
                             <label class="form-check-label" for="FreedropdownCheck">
                                 Free 
                             </label>
@@ -172,7 +180,7 @@
                     </a> 
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="TST" id="PaiddropdownCheck" value="Paid">
+                            <input type="checkbox" class="form-check-input" name="TST" id="PaiddropdownCheck" value="Paid">
                             <label class="form-check-label" for="PaiddropdownCheck">
                                 Paid
                             </label>
@@ -244,8 +252,8 @@
                 <div class="dropdown-menu" aria-labelledby="RDropdownMenuLink" role="group" id="RIP">
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="RIP" id="BdropdownCheck" value="Remote">
-                            <label class="form-check-label" for="BdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="RIP" id="RdropdownCheck" value="Remote">
+                            <label class="form-check-label" for="RdropdownCheck">
                                 Remote
                             </label>
                         </div>
@@ -334,7 +342,7 @@
 
 
 <!--===========================================================---
-    Styling the results so that they are presented as accordion 
+    Styling the results so that they are presented as accordion
     elements
  ---===========================================================-->
 <section class="results" id="accordionItems">
@@ -362,7 +370,15 @@
         <button class="collapsible" id="collaps{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
             <div class="row">
                 <div class="col-sm">
-                    <span class="collapsible-heading_pos"> <span class="collapsible-heading"> {{this.Title}} : </span> <span class="collapsible-heading2"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary"> {{ this.[Certificate/Degree Program] }} </span></span>
+                    <span class="collapsible-heading_pos"> <span class="collapsible-heading"> {{this.Title}} : </span> <span class="collapsible-heading2"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
+                    <script>
+                        var tag =  document.getElementById("Cert/Deg{{this._id}}");
+                        if("{{ this.[Certificate/Degree Program] }}" != "No"){
+                            tag.innerHTML = "Certificate";
+                        }else {
+                            tag.remove();
+                        }
+                    </script>
                 </div>
                 <div class="col-">
                     <i class="arrow down arrow_pos"></i>
@@ -405,14 +421,124 @@
 </section>
 
 <script>
+    var test = window.location.href;
+        if(test.includes("cost=Free")){
+            $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
+        };
+            if(test.includes("Paid")){
+                $('#PaiddropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("cost=Paid")){
+            $('#PaiddropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Free")){
+                $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
+            };
+
+        if(test.includes("level=Beginner")){
+            $('#BegindropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Intermediate")){
+                $('#InterdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Advanced")){
+                $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("level=Intermediate")){
+            $('#InterdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Advanced")){
+                $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("level=Advanced")){
+            $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+        };
+
+
+        if(test.includes("public=Public")){
+            $('#PublicdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("DOD")){
+                $('#DODdropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("public=DOD")){
+            $('#DODdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Public")){
+                $('#PublicdropdownCheck.form-check-input').prop('checked', true);
+            };
+
+
+        if(test.includes("remote=Remote")){
+            $('#RdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("In")){
+                $('#IndropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("remote=In")){
+            $('#IndropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Remote")){
+                $('#RdropdownCheck.form-check-input').prop('checked', true);
+            };
+
+
+        if(test.includes("pacing=Self")){
+            $('#SelfdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Instructor")){
+                $('#InstructdropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("pacing=Instructor")){
+            $('#InstructdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Self")){
+                $('#SelfdropdownCheck.form-check-input').prop('checked', true);
+            };
+
+        if(test.includes("learn=Book")){
+            $('#BdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Text")){
+                $('#TdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Video")){
+                $('#VdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Hands-On")){
+                $('#HdropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("learn=Text")){
+            $('#TdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Video")){
+                $('#VdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Hands-On")){
+                $('#HdropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("learn=Video")){
+            $('#VdropdownCheck.form-check-input').prop('checked', true);
+        };
+            if(test.includes("Hands-On")){
+                $('#HdropdownCheck.form-check-input').prop('checked', true);
+            };
+        if(test.includes("learn=Hands-On")){
+            $('#HdropdownCheck.form-check-input').prop('checked', true);
+        };
+</script>
+
+<script>
     Handlebars.registerHelper("if", function(conditional, options) {
-        if (options.hash.desired === options.hash.type) {
-            options.fn(this);
-        } else {
-            options.inverse(this);
-        }
+      if (options.hash.desired === options.hash.type) {
+        options.fn(this);
+      } else {
+        options.inverse(this);
+      }
     });
 </script>
+
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

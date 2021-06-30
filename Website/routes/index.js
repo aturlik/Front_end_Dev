@@ -25,6 +25,10 @@ router.get('/request', function(req, res, next) {
   res.render('request');
 });
 
+router.get('/comments', function(req, res, next) {
+  res.render('comments');
+});
+
 router.get("/get-data", function(req, res, next) {
   var spectopic = req.query.topic;
   var specdata = req.query.data; 
@@ -38,12 +42,43 @@ router.get("/get-data", function(req, res, next) {
   }
   else if (FOP == "Paid" ) {
     query["Cost"] = {'$ne': '0'};
+  }
+  else{
+    null;
   };
+  var skill = req.query.level;
+  if (skill != null){
+    query["Barrier to Entry"] = skill;
+  }
+  var Pubdod = req.query.public;
+  if (Pubdod == "Public"){
+    query["Public/DOD"] = Pubdod;
+  }
+  else if (Pubdod != null){
+    query["Public/DOD"] = Pubdod;
+  };
+  var remoteornah = req.query.remote;
+  if (remoteornah == "Remote"){
+    query["In person vs Remote"] = "Remote";
+  }
+  else if (remoteornah != null){
+    query["In person vs Remote"] = remoteornah;
+  };
+  var selfornah = req.query.self;
+  if (selfornah == "Remote"){
+    query["Self Paced vs Instructor Led"] = selfornah;
+  }
+  else if (selfornah != null){
+    query["Self Paced vs Instructor Led"] = selfornah;
+  };
+  var learnornah = req.query.learn;
+  if (learnornah != null){
+    query["Learning type"] = learnornah;
+  }
   console.log(query);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    console.log(query);
     var cursor = db.collection('RawData1').find(query);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
@@ -67,7 +102,8 @@ router.post('/insert', function(req, res, next) {
   if(language != null){
     language = language.join(", ");
   };
-  if(topic != null){
+  if(topic.length != 0){
+    topic.pop();
     topic = topic.join(", ");
   };
   var item = {
@@ -124,6 +160,22 @@ router.post('/request', function(req, res, next) {
     });
   });
   res.redirect('/request');
+});
+
+router.post('/comments', function(req, res, next) {
+  var item = {
+    Comments: req.body.bugs
+  };
+  
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings');
+    assert.strictEqual(null, err);
+    db.collection('Bugs and Comments').insertOne(item, function(err, result) {
+      assert.strictEqual(null, err);
+      client.close();
+    });
+  });
+  res.redirect('/comments');
 });
 
 router.post('/get_data', function(req, res, next) {
