@@ -38,6 +38,9 @@ router.get("/get-data", function(req, res, next) {
   }
   else if (FOP == "Paid" ) {
     query["Cost"] = {'$ne': '0'};
+  }
+  else{
+    null;
   };
   var skill = req.query.level;
   if (skill != null){
