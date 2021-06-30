@@ -25,6 +25,10 @@ router.get('/request', function(req, res, next) {
   res.render('request');
 });
 
+router.get('/comments', function(req, res, next) {
+  res.render('comments');
+});
+
 router.get("/get-data", function(req, res, next) {
   var spectopic = req.query.topic;
   var specdata = req.query.data; 
@@ -38,6 +42,9 @@ router.get("/get-data", function(req, res, next) {
   }
   else if (FOP == "Paid" ) {
     query["Cost"] = {'$ne': '0'};
+  }
+  else{
+    null;
   };
   var skill = req.query.level;
   if (skill != null){
@@ -153,6 +160,22 @@ router.post('/request', function(req, res, next) {
     });
   });
   res.redirect('/request');
+});
+
+router.post('/comments', function(req, res, next) {
+  var item = {
+    Comments: req.body.bugs
+  };
+  
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings');
+    assert.strictEqual(null, err);
+    db.collection('Bugs and Comments').insertOne(item, function(err, result) {
+      assert.strictEqual(null, err);
+      client.close();
+    });
+  });
+  res.redirect('/comments');
 });
 
 router.post('/get_data', function(req, res, next) {
