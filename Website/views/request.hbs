@@ -5,6 +5,13 @@
 <!-- Call to Navigation Bar to show current page is active -->
 <script>
     $('.nav-item-e a').addClass("active");
+
+    $(function(){
+       $('form').on('submit', function () {
+          $('#myModalSub').modal('show');
+          return false;
+       });
+   });
 </script>
 
 <div class="container overflow-hidden">
@@ -60,24 +67,14 @@
                         </td>
                         <td>
                             <!-- Button to submit request and call on Modal -->
-                            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                            <button type="submit" id="submit" class="btn btn-outline-secondary">Submit</button>
 
                             <!-- WIP: Contents of Request Submit Modal -->
-                            <div class="modal fade" id="myModalSub" tabindex="-1" role="dialog"
-                                 aria-labelledby="myModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Request Sent</h4>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <script>
+                                $("#submit").click(function(e) {
+                                    alert('Request Submitted.');
+                                 });
+                            </script>
                         </td>
                     </table>
                 </div>

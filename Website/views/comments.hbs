@@ -2,16 +2,30 @@
     height: 200px;}
 
 
+
+
+
 </style>
 
+<!-- Call to Navigation Bar to show current page is active -->
 <script>
     $('.nav-item-b a').addClass("active");
+
+    $(function(){
+       $('form').on('submit', function () {
+          $('#myModalSub').modal('show');
+          return false;
+       });
+    });
+
 </script>
 
 
 <div class="container overflow-hidden">
     <section class="specify">
         <form action="/comments" method="post">
+
+            <!-- Comment/Bug Textbox -->
             <div class="col-sm mb-2 mt-4">
                 <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
                           placeholder="Comments or Bugs"></textarea>
@@ -20,13 +34,16 @@
                 <div class="col col-sm-auto d-grid">
                     <table>
                         <td>
+
+                            <!-- Button to call on Help Tutorial Modal -->
                             <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
-                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
+                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
+                                        disabled>
                                     <img src="images/Help_Icon.png" alt="help">
                                 </button>
                             </span>
 
-                            <!-- Modal -->
+                            <!-- Contents of Help Tutorial Modal -->
                             <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel"
                                  aria-hidden="true">
@@ -37,9 +54,8 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            Input in the "Request" box what topic you would like to see more training
-                                            resources of. Add any additional comments to help those find the right resource
-                                            for you.
+                                            If you have found any bugs or want any changes to the site, you can request
+                                            it here. The Developers will read you request and see what can be done.
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
@@ -50,8 +66,15 @@
                             </div>
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                            <button type="submit" id='submit' class="btn btn-outline-secondary">Submit</button>
                         </td>
+
+                        <!-- WIP: Request Success Alert -->
+                        <script>
+                            $("#submit").click(function(e) {
+                                alert('Request Submitted.');
+                            });
+                        </script>
                     </table>
                 </div>
             </div>

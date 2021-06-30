@@ -29,7 +29,9 @@
 
 <!-- Call to Navigation Bar to show current page is active -->
 <script>
+var subcheck;
 $('.nav-item-c a').addClass("active");
+
 </script>
 
 
@@ -503,7 +505,7 @@ $('.nav-item-c a').addClass("active");
         <br>
 
         <!-- Form Input -->
-        <form action="/insert" method="post">
+        <form action="/insert" method="post" id="form">
             <div class="row mb-2">
                 <div class="col">
                     <input type="text" id="title" name="title" class="form-control" placeholder="Title"
@@ -709,24 +711,14 @@ $('.nav-item-c a').addClass("active");
 
             <!-- Button to insert data into database and call on submit Modal -->
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" style="margin:20px" class="btn btn-secondary" data-target="#myModalSub" data-toggle="modal">Submit</button>
+                <button type="submit" id="submit" style="margin:20px" class="btn btn-secondary">Submit</button>
             </div>
 
-            <!-- WIP: Modal for when entry is submitted -->
-            <div class="modal fade" id="myModalSub" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Entry Submitted</h4>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <script>
+                $("#submit").click(function(e) {
+                    alert('Resource Submitted.');
+                });
+            </script>
         </form>
     </section>
 </div>
