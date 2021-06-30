@@ -99,7 +99,7 @@ router.get("/get-data", function(req, res, next) {
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    var cursor = db.collection('RawData1').aggregate([{'$search': {'text': {'query': specdata,'path': {'wildcard': '*'}}}}, {'$match': query}]);
+    var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': specdata,'path': {'wildcard': '*'}}}}, {'$match': query}]);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
       resultArray.push(doc);
