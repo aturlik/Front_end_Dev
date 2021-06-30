@@ -48,32 +48,54 @@ router.get("/get-data", function(req, res, next) {
   };
   var skill = req.query.level;
   if (skill != null){
-    query["Barrier to Entry"] = skill;
+    if(skill.includes(",")){
+      skill = skill.split(",");
+      query["Barrier to Entry"] = {$in : skill};
+    }
+    else{
+      query["Barrier to Entry"] = skill;
+    };
   }
   var Pubdod = req.query.public;
-  if (Pubdod == "Public"){
-    query["Public/DOD"] = Pubdod;
+  if (Pubdod != null){
+    if(Pubdod.includes(",")){
+      Pubdod = Pubdod.split(",");
+      query["Public/DOD"] = {$in : Pubdod};
+    }
+    else{
+      query["Public/DOD"] = Pubdod;
+    };
   }
-  else if (Pubdod != null){
-    query["Public/DOD"] = Pubdod;
-  };
   var remoteornah = req.query.remote;
-  if (remoteornah == "Remote"){
-    query["In person vs Remote"] = "Remote";
+  if (remoteornah != null){
+    if(remoteornah.includes(",")){
+      remoteornah = remoteornah.split(",");
+      query["In person vs Remote"] = {$in : remoteornah};
+    }
+    else{
+      query["In person vs Remote"] = remoteornah;
+    };
   }
-  else if (remoteornah != null){
-    query["In person vs Remote"] = remoteornah;
-  };
   var selfornah = req.query.self;
-  if (selfornah == "Remote"){
-    query["Self Paced vs Instructor Led"] = selfornah;
+  if (selfornah != null){
+    if(selfornah.includes(",")){
+      selfornah = selfornah.split(",");
+      query["Self Paced vs Instructor Led"] = {$in : selfornah};
+    }
+    else{
+      query["Self Paced vs Instructor Led"] = selfornah;
+    };
   }
-  else if (selfornah != null){
-    query["Self Paced vs Instructor Led"] = selfornah;
-  };
   var learnornah = req.query.learn;
   if (learnornah != null){
-    query["Learning type"] = learnornah;
+    if(learnornah.includes(",")){
+      learnornah = learnornah.split(",");
+      console.log(learnornah);
+      query["Learning type"] = {$in : learnornah};
+    }
+    else{
+      query["Learning type"] = learnornah;
+    };
   }
   console.log(query);
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
