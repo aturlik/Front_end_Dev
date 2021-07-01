@@ -5,6 +5,7 @@
 
 
 
+
 </style>
 
 <!-- Call to Navigation Bar to show current page is active -->
@@ -18,17 +19,19 @@
        });
     });
 
+
 </script>
 
 
 <div class="container overflow-hidden">
     <section class="specify">
-        <form action="/comments" method="post">
+        <form action="/comments" method="post" class="needs-validation" novalidate>
 
             <!-- Comment/Bug Textbox -->
             <div class="col-sm mb-2 mt-4">
                 <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
-                          placeholder="Comments or Bugs"></textarea>
+                          placeholder="Comments or Bugs" required></textarea>
+                <div class="invalid-feedback">Please input a comment or bug about the website.</div>
             </div>
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
@@ -69,11 +72,28 @@
                             <button type="submit" id='submit' class="btn btn-outline-secondary">Submit</button>
                         </td>
 
-                        <!-- WIP: Request Success Alert -->
                         <script>
-                            $("#submit").click(function(e) {
-                                alert('Request Submitted.');
-                            });
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function () {
+                              'use strict'
+
+                              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                              var forms = document.querySelectorAll('.needs-validation')
+
+                              // Loop over them and prevent submission
+                              Array.prototype.slice.call(forms)
+                                .forEach(function (form) {
+                                  form.addEventListener('submit', function (event) {
+                                    if (!form.checkValidity()) {
+                                      event.preventDefault()
+                                      event.stopPropagation()
+                                    }
+
+                                    form.classList.add('was-validated')
+                                  }, false)
+                                })
+                            })()
+
                         </script>
                     </table>
                 </div>

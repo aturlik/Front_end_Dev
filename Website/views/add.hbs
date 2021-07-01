@@ -27,6 +27,7 @@
 
 
 
+
 </style>
 
 
@@ -35,7 +36,7 @@ var subcheck;
 //Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
 
-/ Validation Script
+// Validation Script
 (function () {
   'use strict'
 
@@ -43,24 +44,18 @@ $('.nav-item-c a').addClass("active");
   var forms = document.querySelectorAll('.needs-validation')
 
   // Loop over them and prevent submission
-  $("#submit").click(function(e) {
   Array.prototype.slice.call(forms)
     .forEach(function (form) {
       form.addEventListener('submit', function (event) {
         if (!form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
-          alert('not good');
-        }
-        else {
-            alert('Resource Submitted');
         }
 
         form.classList.add('was-validated')
       }, false)
     })
 })()
-
 
 
 </script>
@@ -308,9 +303,10 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Certifications</h4>
                             </div>
                             <div class="modal-body">
-                                Some training resources offer tangible evidence showing that you finished the training.
+                                <p>Some training resources offer tangible evidence showing that you finished the training.
                                 Please specify if you can acquire a <b>"Certificate"</b>, <b>"Degree"</b>, or both while
-                                undergoing the training.
+                                    undergoing the training.</p>
+                                <p>If the resource does not apply to either, please do nothing and go to the next section.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -547,38 +543,50 @@ $('.nav-item-c a').addClass("active");
         <br>
 
         <!-- Form Input -->
-        <form action="/insert" method="post" class="row g-3 needs-validation">
+        <form action="/insert" method="post" class="needs-validation" novalidate>
             <div class="row mb-2">
                 <div class="col">
-                    <input type="text" id="title" name="title" class="form-control is-invalid" placeholder="Title"
+                    <input type="text" id="title" name="title" class="form-control" placeholder="Title"
                            aria-label="title" required>
                     <div class="invalid-feedback">
                         Please put in a title.
                     </div>
                 </div>
                 <div class="col">
-                    <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url">
+                    <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url" required>
+                    <div class="invalid-feedback">
+                        Please put in a URL.
+                    </div>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
                     <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
-                           aria-label="TCH">
+                           aria-label="TCH" required>
+                    <div class="invalid-feedback">
+                        Please put in Time Commitment.
+                    </div>
                 </div>
                 <div class="col">
                     <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
-                           aria-label="cost">
+                           aria-label="cost" required>
+                    <div class="invalid-feedback">
+                        Please put in a cost.
+                    </div>
                 </div>
                 <div class="col" align="center">
                     <div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
-                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced">
+                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced" required>
                         <label class="btn btn-outline-secondary" for="SPILself">
                             Self-Paced
                         </label>
-                        <input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led">
+                        <input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led" required>
                         <label class="btn btn-outline-secondary" for="SPILins">
                             Instructor Led
                         </label>
+                        <div class="invalid-feedback">
+                            Please specify the pacing.
+                        </div>
                     </div>
                 </div>
                 <div class="col" align="center">
@@ -621,11 +629,17 @@ $('.nav-item-c a').addClass("active");
                 </div>
                 <div class="col">
                     <input type="text" id="provider" name="provider" class="form-control"
-                           placeholder="Service/Training Provider" aria-label="Provider">
+                           placeholder="Service/Training Provider" aria-label="Provider" required>
+                    <div class="invalid-feedback">
+                        Please input a provider.
+                    </div>
                 </div>
                 <div class="col">
                     <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
-                           aria-label="Location of Provider">
+                           aria-label="Location of Provider" required>
+                    <div class="invalid-feedback">
+                        Please input the location of the provider.
+                    </div>
                 </div>
             </div>
             <div class="row mb-2">
@@ -640,16 +654,19 @@ $('.nav-item-c a').addClass("active");
                 </div>
                 <div class="col">
                     <div class="btn-group d-flex" role="group" aria-label="Learning Type" id="LT">
-                        <input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT">
+                        <input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT" required>
                         <label class="btn btn-outline-secondary" for="LTT">Text</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV">
+                        <input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV" required>
                         <label class="btn btn-outline-secondary" for="LTV">Video</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Book" id="LTB">
+                        <input class="btn-check" type="checkbox" name="LT" value="Book" id="LTB" required>
                         <label class="btn btn-outline-secondary" for="LTB">Book</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL">
+                        <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL" required>
                         <label class="btn btn-outline-secondary" for="LTL">Lecture</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI">
+                        <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI" required>
                         <label class="btn btn-outline-secondary" for="LTI">Interactive</label>
+                        <div class="invalid-feedback">
+                            Please specify learning type(s).
+                        </div>
                     </div>
                 </div>
             </div>
@@ -759,6 +776,29 @@ $('.nav-item-c a').addClass("active");
                 <button type="submit" id="submit" style="margin:20px" class="btn btn-secondary">Submit</button>
             </div>
         </form>
+
+        <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+              'use strict'
+
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.querySelectorAll('.needs-validation')
+
+              // Loop over them and prevent submission
+              Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                  form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                      event.preventDefault()
+                      event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                  }, false)
+                })
+            })()
+        </script>
     </section>
 </div>
 

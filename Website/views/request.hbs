@@ -1,5 +1,6 @@
 <style>.test{
     height: 200px;}
+
 </style>
 
 <!-- Call to Navigation Bar to show current page is active -->
@@ -12,15 +13,17 @@
           return false;
        });
    });
+
 </script>
 
 <div class="container overflow-hidden">
     <section class="specify">
-        <form action="/request" method="post">
+        <form action="/request" method="post" class="needs-validation" novalidate>
 
             <!-- Request Input Textbox -->
             <div class="col-sm mb-2 mt-4">
-                <input class="form-control" type="text" id="request" name="request" size="60" placeholder="Request">
+                <input class="form-control" type="text" id="request" name="request" size="60" placeholder="Request" required>
+                <div class="invalid-feedback">Please input a request.</div>
             </div>
 
             <!-- Comments Input Textbox -->
@@ -71,9 +74,26 @@
 
                             <!-- WIP: Contents of Request Submit Modal -->
                             <script>
-                                $("#submit").click(function(e) {
-                                    alert('Request Submitted.');
-                                 });
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                                (function () {
+                                  'use strict'
+
+                                  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                  var forms = document.querySelectorAll('.needs-validation')
+
+                                  // Loop over them and prevent submission
+                                  Array.prototype.slice.call(forms)
+                                    .forEach(function (form) {
+                                      form.addEventListener('submit', function (event) {
+                                        if (!form.checkValidity()) {
+                                          event.preventDefault()
+                                          event.stopPropagation()
+                                        }
+
+                                        form.classList.add('was-validated')
+                                      }, false)
+                                    })
+                                })()
                             </script>
                         </td>
                     </table>
