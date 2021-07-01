@@ -49,37 +49,40 @@ router.get('/get-data', function(req, res, next) {
 
 router.post('/get-data/vote', function(req, res, next){
 	var found = null;
-	var vote = req.body.id;
+	var vote = req.body.Vote;
+	var inc = 0;
+
+	if(vote == "Liked"){
+		inc = 1;
+	}else{
+		inc = -1;
+	}
 
 	var item = {
-		id: req.id,
-		vote: req.body
+		id: req.body.id,
+		voteCount: vote
 	};
 
 	mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
 		var db = client.db('Trainings');
 		assert.strictEqual(null, err);
-		var cursor = db.collection('VotingData').find(query);
-		cursor.forEach(function(doc, err){
-			if(doc._id == req.id){
-				db.collection('User Inputs').updateOne(item, function(err, result) {
-					assert.strictEqual(null, err);
-					client.close();
-				});
-				found = true;
-			}else{
-				found = false;
-			}
-		});
+		var spefVote = db.collection('VotingData').find({}, {id: req.body.id} ).toArray();
 
-		if(found == false){
-			db.collection('User Inputs').insertOne(item, function(err, result) {
+
+		if(spefVote.length > 0){
+			console.log('Did find');
+			db.collection('VotingData').updateOne(item, function(err, result) {
+				assert.strictEqual(null, err);
+				client.close();
+			});
+		}else{
+			console.log('Did not find');
+			db.collection('VotingData').insertOne(item, function(err, result) {
 				assert.strictEqual(null, err);
 				client.close();
 			});
 		}
 	});
-
 	res.redirect('/get-data');
 });
 

@@ -388,16 +388,20 @@
                     </div>
 
                     <div class="col-sm">
-                        <form action="/get-data/vote" method="post" id="{{this._id}}">
-                            <input class="btn-check" type="radio" name="Vote" id="upVote" value="Liked">
-                            <label class="btn btn-outline-secondary" for="upVote">
-                                Liked
-                            </label>
-                            <input class="btn-check" type="radio" name="Vote" id="downVote" value="Disliked">
-                            <label class="btn btn-outline-secondary" for="downVote">
-                                Disliked
-                            </label>
+                        <form action="/get-data/vote" method="post">
+                            <div class="btn-group d-flex" role="group" aria-label="Vote">
+                                <input class="btn-check" type="radio" name="Vote" id="upVote{{this._id}}" value="Liked">
+                                <label class="btn btn-outline-secondary" for="upVote{{this._id}}">
+                                    Liked
+                                </label>
+                                <input class="btn-check" type="radio" name="Vote" id="downVote{{this._id}}" value="Disliked">
+                                <label class="btn btn-outline-secondary" for="downVote{{this._id}}">
+                                    Disliked
+                                </label>
+                            </div>
                             <button type="submit">Submit</button>
+
+                            <input class="accordion-body" type="text" name="id" value="{{this._id}}" property="{{this._id}}">
                         </form>
                     </div>
                 </div>
