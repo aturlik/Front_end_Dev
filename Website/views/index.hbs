@@ -54,28 +54,15 @@
         <form action="/specify" method="post">
             <div class="row">
                 <!-- Search Field to specify to user where the search function wants to look -->
-                <div class="col-sm-3">
-                    <label for="form-select">Search Field</label>
-                    <select class="form-select" name="DTA">
-                        <option selected>Title</option>
-                        <option value="Certificate/Degree Program">Certificate/Degree Program</option>
-                        <option value="Data Topic Area">Data Topic Area</option>
-                        <option value="Programming Language">Programming Language</option>
-                        <option value="Barrier to Entry">Barrier to Entry</option>
-                        <option value="Comment">Comments</option>
-                    </select>
-                </div>
-
                 <!-- Search Textbox -->
                 <div class="col-sm">
-                    <label for="SpefString">Search Terms</label>
                     <input class="form-control" type="text" id="SpefString" name="SpefString" size="60">
                 </div>
-            </div>
+
 
             <!-- Search Submit Button -->
-            <div class="row justify-content-end mt-2 align-self-end">
-                <div class="col col-sm-auto d-grid">
+
+                <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid">
                     <form action="/get-data">
                         <button type="submit" class="btn btn-outline-secondary">Submit</button>
                     </form>
