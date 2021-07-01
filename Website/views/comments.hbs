@@ -1,9 +1,8 @@
 <style>.test{
     height: 200px;}
-
-
 </style>
 
+<!-- Call to Navigation Bar to show current page is active -->
 <script>
     $('.nav-item-b a').addClass("active");
 </script>
@@ -11,22 +10,28 @@
 
 <div class="container overflow-hidden">
     <section class="specify">
-        <form action="/comments" method="post">
+        <form action="/comments" method="post" class="needs-validation" novalidate>
+
+            <!-- Comment/Bug Textbox -->
             <div class="col-sm mb-2 mt-4">
                 <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
-                          placeholder="Comments or Bugs"></textarea>
+                          placeholder="Comments or Bugs" required></textarea>
+                <div class="invalid-feedback">Please input a comment or bug about the website.</div>
             </div>
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
                     <table>
                         <td>
+
+                            <!-- Button to call on Help Tutorial Modal -->
                             <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
-                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
+                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
+                                        disabled>
                                     <img src="images/Help_Icon.png" alt="help">
                                 </button>
                             </span>
 
-                            <!-- Modal -->
+                            <!-- Contents of Help Tutorial Modal -->
                             <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel"
                                  aria-hidden="true">
@@ -37,9 +42,9 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            Input in the "Request" box what bugs you may have found while using our website.
-                                            Any additional comments about design or just how you are enjoying our site would be usefule as well.
-                                        </div>
+                                            If you have found any bugs or want any changes to the site, you can request
+                                            it here. The Developers will read you request and see what can be done.  
+                                      </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                             </button>
@@ -49,8 +54,32 @@
                             </div>
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                            <button type="submit" id='submit' class="btn btn-outline-secondary">Submit</button>
                         </td>
+
+                        <script>
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function () {
+                              'use strict'
+
+                              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                              var forms = document.querySelectorAll('.needs-validation')
+
+                              // Loop over them and prevent submission
+                              Array.prototype.slice.call(forms)
+                                .forEach(function (form) {
+                                  form.addEventListener('submit', function (event) {
+                                    if (!form.checkValidity()) {
+                                      event.preventDefault()
+                                      event.stopPropagation()
+                                    }
+
+                                    form.classList.add('was-validated')
+                                  }, false)
+                                })
+                            })()
+
+                        </script>
                     </table>
                 </div>
             </div>
