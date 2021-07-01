@@ -81,6 +81,14 @@
             font-weight: 500;
         }
 
+    .inner_collapse{
+        cursor: pointer;
+        width: 25%;
+        border: none;
+        outline: none;
+        padding: 10px
+    }
+
     .collapsible-heading2 {
         font-size: 25px;
         color: #232354;
@@ -218,6 +226,14 @@
                             </label>
                         </div>
                     </a>
+                    <a class="dropdown-item">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="ExpdropdownCheck" name="LVL" value="Expert">
+                            <label class="form-check-label" for="ExpdropdownCheck">
+                                Expert
+                            </label>
+                        </div>
+                    </a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -324,12 +340,28 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="LRN" id="HdropdownCheck" value="Hands-On">
-                            <label class="form-check-label" for="HdropdownCheck">
-                                Hands-On
+                            <input type="checkbox" class="form-check-input" name="LRN" id="LdropdownCheck" value="Lecture">
+                            <label class="form-check-label" for="LdropdownCheck">
+                                Lecture
                             </label>
                         </div>
-                    </a>                    
+                    </a>   
+                    <a class="dropdown-item">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="LRN" id="CdropdownCheck" value="Classroom">
+                            <label class="form-check-label" for="CdropdownCheck">
+                                Classroom
+                            </label>
+                        </div>
+                    </a>  
+                    <a class="dropdown-item">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="LRN" id="IdropdownCheck" value="Interactive">
+                            <label class="form-check-label" for="IdropdownCheck">
+                                Interactive
+                            </label>
+                        </div>
+                    </a>                                  
                 </div>
             </li>
             <button type="submit" class="btn btn-outline-secondary">Submit</button>
@@ -400,21 +432,46 @@
          ---=========================================================-->
         <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
             <div class="accordion-body">
-                Time Commitment (Hours): {{ this.[Time Commitment (Hours)] }}
-                <div>Certificate/Degree Program: {{ this.[Certificate/Degree Program] }}</div>
-                <div>Data Topic Area: {{ this.[Data Topic Area] }}</div>
-                <div>Programming Language: {{ this.[Programming Language] }}</div>
-                <div>Self Paced vs Instructor Led: {{ this.[Self Paced vs Instructor Led] }}</div>
-                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
-                <div>Comment: {{ this.Comment }}</div>
-                <div>URL: {{ this.URL }}</div>
-                <div>Provider: {{ this.Provider }}</div>
-                <div>Cost: {{ this.Cost }}</div>
-                <div>Public/DOD: </div>
-                <div>Base of Operations: {{ this.[Base of Operations] }}</div>
-                <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
-                <div>ID: {{ this._id }}</div>
-                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
+                        <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
+                        <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
+                        <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
+                        <div><b>Provider:</b> {{ this.Provider }}</div>
+                        <div><b>Cost:</b> {{ this.Cost }}</div>
+                        <div><b>Comment:</b> {{ this.Comment }}</div>
+                        <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                    </div>
+
+                    <div class="col-sm">
+                        <form action="/get-data/vote" method="post">
+                            <div class="btn-group d-flex" role="group" aria-label="Vote">
+                                <input class="btn-check" type="radio" name="Vote" id="upVote{{this._id}}" value="Liked">
+                                <label class="btn btn-outline-secondary" for="upVote{{this._id}}">
+                                    Liked
+                                </label>
+                                <input class="btn-check" type="radio" name="Vote" id="downVote{{this._id}}" value="Disliked">
+                                <label class="btn btn-outline-secondary" for="downVote{{this._id}}">
+                                    Disliked
+                                </label>
+                            </div>
+                            <button type="submit">Submit</button>
+
+                            <input class="accordion-body" type="text" name="id" value="{{this._id}}" property="{{this._id}}">
+                        </form>
+                    </div>
+                </div>
+
+                <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
+                    Admin Details
+                </button>
+                <div id="collapseItemAdmin{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item">
+                    <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+                    <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+                    <div>ID: {{ this._id }}</div>
+                    <br>
+                </div>
             </div>
         </div>
     </div>
@@ -422,111 +479,154 @@
     {{/each}}
 </section>
 
+
 <script>
     var test = window.location.href;
         if(test.includes("cost=Free")){
             $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
-        };
             if(test.includes("Paid")){
                 $('#PaiddropdownCheck.form-check-input').prop('checked', true);
             };
+        };
         if(test.includes("cost=Paid")){
             $('#PaiddropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Free")){
                 $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
             };
-
+        };
         if(test.includes("level=Beginner")){
             $('#BegindropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Intermediate")){
                 $('#InterdropdownCheck.form-check-input').prop('checked', true);
             };
             if(test.includes("Advanced")){
                 $('#AdvdropdownCheck.form-check-input').prop('checked', true);
             };
+            if(test.includes("Expert")){
+                $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
         if(test.includes("level=Intermediate")){
             $('#InterdropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Advanced")){
                 $('#AdvdropdownCheck.form-check-input').prop('checked', true);
             };
+            if(test.includes("Expert")){
+                $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
         if(test.includes("level=Advanced")){
             $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Expert")){
+                $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+            };
         };
+        if(test.includes("level=Expert")){
+                $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+            };
+
 
 
         if(test.includes("public=Public")){
             $('#PublicdropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("DOD")){
                 $('#DODdropdownCheck.form-check-input').prop('checked', true);
             };
+        };
         if(test.includes("public=DOD")){
             $('#DODdropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Public")){
                 $('#PublicdropdownCheck.form-check-input').prop('checked', true);
             };
-
+        };
 
         if(test.includes("remote=Remote")){
             $('#RdropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("In")){
                 $('#IndropdownCheck.form-check-input').prop('checked', true);
             };
+        };
         if(test.includes("remote=In")){
             $('#IndropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Remote")){
                 $('#RdropdownCheck.form-check-input').prop('checked', true);
             };
-
+        };
 
         if(test.includes("pacing=Self")){
             $('#SelfdropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Instructor")){
                 $('#InstructdropdownCheck.form-check-input').prop('checked', true);
             };
+        };
         if(test.includes("pacing=Instructor")){
             $('#InstructdropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Self")){
                 $('#SelfdropdownCheck.form-check-input').prop('checked', true);
             };
-
+        };
         if(test.includes("learn=Book")){
             $('#BdropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Text")){
                 $('#TdropdownCheck.form-check-input').prop('checked', true);
             };
             if(test.includes("Video")){
                 $('#VdropdownCheck.form-check-input').prop('checked', true);
             };
-            if(test.includes("Hands-On")){
-                $('#HdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Lecture")){
+                $('#LdropdownCheck.form-check-input').prop('checked', true);
             };
+            if(test.includes("Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
         if(test.includes("learn=Text")){
             $('#TdropdownCheck.form-check-input').prop('checked', true);
-        };
             if(test.includes("Video")){
                 $('#VdropdownCheck.form-check-input').prop('checked', true);
             };
-            if(test.includes("Hands-On")){
-                $('#HdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Lecture")){
+                $('#LdropdownCheck.form-check-input').prop('checked', true);
             };
+            if(test.includes("Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
         if(test.includes("learn=Video")){
             $('#VdropdownCheck.form-check-input').prop('checked', true);
-        };
-            if(test.includes("Hands-On")){
-                $('#HdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Lecture")){
+                $('#LdropdownCheck.form-check-input').prop('checked', true);
             };
-        if(test.includes("learn=Hands-On")){
-            $('#HdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Lecture")){
+            $('#LdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
         };
 </script>
 
@@ -539,7 +639,6 @@
       }
     });
 </script>
-
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
