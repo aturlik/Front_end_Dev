@@ -394,7 +394,6 @@
         <script>
             var position = {{@index}}
             document.getElementById("result").innerHTML = position + 1;
-            document.getElementById("secretboy").classList.remove("hidden");
         </script>
         {{/if}}
     </div>
@@ -480,7 +479,10 @@
             </div>
         </div>
     </div>
-
+    {{else}}
+        <script>
+            document.getElementById("result").innerHTML = 0;
+        </script>
     {{/each}}
 </section>
 
