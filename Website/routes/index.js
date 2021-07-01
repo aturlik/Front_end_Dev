@@ -112,6 +112,45 @@ router.get("/get-data", function(req, res, next) {
   });
 });
 
+router.post('/get-data/vote', function(req, res, next){
+	var found = null;
+	var vote = req.body.Vote;
+	var inc = 0;
+
+	if(vote == "Liked"){
+		inc = 1;
+	}else{
+		inc = -1;
+	}
+
+	var item = {
+		id: req.body.id,
+		voteCount: vote
+	};
+
+	mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+		var db = client.db('Trainings');
+		assert.strictEqual(null, err);
+		var spefVote = db.collection('VotingData').find({}, {id: req.body.id} ).toArray();
+
+
+		if(spefVote.length > 0){
+			console.log('Did find');
+			db.collection('VotingData').updateOne(item, function(err, result) {
+				assert.strictEqual(null, err);
+				client.close();
+			});
+		}else{
+			console.log('Did not find');
+			db.collection('VotingData').insertOne(item, function(err, result) {
+				assert.strictEqual(null, err);
+				client.close();
+			});
+		}
+	});
+	res.redirect('/get-data');
+});
+
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
   if(learning != null){
