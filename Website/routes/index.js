@@ -115,6 +115,7 @@ router.get("/get-data", function(req, res, next) {
 
 router.post('/get-data/vote', function(req, res, next){
 	var found = null;
+	var dataUrl = window.location.href;
 	var vote = req.body.Vote;
 	var inc = 0;
 
@@ -149,7 +150,8 @@ router.post('/get-data/vote', function(req, res, next){
 			});
 		}
 	});
-	res.redirect('/get-data');
+
+	res.redirect(dataUrl);
 });
 
 router.post('/insert', function(req, res, next) {

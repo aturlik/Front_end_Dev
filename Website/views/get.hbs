@@ -432,7 +432,6 @@
          ---=========================================================-->
         <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
             <div class="accordion-body">
-<<<<<<< HEAD
                 <div class="row">
                     <div class="col-sm">
                         <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
@@ -459,7 +458,16 @@
                             </div>
                             <button type="submit">Submit</button>
 
-                            <input class="accordion-body" type="text" name="id" value="{{this._id}}" property="{{this._id}}">
+                            <input class="accordion-body" type="text" id="id{{this._id}}" name="id" value="{{this._id}}" property="{{this._id}}">
+                            <input class="accordion-body" type="text" id="url{{this._id}}" name="url" value="hello" property="hello">
+
+                            <script>
+                                var id = document.getElementById("id{{this._id}}");
+                                id.style.display = "none";
+
+                                var pageURL = document.getElementById("url{{this._id}}");
+                                pageURL.innerHTML = window.location.href;
+                            </script>
                         </form>
                     </div>
                 </div>
@@ -473,21 +481,6 @@
                     <div>ID: {{ this._id }}</div>
                     <br>
                 </div>
-=======
-                <h5>{{ this.URL }}</h5>
-                <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
-                <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
-                <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
-
-                <div>Comment: {{ this.Comment }}</div>
-                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
-                <div>Provider: {{ this.Provider }}</div>
-                <div>Cost: {{ this.Cost }}</div>
-                <div>Base of Operations: {{ this.[Base of Operations] }}</div>
-                <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
-                <div>ID: {{ this._id }}</div>
-                <br>
->>>>>>> master
             </div>
         </div>
     </div>
@@ -495,8 +488,6 @@
     {{/each}}
 </section>
 
-<<<<<<< HEAD
-=======
 <script>
     var test = window.location.href;
         if(test.includes("cost=Free")){
@@ -647,19 +638,6 @@
         };
 </script>
 
-<script>
-    Handlebars.registerHelper("if", function(conditional, options) {
-      if (options.hash.desired === options.hash.type) {
-        options.fn(this);
-      } else {
-        options.inverse(this);
-      }
-    });
-</script>
-
-
-
->>>>>>> master
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
