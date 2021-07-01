@@ -7,8 +7,6 @@ let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
 
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-var spectopic = '';
-var specdata = '';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,22 +25,90 @@ router.get('/request', function(req, res, next) {
   res.render('request');
 });
 
-router.get('/get-data', function(req, res, next) {
+router.get('/comments', function(req, res, next) {
+  res.render('comments');
+});
+
+router.get("/get-data", function(req, res, next) {
+  var spectopic = req.query.topic;
+  var specdata = req.query.data; 
   var resultArray = [];
   var query = {};
   query[spectopic] = RegExp(sanitize(specdata));
-  console.log(specdata);
-  console.log(spectopic);
+  var FOP = req.query.cost;
+  var convertFOP = '';
+  if (FOP == "Free"){
+    query["Cost"] = {$in: ["0", "$0"]};
+  }
+  else if (FOP == "Paid" ) {
+    query["Cost"] = {'$ne': '0'};
+  }
+  else{
+    null;
+  };
+  var skill = req.query.level;
+  if (skill != null){
+    if(skill.includes(",")){
+      skill = skill.split(",");
+      query["Barrier to Entry"] = {$in : skill};
+    }
+    else{
+      query["Barrier to Entry"] = skill;
+    };
+  }
+  var Pubdod = req.query.public;
+  if (Pubdod != null){
+    if(Pubdod.includes(",")){
+      Pubdod = Pubdod.split(",");
+      query["Public/DOD"] = {$in : Pubdod};
+    }
+    else{
+      query["Public/DOD"] = Pubdod;
+    };
+  }
+  var remoteornah = req.query.remote;
+  if (remoteornah != null){
+    if(remoteornah.includes(",")){
+      remoteornah = remoteornah.split(",");
+      query["In person vs Remote"] = {$in : remoteornah};
+    }
+    else{
+      query["In person vs Remote"] = remoteornah;
+    };
+  }
+  var selfornah = req.query.self;
+  if (selfornah != null){
+    if(selfornah.includes(",")){
+      selfornah = selfornah.split(",");
+      query["Self Paced vs Instructor Led"] = {$in : selfornah};
+    }
+    else{
+      query["Self Paced vs Instructor Led"] = selfornah;
+    };
+  }
+  var learnornah = req.query.learn;
+  if (learnornah != null){
+    if(learnornah.includes(",")){
+      learnornah = learnornah.split(",");
+      console.log(learnornah);
+      query["Learning type"] = {$in : learnornah};
+    }
+    else{
+      query["Learning type"] = learnornah;
+    };
+  }
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    var cursor = db.collection('RawData1').find(query);
+    var cursor = db.collection('RawData1').aggregate([{'$search': {'text': {'query': specdata,'path': {'wildcard': '*'}}}}]);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
       resultArray.push(doc);
     }, function() {
       client.close();
-      res.render('get', {items: resultArray});
+      specdata = specdata.replace(/ /g, "_");
+      spectopic = spectopic.replace(/ /g, "_");
+      res.render('get', {items: resultArray, specdata, spectopic});
     });
   });
 });
@@ -90,7 +156,16 @@ router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
   if(learning != null){
     learning = learning.join(", ");
-  }
+  };
+  var language = req.body.LPS;
+  var topic = req.body.DTA;
+  if(language != null){
+    language = language.join(", ");
+  };
+  if(topic.length != 0){
+    topic.pop();
+    topic = topic.join(", ");
+  };
   var item = {
     Title: req.body.title,
     URL: req.body.url,
@@ -99,8 +174,8 @@ router.post('/insert', function(req, res, next) {
     PublicOrDOD: req.body.PDOD,
     TimeCommitment: req.body.TCH,
     Cert_Degree: req.body.CDP,
-    Data_Topics: req.body.DTA,
-    Programming_Language: req.body.PL,
+    Data_Topics: topic,
+    Programming_Language: language,
     Base_of_Operations: req.body.BOO,
     Barrier: req.body.BE,
     Self_Paced: req.body.SPIL,
@@ -125,7 +200,7 @@ router.post('/insert', function(req, res, next) {
 router.post('/specify', function(req, res, next) {
   spectopic = req.body.DTA;
   specdata = req.body.SpefString;
-  res.redirect('/get-data');
+  res.redirect("/get-data?topic=" + spectopic + "&data=" + specdata);
 });
 
 
@@ -145,6 +220,56 @@ router.post('/request', function(req, res, next) {
     });
   });
   res.redirect('/request');
+});
+
+router.post('/comments', function(req, res, next) {
+  var item = {
+    Comments: req.body.bugs
+  };
+  
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings');
+    assert.strictEqual(null, err);
+    db.collection('Bugs and Comments').insertOne(item, function(err, result) {
+      assert.strictEqual(null, err);
+      client.close();
+    });
+  });
+  res.redirect('/comments');
+});
+
+router.post('/get_data', function(req, res, next) {
+  var cost = req.body.TST;
+  var level = req.body.LVL;
+  var public = req.body.PDOD;
+  var remote = req.body.RIP;
+  var selfp = req.body.SPIL;
+  var learn = req.body.LRN;
+  var st = req.body.ST;
+  var sd = req.body.SD; 
+  st = st.replace(/_/g, " ")
+  sd = sd.replace(/_/g, " ")
+  console.log(st);
+  var urladditives = "";
+  if(cost != null){
+    urladditives = urladditives.concat("&cost=" + cost)
+  };
+  if(level != null){
+    urladditives = urladditives.concat("&level=" + level)
+  };
+  if(public != null){
+    urladditives = urladditives.concat("&public=" + public)
+  };
+  if(remote != null){
+    urladditives = urladditives.concat("&remote=" + remote)
+  };
+  if(selfp != null){
+    urladditives = urladditives.concat("&self=" + selfp)
+  };
+  if(learn != null){
+    urladditives = urladditives.concat("&learn=" + learn)
+  };
+  res.redirect("/get-data?topic=" + st + "&data=" + sd + urladditives);
 });
 
 router.post('/update', function(req, res, next) {

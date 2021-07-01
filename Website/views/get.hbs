@@ -1,3 +1,4 @@
+<!-- Styling for each search result -->
 <style>
 
     /*****************************************************************
@@ -10,6 +11,7 @@
         Creating the container specifications the contains each
         individual result
     *****************************************************************/
+
 
     /* Position */
     .tag_pos {
@@ -124,42 +126,69 @@
         font-size: 17px
     }
 </style>
+
+<!-- Navigation bar to show that current tab is active -->
 <script>
-    $('.nav-item-b a').addClass("active");
+    $('.nav-item-a a').addClass("active");
 </script>
 
-
+<!-- Filter Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
-          title="Use these filters to hone in on your desired training resource.">
-        <button type="button" class="btn" data-toggle="tooltip" data-placement="right" disabled>
+    <!-- Button to call on Help Tutorial Modal/Pop-up -->
+    <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1">
+        <button type="button" class="btn" data-toggle="modal" disabled>
             <img src="images/Help_Icon.png" alt="help">
         </button>
     </span>
+
+    <!-- Modal for the Help Tutorial Contents -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>Here are the results of training resources from your search. Click on each resource to see the details
+                        of said resource.</p>
+                    <p>Use the filters at the top of the page and below the navigation bar to specify your search even further.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Categories -->
     <a class="navbar-brand" style="margin-left: 10px"> <b>Filters</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarFilter">
+
+<form action="/get_data" method="post">
+    <div class="collapse navbar-collapse" id="navbarFilter" role="group">
         <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+            <li class="nav-item-dropdown-1">
                 <a class="nav-link dropdown-toggle" href="#" id="CostDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Cost
                 </a>
-                <div class="dropdown-menu" aria-labelledby="CostDropdownMenuLink">
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="FreedropdownCheck">
+                <div class="dropdown-menu" aria-labelledby="CostDropdownMenuLink" role="group" id="TST">
+                    <a class="dropdown-item" id="Tester">
+                        <div class="form-check 1" id="Tester2">
+                            <input type="checkbox" class="form-check-input 1"  name="TST" id="FreedropdownCheck" value="Free">
                             <label class="form-check-label" for="FreedropdownCheck">
-                                Free
+                                Free 
                             </label>
                         </div>
-                    </a>
+                    </a> 
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="PaiddropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="TST" id="PaiddropdownCheck" value="Paid">
                             <label class="form-check-label" for="PaiddropdownCheck">
                                 Paid
                             </label>
@@ -172,10 +201,10 @@
                    aria-haspopup="true" aria-expanded="false">
                     Experience Level
                 </a>
-                <div class="dropdown-menu" aria-labelledby="BarrierDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="BarrierDropdownMenuLink" role="group" id="LVL">
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="BegindropdownCheck">
+                            <input type="checkbox" class="form-check-input" id="BegindropdownCheck" name="LVL" value="Beginner">
                             <label class="form-check-label" for="BegindropdownCheck">
                                 Beginner
                             </label>
@@ -183,7 +212,7 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="InterdropdownCheck">
+                            <input type="checkbox" class="form-check-input" id="InterdropdownCheck" name="LVL" value="Intermediate">
                             <label class="form-check-label" for="InterdropdownCheck">
                                 Intermediate
                             </label>
@@ -191,9 +220,17 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="AdvdropdownCheck">
+                            <input type="checkbox" class="form-check-input" id="AdvdropdownCheck" name="LVL" value="Advanced">
                             <label class="form-check-label" for="AdvdropdownCheck">
                                 Advanced
+                            </label>
+                        </div>
+                    </a>
+                    <a class="dropdown-item">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="ExpdropdownCheck" name="LVL" value="Expert">
+                            <label class="form-check-label" for="ExpdropdownCheck">
+                                Expert
                             </label>
                         </div>
                     </a>
@@ -204,10 +241,10 @@
                    aria-haspopup="true" aria-expanded="false">
                     Clearance
                 </a>
-                <div class="dropdown-menu" aria-labelledby="ClearDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="ClearDropdownMenuLink" role="group" id="PDOD">
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="PublicdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="PDOD" id="PublicdropdownCheck" value="Public">
                             <label class="form-check-label" for="PublicdropdownCheck">
                                 Public
                             </label>
@@ -215,7 +252,7 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="DODdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="PDOD" id="DODdropdownCheck" value="DOD">
                             <label class="form-check-label" for="DODdropdownCheck">
                                 DOD Only
                             </label>
@@ -228,18 +265,18 @@
                    aria-haspopup="true" aria-expanded="false">
                     Placement
                 </a>
-                <div class="dropdown-menu" aria-labelledby="RDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="RDropdownMenuLink" role="group" id="RIP">
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="BdropdownCheck">
-                            <label class="form-check-label" for="BdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="RIP" id="RdropdownCheck" value="Remote">
+                            <label class="form-check-label" for="RdropdownCheck">
                                 Remote
                             </label>
                         </div>
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="IndropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="RIP" id="IndropdownCheck" value="In Person">
                             <label class="form-check-label" for="IndropdownCheck">
                                 In Person
                             </label>
@@ -252,10 +289,10 @@
                    aria-haspopup="true" aria-expanded="false">
                     Pacing
                 </a>
-                <div class="dropdown-menu" aria-labelledby="PaceDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="PaceDropdownMenuLink" role="group" id="SPIL">
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="SelfdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="SPIL" id="SelfdropdownCheck" value="Self Paced">
                             <label class="form-check-label" for="SelfdropdownCheck">
                                 Self Paced
                             </label>
@@ -263,7 +300,7 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="InstructdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="SPIL" id="InstructdropdownCheck" value="Instructor Led">
                             <label class="form-check-label" for="InstructdropdownCheck">
                                 Instructor Led
                             </label>
@@ -276,10 +313,10 @@
                    aria-haspopup="true" aria-expanded="false">
                     Learning Type
                 </a>
-                <div class="dropdown-menu" aria-labelledby="LearnDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="LearnDropdownMenuLink" role="group" id="LRN">
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="BdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="LRN" id="BdropdownCheck" value="Book">
                             <label class="form-check-label" for="BdropdownCheck">
                                 Book
                             </label>
@@ -287,7 +324,7 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="TdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="LRN" id="TdropdownCheck" value="Text">
                             <label class="form-check-label" for="TdropdownCheck">
                                 Text
                             </label>
@@ -295,7 +332,7 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="VdropdownCheck">
+                            <input type="checkbox" class="form-check-input" name="LRN" id="VdropdownCheck" value="Video">
                             <label class="form-check-label" for="VdropdownCheck">
                                 Video
                             </label>
@@ -303,16 +340,36 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="HdropdownCheck">
-                            <label class="form-check-label" for="HdropdownCheck">
-                                Hands-On
+                            <input type="checkbox" class="form-check-input" name="LRN" id="LdropdownCheck" value="Lecture">
+                            <label class="form-check-label" for="LdropdownCheck">
+                                Lecture
                             </label>
                         </div>
-                    </a>
+                    </a>   
+                    <a class="dropdown-item">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="LRN" id="CdropdownCheck" value="Classroom">
+                            <label class="form-check-label" for="CdropdownCheck">
+                                Classroom
+                            </label>
+                        </div>
+                    </a>  
+                    <a class="dropdown-item">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="LRN" id="IdropdownCheck" value="Interactive">
+                            <label class="form-check-label" for="IdropdownCheck">
+                                Interactive
+                            </label>
+                        </div>
+                    </a>                                  
                 </div>
             </li>
-        </ul>
-    </div>
+            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+            </ul>   
+        </div>
+            <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
+            <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
+    </form>
 </nav>
 
 
@@ -375,6 +432,7 @@
          ---=========================================================-->
         <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
             <div class="accordion-body">
+<<<<<<< HEAD
                 <div class="row">
                     <div class="col-sm">
                         <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
@@ -415,6 +473,21 @@
                     <div>ID: {{ this._id }}</div>
                     <br>
                 </div>
+=======
+                <h5>{{ this.URL }}</h5>
+                <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
+                <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
+                <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
+
+                <div>Comment: {{ this.Comment }}</div>
+                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                <div>Provider: {{ this.Provider }}</div>
+                <div>Cost: {{ this.Cost }}</div>
+                <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+                <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+                <div>ID: {{ this._id }}</div>
+                <br>
+>>>>>>> master
             </div>
         </div>
     </div>
@@ -422,6 +495,171 @@
     {{/each}}
 </section>
 
+<<<<<<< HEAD
+=======
+<script>
+    var test = window.location.href;
+        if(test.includes("cost=Free")){
+            $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
+            if(test.includes("Paid")){
+                $('#PaiddropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("cost=Paid")){
+            $('#PaiddropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Free")){
+                $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
+            };
+        };
+        if(test.includes("level=Beginner")){
+            $('#BegindropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Intermediate")){
+                $('#InterdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Advanced")){
+                $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Expert")){
+                $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("level=Intermediate")){
+            $('#InterdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Advanced")){
+                $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Expert")){
+                $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("level=Advanced")){
+            $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Expert")){
+                $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("level=Expert")){
+                $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+            };
+
+
+
+        if(test.includes("public=Public")){
+            $('#PublicdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("DOD")){
+                $('#DODdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("public=DOD")){
+            $('#DODdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Public")){
+                $('#PublicdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+
+        if(test.includes("remote=Remote")){
+            $('#RdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("In")){
+                $('#IndropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("remote=In")){
+            $('#IndropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Remote")){
+                $('#RdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+
+        if(test.includes("pacing=Self")){
+            $('#SelfdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Instructor")){
+                $('#InstructdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("pacing=Instructor")){
+            $('#InstructdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Self")){
+                $('#SelfdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Book")){
+            $('#BdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Text")){
+                $('#TdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Video")){
+                $('#VdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Lecture")){
+                $('#LdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Text")){
+            $('#TdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Video")){
+                $('#VdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Lecture")){
+                $('#LdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Video")){
+            $('#VdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Lecture")){
+                $('#LdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Lecture")){
+            $('#LdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            };
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Classroom")){
+                $('#CdropdownCheck.form-check-input').prop('checked', true);
+            if(test.includes("Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+            };
+        };
+        if(test.includes("learn=Interactive")){
+                $('#IdropdownCheck.form-check-input').prop('checked', true);
+        };
+</script>
+
+<script>
+    Handlebars.registerHelper("if", function(conditional, options) {
+      if (options.hash.desired === options.hash.type) {
+        options.fn(this);
+      } else {
+        options.inverse(this);
+      }
+    });
+</script>
+
+
+
+>>>>>>> master
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

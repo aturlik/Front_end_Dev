@@ -1,14 +1,11 @@
+<!-- Navigation bar function to highlight that Search is active -->
 <script>
     $('.nav-item-a a').addClass("active");
 
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
-
-    $("#help").button( "option", "disabled", true );
 </script>
 
 <div class="text-center">
+    <!-- Title Header -->
     <h1 class="display-1">MongoDB</h1>
     <p class="lead">A proof of concept UI for interfacing the database</p>
 </div>
@@ -20,17 +17,43 @@
         <table>
             <td><h3>Search</h3></td>
             <td>
-                <span class="d-inline-block" data-toggle="popover"
-                      data-content="Enter your desired terms and specify the field, then click Submit to show a list of resources.">
-                    <button type="button" class="btn" data-container="body" data-toggle="popover"
-                            data-placement="right" id="help">
+                <!-- Button to call on Help Modal -->
+                <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
+                    <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
                         <img src="images/Help_Icon.png" alt="help">
                     </button>
                 </span>
+
+                <!-- Contents of Help Modal -->
+                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <p>Enter the Training Resource you would like to acquire in "Search Terms".
+                                Next, Specify how that search term is related in "Search Field". Finally, click "Submit"
+                                to be shown a list of results.</p>
+                                <p><b>Have resource of your own that you would like to add to the database?</b>
+                                    <br>Click "Add Data" on the top of the page.</p>
+                                <p><b>Want more resources on a certain topic?</b>
+                                    <br>Click "Request" on the top of the page.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </td>
         </table>
+
         <form action="/specify" method="post">
             <div class="row">
+                <!-- Search Field to specify to user where the search function wants to look -->
                 <div class="col-sm-3">
                     <label for="form-select">Search Field</label>
                     <select class="form-select" name="DTA">
@@ -43,12 +66,14 @@
                     </select>
                 </div>
 
+                <!-- Search Textbox -->
                 <div class="col-sm">
                     <label for="SpefString">Search Terms</label>
                     <input class="form-control" type="text" id="SpefString" name="SpefString" size="60">
                 </div>
             </div>
 
+            <!-- Search Submit Button -->
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
                     <form action="/get-data">

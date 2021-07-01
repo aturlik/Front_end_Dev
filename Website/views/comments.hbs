@@ -1,28 +1,27 @@
 <style>.test{
     height: 200px;}
+
+
 </style>
 
 <script>
-    $('.nav-item-e a').addClass("active");
+    $('.nav-item-b a').addClass("active");
 </script>
+
 
 <div class="container overflow-hidden">
     <section class="specify">
-        <form action="/request" method="post">
+        <form action="/comments" method="post">
             <div class="col-sm mb-2 mt-4">
-                <input class="form-control" type="text" id="request" name="request" size="60" placeholder="Request">
-            </div>
-            <div class="col-sm">
-                <textarea class="form-control test" type="text" id="comments" name="comments" size="60"
-                          placeholder="Comments"></textarea>
+                <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
+                          placeholder="Comments or Bugs"></textarea>
             </div>
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
                     <table>
                         <td>
                             <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
-                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
-                                        disabled>
+                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
                                     <img src="images/Help_Icon.png" alt="help">
                                 </button>
                             </span>
@@ -39,8 +38,7 @@
 
                                         <div class="modal-body">
                                             Input in the "Request" box what topic you would like to see more training
-                                            resources of. Add any additional comments to help those find the right
-                                            resource
+                                            resources of. Add any additional comments to help those find the right resource
                                             for you.
                                         </div>
                                         <div class="modal-footer">
@@ -53,22 +51,6 @@
                         </td>
                         <td>
                             <button type="submit" class="btn btn-outline-secondary">Submit</button>
-
-                            <div class="modal fade" id="myModalSub" tabindex="-1" role="dialog"
-                                 aria-labelledby="myModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Request Sent</h4>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </td>
                     </table>
                 </div>
