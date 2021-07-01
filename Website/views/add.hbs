@@ -25,12 +25,43 @@
   margin: center;
 }
 
+
+
 </style>
 
-<!-- Call to Navigation Bar to show current page is active -->
+
 <script>
 var subcheck;
+//Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
+
+/ Validation Script
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  $("#submit").click(function(e) {
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+          alert('not good');
+        }
+        else {
+            alert('Resource Submitted');
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+
 
 </script>
 
@@ -63,8 +94,8 @@ $('.nav-item-c a').addClass("active");
                                 <p>To add your own training resource into the database, please input all the information
                                     required.</p>
                                 <p><b>Don't understand what a specific data input does? </b>
-                                <br>
-                                Click on following buttons below for an explanation on that input data point.</p>
+                                    <br>
+                                    Click on following buttons below for an explanation on that input data point.</p>
 
                                 <!-- Buttons for Secondary Models to explain specific categories. It is divided to match how the form looks. -->
                                 <div class="btn-group d-flex" role="group" aria-label="First Row">
@@ -248,9 +279,11 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Pacing</h4>
                             </div>
                             <div class="modal-body">
-                                <p>The "Self-Paced" and "Instructor Led" buttons is where you choose whether the training
+                                <p>The "Self-Paced" and "Instructor Led" buttons is where you choose whether the
+                                    training
                                     resource is one of the two.</p>
-                                <p><b>Self-Paced</b> is for resources that go on your time. It is for resources where the
+                                <p><b>Self-Paced</b> is for resources that go on your time. It is for resources where
+                                    the
                                     user decides how fast or slaw they can go.</p>
                                 <p><b>Instructor Led</b> is for resources that have a teacher that decides the pace of
                                     learning.</p>
@@ -299,16 +332,21 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Experience Level</h4>
                             </div>
                             <div class="modal-body">
-                                <p>Some training resources require the user to have prerequisites or have knowledge of the
-                                topic before taking their resource. This is where you specify what level a person needs
+                                <p>Some training resources require the user to have prerequisites or have knowledge of
+                                    the
+                                    topic before taking their resource. This is where you specify what level a person
+                                    needs
                                     to be to understand the course.</p>
-                                <p><b>Beginner</b> is those who are learning the topic for the first time and have no prior
+                                <p><b>Beginner</b> is those who are learning the topic for the first time and have no
+                                    prior
                                     experience of the topic.</p>
-                                <p><b>Intermediate</b> is those who have some knowledge of the topic but are not proficient
+                                <p><b>Intermediate</b> is those who have some knowledge of the topic but are not
+                                    proficient
                                     in it.</p>
                                 <p><b>Advanced</b> is those who are proficient in the topics and can fully understand
                                     real-life examples.</p>
-                                <p><b>Expert</b> is those who are actively working in the field of the topic and understand
+                                <p><b>Expert</b> is those who are actively working in the field of the topic and
+                                    understand
                                     leading edge examples.</p>
                             </div>
                             <div class="modal-footer">
@@ -406,9 +444,11 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Medium</h4>
                             </div>
                             <div class="modal-body">
-                                <p>The Medium buttons are where you specify where one can take the training resource.</p>
+                                <p>The Medium buttons are where you specify where one can take the training
+                                    resource.</p>
                                 <p><b>Remote</b> is for resources where one can take online.</p>
-                                <p><b>In Person</b> is for resources where one must go to a physical location to take the
+                                <p><b>In Person</b> is for resources where one must go to a physical location to take
+                                    the
                                     course.</p>
                             </div>
                             <div class="modal-footer">
@@ -431,12 +471,14 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Learning Type</h4>
                             </div>
                             <div class="modal-body">
-                                <p>The Learning Type buttons is where you specify what way does the resource teach a user.
+                                <p>The Learning Type buttons is where you specify what way does the resource teach a
+                                    user.
                                     Some resources may need to be under multiple types.</p>
                                 <p><b>Text</b> is for resources that teach by online text dialogs.</p>
                                 <p><b>Video</b> is for resources that teach by watching a recording.</p>
                                 <p><b>Book</b> is for resources that can be read by a physical item.</p>
-                                <p><b>Lecture</b> is for resources that are taught by a teacher in a classroom format.</p>
+                                <p><b>Lecture</b> is for resources that are taught by a teacher in a classroom format.
+                                </p>
                                 <p><b>Interactive</b> is for resources where one can be hands-on and interact with the
                                     resource to learn.</p>
                             </div>
@@ -505,11 +547,14 @@ $('.nav-item-c a').addClass("active");
         <br>
 
         <!-- Form Input -->
-        <form action="/insert" method="post" id="form">
+        <form action="/insert" method="post" class="row g-3 needs-validation">
             <div class="row mb-2">
                 <div class="col">
-                    <input type="text" id="title" name="title" class="form-control" placeholder="Title"
-                           aria-label="title">
+                    <input type="text" id="title" name="title" class="form-control is-invalid" placeholder="Title"
+                           aria-label="title" required>
+                    <div class="invalid-feedback">
+                        Please put in a title.
+                    </div>
                 </div>
                 <div class="col">
                     <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url">
@@ -713,23 +758,17 @@ $('.nav-item-c a').addClass("active");
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" id="submit" style="margin:20px" class="btn btn-secondary">Submit</button>
             </div>
-
-            <script>
-                $("#submit").click(function(e) {
-                    alert('Resource Submitted.');
-                });
-            </script>
         </form>
     </section>
 </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
