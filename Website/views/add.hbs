@@ -24,40 +24,11 @@
   border: 0px;
   margin: center;
 }
-
-
-
-
 </style>
 
-
 <script>
-var subcheck;
 //Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
-
-// Validation Script
-(function () {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-
-
 </script>
 
 
@@ -562,31 +533,22 @@ $('.nav-item-c a').addClass("active");
             <div class="row mb-2">
                 <div class="col">
                     <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
-                           aria-label="TCH" required>
-                    <div class="invalid-feedback">
-                        Please put in Time Commitment.
-                    </div>
+                           aria-label="TCH">
                 </div>
                 <div class="col">
                     <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
-                           aria-label="cost" required>
-                    <div class="invalid-feedback">
-                        Please put in a cost.
-                    </div>
+                           aria-label="cost">
                 </div>
                 <div class="col" align="center">
                     <div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
-                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced" required>
+                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced"checked>
                         <label class="btn btn-outline-secondary" for="SPILself">
                             Self-Paced
                         </label>
-                        <input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led" required>
+                        <input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led">
                         <label class="btn btn-outline-secondary" for="SPILins">
                             Instructor Led
                         </label>
-                        <div class="invalid-feedback">
-                            Please specify the pacing.
-                        </div>
                     </div>
                 </div>
                 <div class="col" align="center">
@@ -629,17 +591,11 @@ $('.nav-item-c a').addClass("active");
                 </div>
                 <div class="col">
                     <input type="text" id="provider" name="provider" class="form-control"
-                           placeholder="Service/Training Provider" aria-label="Provider" required>
-                    <div class="invalid-feedback">
-                        Please input a provider.
-                    </div>
+                           placeholder="Service/Training Provider" aria-label="Provider">
                 </div>
                 <div class="col">
                     <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
-                           aria-label="Location of Provider" required>
-                    <div class="invalid-feedback">
-                        Please input the location of the provider.
-                    </div>
+                           aria-label="Location of Provider">
                 </div>
             </div>
             <div class="row mb-2">
@@ -654,19 +610,16 @@ $('.nav-item-c a').addClass("active");
                 </div>
                 <div class="col">
                     <div class="btn-group d-flex" role="group" aria-label="Learning Type" id="LT">
-                        <input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT" required>
+                        <input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT">
                         <label class="btn btn-outline-secondary" for="LTT">Text</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV" required>
+                        <input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV">
                         <label class="btn btn-outline-secondary" for="LTV">Video</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Book" id="LTB" required>
+                        <input class="btn-check" type="checkbox" name="LT" value="Book" id="LTB">
                         <label class="btn btn-outline-secondary" for="LTB">Book</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL" required>
+                        <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL">
                         <label class="btn btn-outline-secondary" for="LTL">Lecture</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI" required>
+                        <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI">
                         <label class="btn btn-outline-secondary" for="LTI">Interactive</label>
-                        <div class="invalid-feedback">
-                            Please specify learning type(s).
-                        </div>
                     </div>
                 </div>
             </div>
