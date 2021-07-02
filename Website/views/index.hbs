@@ -78,7 +78,7 @@
                                 let data = await fetch(`http://localhost:8000/search?term=${request.term}`)
                                     .then(results => results.json())
                                     .then(results => results.map(result => {
-                                        return { label: result.Search, value: result.Search, id: result._id};
+                                        return { label: result.Title, value: result.Title, id: result._id};
                                     }));
                                 response(data);
                             },
