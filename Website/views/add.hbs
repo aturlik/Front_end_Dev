@@ -24,11 +24,40 @@
   border: 0px;
   margin: center;
 }
+    .arrow {
+        border: solid black;
+        border-width: 0 4px 4px 0;
+        display: inline-block;
+        padding: 7px;
+    }
+
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+
+    .up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+    }
+
+    .arrow_pos {
+        float: right;
+        position: relative;
+    }
+
+
+
 </style>
 
 <script>
 //Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
+
+
+
+
+
 </script>
 
 
@@ -151,7 +180,7 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "Title" input is where you put the name for the training resource.
-                                (i.e. Python Tutorials, Intro to Machine Learning, etc.)
+                                (e.g. Python Tutorials, Intro to Machine Learning)
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -174,7 +203,7 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "URL" input is where you put the hyperlinks that directs you to the training
-                                resource. (i.e. www.youtube.com. www.udemy.com, etc.)
+                                resource. (e.g. www.youtube.com. www.udemy.com)
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -197,8 +226,8 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "Time Commitment (Hours)" input where you put how long it took for you to finish the
-                                resources. If the resource does not time required (i.e. Video Length, Time Completion
-                                Estimate, etc.), please input a rough estimate of how long it took you to finish the
+                                resources. If the resource does not time required (e.g. Video Length, Time Completion
+                                Estimate), please input a rough estimate of how long it took you to finish the
                                 training resource.
                             </div>
                             <div class="modal-footer">
@@ -274,10 +303,13 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Certifications</h4>
                             </div>
                             <div class="modal-body">
-                                <p>Some training resources offer tangible evidence showing that you finished the training.
-                                Please specify if you can acquire a <b>"Certificate"</b>, <b>"Degree"</b>, or both while
+                                <p>Some training resources offer tangible evidence showing that you finished the
+                                    training.
+                                    Please specify if you can acquire a <b>"Certificate"</b>, <b>"Degree"</b>, or both
+                                    while
                                     undergoing the training.</p>
-                                <p>If the resource does not apply to either, please do nothing and go to the next section.</p>
+                                <p>If the resource does not apply to either, please do nothing and go to the next
+                                    section.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -364,7 +396,7 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "Service/Training Provider" input is where you put which person/company is offering
-                                the training resource. (i.e. Google, Linkedin, etc.)
+                                the training resource. (e.g. Google, Linkedin)
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -387,9 +419,9 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 <p>The "Location of Provider" input is where you put where the provider's headquarters
-                                    location. (i.e. United States, Japan, etc.)</p>
+                                    location. (e.g. United States, Japan)</p>
                                 <p><b>Please make sure that the resource you are adding does not originate from an
-                                    adversary state. (i.e. China, Russia, etc.)</b></p>
+                                    adversary state. (e.g. China, Russia)</b></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -495,8 +527,8 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "Put any comments here" input is where you can tell any other pieces of advice to
-                                other users about the resource. (i.e. The location of the resource if it is physical,
-                                how good the resource is, things to avoid while taking the resource, etc.)
+                                other users about the resource. (e.g. The location of the resource if it is physical,
+                                how good the resource is, things to avoid while taking the resource)
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -520,11 +552,12 @@ $('.nav-item-c a').addClass("active");
                     <input type="text" id="title" name="title" class="form-control" placeholder="Title"
                            aria-label="title" required>
                     <div class="invalid-feedback">
-                        Please put in a title.
+                        Please put in a Title.
                     </div>
                 </div>
                 <div class="col">
-                    <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url" required>
+                    <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url"
+                           required>
                     <div class="invalid-feedback">
                         Please put in a URL.
                     </div>
@@ -533,15 +566,21 @@ $('.nav-item-c a').addClass("active");
             <div class="row mb-2">
                 <div class="col">
                     <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
-                           aria-label="TCH">
+                           aria-label="TCH" required>
+                    <div class="invalid-feedback">
+                        Please put the Time Commitment.
+                    </div>
                 </div>
                 <div class="col">
                     <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
-                           aria-label="cost">
+                           aria-label="cost" required>
+                    <div class="invalid-feedback">
+                        Please put in the Cost.
+                    </div>
                 </div>
                 <div class="col" align="center">
                     <div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
-                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced"checked>
+                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced" checked>
                         <label class="btn btn-outline-secondary" for="SPILself">
                             Self-Paced
                         </label>
@@ -591,11 +630,17 @@ $('.nav-item-c a').addClass("active");
                 </div>
                 <div class="col">
                     <input type="text" id="provider" name="provider" class="form-control"
-                           placeholder="Service/Training Provider" aria-label="Provider">
+                           placeholder="Service/Training Provider" aria-label="Provider" required>
+                    <div class="invalid-feedback">
+                        Please put in the Provider.
+                    </div>
                 </div>
                 <div class="col">
                     <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
-                           aria-label="Location of Provider">
+                           aria-label="Location of Provider" required>
+                    <div class="invalid-feedback">
+                        Please put in the Location of the Provider.
+                    </div>
                 </div>
             </div>
             <div class="row mb-2">
@@ -632,6 +677,7 @@ $('.nav-item-c a').addClass("active");
                                         data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                     <small class="text-muted" style="vertical-align: top;">Programs, Languages, and
                                         other Data Topics</small>
+                                    <i class="arrow down arrow_pos"></i>
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
@@ -731,7 +777,7 @@ $('.nav-item-c a').addClass("active");
         </form>
 
         <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        // Validation JS
             (function () {
               'use strict'
 
@@ -751,6 +797,11 @@ $('.nav-item-c a').addClass("active");
                   }, false)
                 })
             })()
+
+
+
+
+
         </script>
     </section>
 </div>
