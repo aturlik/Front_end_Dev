@@ -5,7 +5,7 @@ var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
-
+const { MongoClient } = require("mongodb");
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 /* GET home page. */
@@ -109,6 +109,19 @@ router.get("/get-data", function(req, res, next) {
     });
   });
 });
+
+router.get("/search", async (request, response) => {
+  try {
+    const client = new MongoClient('mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useUnifiedTopology: true });
+    await client.connect();
+    var db = client.db('Trainings');
+    let result = await db.collection('SearchStuff').aggregate([{'$search': {"index" : "Search", 'text': {'query': `${request.query.term}`,'path': {'wildcard': '*'}, 'fuzzy': {"maxEdits": 1}}}}
+  ]).toArray();
+  response.send(result);
+  } catch (e) {
+    response.status(500).send({message: e.message});
+  }
+})
 
 router.post('/get-data/vote', function(req, res, next){
 	var found = null;
