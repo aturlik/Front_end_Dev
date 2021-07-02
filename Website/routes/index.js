@@ -114,41 +114,46 @@ router.get("/get-data", function(req, res, next) {
 });
 
 router.post('/get-data/vote', function(req, res, next){
-	var found = null;
-	var dataUrl = window.location.href;
-	var vote = req.body.Vote;
-	var inc = 0;
+	var dataUrl = req.body.url;
+	var inital = 0;
+	console.log(req.body.id)
 
-	if(vote == "Liked"){
-		inc = 1;
-	}else{
-		inc = -1;
+	if(req.body.Vote == "Liked"){
+		inital = 1;
 	}
-
-	var item = {
-		id: req.body.id,
-		voteCount: vote
+	
+	var query = {
+		"_id": mongoose.Types.ObjectId(req.body.id) 
 	};
 
 	mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
 		var db = client.db('Trainings');
 		assert.strictEqual(null, err);
-		var spefVote = db.collection('VotingData').find({}, {id: req.body.id} ).toArray();
 
-
-		if(spefVote.length > 0){
-			console.log('Did find');
-			db.collection('VotingData').updateOne(item, function(err, result) {
-				assert.strictEqual(null, err);
-				client.close();
-			});
-		}else{
-			console.log('Did not find');
-			db.collection('VotingData').insertOne(item, function(err, result) {
-				assert.strictEqual(null, err);
-				client.close();
-			});
+		async function run(){
+			const file =  await db.collection('RawData1').find(query).toArray();
+			console.log(file);
+			
+			if(file.length > 0){
+				if(file[0].hasOwnProperty("voteCount")){
+					var voteVal = file[0].vote + inital;
+					var countVal = file[0].voteCount + 1;
+				
+					db.collection('RawData1').updateOne(query, {$inc: {vote: inital , voteCount: 1}, $set: {"Helpfullness Rating": ((voteVal/countVal)*100).toFixed()}}, function(err, result) {
+						assert.strictEqual(null, err);
+						client.close();
+					});
+				}else{
+					db.collection('RawData1').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": ((inital/1)*100).toFixed(), vote: inital, voteCount: 1}}, function(err, result) {
+						assert.strictEqual(null, err);
+						client.close();
+					});
+				}
+			}
 		}
+		run();
+
+		
 	});
 
 	res.redirect(dataUrl);

@@ -423,6 +423,11 @@
                     <span class="tag_pos3 tag_style badge bg-secondary">{{ this.[Self Paced vs Instructor Led] }}</span>
                     <span class="tag_pos4 tag_style badge bg-secondary">{{ this.[Public/DOD] }}</span>
                 </div>
+                <div class="col-">
+                    {{#if this.[Helpfullness Rating]}}
+                        <span class="tag_pos tag_style badge bg-secondary">{{ this.[Helpfullness Rating] }}%</span>
+                    {{/if}}
+                </div>
             </div>
         </button>
 
@@ -459,14 +464,18 @@
                             <button type="submit">Submit</button>
 
                             <input class="accordion-body" type="text" id="id{{this._id}}" name="id" value="{{this._id}}" property="{{this._id}}">
+                            <input class="accordion-body" type="text" id="title{{this._id}}" name="title" value="{{this.Title}}" property="{{this.Titile}}">
                             <input class="accordion-body" type="text" id="url{{this._id}}" name="url" value="hello" property="hello">
 
                             <script>
                                 var id = document.getElementById("id{{this._id}}");
-                                id.style.display = "none";
-
                                 var pageURL = document.getElementById("url{{this._id}}");
-                                pageURL.innerHTML = window.location.href;
+                                var title = document.getElementById("title{{this._id}}");
+
+                                id.style.display = "none";
+                                pageURL.value = window.location.href;
+                                pageURL.style.display = "none";
+                                title.style.display = "none";
                             </script>
                         </form>
                     </div>
