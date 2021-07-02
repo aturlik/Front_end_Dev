@@ -141,7 +141,7 @@ router.post('/get-data/vote', function(req, res, next){
 		assert.strictEqual(null, err);
 
 		async function run(){
-			const file =  await db.collection('RawData1').find(query).toArray();
+			const file =  await db.collection('FormattedRawData').find(query).toArray();
 			console.log(file);
 			
 			if(file.length > 0){
@@ -149,12 +149,12 @@ router.post('/get-data/vote', function(req, res, next){
 					var voteVal = file[0].vote + inital;
 					var countVal = file[0].voteCount + 1;
 				
-					db.collection('RawData1').updateOne(query, {$inc: {vote: inital , voteCount: 1}, $set: {"Helpfullness Rating": ((voteVal/countVal)*100).toFixed()}}, function(err, result) {
+					db.collection('FormattedRawData').updateOne(query, {$inc: {vote: inital , voteCount: 1}, $set: {"Helpfullness Rating": ((voteVal/countVal)*100).toFixed()}}, function(err, result) {
 						assert.strictEqual(null, err);
 						client.close();
 					});
 				}else{
-					db.collection('RawData1').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": ((inital/1)*100).toFixed(), vote: inital, voteCount: 1}}, function(err, result) {
+					db.collection('FormattedRawData').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": ((inital/1)*100).toFixed(), vote: inital, voteCount: 1}}, function(err, result) {
 						assert.strictEqual(null, err);
 						client.close();
 					});
