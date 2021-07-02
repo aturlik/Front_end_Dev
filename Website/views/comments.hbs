@@ -5,6 +5,10 @@
 <!-- Call to Navigation Bar to show current page is active -->
 <script>
     $('.nav-item-b a').addClass("active");
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 </script>
 
 
@@ -16,7 +20,7 @@
             <div class="col-sm mb-2 mt-4">
                 <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
                           placeholder="Comments or Bugs" required></textarea>
-                <div class="invalid-feedback">Please input a comment or bug about the website.</div>
+                <div class="invalid-tooltip" style="position: relative">Please input a comment or bug about the website.</div>
             </div>
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
@@ -58,7 +62,7 @@
                         </td>
 
                         <script>
-                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                        // Validation JS
                             (function () {
                               'use strict'
 
