@@ -117,7 +117,7 @@ router.get("/search", async (request, response) => {
     var db = client.db('Trainings');
     let result = await db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': `${request.query.term}`,'path': {'wildcard': '*'}, 'fuzzy': {"maxEdits": 1}}}}
   ]).toArray();
-  response.send(result);
+  response.send(result.slice(0, 20));
   } catch (e) {
     response.status(500).send({message: e.message});
   }
