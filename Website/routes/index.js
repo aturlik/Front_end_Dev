@@ -30,7 +30,6 @@ router.get('/comments', function(req, res, next) {
 });
 
 router.get("/get-data", function(req, res, next) {
-  var spectopic = req.query.topic;
   var specdata = req.query.data; 
   var resultArray = [];
   var query = {};
@@ -106,8 +105,7 @@ router.get("/get-data", function(req, res, next) {
     }, function() {
       client.close();
       specdata = specdata.replace(/ /g, "_");
-      spectopic = spectopic.replace(/ /g, "_");
-      res.render('get', {items: resultArray, specdata, spectopic});
+      res.render('get', {items: resultArray, specdata});
     });
   });
 });
@@ -197,9 +195,8 @@ router.post('/insert', function(req, res, next) {
 });
 
 router.post('/specify', function(req, res, next) {
-  spectopic = req.body.DTA;
   specdata = req.body.SpefString;
-  res.redirect("/get-data?topic=" + spectopic + "&data=" + specdata);
+  res.redirect("/get-data?data=" + specdata);
 });
 
 
@@ -244,11 +241,9 @@ router.post('/get_data', function(req, res, next) {
   var remote = req.body.RIP;
   var selfp = req.body.SPIL;
   var learn = req.body.LRN;
-  var st = req.body.ST;
   var sd = req.body.SD; 
-  st = st.replace(/_/g, " ")
   sd = sd.replace(/_/g, " ")
-  console.log(st);
+  console.log(sd);
   var urladditives = "";
   if(cost != null){
     urladditives = urladditives.concat("&cost=" + cost)
@@ -268,7 +263,7 @@ router.post('/get_data', function(req, res, next) {
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
   };
-  res.redirect("/get-data?topic=" + st + "&data=" + sd + urladditives);
+  res.redirect("/get-data?data=" + sd + urladditives);
 });
 
 router.post('/update', function(req, res, next) {
