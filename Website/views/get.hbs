@@ -81,6 +81,14 @@
             font-weight: 500;
         }
 
+    .inner_collapse{
+        cursor: pointer;
+        width: 25%;
+        border: none;
+        outline: none;
+        padding: 10px
+    }
+
     .collapsible-heading2 {
         font-size: 25px;
         color: #232354;
@@ -116,6 +124,10 @@
         right: 20px;
         font-weight: 500;
         font-size: 17px
+    }
+
+    .secret{
+        visibility: hidden;
     }
 </style>
 
@@ -155,24 +167,27 @@
     </div>
 
     <!-- Filter Categories -->
-    <a class="navbar-brand" style="margin-left: 10px"> <b>Filters</b></a>
+    <a class="navbar-brand" style="margin-left: 10px"> <b>Filters </b> <br> <small class="text-muted"><span id="result">
+        <div class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span>
+            </div></span> results</small></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-<form action="/get_data" method="post">
+
     <div class="collapse navbar-collapse" id="navbarFilter" role="group">
+        <form action="/get_data" method="post">
         <ul class="navbar-nav">
-            <li class="nav-item-dropdown-1">
+            <li class="nav-item-dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="CostDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Cost
                 </a>
                 <div class="dropdown-menu" aria-labelledby="CostDropdownMenuLink" role="group" id="TST">
-                    <a class="dropdown-item" id="Tester">
-                        <div class="form-check 1" id="Tester2">
-                            <input type="checkbox" class="form-check-input 1"  name="TST" id="FreedropdownCheck" value="Free">
+                    <a class="dropdown-item">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input"  name="TST" id="FreedropdownCheck" value="Free">
                             <label class="form-check-label" for="FreedropdownCheck">
                                 Free 
                             </label>
@@ -377,8 +392,6 @@
      ---=========================================================-->
     <div>
         {{#if @last}}
-        <div class="pos">There are <span id="result"></span> results</div>
-
         <script>
             var position = {{@index}}
             document.getElementById("result").innerHTML = position + 1;
@@ -424,30 +437,61 @@
          ---=========================================================-->
         <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
             <div class="accordion-body">
-                <h5>{{ this.URL }}</h5>
-                <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
-                <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
-                <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
+                        <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
+                        <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
+                        <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
+                        <div><b>Provider:</b> {{ this.Provider }}</div>
+                        <div><b>Cost:</b> {{ this.Cost }}</div>
+                        <div><b>Comment:</b> {{ this.Comment }}</div>
+                        <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                    </div>
 
-                <div>Comment: {{ this.Comment }}</div>
-                <div>Useful Training?: {{ this.[Useful Training?] }}</div>
-                <div>Provider: {{ this.Provider }}</div>
-                <div>Cost: {{ this.Cost }}</div>
-                <div>Base of Operations: {{ this.[Base of Operations] }}</div>
-                <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
-                <div>ID: {{ this._id }}</div>
-                <br>
+                    <div class="col-sm">
+                        <form action="/get-data/vote" method="post">
+                            <div class="btn-group d-flex" role="group" aria-label="Vote">
+                                <input class="btn-check" type="radio" name="Vote" id="upVote{{this._id}}" value="Liked">
+                                <label class="btn btn-outline-secondary" for="upVote{{this._id}}">
+                                    Liked
+                                </label>
+                                <input class="btn-check" type="radio" name="Vote" id="downVote{{this._id}}" value="Disliked">
+                                <label class="btn btn-outline-secondary" for="downVote{{this._id}}">
+                                    Disliked
+                                </label>
+                            </div>
+                            <button type="submit">Submit</button>
+
+                            <input class="accordion-body" type="text" name="id" value="{{this._id}}" property="{{this._id}}">
+                        </form>
+                    </div>
+                </div>
+
+                <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
+                    Admin Details
+                </button>
+                <div id="collapseItemAdmin{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item">
+                    <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+                    <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+                    <div>ID: {{ this._id }}</div>
+                    <br>
+                </div>
             </div>
         </div>
     </div>
-
+    {{else}}
+        <script>
+            document.getElementById("result").innerHTML = 0;
+        </script>
     {{/each}}
 </section>
+
 
 <script>
     var test = window.location.href;
         if(test.includes("cost=Free")){
-            $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
+            $('#FreedropdownCheck.form-check-input').prop('checked', true);
             if(test.includes("Paid")){
                 $('#PaiddropdownCheck.form-check-input').prop('checked', true);
             };
@@ -603,7 +647,6 @@
       }
     });
 </script>
-
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
