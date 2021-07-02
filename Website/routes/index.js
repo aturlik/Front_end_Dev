@@ -115,7 +115,7 @@ router.get("/search", async (request, response) => {
     const client = new MongoClient('mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useUnifiedTopology: true });
     await client.connect();
     var db = client.db('Trainings');
-    let result = await db.collection('SearchStuff').aggregate([{'$search': {"index" : "Search", 'text': {'query': `${request.query.term}`,'path': {'wildcard': '*'}, 'fuzzy': {"maxEdits": 1}}}}
+    let result = await db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': `${request.query.term}`,'path': {'wildcard': '*'}, 'fuzzy': {"maxEdits": 1}}}}
   ]).toArray();
   response.send(result);
   } catch (e) {
