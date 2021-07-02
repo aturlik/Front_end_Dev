@@ -24,12 +24,40 @@
   border: 0px;
   margin: center;
 }
+    .arrow {
+        border: solid black;
+        border-width: 0 4px 4px 0;
+        display: inline-block;
+        padding: 7px;
+    }
+
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+
+    .up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+    }
+
+    .arrow_pos {
+        float: right;
+        position: relative;
+    }
+
+
 
 </style>
 
-<!-- Call to Navigation Bar to show current page is active -->
 <script>
+//Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
+
+
+
+
+
 </script>
 
 
@@ -61,8 +89,8 @@ $('.nav-item-c a').addClass("active");
                                 <p>To add your own training resource into the database, please input all the information
                                     required.</p>
                                 <p><b>Don't understand what a specific data input does? </b>
-                                <br>
-                                Click on following buttons below for an explanation on that input data point.</p>
+                                    <br>
+                                    Click on following buttons below for an explanation on that input data point.</p>
 
                                 <!-- Buttons for Secondary Models to explain specific categories. It is divided to match how the form looks. -->
                                 <div class="btn-group d-flex" role="group" aria-label="First Row">
@@ -152,7 +180,7 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "Title" input is where you put the name for the training resource.
-                                (i.e. Python Tutorials, Intro to Machine Learning, etc.)
+                                (e.g. Python Tutorials, Intro to Machine Learning)
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -175,7 +203,7 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "URL" input is where you put the hyperlinks that directs you to the training
-                                resource. (i.e. www.youtube.com. www.udemy.com, etc.)
+                                resource. (e.g. www.youtube.com. www.udemy.com)
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -198,8 +226,8 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "Time Commitment (Hours)" input where you put how long it took for you to finish the
-                                resources. If the resource does not time required (i.e. Video Length, Time Completion
-                                Estimate, etc.), please input a rough estimate of how long it took you to finish the
+                                resources. If the resource does not time required (e.g. Video Length, Time Completion
+                                Estimate), please input a rough estimate of how long it took you to finish the
                                 training resource.
                             </div>
                             <div class="modal-footer">
@@ -246,9 +274,11 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Pacing</h4>
                             </div>
                             <div class="modal-body">
-                                <p>The "Self-Paced" and "Instructor Led" buttons is where you choose whether the training
+                                <p>The "Self-Paced" and "Instructor Led" buttons is where you choose whether the
+                                    training
                                     resource is one of the two.</p>
-                                <p><b>Self-Paced</b> is for resources that go on your time. It is for resources where the
+                                <p><b>Self-Paced</b> is for resources that go on your time. It is for resources where
+                                    the
                                     user decides how fast or slaw they can go.</p>
                                 <p><b>Instructor Led</b> is for resources that have a teacher that decides the pace of
                                     learning.</p>
@@ -273,9 +303,13 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Certifications</h4>
                             </div>
                             <div class="modal-body">
-                                Some training resources offer tangible evidence showing that you finished the training.
-                                Please specify if you can acquire a <b>"Certificate"</b>, <b>"Degree"</b>, or both while
-                                undergoing the training.
+                                <p>Some training resources offer tangible evidence showing that you finished the
+                                    training.
+                                    Please specify if you can acquire a <b>"Certificate"</b>, <b>"Degree"</b>, or both
+                                    while
+                                    undergoing the training.</p>
+                                <p>If the resource does not apply to either, please do nothing and go to the next
+                                    section.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -297,16 +331,21 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Experience Level</h4>
                             </div>
                             <div class="modal-body">
-                                <p>Some training resources require the user to have prerequisites or have knowledge of the
-                                topic before taking their resource. This is where you specify what level a person needs
+                                <p>Some training resources require the user to have prerequisites or have knowledge of
+                                    the
+                                    topic before taking their resource. This is where you specify what level a person
+                                    needs
                                     to be to understand the course.</p>
-                                <p><b>Beginner</b> is those who are learning the topic for the first time and have no prior
+                                <p><b>Beginner</b> is those who are learning the topic for the first time and have no
+                                    prior
                                     experience of the topic.</p>
-                                <p><b>Intermediate</b> is those who have some knowledge of the topic but are not proficient
+                                <p><b>Intermediate</b> is those who have some knowledge of the topic but are not
+                                    proficient
                                     in it.</p>
                                 <p><b>Advanced</b> is those who are proficient in the topics and can fully understand
                                     real-life examples.</p>
-                                <p><b>Expert</b> is those who are actively working in the field of the topic and understand
+                                <p><b>Expert</b> is those who are actively working in the field of the topic and
+                                    understand
                                     leading edge examples.</p>
                             </div>
                             <div class="modal-footer">
@@ -357,7 +396,7 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "Service/Training Provider" input is where you put which person/company is offering
-                                the training resource. (i.e. Google, Linkedin, etc.)
+                                the training resource. (e.g. Google, Linkedin)
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -379,11 +418,10 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Location</h4>
                             </div>
                             <div class="modal-body">
-                                The "Location of Provider" input is where you put where the provider's headquarters
-                                location. (i.e. United States, Japan, etc.)
-                                <br><br>
-                                <b>Please make sure that the resource you are adding does not originate from an
-                                    adversary state. (i.e. China, Russia, etc.)</b>
+                                <p>The "Location of Provider" input is where you put where the provider's headquarters
+                                    location. (e.g. United States, Japan)</p>
+                                <p><b>Please make sure that the resource you are adding does not originate from an
+                                    adversary state. (e.g. China, Russia)</b></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -396,6 +434,7 @@ $('.nav-item-c a').addClass("active");
                     </div>
                 </div>
 
+                <!-- Placement Modal for the the In person and Remote Buttons -->
                 <div class="modal fade" id="myModalMed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -404,12 +443,12 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Medium</h4>
                             </div>
                             <div class="modal-body">
-                                The Medium buttons are where you specify where one can take the training resource.
-                                <br><br>
-                                <b>Remote</b> is for resources where one can take online.
-                                <br><br>
-                                <b>In Person</b> is for resources where one must go to a physical location to take the
-                                course.
+                                <p>The Medium buttons are where you specify where one can take the training
+                                    resource.</p>
+                                <p><b>Remote</b> is for resources where one can take online.</p>
+                                <p><b>In Person</b> is for resources where one must go to a physical location to take
+                                    the
+                                    course.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -422,6 +461,7 @@ $('.nav-item-c a').addClass("active");
                     </div>
                 </div>
 
+                <!-- Learning Type Modal for Text, Video, Book, Lecture, Interactive -->
                 <div class="modal fade" id="myModalLearning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -430,19 +470,16 @@ $('.nav-item-c a').addClass("active");
                                 <h4 class="modal-title" id="myModalLabel">Learning Type</h4>
                             </div>
                             <div class="modal-body">
-                                The Learning Type buttons is where you specify what way does the resource teach a user.
-                                Some resources may need to be under multiple types.
-                                <br><br>
-                                <b>Text</b> is for resources that teach by online text dialogs.
-                                <br><br>
-                                <b>Video</b> is for resources that teach by watching a recording.
-                                <br><br>
-                                <b>Book</b> is for resources that can be read by a physical item.
-                                <br><br>
-                                <b>Lecture</b> is for resources that are taught by a teacher in a classroom format.
-                                <br><br>
-                                <b>Interactive</b> is for resources where one can be hands-on and interact with the
-                                resource to learn.
+                                <p>The Learning Type buttons is where you specify what way does the resource teach a
+                                    user.
+                                    Some resources may need to be under multiple types.</p>
+                                <p><b>Text</b> is for resources that teach by online text dialogs.</p>
+                                <p><b>Video</b> is for resources that teach by watching a recording.</p>
+                                <p><b>Book</b> is for resources that can be read by a physical item.</p>
+                                <p><b>Lecture</b> is for resources that are taught by a teacher in a classroom format.
+                                </p>
+                                <p><b>Interactive</b> is for resources where one can be hands-on and interact with the
+                                    resource to learn.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -455,6 +492,7 @@ $('.nav-item-c a').addClass("active");
                     </div>
                 </div>
 
+                <!-- Keywords Modal  -->
                 <div class="modal fade" id="myModalKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -479,7 +517,7 @@ $('.nav-item-c a').addClass("active");
                     </div>
                 </div>
 
-
+                <!-- Comments Modal -->
                 <div class="modal fade" id="myModalCom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -489,8 +527,8 @@ $('.nav-item-c a').addClass("active");
                             </div>
                             <div class="modal-body">
                                 The "Put any comments here" input is where you can tell any other pieces of advice to
-                                other users about the resource. (i.e. The location of the resource if it is physical,
-                                how good the resource is, things to avoid while taking the resource, etc.)
+                                other users about the resource. (e.g. The location of the resource if it is physical,
+                                how good the resource is, things to avoid while taking the resource)
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
@@ -506,28 +544,43 @@ $('.nav-item-c a').addClass("active");
             </div>
         </div>
         <br>
-        <form action="/insert" method="post">
+
+        <!-- Form Input -->
+        <form action="/insert" method="post" class="needs-validation" novalidate>
             <div class="row mb-2">
                 <div class="col">
                     <input type="text" id="title" name="title" class="form-control" placeholder="Title"
-                           aria-label="title">
+                           aria-label="title" required>
+                    <div class="invalid-feedback">
+                        Please put in a Title.
+                    </div>
                 </div>
                 <div class="col">
-                    <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url">
+                    <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url"
+                           required>
+                    <div class="invalid-feedback">
+                        Please put in a URL.
+                    </div>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
                     <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
-                           aria-label="TCH">
+                           aria-label="TCH" required>
+                    <div class="invalid-feedback">
+                        Please put the Time Commitment.
+                    </div>
                 </div>
                 <div class="col">
                     <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
-                           aria-label="cost">
+                           aria-label="cost" required>
+                    <div class="invalid-feedback">
+                        Please put in the Cost.
+                    </div>
                 </div>
                 <div class="col" align="center">
                     <div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
-                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced">
+                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced" checked>
                         <label class="btn btn-outline-secondary" for="SPILself">
                             Self-Paced
                         </label>
@@ -577,11 +630,17 @@ $('.nav-item-c a').addClass("active");
                 </div>
                 <div class="col">
                     <input type="text" id="provider" name="provider" class="form-control"
-                           placeholder="Service/Training Provider" aria-label="Provider">
+                           placeholder="Service/Training Provider" aria-label="Provider" required>
+                    <div class="invalid-feedback">
+                        Please put in the Provider.
+                    </div>
                 </div>
                 <div class="col">
                     <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
-                           aria-label="Location of Provider">
+                           aria-label="Location of Provider" required>
+                    <div class="invalid-feedback">
+                        Please put in the Location of the Provider.
+                    </div>
                 </div>
             </div>
             <div class="row mb-2">
@@ -604,8 +663,6 @@ $('.nav-item-c a').addClass("active");
                         <label class="btn btn-outline-secondary" for="LTB">Book</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL">
                         <label class="btn btn-outline-secondary" for="LTL">Lecture</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Classroom" id="LTC">
-                        <label class="btn btn-outline-secondary" for="LTC">Classroom</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI">
                         <label class="btn btn-outline-secondary" for="LTI">Interactive</label>
                     </div>
@@ -620,6 +677,7 @@ $('.nav-item-c a').addClass("active");
                                         data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                     <small class="text-muted" style="vertical-align: top;">Programs, Languages, and
                                         other Data Topics</small>
+                                    <i class="arrow down arrow_pos"></i>
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
@@ -712,36 +770,49 @@ $('.nav-item-c a').addClass("active");
                 </div>
             </div>
 
-
+            <!-- Button to insert data into database and call on submit Modal -->
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" style="margin:20px" class="btn btn-secondary" data-target="#myModalSub" data-toggle="modal">Submit</button>
+                <button type="submit" id="submit" style="margin:20px" class="btn btn-secondary">Submit</button>
             </div>
-
-            <div class="modal fade" id="myModalSub" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Entry Added</h4>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
         </form>
+
+        <script>
+        // Validation JS
+            (function () {
+              'use strict'
+
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.querySelectorAll('.needs-validation')
+
+              // Loop over them and prevent submission
+              Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                  form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                      event.preventDefault()
+                      event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                  }, false)
+                })
+            })()
+
+
+
+
+
+        </script>
     </section>
 </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 

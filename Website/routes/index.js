@@ -5,7 +5,7 @@ var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
-
+const { MongoClient } = require("mongodb");
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 /* GET home page. */
@@ -30,15 +30,13 @@ router.get('/comments', function(req, res, next) {
 });
 
 router.get("/get-data", function(req, res, next) {
-  var spectopic = req.query.topic;
   var specdata = req.query.data; 
   var resultArray = [];
   var query = {};
-  query[spectopic] = RegExp(sanitize(specdata));
   var FOP = req.query.cost;
   var convertFOP = '';
   if (FOP == "Free"){
-    query["Cost"] = {$in: ["0", "$0"]};
+    query["Cost"] = "0";
   }
   else if (FOP == "Paid" ) {
     query["Cost"] = {'$ne': '0'};
@@ -100,18 +98,30 @@ router.get("/get-data", function(req, res, next) {
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    var cursor = db.collection('RawData1').aggregate([{'$search': {'text': {'query': specdata,'path': {'wildcard': '*'}}}}]);
+    var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': specdata,'path': {'wildcard': '*'}}}}, {'$match': query}]);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
       resultArray.push(doc);
     }, function() {
       client.close();
       specdata = specdata.replace(/ /g, "_");
-      spectopic = spectopic.replace(/ /g, "_");
-      res.render('get', {items: resultArray, specdata, spectopic});
+      res.render('get', {items: resultArray, specdata});
     });
   });
 });
+
+router.get("/search", async (request, response) => {
+  try {
+    const client = new MongoClient('mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useUnifiedTopology: true });
+    await client.connect();
+    var db = client.db('Trainings');
+    let result = await db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': `${request.query.term}`,'path': {'wildcard': '*'}, 'fuzzy': {"maxEdits": 1}}}}
+  ]).toArray();
+  response.send(result);
+  } catch (e) {
+    response.status(500).send({message: e.message});
+  }
+})
 
 router.post('/get-data/vote', function(req, res, next){
 	var dataUrl = req.body.url;
@@ -205,9 +215,8 @@ router.post('/insert', function(req, res, next) {
 });
 
 router.post('/specify', function(req, res, next) {
-  spectopic = req.body.DTA;
   specdata = req.body.SpefString;
-  res.redirect("/get-data?topic=" + spectopic + "&data=" + specdata);
+  res.redirect("/get-data?data=" + specdata);
 });
 
 
@@ -252,11 +261,9 @@ router.post('/get_data', function(req, res, next) {
   var remote = req.body.RIP;
   var selfp = req.body.SPIL;
   var learn = req.body.LRN;
-  var st = req.body.ST;
   var sd = req.body.SD; 
-  st = st.replace(/_/g, " ")
   sd = sd.replace(/_/g, " ")
-  console.log(st);
+  console.log(sd);
   var urladditives = "";
   if(cost != null){
     urladditives = urladditives.concat("&cost=" + cost)
@@ -276,7 +283,7 @@ router.post('/get_data', function(req, res, next) {
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
   };
-  res.redirect("/get-data?topic=" + st + "&data=" + sd + urladditives);
+  res.redirect("/get-data?data=" + sd + urladditives);
 });
 
 router.post('/update', function(req, res, next) {
