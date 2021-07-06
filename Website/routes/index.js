@@ -18,7 +18,7 @@ router.get('/insert', function(req, res, next) {
 });
 
 router.get('/admin', function(req, res, next) {
-  res.redirect('/admin);
+  res.redirect('/admin');
 });
 
 router.get('/request', function(req, res, next) {
