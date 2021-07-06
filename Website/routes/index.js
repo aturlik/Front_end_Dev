@@ -18,7 +18,7 @@ router.get('/insert', function(req, res, next) {
 });
 
 router.get('/admin', function(req, res, next) {
-  res.redirect('/admin');
+  res.render('admin');
 });
 
 router.get('/request', function(req, res, next) {
@@ -291,10 +291,7 @@ router.post('/get_data', function(req, res, next) {
   };
   res.redirect("/get-data?data=" + sd + urladditives);
 });
-router.post('/updatesearch', function(req, res, next) {
-  var id = req.body.idsearch;	
-  res.redirect('/admin?id=' + id);
-}
+
 router.post('/update', function(req, res, next) {
   var item = {
     title: req.body.title,
@@ -326,7 +323,7 @@ router.post('/update', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/admin');
+  res.redirect('/others');
 });
 
 router.post('/delete', function(req, res, next) {
