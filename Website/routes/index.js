@@ -117,7 +117,7 @@ router.get("/search", async (request, response) => {
     var db = client.db('Trainings');
     let result = await db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': `${request.query.term}`,'path': {'wildcard': '*'}, 'fuzzy': {"maxEdits": 1}}}}
   ]).toArray();
-  response.send(result);
+  response.send(result.slice(0, 20));
   } catch (e) {
     response.status(500).send({message: e.message});
   }
@@ -126,7 +126,6 @@ router.get("/search", async (request, response) => {
 router.post('/get-data/vote', function(req, res, next){
 	var dataUrl = req.body.url;
 	var inital = 0;
-	console.log(req.body.id)
 
 	if(req.body.Vote == "Liked"){
 		inital = 1;
@@ -142,7 +141,6 @@ router.post('/get-data/vote', function(req, res, next){
 
 		async function run(){
 			const file =  await db.collection('FormattedRawData').find(query).toArray();
-			console.log(file);
 			
 			if(file.length > 0){
 				if(file[0].hasOwnProperty("voteCount")){
@@ -161,12 +159,10 @@ router.post('/get-data/vote', function(req, res, next){
 				}
 			}
 		}
-		run();
-
-		
+		run().then(()=>res.redirect(dataUrl));
 	});
 
-	res.redirect(dataUrl);
+	
 });
 
 router.post('/insert', function(req, res, next) {

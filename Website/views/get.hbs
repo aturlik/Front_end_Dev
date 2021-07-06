@@ -7,6 +7,7 @@
     .results {
         margin-top: 25px;
     }
+
     /*****************************************************************
         Creating the container specifications the contains each
         individual result
@@ -56,34 +57,44 @@
         border-color: black;
     }
 
+    .vote_style{
+        cursor: pointer;
+        border: ridge;
+        border-color: #718F8A;
+    }
+
+    .vote_container{
+        text-align: right;
+        position: relative;
+        right: 15px;
+    }
+
     .collapsible {
         background-color: #eee;
         cursor: pointer;
         width: 100%;
         border: none;
         outline: none;
-        padding: 10px
     }
 
-        .collapsible:hover {
-            background-color: #aaa;
-        }
+    .focus_collapsible {
+        background-color: #aaa;
+    }
 
-        .collapsible:focus {
-            background-color: #aaa;
-        }
+    .hover_collapsible {
+        background-color: #aaa;
+    }
 
-        .collapsible:
-        /* Text Attributes */
-        .collapsible-heading {
-            font-size: 25px;
-            color: #232323;
-            font-weight: 500;
-        }
+    /* Text Attributes */
+    .collapsible-heading {
+        font-size: 25px;
+        color: #232323;
+        font-weight: 500;
+    }
 
     .inner_collapse{
         cursor: pointer;
-        width: 25%;
+        width: 100%;
         border: none;
         outline: none;
         padding: 10px
@@ -404,37 +415,92 @@
             Creating the interactable accordion style buttons and the
             headings associated with them
          ---=========================================================-->
-        <button class="collapsible" id="collaps{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
-            <div class="row">
-                <div class="col-sm">
-                    <span class="collapsible-heading_pos"> <span class="collapsible-heading"> {{this.Title}} : </span> <span class="collapsible-heading2"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
-                    <script>
+        <div class="collapsible" id="collapse{{this._id}}">
+            <button class="collapsible" id="collapse_button{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
+                <div class="row">
+                    <div class="col-sm">
+                        <span class="collapsible-heading_pos"> <span class="collapsible-heading"> {{this.Title}} : </span> <span class="collapsible-heading2"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
+                        <script>
                         var tag =  document.getElementById("Cert/Deg{{this._id}}");
                         if("{{ this.[Certificate/Degree Program] }}" != "No"){
                             tag.innerHTML = "Certificate";
                         }else {
                             tag.remove();
                         }
+                        </script>
+                    </div>
+                    <div class="col-">
+                        <i class="arrow up arrow_pos" id="arrow{{this._id}}"></i>
+                        <span class="tag_pos tag_style badge bg-secondary">Difficulty: {{ this.[Barrier to Entry]}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <span class="tag_pos2 tag_style badge bg-secondary">{{ this.[In person vs Remote] }}</span>
+                        <span class="tag_pos3 tag_style badge bg-secondary">{{ this.[Self Paced vs Instructor Led] }}</span>
+                        <span class="tag_pos4 tag_style badge bg-secondary">{{ this.[Public/DOD] }}</span>
+                    </div>
+                    <div class="col-">
+                        {{#if this.[Helpfullness Rating]}}
+                            <span class="tag_pos tag_style badge bg-secondary">Rating: {{ this.[Helpfullness Rating] }}%</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </button>
+            <form action="/get-data/vote" method="post">
+                <div class="vote_container">
+                    <button type="submit" name="Vote" class="vote_style grow" value="Liked"><i class="fas fa-thumbs-up fa-2x"></i></button>
+                    <button type="submit" name="Vote" class="vote_style" value="Disliked"><i class="fas fa-thumbs-down fa-2x"></i></button>
+
+                    <input class="accordion-body" type="text" id="id{{this._id}}" name="id" value="{{this._id}}" property="{{this._id}}">
+                    <input class="accordion-body" type="text" id="title{{this._id}}" name="title" value="{{this.Title}}" property="{{this.Titile}}">
+                    <input class="accordion-body" type="text" id="url{{this._id}}" name="url" value="hello" property="hello">
+
+                    <script>
+                        var id = document.getElementById("id{{this._id}}");
+                        var pageURL = document.getElementById("url{{this._id}}");
+                        var title = document.getElementById("title{{this._id}}");
+
+                        id.style.display = "none";
+                        pageURL.value = window.location.href;
+                        pageURL.style.display = "none";
+                        title.style.display = "none";
                     </script>
                 </div>
-                <div class="col-">
-                    <i class="arrow down arrow_pos"></i>
-                    <span class="tag_pos tag_style badge bg-secondary">Difficulty: {{ this.[Barrier to Entry]}}</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm">
-                    <span class="tag_pos2 tag_style badge bg-secondary">{{ this.[In person vs Remote] }}</span>
-                    <span class="tag_pos3 tag_style badge bg-secondary">{{ this.[Self Paced vs Instructor Led] }}</span>
-                    <span class="tag_pos4 tag_style badge bg-secondary">{{ this.[Public/DOD] }}</span>
-                </div>
-                <div class="col-">
-                    {{#if this.[Helpfullness Rating]}}
-                        <span class="tag_pos tag_style badge bg-secondary">{{ this.[Helpfullness Rating] }}%</span>
-                    {{/if}}
-                </div>
-            </div>
-        </button>
+            </form>
+        </div>
+
+        <script>
+            collapse_button{{this._id}}.onfocus = function(){
+                if(this.classList.contains("focus_collapsible")){
+                    this.classList.remove("focus_collapsible");
+                    collapse{{this._id}}.classList.remove("focus_collapsible");
+                }else{
+                    this.classList.add("focus_collapsible");
+                    collapse{{this._id}}.classList.add("focus_collapsible");
+                }
+
+                if(arrow{{this._id}}.classList.contains("up")){
+                    arrow{{this._id}}.classList.remove("up");
+                    arrow{{this._id}}.classList.add("down");
+                }else{
+                    arrow{{this._id}}.classList.remove("down");
+                    arrow{{this._id}}.classList.add("up");
+                }
+                this.blur();
+            }
+
+            collapse_button{{this._id}}.onmouseover = function(){
+                this.classList.add("hover_collapsible");
+                collapse{{this._id}}.classList.add("hover_collapsible");
+            }
+
+            collapse_button{{this._id}}.onmouseout = function(){
+                this.classList.remove("hover_collapsible");
+                collapse{{this._id}}.classList.remove("hover_collapsible");
+            }
+
+        </script>
 
         <!--=========================================================---
             Creating a container and displaying the extra information
@@ -442,49 +508,14 @@
          ---=========================================================-->
         <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
             <div class="accordion-body">
-                <div class="row">
-                    <div class="col-sm">
-                        <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
-                        <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
-                        <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
-                        <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
-                        <div><b>Provider:</b> {{ this.Provider }}</div>
-                        <div><b>Cost:</b> {{ this.Cost }}</div>
-                        <div><b>Comment:</b> {{ this.Comment }}</div>
-                        <div>Useful Training?: {{ this.[Useful Training?] }}</div>
-                    </div>
-
-                    <div class="col-sm">
-                        <form action="/get-data/vote" method="post">
-                            <div class="btn-group d-flex" role="group" aria-label="Vote">
-                                <input class="btn-check" type="radio" name="Vote" id="upVote{{this._id}}" value="Liked">
-                                <label class="btn btn-outline-secondary" for="upVote{{this._id}}">
-                                    Liked
-                                </label>
-                                <input class="btn-check" type="radio" name="Vote" id="downVote{{this._id}}" value="Disliked">
-                                <label class="btn btn-outline-secondary" for="downVote{{this._id}}">
-                                    Disliked
-                                </label>
-                            </div>
-                            <button type="submit">Submit</button>
-
-                            <input class="accordion-body" type="text" id="id{{this._id}}" name="id" value="{{this._id}}" property="{{this._id}}">
-                            <input class="accordion-body" type="text" id="title{{this._id}}" name="title" value="{{this.Title}}" property="{{this.Titile}}">
-                            <input class="accordion-body" type="text" id="url{{this._id}}" name="url" value="hello" property="hello">
-
-                            <script>
-                                var id = document.getElementById("id{{this._id}}");
-                                var pageURL = document.getElementById("url{{this._id}}");
-                                var title = document.getElementById("title{{this._id}}");
-
-                                id.style.display = "none";
-                                pageURL.value = window.location.href;
-                                pageURL.style.display = "none";
-                                title.style.display = "none";
-                            </script>
-                        </form>
-                    </div>
-                </div>
+                <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
+                <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
+                <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
+                <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
+                <div><b>Provider:</b> {{ this.Provider }}</div>
+                <div><b>Cost:</b> {{ this.Cost }}</div>
+                <div><b>Comment:</b> {{ this.Comment }}</div>
+            </div>
 
                 <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
                     Admin Details
@@ -655,15 +686,6 @@
         };
 </script>
 
-<script>
-    Handlebars.registerHelper("if", function(conditional, options) {
-      if (options.hash.desired === options.hash.type) {
-        options.fn(this);
-      } else {
-        options.inverse(this);
-      }
-    });
-</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
