@@ -18,19 +18,7 @@ router.get('/insert', function(req, res, next) {
 });
 
 router.get('/admin', async(req, res) {
-  mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
-    var db = client.db('Trainings');
-    assert.equal(null, err);
-    var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': req.id,'path': {'wildcard': '*'}}}}, {'$match': query}]);
-    cursor.forEach(function(doc, err) {
-      assert.equal(null, err);
-      resultArray.push(doc);
-    }, function() {
-      client.close();
-      specdata = specdata.replace(/ /g, "_");
-      res.render('admin');
-    });
-  });
+  res.redirect('/admin);
 });
 
 router.get('/request', function(req, res, next) {
