@@ -130,6 +130,7 @@
         visibility: hidden;
     }
 
+
 .darkmode--activated #titlewhite {
   color: white;
 }
@@ -209,264 +210,297 @@
     color: white;
 }
 
+
+
+
+
+
+
 </style>
 
 <!-- Navigation bar to show that current tab is active -->
 <script>
     $('.nav-item-a a').addClass("active");
+
+
+
+
+
+
 </script>
 <!DOCTYPE html>
 <html lang="en">
 
 
 <head>
-<!-- Filter Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-custom" id="navbarcolor">
-    <!-- Button to call on Help Tutorial Modal/Pop-up -->
-    <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1">
+    <!-- Filter Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-custom" id="navbarcolor">
+        <!-- Button to call on Help Tutorial Modal/Pop-up -->
+        <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1">
         <button type="button" class="btn" data-toggle="modal" disabled>
             <img src="images/Help_Icon.png" alt="help" id="image">
         </button>
     </span>
 
-    <!-- Modal for the Help Tutorial Contents -->
-    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
-                </div>
+        <!-- Modal for the Help Tutorial Contents -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
+                    </div>
 
-                <div class="modal-body">
-                    <p>Here are the results of training resources from your search. Click on each resource to see the details
-                        of said resource.</p>
-                    <p>Use the filters at the top of the page and below the navigation bar to specify your search even further.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="modal-body">
+                        <p>Here are the results of training resources from your search. Click on each resource to see
+                            the details
+                            of said resource.</p>
+                        <p>Use the filters at the top of the page and below the navigation bar to specify your search
+                            even further.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Filter Categories -->
-    <a class="navbar-brand" style="margin-left: 10px" id="filter"> <b>Filters </b> <br> <small class="text-muted"><span id="result">
+        <!-- Filter Categories -->
+        <a class="navbar-brand" style="margin-left: 10px" id="filter"> <b>Filters </b> <br> <small
+                class="text-muted"><span id="result">
         <div class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span>
             </div></span> results</small></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="dropbutton">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="dropbutton">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
 
-    <div class="collapse navbar-collapse" id="navbarFilter" role="group">
-        <form action="/get_data" method="post">
-        <ul class="navbar-nav">
-            <li class="nav-item-dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="CostDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Cost
-                </a>
-                <div class="dropdown-menu" aria-labelledby="CostDropdownMenuLink" role="group" id="TST">
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input"  name="TST" id="FreedropdownCheck" value="Free">
-                            <label class="form-check-label" for="FreedropdownCheck">
-                                Free 
-                            </label>
+        <div class="collapse navbar-collapse" id="navbarFilter" role="group">
+            <form action="/get_data" method="post">
+                <ul class="navbar-nav">
+                    <li class="nav-item-dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="CostDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Cost
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="CostDropdownMenuLink" role="group" id="TST">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="TST" id="FreedropdownCheck"
+                                           value="Free">
+                                    <label class="form-check-label" for="FreedropdownCheck">
+                                        Free
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="TST" id="PaiddropdownCheck"
+                                           value="Paid">
+                                    <label class="form-check-label" for="PaiddropdownCheck">
+                                        Paid
+                                    </label>
+                                </div>
+                            </a>
                         </div>
-                    </a> 
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="TST" id="PaiddropdownCheck" value="Paid">
-                            <label class="form-check-label" for="PaiddropdownCheck">
-                                Paid
-                            </label>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="BarrierDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Experience Level
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="BarrierDropdownMenuLink" role="group" id="LVL">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="BegindropdownCheck" name="LVL"
+                                           value="Beginner">
+                                    <label class="form-check-label" for="BegindropdownCheck">
+                                        Beginner
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="InterdropdownCheck" name="LVL"
+                                           value="Intermediate">
+                                    <label class="form-check-label" for="InterdropdownCheck">
+                                        Intermediate
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="AdvdropdownCheck" name="LVL"
+                                           value="Advanced">
+                                    <label class="form-check-label" for="AdvdropdownCheck">
+                                        Advanced
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="ExpdropdownCheck" name="LVL"
+                                           value="Expert">
+                                    <label class="form-check-label" for="ExpdropdownCheck">
+                                        Expert
+                                    </label>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="BarrierDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Experience Level
-                </a>
-                <div class="dropdown-menu" aria-labelledby="BarrierDropdownMenuLink" role="group" id="LVL">
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="BegindropdownCheck" name="LVL" value="Beginner">
-                            <label class="form-check-label" for="BegindropdownCheck">
-                                Beginner
-                            </label>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ClearDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Clearance
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="ClearDropdownMenuLink" role="group" id="PDOD">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="PDOD" id="PublicdropdownCheck"
+                                           value="Public">
+                                    <label class="form-check-label" for="PublicdropdownCheck">
+                                        Public
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="PDOD" id="DODdropdownCheck"
+                                           value="DOD">
+                                    <label class="form-check-label" for="DODdropdownCheck">
+                                        DOD Only
+                                    </label>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="InterdropdownCheck" name="LVL" value="Intermediate">
-                            <label class="form-check-label" for="InterdropdownCheck">
-                                Intermediate
-                            </label>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="RDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Placement
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="RDropdownMenuLink" role="group" id="RIP">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="RIP" id="RdropdownCheck"
+                                           value="Remote">
+                                    <label class="form-check-label" for="RdropdownCheck">
+                                        Remote
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="RIP" id="IndropdownCheck"
+                                           value="In Person">
+                                    <label class="form-check-label" for="IndropdownCheck">
+                                        In Person
+                                    </label>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="AdvdropdownCheck" name="LVL" value="Advanced">
-                            <label class="form-check-label" for="AdvdropdownCheck">
-                                Advanced
-                            </label>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="PaceDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Pacing
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="PaceDropdownMenuLink" role="group" id="SPIL">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="SPIL" id="SelfdropdownCheck"
+                                           value="Self Paced">
+                                    <label class="form-check-label" for="SelfdropdownCheck">
+                                        Self Paced
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="SPIL"
+                                           id="InstructdropdownCheck" value="Instructor Led">
+                                    <label class="form-check-label" for="InstructdropdownCheck">
+                                        Instructor Led
+                                    </label>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="ExpdropdownCheck" name="LVL" value="Expert">
-                            <label class="form-check-label" for="ExpdropdownCheck">
-                                Expert
-                            </label>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="LearnDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Learning Type
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="LearnDropdownMenuLink" role="group" id="LRN">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="BdropdownCheck"
+                                           value="Book">
+                                    <label class="form-check-label" for="BdropdownCheck">
+                                        Book
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="TdropdownCheck"
+                                           value="Text">
+                                    <label class="form-check-label" for="TdropdownCheck">
+                                        Text
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="VdropdownCheck"
+                                           value="Video">
+                                    <label class="form-check-label" for="VdropdownCheck">
+                                        Video
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="LdropdownCheck"
+                                           value="Lecture">
+                                    <label class="form-check-label" for="LdropdownCheck">
+                                        Lecture
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="CdropdownCheck"
+                                           value="Classroom">
+                                    <label class="form-check-label" for="CdropdownCheck">
+                                        Classroom
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="IdropdownCheck"
+                                           value="Interactive">
+                                    <label class="form-check-label" for="IdropdownCheck">
+                                        Interactive
+                                    </label>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="ClearDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Clearance
-                </a>
-                <div class="dropdown-menu" aria-labelledby="ClearDropdownMenuLink" role="group" id="PDOD">
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="PDOD" id="PublicdropdownCheck" value="Public">
-                            <label class="form-check-label" for="PublicdropdownCheck">
-                                Public
-                            </label>
-                        </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="PDOD" id="DODdropdownCheck" value="DOD">
-                            <label class="form-check-label" for="DODdropdownCheck">
-                                DOD Only
-                            </label>
-                        </div>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="RDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Placement
-                </a>
-                <div class="dropdown-menu" aria-labelledby="RDropdownMenuLink" role="group" id="RIP">
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="RIP" id="RdropdownCheck" value="Remote">
-                            <label class="form-check-label" for="RdropdownCheck">
-                                Remote
-                            </label>
-                        </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="RIP" id="IndropdownCheck" value="In Person">
-                            <label class="form-check-label" for="IndropdownCheck">
-                                In Person
-                            </label>
-                        </div>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="PaceDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Pacing
-                </a>
-                <div class="dropdown-menu" aria-labelledby="PaceDropdownMenuLink" role="group" id="SPIL">
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="SPIL" id="SelfdropdownCheck" value="Self Paced">
-                            <label class="form-check-label" for="SelfdropdownCheck">
-                                Self Paced
-                            </label>
-                        </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="SPIL" id="InstructdropdownCheck" value="Instructor Led">
-                            <label class="form-check-label" for="InstructdropdownCheck">
-                                Instructor Led
-                            </label>
-                        </div>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="LearnDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Learning Type
-                </a>
-                <div class="dropdown-menu" aria-labelledby="LearnDropdownMenuLink" role="group" id="LRN">
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="LRN" id="BdropdownCheck" value="Book">
-                            <label class="form-check-label" for="BdropdownCheck">
-                                Book
-                            </label>
-                        </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="LRN" id="TdropdownCheck" value="Text">
-                            <label class="form-check-label" for="TdropdownCheck">
-                                Text
-                            </label>
-                        </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="LRN" id="VdropdownCheck" value="Video">
-                            <label class="form-check-label" for="VdropdownCheck">
-                                Video
-                            </label>
-                        </div>
-                    </a>
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="LRN" id="LdropdownCheck" value="Lecture">
-                            <label class="form-check-label" for="LdropdownCheck">
-                                Lecture
-                            </label>
-                        </div>
-                    </a>   
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="LRN" id="CdropdownCheck" value="Classroom">
-                            <label class="form-check-label" for="CdropdownCheck">
-                                Classroom
-                            </label>
-                        </div>
-                    </a>  
-                    <a class="dropdown-item">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="LRN" id="IdropdownCheck" value="Interactive">
-                            <label class="form-check-label" for="IdropdownCheck">
-                                Interactive
-                            </label>
-                        </div>
-                    </a>                                  
-                </div>
-            </li>
-            <button type="submit" class="btn btn-outline-secondary">Submit</button>
-            </ul>   
+                    </li>
+                    <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                </ul>
         </div>
-            <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
-            <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
-    </form>
-</nav>
+        <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
+        <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
+        </form>
+    </nav>
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <div class="form-check form-switch" style="float: right;">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
+    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
 </div>
 <script>
   const darkmode =  new Darkmode();
@@ -490,6 +524,12 @@
           $('#navbarcolor').addClass("navbar-light");
       };
   });
+
+
+
+
+
+
 </script>
 <!--===========================================================---
     Styling the results so that they are presented as accordion
@@ -497,27 +537,39 @@
  ---===========================================================-->
 <section class="results" id="accordionItems">
     {{# each items }}
-    <!--=========================================================---
-        Displaying the number of terms that are returned from the
-        search
-     ---=========================================================-->
-    <div>
-        {{#if @last}}
-        <script>
+        <!--=========================================================---
+            Displaying the number of terms that are returned from the
+            search
+         ---=========================================================-->
+        <div>
+            {{#if @last}}
+                <script>
             var position = {{@index}}
             document.getElementById("result").innerHTML = position + 1;
-        </script>
-        {{/if}}
-    </div>
+
+
+
+
+
+
+                </script>
+            {{/if}}
+        </div>
     <div class="item">
         <!--=========================================================---
             Creating the interactable accordion style buttons and the
             headings associated with them
          ---=========================================================-->
-        <button class="collapsible" id="collaps{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
+        <button class="collapsible" id="collaps{{this._id}}" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false"
+                aria-controls="collapseItemDetails{{this._id}}">
             <div class="row">
                 <div class="col-sm">
-                    <span class="collapsible-heading_pos"> <span class="collapsible-heading" id="titlewhite"> {{this.Title}} : </span> <span class="collapsible-heading2" id="learningtypewhite"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
+                        <span class="collapsible-heading_pos"> <span class="collapsible-heading"
+                                                                     id="titlewhite"> {{this.Title}} : </span> <span
+                                class="collapsible-heading2" id="learningtypewhite"> {{ this.[Learning type] }} </span> <span
+                                class="tag_style badge bg-secondary"
+                                id="Cert/Deg{{this._id}}"> Processing </span></span>
                     <script>
                         var tag =  document.getElementById("Cert/Deg{{this._id}}");
                         if("{{ this.[Certificate/Degree Program] }}" != "No"){
@@ -525,22 +577,33 @@
                         }else {
                             tag.remove();
                         }
+
+
+
+
+
+
                     </script>
                 </div>
                 <div class="col-">
                     <i class="arrow down arrow_pos" id="arrowcolor"></i>
-                    <span class="tag_pos tag_style badge bg-secondary" id="diffwhite">Difficulty: {{ this.[Barrier to Entry]}}</span>
+                    <span class="tag_pos tag_style badge bg-secondary"
+                          id="diffwhite">Difficulty: {{ this.[Barrier to Entry]}}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm">
-                    <span class="tag_pos2 tag_style badge bg-secondary" id="remoteblack">{{ this.[In person vs Remote] }}</span>
-                    <span class="tag_pos3 tag_style badge bg-secondary" id="selfblack">{{ this.[Self Paced vs Instructor Led] }}</span>
-                    <span class="tag_pos4 tag_style badge bg-secondary" id="publicblack">{{ this.[Public/DOD] }}</span>
+                        <span class="tag_pos2 tag_style badge bg-secondary"
+                              id="remoteblack">{{ this.[In person vs Remote] }}</span>
+                    <span class="tag_pos3 tag_style badge bg-secondary"
+                          id="selfblack">{{ this.[Self Paced vs Instructor Led] }}</span>
+                    <span class="tag_pos4 tag_style badge bg-secondary"
+                          id="publicblack">{{ this.[Public/DOD] }}</span>
                 </div>
                 <div class="col-">
                     {{#if this.[Helpfullness Rating]}}
-                        <span class="tag_pos tag_style badge bg-secondary" id="helprating">{{ this.[Helpfullness Rating] }}%</span>
+                        <span class="tag_pos tag_style badge bg-secondary"
+                              id="helprating">{{ this.[Helpfullness Rating] }}%</span>
                     {{/if}}
                 </div>
             </div>
@@ -550,7 +613,8 @@
             Creating a container and displaying the extra information
             for each resource
          ---=========================================================-->
-        <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
+        <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse"
+             aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
             <div class="accordion-body">
                 <div class="row">
                     <div class="col-sm">
@@ -567,20 +631,25 @@
                     <div class="col-sm">
                         <form action="/get-data/vote" method="post">
                             <div class="btn-group d-flex" role="group" aria-label="Vote">
-                                <input class="btn-check" type="radio" name="Vote" id="upVote{{this._id}}" value="Liked">
+                                <input class="btn-check" type="radio" name="Vote" id="upVote{{this._id}}"
+                                       value="Liked">
                                 <label class="btn btn-outline-secondary" for="upVote{{this._id}}">
                                     Liked
                                 </label>
-                                <input class="btn-check" type="radio" name="Vote" id="downVote{{this._id}}" value="Disliked">
+                                <input class="btn-check" type="radio" name="Vote" id="downVote{{this._id}}"
+                                       value="Disliked">
                                 <label class="btn btn-outline-secondary" for="downVote{{this._id}}">
                                     Disliked
                                 </label>
                             </div>
                             <button type="submit">Submit</button>
 
-                            <input class="accordion-body" type="text" id="id{{this._id}}" name="id" value="{{this._id}}" property="{{this._id}}">
-                            <input class="accordion-body" type="text" id="title{{this._id}}" name="title" value="{{this.Title}}" property="{{this.Titile}}">
-                            <input class="accordion-body" type="text" id="url{{this._id}}" name="url" value="hello" property="hello">
+                            <input class="accordion-body" type="text" id="id{{this._id}}" name="id"
+                                   value="{{this._id}}" property="{{this._id}}">
+                            <input class="accordion-body" type="text" id="title{{this._id}}" name="title"
+                                   value="{{this.Title}}" property="{{this.Titile}}">
+                            <input class="accordion-body" type="text" id="url{{this._id}}" name="url" value="hello"
+                                   property="hello">
 
                             <script>
                                 var id = document.getElementById("id{{this._id}}");
@@ -591,26 +660,90 @@
                                 pageURL.value = window.location.href;
                                 pageURL.style.display = "none";
                                 title.style.display = "none";
+
+
+
                             </script>
                         </form>
                     </div>
                 </div>
 
-                <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
+                <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false"
+                        aria-controls="collapseItemDetails{{this._id}}">
                     Admin Details
                 </button>
-                <div id="collapseItemAdmin{{this._id}}" class="accordion-collapse collapse" aria-labelledby="collapseItem item">
+                <div id="collapseItemAdmin{{this._id}}" class="accordion-collapse collapse"
+                     aria-labelledby="collapseItem item">
                     <div>Base of Operations: {{ this.[Base of Operations] }}</div>
                     <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
                     <div>ID: {{ this._id }}</div>
                     <br>
                 </div>
+                <button type="button" class="btn btn-outline-primary"
+                        data-target="#myModalRep" data-toggle="modal">
+                    Report
+                </button>
+                <div class="modal fade" id="myModalRep" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Report Resource</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>What's wrong with this resource?</p>
+                                <div class="btn-group-vertical" role="group" aria-label="Reports" id="report">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                               id="CBEO">
+                                        <label class="form-check-label" for="CBEO">Expired/Obsolete</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                               id="CBDup">
+                                        <label class="form-check-label" for="CBDup">Duplicate</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                               id="CBNU">
+                                        <label class="form-check-label" for="CBNU">Not Useful</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                               id="CBDoD">
+                                        <label class="form-check-label" for="CBDoD">Against DoD Standards</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                               id="CBOther">
+                                        <label class="form-check-label" for="CBOther">
+                                            <input type="text" id="RPOther" name="other" class="form-control"
+                                                   placeholder="Other" aria-label="Other">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                                    Submit
+                                </button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     {{else}}
         <script>
             document.getElementById("result").innerHTML = 0;
+
+
+
+
+
+
         </script>
     {{/each}}
 </section>
@@ -764,6 +897,12 @@
         if(test.includes("learn=Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
         };
+
+
+
+
+
+
 </script>
 
 <script>
@@ -774,6 +913,12 @@
         options.inverse(this);
       }
     });
+
+
+
+
+
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
