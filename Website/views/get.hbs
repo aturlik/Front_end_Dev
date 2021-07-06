@@ -129,6 +129,7 @@
     .secret{
         visibility: hidden;
     }
+
 .darkmode--activated #titlewhite {
   color: white;
 }
@@ -187,7 +188,7 @@
 
 /* change the background color */
 .darkmode--activated .navbar-custom{
-    background-color: black;
+    background-color: rgb(12, 12, 12);
 }
 
 /* change the brand and text color */
@@ -254,7 +255,7 @@
         <div class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span>
             </div></span> results</small></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="dropbutton">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -469,8 +470,25 @@
 </div>
 <script>
   const darkmode =  new Darkmode();
+  if(darkmode.isActivated()) {
+          $('#navbarcolor').removeClass("navbar-light");
+          $('#navbarcolor').addClass("navbar-dark");
+      };
+      if(!darkmode.isActivated()) {
+          $('#navbarcolor').removeClass("navbar-dark");
+          $('#navbarcolor').addClass("navbar-light");
+      };
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
-      darkmode.toggle();  
+      darkmode.toggle();
+      console.log(darkmode.isActivated());
+      if(darkmode.isActivated()) {
+          $('#navbarcolor').removeClass("navbar-light");
+          $('#navbarcolor').addClass("navbar-dark");
+      };
+      if(!darkmode.isActivated()) {
+          $('#navbarcolor').removeClass("navbar-dark");
+          $('#navbarcolor').addClass("navbar-light");
+      };
   });
 </script>
 <!--===========================================================---
