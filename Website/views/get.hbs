@@ -524,12 +524,6 @@
           $('#navbarcolor').addClass("navbar-light");
       };
   });
-
-
-
-
-
-
 </script>
 <!--===========================================================---
     Styling the results so that they are presented as accordion
@@ -546,12 +540,6 @@
                 <script>
             var position = {{@index}}
             document.getElementById("result").innerHTML = position + 1;
-
-
-
-
-
-
                 </script>
             {{/if}}
         </div>
@@ -577,12 +565,6 @@
                         }else {
                             tag.remove();
                         }
-
-
-
-
-
-
                     </script>
                 </div>
                 <div class="col-">
@@ -660,9 +642,6 @@
                                 pageURL.value = window.location.href;
                                 pageURL.style.display = "none";
                                 title.style.display = "none";
-
-
-
                             </script>
                         </form>
                     </div>
@@ -681,10 +660,10 @@
                     <br>
                 </div>
                 <button type="button" class="btn btn-outline-primary"
-                        data-target="#myModalRep" data-toggle="modal">
+                        data-target="#myModalRep{{this._id}}" data-toggle="modal">
                     Report
                 </button>
-                <div class="modal fade" id="myModalRep" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                <div class="modal fade" id="myModalRep{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
