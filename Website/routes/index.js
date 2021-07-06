@@ -17,7 +17,7 @@ router.get('/insert', function(req, res, next) {
   res.render('add');
 });
 
-router.get('/admin', async(req, res)) {
+router.get('/admin', function(req, res, next) {
   res.redirect('/admin);
 });
 
