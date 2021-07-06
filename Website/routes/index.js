@@ -17,8 +17,20 @@ router.get('/insert', function(req, res, next) {
   res.render('add');
 });
 
-router.get('/admin', function(req, res, next) {
-  res.render('admin');
+router.get('/admin', async(req, res) {
+  mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings');
+    assert.equal(null, err);
+    var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': req.id,'path': {'wildcard': '*'}}}}, {'$match': query}]);
+    cursor.forEach(function(doc, err) {
+      assert.equal(null, err);
+      resultArray.push(doc);
+    }, function() {
+      client.close();
+      specdata = specdata.replace(/ /g, "_");
+      res.render('admin');
+    });
+  });
 });
 
 router.get('/request', function(req, res, next) {
@@ -291,7 +303,10 @@ router.post('/get_data', function(req, res, next) {
   };
   res.redirect("/get-data?data=" + sd + urladditives);
 });
-
+router.post('/updatesearch', function(req, res, next) {
+  var id = req.body.idsearch;	
+  res.redirect('/admin?id=' + id);
+}
 router.post('/update', function(req, res, next) {
   var item = {
     title: req.body.title,
@@ -323,7 +338,7 @@ router.post('/update', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/others');
+  res.redirect('/admin');
 });
 
 router.post('/delete', function(req, res, next) {
