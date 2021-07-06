@@ -14,6 +14,39 @@
     width: 765px
   }
 
+.darkmode--activated #cost {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #title {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #url {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #comment {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #provider {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #TCH {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #BOO {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #image {
+  -webkit-filter: invert(1); 
+  filter: invert(1);
+}
+
 .collapsible {
   background-color: #eee;
   color: #444;
@@ -49,17 +82,20 @@
 
 
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<div class="form-check form-switch" style="float: right;">
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
+</div>
+<script>
+  const darkmode =  new Darkmode();
+  document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
+      darkmode.toggle();  
+  });
+</script>
 <script>
 //Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
-
-
-
-
-
 </script>
-
 
 <div class="container">
     <section class="insert">
@@ -72,7 +108,7 @@ $('.nav-item-c a').addClass("active");
                 <!-- Button to call on Main Help Tutorial Modal -->
                 <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                     <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
-                        <img src="images/Help_Icon.png" alt="help">
+                        <img src="images/Help_Icon.png" alt="help" id="image">
                     </button>
                 </span>
 
@@ -546,16 +582,18 @@ $('.nav-item-c a').addClass("active");
         <br>
 
         <!-- Form Input -->
+        
         <form action="/insert" method="post" class="needs-validation" novalidate>
             <div class="row mb-2">
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="title" name="title" class="form-control" placeholder="Title"
                            aria-label="title" required>
                     <div class="invalid-feedback">
                         Please put in a Title.
                     </div>
+                    </span>
                 </div>
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url"
                            required>
                     <div class="invalid-feedback">
@@ -564,14 +602,14 @@ $('.nav-item-c a').addClass("active");
                 </div>
             </div>
             <div class="row mb-2">
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
                            aria-label="TCH" required>
                     <div class="invalid-feedback">
                         Please put the Time Commitment.
                     </div>
                 </div>
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
                            aria-label="cost" required>
                     <div class="invalid-feedback">
@@ -628,16 +666,16 @@ $('.nav-item-c a').addClass("active");
                         <label class="btn btn-outline-secondary" for="PDODD">DOD</label>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="provider" name="provider" class="form-control"
                            placeholder="Service/Training Provider" aria-label="Provider" required>
                     <div class="invalid-feedback">
                         Please put in the Provider.
                     </div>
                 </div>
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
-                           aria-label="Location of Provider" required>
+                           aria-label="Location of Provider"  required>
                     <div class="invalid-feedback">
                         Please put in the Location of the Provider.
                     </div>
@@ -764,7 +802,7 @@ $('.nav-item-c a').addClass("active");
             </div>
 
             <div class="row mb-2">
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <textarea class="form-control" id="comment" name="comment" placeholder="Put any comments here"
                               rows="3"></textarea>
                 </div>
