@@ -23,7 +23,7 @@ router.get('/admin', async(req, res, next) => {
 	console.log(id);
 	console.log("---------");
   var results = [];
-  if (id !=null) {
+  if (id !="") {
     try {
     var client = new MongoClient(url);
     await client.connect();
