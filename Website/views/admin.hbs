@@ -77,9 +77,12 @@
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
 if (idscript) {
-  window.alert(idscript);
+  window.alert("detected");
   var element = document.getElementById("updateform");
   element.classList.remove("d-none
+}
+else {
+  window.alert("not detected");
 }
 </script>
 
