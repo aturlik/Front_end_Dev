@@ -75,8 +75,10 @@
 </style>
 <script>
 $('.nav-item-d a').addClass("active");
-var idscript = "{{result.Title}}";
-window.alert(idscript);
+var idscript = "{{result._id}}";
+if (idscript!=null) {
+  window.alert(idscript);
+}
 </script>
 
 <div class="container">
