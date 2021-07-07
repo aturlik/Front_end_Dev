@@ -19,9 +19,25 @@ router.get('/insert', function(req, res, next) {
 
 router.get('/admin', async(req, res, next) => {
   var id = req.query.idsearch;
+  var results = [];
   if (id !=null) {
     console.log(id);
-    res.render('admin', {id:id});
+	  
+	  
+	  
+    var db = client.db('Trainings');
+    assert.equal(null, err);
+    var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': id,'path': {'wildcard': '*'}}}}]);
+    cursor.forEach(function(doc, err) {
+      assert.equal(null, err);
+      results.push(doc);
+    }, function() {
+      client.close();
+     
+   
+	    
+	    
+     res.render('admin', {id:id, results:results});
   }
   else {
 	console.log(id);
