@@ -1,12 +1,15 @@
 
 <script>
 $('.nav-item-d a').addClass("active");
+if (idsearch!=null) {
+  document.getElementById("title").innerHTML = idsearch;
+}
 </script>
 
 
 
 <section class="update">
-    <h3>Update Data</h3>
+    <h3 class='title'>Update Data</h3>
     <form action"/updatesearch" method="post>
       <div class="input">
             <label for="idsearch">ID</label>
