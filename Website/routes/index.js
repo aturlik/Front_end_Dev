@@ -27,7 +27,7 @@ router.get('/admin', async(req, res, next) => {
     await client.connect();
     client = await client.db("Trainings");
     var o_id = objectId(id)
-    var result = await client.collection("FormattedRawData").findOne("_id":o_id);
+    var result = await client.collection("FormattedRawData").findOne("Public/DOD":"Public");
     console.log(result);
     }       
     catch (e) {
