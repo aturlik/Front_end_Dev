@@ -23,21 +23,9 @@ router.get('/admin', async(req, res, next) => {
   if (id !=null) {
     console.log(id);
 	  
-  var ObjectId=require('mongodb').ObjectId;
-  var o_id = new ObjectId(id);
-  mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
-    var db = client.db('Trainings');
-    assert.equal(null, err);
-    var cursor = db.collection('FormattedRawData').find(o_id);
-    cursor.forEach(function(doc, err) {
-      assert.equal(null, err);
-      results.push(doc);
-    }, function() {
-      client.close();
-      res.render('admin', {id:id, results:results});
-    });
-  });
-   
+    var client = new MongoClient(url);
+    await client.connect();
+    await listDatabases(client);
 	    
 	    
      
