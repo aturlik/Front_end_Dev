@@ -24,7 +24,7 @@ router.get('/admin', async(req, res, next) => {
     res.render('admin', {idsearch:id});
   }
   else {
-	res.render('admin', {idsearch=null});
+	res.render('admin', {idsearch:null});
   }
 });
 
