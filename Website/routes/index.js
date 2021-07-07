@@ -27,7 +27,7 @@ router.get('/admin', async(req, res, next) => {
   mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': id,'path': {'wildcard': '*'}}}}]);
+    var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': "60dcc2b1681e780fe958cf14",'path': {'wildcard': '*'}}}}]);
     cursor.forEach(function(doc, err) {
       assert.equal(null, err);
       results.push(doc);
