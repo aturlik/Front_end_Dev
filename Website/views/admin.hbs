@@ -75,11 +75,10 @@
 </style>
 <script>
 $('.nav-item-d a').addClass("active");
-window.alert(0==0);
 var idscript = "{{result._id}}";
 if (idscript !== "") {
   window.alert("detected");
-  var element = document.getElementById("updateform");
+  var element = document.getElementById(112233);
   window.alert(element);
   element.classList.remove("d-none");
 } else {
@@ -97,7 +96,7 @@ if (idscript !== "") {
       <button type="submit" class="btn btn-primary">find</button>
     </form>
     </div>
-    <div class="container d-none" id="updateform">
+    <div class="container d-none" id="112233">
     <form action="/update" method="post">
         <div class="row mb-2">
                 <div class="col darkmode-ignore">
