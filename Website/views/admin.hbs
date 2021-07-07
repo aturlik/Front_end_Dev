@@ -79,13 +79,12 @@ var idscript = "{{result._id}}";
 
 
 window.onload = function () {
+  var element = document.getElementById(112233);
   if (idscript !== "") {
     window.alert("detected");
-    var element = document.getElementById(112233);
-    window.alert(element);
     element.classList.remove("d-none");
   } else {
-    window.alert("not detected");
+    element.classList.add("d-none");
   }
 };
 </script>
