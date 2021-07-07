@@ -18,10 +18,8 @@ router.get('/insert', function(req, res, next) {
 });
 
 router.get('/admin', async(req, res, next) => {
-  var queryString = window.location.search;
-  var urlParams = new URLSearchParams(queryString);
-  var product = urlParams.get('idsearch');
-  console.log(product);
+  var id = req.query.idsearch;
+  console.log(id);
 
   res.render('admin');
 });
