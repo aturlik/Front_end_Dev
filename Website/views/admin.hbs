@@ -180,8 +180,8 @@ if (idsearch!=null) {
                 </div>
                 <div class="col darkmode-ignore">
                     <input type="text" id="provider" name="provider" class="form-control"
-                           placeholder="Service/Training Provider" aria-label="Provider" required>
-                    <div class="invalid-feedback" value="{{result.Provider}}">
+                           placeholder="Service/Training Provider" aria-label="Provider" required value="{{result.Provider}}">
+                    <div class="invalid-feedback" >
                         Please put in the Provider.
                     </div>
                 </div>
@@ -316,7 +316,7 @@ if (idsearch!=null) {
             <div class="row mb-2">
                 <div class="col darkmode-ignore">
                     <textarea class="form-control" id="comment" name="comment" placeholder="Put any comments here"
-                              rows="3" value="{{result.Comment}}"></textarea>
+                              rows="3">"{{result.Comment}}"</textarea>
                 </div>
             </div>
 
