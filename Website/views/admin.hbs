@@ -1,10 +1,10 @@
 
 <script>
 $('.nav-item-d a').addClass("active");
-var idsearch = <%= idsearch %>;
-window.alert(<%= idsearch %>);
+var id = "<%= id %>";
+window.alert(<%= id %>);
 if (idsearch!=null) {
-  document.getElementById("title").innerHTML = idsearch;
+  document.getElementById("title").innerHTML = id;
 }
 </script>
 
