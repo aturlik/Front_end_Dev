@@ -24,7 +24,7 @@ router.get('/admin', async(req, res, next) => {
     console.log(id);
 	  
 	  
-	  
+    const client = new MongoClient(url, { useUnifiedTopology: true });
     var db = client.db('Trainings');
     assert.equal(null, err);
     var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': id,'path': {'wildcard': '*'}}}}]);
