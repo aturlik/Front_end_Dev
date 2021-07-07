@@ -341,4 +341,24 @@ router.post('/delete', function(req, res, next) {
   res.redirect('/others');
 });
 
+router.post('/report', function(req, res, next) {
+  var items = req.body.report;
+  console.log(String(typeof(items)));
+  if(String(typeof(items)) != "string"){
+    items = items.filter(test => test.length > 1);
+    items = items.join(", ");
+  };
+  var item = {"Report": items};
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings');
+    assert.strictEqual(null, err);
+    db.collection('User Reports').insertOne(item, function(err, result) {
+      assert.strictEqual(null, err);
+      client.close();
+    });
+  });
+  res.redirect('/get-data?data=data');
+});
+
+
 module.exports = router;
