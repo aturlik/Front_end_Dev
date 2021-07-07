@@ -76,14 +76,18 @@
 <script>
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
-if (idscript !== "") {
-  window.alert("detected");
-  var element = document.getElementById(112233);
-  window.alert(element);
-  element.classList.remove("d-none");
-} else {
-  window.alert("not detected");
-}
+
+
+window.onload = function () {
+  if (idscript !== "") {
+    window.alert("detected");
+    var element = document.getElementById(112233);
+    window.alert(element);
+    element.classList.remove("d-none");
+  } else {
+    window.alert("not detected");
+  }
+};
 </script>
 
 <div class="container">
