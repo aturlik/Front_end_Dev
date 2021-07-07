@@ -25,7 +25,7 @@ router.get('/admin', async(req, res, next) => {
     try {
     var client = new MongoClient(url);
     await client.connect();
-    var result = await client.db("Trainings").collection("FormattedRawData").find(id);
+    var result = await client.db("Trainings").collection("FormattedRawData").findOne(id);
     console.log(result);
     }       
     catch (e) {
