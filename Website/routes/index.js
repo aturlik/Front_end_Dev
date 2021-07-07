@@ -21,7 +21,7 @@ router.get('/admin', async(req, res, next) => {
   var id = req.query.idsearch;
   if (id !=null) {
     console.log(id);	  
-    res.render('admin', {idsearch=id});
+    res.render('admin', {idsearch:id});
   }
   else {
 	res.render('admin', {idsearch=null});
