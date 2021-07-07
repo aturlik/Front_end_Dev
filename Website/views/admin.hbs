@@ -76,7 +76,9 @@
 <script>
 $('.nav-item-d a').addClass("active");
 var id ={{result._id}};
+console.log("before");
 if (id!=null) {
+  console.log("after");
   var element = document.getElementById("updateform");
   element.classList.remove("d-none");
 }
