@@ -77,9 +77,10 @@
 $('.nav-item-d a').addClass("active");
 window.alert(0==0);
 var idscript = "{{result._id}}";
-if (idscript === "{{result._id}}") {
+if (idscript !== "") {
   window.alert("detected");
   var element = document.getElementById("updateform");
+  window.alert(element);
   element.classList.remove("d-none");
 } else {
   window.alert("not detected");
