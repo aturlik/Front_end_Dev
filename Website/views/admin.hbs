@@ -107,7 +107,7 @@ if (idsearch!=null) {
                 </div>
                 <div class="col darkmode-ignore">
                     <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url"
-                           required>
+                           required value="{{result.URL}}">
                     <div class="invalid-feedback">
                         Please put in a URL.
                     </div>
@@ -116,14 +116,14 @@ if (idsearch!=null) {
             <div class="row mb-2">
                 <div class="col darkmode-ignore">
                     <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
-                           aria-label="TCH" required>
+                           aria-label="TCH" required value="{{result."Time Commitment (Hours)"}}">
                     <div class="invalid-feedback">
                         Please put the Time Commitment.
                     </div>
                 </div>
                 <div class="col darkmode-ignore">
                     <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
-                           aria-label="cost" required>
+                           aria-label="cost" required value="{{result.Cost}}">
                     <div class="invalid-feedback">
                         Please put in the Cost.
                     </div>
@@ -181,13 +181,13 @@ if (idsearch!=null) {
                 <div class="col darkmode-ignore">
                     <input type="text" id="provider" name="provider" class="form-control"
                            placeholder="Service/Training Provider" aria-label="Provider" required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" value="{{result.Provider}}">
                         Please put in the Provider.
                     </div>
                 </div>
                 <div class="col darkmode-ignore">
                     <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
-                           aria-label="Location of Provider"  required>
+                           aria-label="Location of Provider"  required value="{{result."Base of Operations"}}">
                     <div class="invalid-feedback">
                         Please put in the Location of the Provider.
                     </div>
@@ -316,7 +316,7 @@ if (idsearch!=null) {
             <div class="row mb-2">
                 <div class="col darkmode-ignore">
                     <textarea class="form-control" id="comment" name="comment" placeholder="Put any comments here"
-                              rows="3"></textarea>
+                              rows="3" value="{{result.Comment}}"></textarea>
                 </div>
             </div>
 
