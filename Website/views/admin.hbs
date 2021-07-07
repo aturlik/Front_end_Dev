@@ -75,9 +75,9 @@
 </style>
 <script>
 $('.nav-item-d a').addClass("active");
-if ({{result._id}}==null) {
+if ({{result._id}}!=null) {
   var element = document.getElementById("updateform");
-  element.classList.add("d-none");
+  element.classList.remove("d-none");
 }
 </script>
 
@@ -91,7 +91,7 @@ if ({{result._id}}==null) {
       <button type="submit" class="btn btn-primary">find</button>
     </form>
     </div>
-    <div class="container" id="updateform">
+    <div class="container d-none" id="updateform">
     <form action="/update" method="post">
         <div class="row mb-2">
                 <div class="col darkmode-ignore">
