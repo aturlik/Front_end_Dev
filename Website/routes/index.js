@@ -24,7 +24,7 @@ router.get('/admin', async(req, res, next) => {
     console.log(id);
 	  
 	  
-    const client = new MongoClient(url, { useUnifiedTopology: true });
+  mongo.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
     var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': id,'path': {'wildcard': '*'}}}}]);
@@ -33,11 +33,13 @@ router.get('/admin', async(req, res, next) => {
       results.push(doc);
     }, function() {
       client.close();
-    })
+      res.render('admin', {id:id, results:results});
+    });
+  });
    
 	    
 	    
-     res.render('admin', {id:id, results:results});
+     
   }
   else {
 	console.log(id);
