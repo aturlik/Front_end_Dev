@@ -33,7 +33,7 @@ router.get('/admin', async(req, res, next) => {
       results.push(doc);
     }, function() {
       client.close();
-     
+    }
    
 	    
 	    
