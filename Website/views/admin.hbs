@@ -75,6 +75,10 @@
 </style>
 <script>
 $('.nav-item-d a').addClass("active");
+if ({{result._id}}==null) {
+  var element = document.getElementById("updateform");
+  element.classList.add("hidden");
+}
 </script>
 
 <div class="container">
@@ -83,11 +87,11 @@ $('.nav-item-d a').addClass("active");
     <h3 class='title'>Update Data</h3>
     <form action"/updatesearch" method="post>
             <label for="idsearch">ID</label>
-            <input type="text" id="idsearch" name="idsearch" value="{{result._id}}">
+            <input type="text" id="idsearch" class="form-control" name="idsearch" value="{{result._id}}">
       <button type="submit" class="btn btn-primary">find</button>
     </form>
     </div>
-    <div class="container">
+    <div class="container" id="updateform">
     <form action="/update" method="post">
         <div class="row mb-2">
                 <div class="col darkmode-ignore">
@@ -327,9 +331,9 @@ $('.nav-item-d a').addClass("active");
           <form action="/delete" method="post">
               <div class="input">
                   <label for="id">ID</label>
-                  <input type="text" id="id" name="id">
+                  <input type="text" id="id" name="id" class="form-control">
               </div>
-              <button type="submit">DELETE</button>
+              <button type="submit" class="btn btn-primary">DELETE</button>
           </form>
       </section>
   </div>
