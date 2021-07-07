@@ -2,7 +2,7 @@
 <script>
 $('.nav-item-d a').addClass("active");
 var idsearch = <%= idsearch %>;
-window.alert(idsearch);
+window.alert(<%= idsearch %>);
 if (idsearch!=null) {
   document.getElementById("title").innerHTML = idsearch;
 }
