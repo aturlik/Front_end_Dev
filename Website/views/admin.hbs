@@ -78,8 +78,9 @@ $('.nav-item-d a').addClass("active");
 </script>
 
 
-
-<section class="update">
+<div class="container">
+  <div class="row">
+  <section class="update">
     <h3 class='title'>Update Data</h3>
     <form action"/updatesearch" method="post>
       <div class="input">
@@ -88,9 +89,9 @@ $('.nav-item-d a').addClass("active");
       </div>
       <button type="submit" class="btn btn-primary">find</button>
     </form>
+    </div>
     
-    
-    <div class="container">
+    <div class="row mt-4">
     <form action="/update" method="post">
         <div class="row mb-2">
                 <div class="col darkmode-ignore">
@@ -322,21 +323,21 @@ $('.nav-item-d a').addClass("active");
             </div>
     </form>
 </section>
-</div>
+  </div>
 
-<div class="container">
-    <section class="delete">
-        <h3>Delete Data</h3>
-        <form action="/delete" method="post">
-            <div class="input">
-                <label for="id">ID</label>
-                <input type="text" id="id" name="id">
-            </div>
-            <button type="submit">DELETE</button>
-        </form>
-    </section>
+  <div class="row">
+      <section class="delete">
+          <h3>Delete Data</h3>
+          <form action="/delete" method="post">
+              <div class="input">
+                  <label for="id">ID</label>
+                  <input type="text" id="id" name="id">
+              </div>
+              <button type="submit">DELETE</button>
+          </form>
+      </section>
+  </div>
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
