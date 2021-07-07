@@ -18,9 +18,9 @@ router.get('/insert', function(req, res, next) {
 });
 
 router.get('/admin', async(req, res, next) => {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get('idsearch');
+  var queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  var product = urlParams.get('idsearch');
   console.log(product);
 
   res.render('admin');
