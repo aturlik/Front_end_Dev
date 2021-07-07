@@ -19,8 +19,9 @@ router.get('/insert', function(req, res, next) {
 
 router.get('/admin', async(req, res, next) => {
   var id = req.query.idsearch;
-  console.log(id);
-
+  if (id !=null) {
+    console.log(id);	  
+  }
   res.render('admin');
 });
 
