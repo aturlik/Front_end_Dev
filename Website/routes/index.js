@@ -21,14 +21,12 @@ router.get('/admin', async(req, res, next) => {
   var id = req.query.idsearch;
   var results = [];
   if (id !=null) {
-    console.log(id);
     try {
     var client = new MongoClient(url);
     await client.connect();
     var data = await client.db("Trainings");
     var o_id = objectId(id); 
     var result = await data.collection("FormattedRawData").findOne({"_id":o_id});
-    console.log(result);
     }       
     catch (e) {
 	   console.error(e);
@@ -39,7 +37,6 @@ router.get('/admin', async(req, res, next) => {
     }
   }
   else {
-	console.log(id);
 	res.render('admin', {id: "how you hit this"});
   }
 });
