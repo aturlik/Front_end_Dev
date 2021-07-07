@@ -35,6 +35,7 @@ router.get('/admin', async(req, res, next) => {
     }
     finally {
 	    await client.close();
+	    res.render('admin', {id:id, result:result});
     }
   }
   else {
