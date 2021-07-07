@@ -75,7 +75,8 @@
 </style>
 <script>
 $('.nav-item-d a').addClass("active");
-if ({{result._id}}!=null) {
+var id ={{result._id}};
+if (id!=null) {
   var element = document.getElementById("updateform");
   element.classList.remove("d-none");
 }
