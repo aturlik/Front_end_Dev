@@ -83,7 +83,7 @@ ret2 = (ret.repeat(1)).replace('Microsoft Office','');
 var dataTopics= "{{{result.[Data Topic Area]}}}".split(',').join(' ');
 var testplox = '';
 for (var i = 0; i < dataTopics.length; i++) {
-   testplox = testplox + dataTopics[i]; 
+   testplox = testplox.concat(dataTopics[i]); 
  }
  window.alert(testplox);
 if (testplox.includes('Microsoft Office')) {
