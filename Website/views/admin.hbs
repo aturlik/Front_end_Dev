@@ -78,10 +78,14 @@ $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
 <!--Section for button toggles-->
 let dataTopics, programLanguage;
-
 dataTopics = (' ' + "{{result.[Data Topic Area]}}").slice(1);
-window.alert(dataTopics);
 
+if (dataTopics.includes('Microsoft Office')) {
+  dataTopics.replace('Microsoft Office', '');
+  document.getElementById('LPSOffice').checked = true;
+}
+
+window.alert(dataTopics);
 <!------------------------------>
 window.onload = function () {
   var element = document.getElementById(112233);
