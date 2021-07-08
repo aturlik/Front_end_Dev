@@ -216,11 +216,17 @@
 
 
 
+
+
+
 </style>
 
 <!-- Navigation bar to show that current tab is active -->
 <script>
     $('.nav-item-a a').addClass("active");
+
+
+
 
 
 
@@ -524,6 +530,9 @@
           $('#navbarcolor').addClass("navbar-light");
       };
   });
+
+
+
 </script>
 <!--===========================================================---
     Styling the results so that they are presented as accordion
@@ -534,106 +543,107 @@
         <!--=========================================================---
             Displaying the number of terms that are returned from the
             search
-         ---=========================================================-->
+     ---=========================================================-->
         <div>
             {{#if @last}}
                 <script>
             var position = {{@index}}
             document.getElementById("result").innerHTML = position + 1;
+
                 </script>
             {{/if}}
         </div>
-    <div class="item">
-        <!--=========================================================---
-            Creating the interactable accordion style buttons and the
-            headings associated with them
-         ---=========================================================-->
-        <button class="collapsible" id="collaps{{this._id}}" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false"
-                aria-controls="collapseItemDetails{{this._id}}">
-            <div class="row">
-                <div class="col-sm">
-                        <span class="collapsible-heading_pos"> <span class="collapsible-heading"
-                                                                     id="titlewhite"> {{this.Title}} : </span> <span
-                                class="collapsible-heading2" id="learningtypewhite"> {{ this.[Learning type] }} </span> <span
-                                class="tag_style badge bg-secondary"
-                                id="Cert/Deg{{this._id}}"> Processing </span></span>
-                    <script>
+
+        <div class="item">
+            <!--=========================================================---
+                Creating the interactable accordion style buttons and the
+                headings associated with them
+             ---=========================================================-->
+            <button class="collapsible" id="collaps{{this._id}}" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false"
+                    aria-controls="collapseItemDetails{{this._id}}">
+                <div class="row">
+                    <div class="col-sm">
+                    <span class="collapsible-heading_pos"> <span class="collapsible-heading"
+                                                                 id="titlewhite"> {{this.Title}} : </span>
+                        <span class="collapsible-heading2" id="learningtypewhite"> {{ this.[Learning type] }} </span>
+                        <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
+                        <script>
                         var tag =  document.getElementById("Cert/Deg{{this._id}}");
                         if("{{ this.[Certificate/Degree Program] }}" != "No"){
                             tag.innerHTML = "Certificate";
                         }else {
                             tag.remove();
                         }
-                    </script>
-                </div>
-                <div class="col-">
-                    <i class="arrow down arrow_pos" id="arrowcolor"></i>
-                    <span class="tag_pos tag_style badge bg-secondary"
-                          id="diffwhite">Difficulty: {{ this.[Barrier to Entry]}}</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm">
-                        <span class="tag_pos2 tag_style badge bg-secondary"
-                              id="remoteblack">{{ this.[In person vs Remote] }}</span>
-                    <span class="tag_pos3 tag_style badge bg-secondary"
-                          id="selfblack">{{ this.[Self Paced vs Instructor Led] }}</span>
-                    <span class="tag_pos4 tag_style badge bg-secondary"
-                          id="publicblack">{{ this.[Public/DOD] }}</span>
-                </div>
-                <div class="col-">
-                    {{#if this.[Helpfullness Rating]}}
-                        <span class="tag_pos tag_style badge bg-secondary"
-                              id="helprating">{{ this.[Helpfullness Rating] }}%</span>
-                    {{/if}}
-                </div>
-            </div>
-        </button>
 
-        <!--=========================================================---
-            Creating a container and displaying the extra information
-            for each resource
-         ---=========================================================-->
-        <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse"
-             aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
-            <div class="accordion-body">
+                        </script>
+                    </div>
+                    <div class="col-">
+                        <i class="arrow down arrow_pos" id="arrowcolor"></i>
+                        <span class="tag_pos tag_style badge bg-secondary"
+                              id="diffwhite">Difficulty: {{ this.[Barrier to Entry]}}</span>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm">
-                        <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
-                        <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
-                        <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
-                        <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
-                        <div><b>Provider:</b> {{ this.Provider }}</div>
-                        <div><b>Cost:</b> {{ this.Cost }}</div>
-                        <div><b>Comment:</b> {{ this.Comment }}</div>
-                        <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                        <span class="tag_pos2 tag_style badge bg-secondary"
+                              id="remoteblack">{{ this.[In person vs Remote] }}</span>
+                        <span class="tag_pos3 tag_style badge bg-secondary"
+                              id="selfblack">{{ this.[Self Paced vs Instructor Led] }}</span>
+                        <span class="tag_pos4 tag_style badge bg-secondary"
+                              id="publicblack">{{ this.[Public/DOD] }}</span>
                     </div>
+                    <div class="col-">
+                        {{#if this.[Helpfullness Rating]}}
+                            <span class="tag_pos tag_style badge bg-secondary"
+                                  id="helprating">{{ this.[Helpfullness Rating] }}%</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </button>
+            <!--=========================================================---
+                Creating a container and displaying the extra information
+                for each resource
+             ---=========================================================-->
+            <div id="collapseItemDetails{{this._id}}" class="accordion-collapse collapse"
+                 aria-labelledby="collapseItem item" data-bs-parent="#accordionItems">
+                <div class="accordion-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h5><a href="{{this.URL}}">{{ this.URL }}</a></h5>
+                            <div><b>Time Commitment:</b> {{ this.[Time Commitment (Hours)] }} hours</div>
+                            <div><b>Data Topic Area:</b> {{ this.[Data Topic Area] }}</div>
+                            <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
+                            <div><b>Provider:</b> {{ this.Provider }}</div>
+                            <div><b>Cost:</b> {{ this.Cost }}</div>
+                            <div><b>Comment:</b> {{ this.Comment }}</div>
+                            <div>Useful Training?: {{ this.[Useful Training?] }}</div>
+                        </div>
 
-                    <div class="col-sm">
-                        <form action="/get-data/vote" method="post">
-                            <div class="btn-group d-flex" role="group" aria-label="Vote">
-                                <input class="btn-check" type="radio" name="Vote" id="upVote{{this._id}}"
-                                       value="Liked">
-                                <label class="btn btn-outline-secondary" for="upVote{{this._id}}">
-                                    Liked
-                                </label>
-                                <input class="btn-check" type="radio" name="Vote" id="downVote{{this._id}}"
-                                       value="Disliked">
-                                <label class="btn btn-outline-secondary" for="downVote{{this._id}}">
-                                    Disliked
-                                </label>
-                            </div>
-                            <button type="submit">Submit</button>
+                        <div class="col-sm">
+                            <form action="/get-data/vote" method="post">
+                                <div class="btn-group d-flex" role="group" aria-label="Vote">
+                                    <input class="btn-check" type="radio" name="Vote" id="upVote{{this._id}}"
+                                           value="Liked">
+                                    <label class="btn btn-outline-secondary" for="upVote{{this._id}}">
+                                        Liked
+                                    </label>
+                                    <input class="btn-check" type="radio" name="Vote" id="downVote{{this._id}}"
+                                           value="Disliked">
+                                    <label class="btn btn-outline-secondary" for="downVote{{this._id}}">
+                                        Disliked
+                                    </label>
+                                </div>
+                                <button type="submit">Submit</button>
 
-                            <input class="accordion-body" type="text" id="id{{this._id}}" name="id"
-                                   value="{{this._id}}" property="{{this._id}}">
-                            <input class="accordion-body" type="text" id="title{{this._id}}" name="title"
-                                   value="{{this.Title}}" property="{{this.Titile}}">
-                            <input class="accordion-body" type="text" id="url{{this._id}}" name="url" value="hello"
-                                   property="hello">
+                                <input class="accordion-body" type="text" id="id{{this._id}}" name="id"
+                                       value="{{this._id}}" property="{{this._id}}">
+                                <input class="accordion-body" type="text" id="title{{this._id}}" name="title"
+                                       value="{{this.Title}}" property="{{this.Titile}}">
+                                <input class="accordion-body" type="text" id="url{{this._id}}" name="url" value="hello"
+                                       property="hello">
 
-                            <script>
+                                <script>
                                 var id = document.getElementById("id{{this._id}}");
                                 var pageURL = document.getElementById("url{{this._id}}");
                                 var title = document.getElementById("title{{this._id}}");
@@ -642,72 +652,75 @@
                                 pageURL.value = window.location.href;
                                 pageURL.style.display = "none";
                                 title.style.display = "none";
-                            </script>
-                        </form>
-                    </div>
-                </div>
 
-                <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false"
-                        aria-controls="collapseItemDetails{{this._id}}">
-                    Admin Details
-                </button>
-                <div id="collapseItemAdmin{{this._id}}" class="accordion-collapse collapse"
-                     aria-labelledby="collapseItem item">
-                    <div>Base of Operations: {{ this.[Base of Operations] }}</div>
-                    <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
-                    <div>ID: {{ this._id }}</div>
-                    <br>
-                </div>
-                <button type="button" class="btn btn-outline-primary"
-                        data-target="#myModalRep{{this._id}}" data-toggle="modal">
-                    Report
-                </button>
-                <div class="modal fade" id="myModalRep{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Report Resource</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>What's wrong with this resource?</p>
-                                <div class="btn-group-vertical" role="group" aria-label="Reports" id="report">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
-                                               id="CBEO">
-                                        <label class="form-check-label" for="CBEO">Expired/Obsolete</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
-                                               id="CBDup">
-                                        <label class="form-check-label" for="CBDup">Duplicate</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
-                                               id="CBNU">
-                                        <label class="form-check-label" for="CBNU">Not Useful</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
-                                               id="CBDoD">
-                                        <label class="form-check-label" for="CBDoD">Against DoD Standards</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
-                                               id="CBOther">
-                                        <label class="form-check-label" for="CBOther">
-                                            <input type="text" id="RPOther" name="other" class="form-control"
-                                                   placeholder="Other" aria-label="Other">
-                                        </label>
+                                </script>
+                            </form>
+                        </div>
+                    </div>
+
+                    <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false"
+                            aria-controls="collapseItemDetails{{this._id}}">
+                        Admin Details
+                    </button>
+                    <div id="collapseItemAdmin{{this._id}}" class="accordion-collapse collapse"
+                         aria-labelledby="collapseItem item">
+                        <div>Base of Operations: {{ this.[Base of Operations] }}</div>
+                        <div>Topics for Graphing: {{ this.[Topics for Graphing] }}</div>
+                        <div>ID: {{ this._id }}</div>
+                        <br>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary"
+                            data-target="#myModalRep{{this._id}}" data-toggle="modal">
+                        Report
+                    </button>
+                    <div class="modal fade" id="myModalRep{{this._id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Report Resource</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>What's wrong with this resource?</p>
+                                    <div class="btn-group-vertical" role="group" aria-label="Reports" id="report">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="Report" value=""
+                                                   id="CBEO">
+                                            <label class="form-check-label" for="CBEO">Expired/Obsolete</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="Report" value=""
+                                                   id="CBDup">
+                                            <label class="form-check-label" for="CBDup">Duplicate</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="Report" value=""
+                                                   id="CBNU">
+                                            <label class="form-check-label" for="CBNU">Not Useful</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="Report" value=""
+                                                   id="CBDoD">
+                                            <label class="form-check-label" for="CBDoD">Against DoD Standards</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="Report" value=""
+                                                   id="CBOther">
+                                            <label class="form-check-label" for="CBOther">
+                                                <input type="text" id="RPOther" name="other" class="form-control"
+                                                       placeholder="Other" aria-label="Other">
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
-                                    Submit
-                                </button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                                        Submit
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -718,15 +731,9 @@
         <script>
             document.getElementById("result").innerHTML = 0;
 
-
-
-
-
-
         </script>
     {{/each}}
 </section>
-
 
 <script>
     var test = window.location.href;
@@ -882,6 +889,9 @@
 
 
 
+
+
+
 </script>
 
 <script>
@@ -892,6 +902,9 @@
         options.inverse(this);
       }
     });
+
+
+
 
 
 
