@@ -14,6 +14,39 @@
     width: 765px
   }
 
+.darkmode--activated #cost {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #title {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #url {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #comment {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #provider {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #TCH {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #BOO {
+  background-color: black;
+  border-color: grey;
+}
+.darkmode--activated #image {
+  -webkit-filter: invert(1); 
+  filter: invert(1);
+}
+
 .collapsible {
   background-color: #eee;
   color: #444;
@@ -48,17 +81,20 @@
 
 
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<div class="form-check form-switch" style="float: right;">
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
+</div>
+<script>
+  const darkmode =  new Darkmode();
+  document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
+      darkmode.toggle();  
+  });
+</script>
 <script>
 //Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
-
-
-
-
-
 </script>
-
 
 <div class="container">
     <section class="insert">
@@ -71,7 +107,7 @@ $('.nav-item-c a').addClass("active");
                 <!-- Button to call on Main Help Tutorial Modal -->
                 <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                     <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
-                        <img src="images/Help_Icon.png" alt="help">
+                        <img src="images/Help_Icon.png" alt="help" id="image">
                     </button>
                 </span>
 
@@ -93,76 +129,76 @@ $('.nav-item-c a').addClass("active");
 
                                 <!-- Buttons for Secondary Models to explain specific categories. It is divided to match how the form looks. -->
                                 <div class="btn-group d-flex" role="group" aria-label="First Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalTitle"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalTitle"
                                             data-toggle="modal" data-dismiss="modal">Title
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalURL"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalURL"
                                             data-toggle="modal" data-dismiss="modal">URL
                                     </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Second Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalTC"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalTC"
                                             data-toggle="modal" data-dismiss="modal">Time
                                         Commitment
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalCost"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalCost"
                                             data-toggle="modal" data-dismiss="modal">Costs
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalPacing"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalPacing"
                                             data-toggle="modal" data-dismiss="modal">
                                         Pacing
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalCert"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalCert"
                                             data-toggle="modal" data-dismiss="modal">
                                         Certifications
                                     </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Third Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalExp"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalExp"
                                             data-toggle="modal" data-dismiss="modal">
                                         Experience Level
                                     </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Fourth Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalClear"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalClear"
                                             data-toggle="modal" data-dismiss="modal">
                                         Clearance
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary"
+                                    <button type="button" class="btn btn-outline-primary"
                                             data-target="#myModalProvider" data-toggle="modal" data-dismiss="modal">
                                         Provider
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalLoc"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalLoc"
                                             data-toggle="modal" data-dismiss="modal">
                                         Provider Location
                                     </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Fifth Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalMed"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalMed"
                                             data-toggle="modal" data-dismiss="modal">
                                         Medium
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary"
+                                    <button type="button" class="btn btn-outline-primary"
                                             data-target="#myModalLearning" data-toggle="modal" data-dismiss="modal">
                                         Learning Type
                                     </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Sixth Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalKey"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalKey"
                                             data-toggle="modal" data-dismiss="modal">
                                         Keywords
                                     </button>
                                     <br>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Seventh Row">
-                                    <button type="button" class="btn btn-outline-secondary" data-target="#myModalCom"
+                                    <button type="button" class="btn btn-outline-primary" data-target="#myModalCom"
                                             data-toggle="modal" data-dismiss="modal">
                                         Comments
                                     </button>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -182,11 +218,11 @@ $('.nav-item-c a').addClass("active");
                                 (e.g. Python Tutorials, Intro to Machine Learning)
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -205,11 +241,11 @@ $('.nav-item-c a').addClass("active");
                                 resource. (e.g. www.youtube.com. www.udemy.com)
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -230,11 +266,11 @@ $('.nav-item-c a').addClass("active");
                                 training resource.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -254,11 +290,11 @@ $('.nav-item-c a').addClass("active");
                                 resource is free, please put in "0".
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -283,11 +319,11 @@ $('.nav-item-c a').addClass("active");
                                     learning.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -311,11 +347,11 @@ $('.nav-item-c a').addClass("active");
                                     section.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -348,11 +384,11 @@ $('.nav-item-c a').addClass("active");
                                     leading edge examples.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -375,11 +411,11 @@ $('.nav-item-c a').addClass("active");
                                     accessed on base or through a CAC.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -398,11 +434,11 @@ $('.nav-item-c a').addClass("active");
                                 the training resource. (e.g. Google, Linkedin)
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -423,11 +459,11 @@ $('.nav-item-c a').addClass("active");
                                     adversary state. (e.g. China, Russia)</b></p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -450,11 +486,11 @@ $('.nav-item-c a').addClass("active");
                                     course.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -481,11 +517,11 @@ $('.nav-item-c a').addClass("active");
                                     resource to learn.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -506,11 +542,11 @@ $('.nav-item-c a').addClass("active");
                                 in the "Other" textbox.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -530,11 +566,11 @@ $('.nav-item-c a').addClass("active");
                                 how good the resource is, things to avoid while taking the resource)
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-target="#myModal1"
+                                <button type="button" class="btn btn-outline-primary" data-target="#myModal1"
                                         data-toggle="modal" data-dismiss="modal">
                                     Go Back
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -545,16 +581,18 @@ $('.nav-item-c a').addClass("active");
         <br>
 
         <!-- Form Input -->
+        
         <form action="/insert" method="post" class="needs-validation" novalidate>
             <div class="row mb-2">
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="title" name="title" class="form-control" placeholder="Title"
                            aria-label="title" required>
                     <div class="invalid-feedback">
                         Please put in a Title.
                     </div>
+                    </span>
                 </div>
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url"
                            required>
                     <div class="invalid-feedback">
@@ -563,14 +601,14 @@ $('.nav-item-c a').addClass("active");
                 </div>
             </div>
             <div class="row mb-2">
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
                            aria-label="TCH" required>
                     <div class="invalid-feedback">
                         Please put the Time Commitment.
                     </div>
                 </div>
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
                            aria-label="cost" required>
                     <div class="invalid-feedback">
@@ -580,11 +618,11 @@ $('.nav-item-c a').addClass("active");
                 <div class="col" align="center">
                     <div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
                         <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced" checked>
-                        <label class="btn btn-outline-secondary" for="SPILself">
+                        <label class="btn btn-outline-primary" for="SPILself">
                             Self-Paced
                         </label>
                         <input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led">
-                        <label class="btn btn-outline-secondary" for="SPILins">
+                        <label class="btn btn-outline-primary" for="SPILins">
                             Instructor Led
                         </label>
                     </div>
@@ -593,11 +631,11 @@ $('.nav-item-c a').addClass("active");
                     <div class="btn-group d-flex" role="group" aria-label="Does training offer Certificate or Degree"
                          id="CDP">
                         <input class="btn-check" type="checkbox" name="CDP" value="Certificate" id="CDPCert">
-                        <label class="btn btn-outline-secondary" for="CDPCert">
+                        <label class="btn btn-outline-primary" for="CDPCert">
                             Certificate
                         </label>
                         <input class="btn-check" type="checkbox" name="CDP" value="Degree" id="CDPDeg">
-                        <label class="btn btn-outline-secondary" for="CDPDeg">
+                        <label class="btn btn-outline-primary" for="CDPDeg">
                             Degree
                         </label>
                     </div>
@@ -607,14 +645,14 @@ $('.nav-item-c a').addClass("active");
                 <div class="btn-group d-flex" role="group" aria-label="Barrier to Entry Select" id="BE">	
                     <input type="radio" class="btn-check" name="BE" id="BEBeg" autocomplete="off" value="Beginner"
                            checked>
-                    <label class="btn btn-outline-secondary" for="BEBeg">Beginner</label>
+                    <label class="btn btn-outline-primary" for="BEBeg">Beginner</label>
                     <input type="radio" class="btn-check" name="BE" id="BEInter" autocomplete="off"
                            value="Intermediate">
-                    <label class="btn btn-outline-secondary" for="BEInter">Intermediate</label>
+                    <label class="btn btn-outline-primary" for="BEInter">Intermediate</label>
                     <input type="radio" class="btn-check" name="BE" id="BEAdv" autocomplete="off" value="Advanced">
-                    <label class="btn btn-outline-secondary" for="BEAdv">Advanced</label>
+                    <label class="btn btn-outline-primary" for="BEAdv">Advanced</label>
                     <input type="radio" class="btn-check" name="BE" id="BEExp" autocomplete="off" value="Expert">
-                    <label class="btn btn-outline-secondary" for="BEExp">Expert</label>
+                    <label class="btn btn-outline-primary" for="BEExp">Expert</label>
  		</div> 
             </div>
             <div class="row mb-2">
@@ -622,21 +660,21 @@ $('.nav-item-c a').addClass("active");
                     <div class="btn-group d-flex" role="group" aria-label="Public or DOD" id="PDOD">
                         <input type="radio" class="btn-check" name="PDOD" id="PDODP" autocomplete="off" value="Public"
                                checked>
-                        <label class="btn btn-outline-secondary" for="PDODP">Public</label>
+                        <label class="btn btn-outline-primary" for="PDODP">Public</label>
                         <input type="radio" class="btn-check" name="PDOD" id="PDODD" autocomplete="off" value="DOD">
-                        <label class="btn btn-outline-secondary" for="PDODD">DOD</label>
+                        <label class="btn btn-outline-primary" for="PDODD">DOD</label>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="provider" name="provider" class="form-control"
                            placeholder="Service/Training Provider" aria-label="Provider" required>
                     <div class="invalid-feedback">
                         Please put in the Provider.
                     </div>
                 </div>
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
-                           aria-label="Location of Provider" required>
+                           aria-label="Location of Provider"  required>
                     <div class="invalid-feedback">
                         Please put in the Location of the Provider.
                     </div>
@@ -647,23 +685,23 @@ $('.nav-item-c a').addClass("active");
                     <div class="btn-group d-flex" role="group" aria-label="In Person or Remote" id="PR">
                         <input type="radio" class="btn-check" name="PR" id="PRR" autocomplete="off" value="Remote"
                                checked>
-                        <label class="btn btn-outline-secondary" for="PRR">Remote</label>
+                        <label class="btn btn-outline-primary" for="PRR">Remote</label>
                         <input type="radio" class="btn-check" name="PR" id="PRP" autocomplete="off" value="In Person">
-                        <label class="btn btn-outline-secondary" for="PRP">In Person</label>
+                        <label class="btn btn-outline-primary" for="PRP">In Person</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="btn-group  d-flex" role="group" aria-label="Learning Type" id="LT">
                         <input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT">
-                        <label class="btn btn-outline-secondary" for="LTT">Text</label>
+                        <label class="btn btn-outline-primary" for="LTT">Text</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV">
-                        <label class="btn btn-outline-secondary" for="LTV">Video</label>
+                        <label class="btn btn-outline-primary" for="LTV">Video</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Book" id="LTB">
-                        <label class="btn btn-outline-secondary" for="LTB">Book</label>
+                        <label class="btn btn-outline-primary" for="LTB">Book</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL">
-                        <label class="btn btn-outline-secondary" for="LTL">Lecture</label>
+                        <label class="btn btn-outline-primary" for="LTL">Lecture</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI">
-                        <label class="btn btn-outline-secondary" for="LTI">Interactive</label>
+                        <label class="btn btn-outline-primary" for="LTI">Interactive</label>
                     </div>
                 </div>
             </div>
@@ -686,70 +724,70 @@ $('.nav-item-c a').addClass("active");
                                          aria-label="Data Topic Select Menus">
                                         <input class="btn-check" type="checkbox" name="DTA" value="Data Science"
                                                id="DTADataSci">
-                                        <label class="btn btn-outline-secondary" for="DTADataSci">Data Science</label>
+                                        <label class="btn btn-outline-primary" for="DTADataSci">Data Science</label>
                                         <input class="btn-check" type="checkbox" name="DTA" value="Tutorial"
                                                id="DTATut">
-                                        <label class="btn btn-outline-secondary" for="DTATut">Tutorial</label>
+                                        <label class="btn btn-outline-primary" for="DTATut">Tutorial</label>
                                         <input class="btn-check" type="checkbox" name="DTA" value="AI/Machine Learning"
                                                id="DTAAI">
-                                        <label class="btn btn-outline-secondary" for="DTAAI">Machine Learning</label>
+                                        <label class="btn btn-outline-primary" for="DTAAI">Machine Learning</label>
                                         <input class="btn-check" type="checkbox" name="DTA" value="Coding" id="DTACode">
-                                        <label class="btn btn-outline-secondary" for="DTACode">Coding</label>
+                                        <label class="btn btn-outline-primary" for="DTACode">Coding</label>
                                         <input class="btn-check" type="checkbox" name="DTA" value="Computer Skills"
                                                id="DTAComSkil">
-                                        <label class="btn btn-outline-secondary" for="DTAComSkil">Computer
+                                        <label class="btn btn-outline-primary" for="DTAComSkil">Computer
                                             Skills</label>
                                         <input class="btn-check" type="checkbox" name="DTA" value="Program Skills"
                                                id="DTAProSkil">
-                                        <label class="btn btn-outline-secondary" for="DTAProSkil">Program Skills</label>
+                                        <label class="btn btn-outline-primary" for="DTAProSkil">Program Skills</label>
                                     </div>
                                     <div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group"
                                          aria-label="Language and Program Select Menus">
                                         <input class="btn-check" type="checkbox" name="LPS" value="Microsoft Office"
                                                id="LPSOffice">
-                                        <label class="btn btn-outline-secondary" for="LPSOffice">Microsoft
+                                        <label class="btn btn-outline-primary" for="LPSOffice">Microsoft
                                             Office</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Excel" id="LPSExcel">
-                                        <label class="btn btn-outline-secondary" for="LPSExcel">Excel</label>
+                                        <label class="btn btn-outline-primary" for="LPSExcel">Excel</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Word" id="LPSWord">
-                                        <label class="btn btn-outline-secondary" for="LPSWord">Word</label>
+                                        <label class="btn btn-outline-primary" for="LPSWord">Word</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Flank Speed"
                                                id="LPSFlank">
-                                        <label class="btn btn-outline-secondary" for="LPSFlank">Flank Speed</label>
+                                        <label class="btn btn-outline-primary" for="LPSFlank">Flank Speed</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="PowerPoint"
                                                id="LPSPower">
-                                        <label class="btn btn-outline-secondary" for="LPSPower">PowerPoint</label>
+                                        <label class="btn btn-outline-primary" for="LPSPower">PowerPoint</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="OneDrive"
                                                id="LPSOneD">
-                                        <label class="btn btn-outline-secondary" for="LPSOneD">OneDrive</label>
+                                        <label class="btn btn-outline-primary" for="LPSOneD">OneDrive</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Python" id="LPSPy">
-                                        <label class="btn btn-outline-secondary" for="LPSPy">Python</label>
+                                        <label class="btn btn-outline-primary" for="LPSPy">Python</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Java" id="LPSJava">
-                                        <label class="btn btn-outline-secondary" for="LPSJava">Java</label>
+                                        <label class="btn btn-outline-primary" for="LPSJava">Java</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Javascript"
                                                id="LPSJavas">
-                                        <label class="btn btn-outline-secondary" for="LPSJavas">Javascript</label>
+                                        <label class="btn btn-outline-primary" for="LPSJavas">Javascript</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="C / C+" id="LPSC">
-                                        <label class="btn btn-outline-secondary" for="LPSC">C/C++</label>
+                                        <label class="btn btn-outline-primary" for="LPSC">C/C++</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="R" id="LPSR">
-                                        <label class="btn btn-outline-secondary" for="LPSR">R</label>
+                                        <label class="btn btn-outline-primary" for="LPSR">R</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Julia" id="LPSJulia">
-                                        <label class="btn btn-outline-secondary" for="LPSJulia">Julia</label>
+                                        <label class="btn btn-outline-primary" for="LPSJulia">Julia</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Matlab" id="LPSMat">
-                                        <label class="btn btn-outline-secondary" for="LPSMat">Matlab</label>
+                                        <label class="btn btn-outline-primary" for="LPSMat">Matlab</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="LabVIEW"
                                                id="LPSLabv">
-                                        <label class="btn btn-outline-secondary" for="LPSLabv">Labview</label>
+                                        <label class="btn btn-outline-primary" for="LPSLabv">Labview</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Simulink"
                                                id="LPSSimu">
-                                        <label class="btn btn-outline-secondary" for="LPSSimu">Simulink</label>
+                                        <label class="btn btn-outline-primary" for="LPSSimu">Simulink</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="SAS" id="LPSSAS">
-                                        <label class="btn btn-outline-secondary" for="LPSSAS">SAS</label>
+                                        <label class="btn btn-outline-primary" for="LPSSAS">SAS</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="COMSOL"
                                                id="LPSCOMSOL">
-                                        <label class="btn btn-outline-secondary" for="LPSCOMSOL">COMSOL</label>
+                                        <label class="btn btn-outline-primary" for="LPSCOMSOL">COMSOL</label>
                                         <input class="btn-check" type="checkbox" name="LPS" value="Rhino" id="LPSRhino">
-                                        <label class="btn btn-outline-secondary" for="LPSRhino">Rhino</label>
+                                        <label class="btn btn-outline-primary" for="LPSRhino">Rhino</label>
                                     </div>
                                     <div class="row mx-auto mt-3">
                                         <input type="text" id="DTAOther" name="DTA" class="form-control"
@@ -763,7 +801,7 @@ $('.nav-item-c a').addClass("active");
             </div>
 
             <div class="row mb-2">
-                <div class="col">
+                <div class="col darkmode-ignore">
                     <textarea class="form-control" id="comment" name="comment" placeholder="Put any comments here"
                               rows="3"></textarea>
                 </div>
@@ -771,7 +809,7 @@ $('.nav-item-c a').addClass("active");
 
             <!-- Button to insert data into database and call on submit Modal -->
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" id="submit" style="margin:20px" class="btn btn-secondary">Submit</button>
+                <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
             </div>
         </form>
 

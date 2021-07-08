@@ -117,6 +117,12 @@ router.get("/search", async (request, response) => {
     var db = client.db('Trainings');
     let result = await db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': `${request.query.term}`,'path': {'wildcard': '*'}, 'fuzzy': {"maxEdits": 1}}}}
   ]).toArray();
+  const uniqueresult = Array.from(
+    result.reduce((acc, o) =>
+      !acc.has(o.Title) || o.amount > 0 ? acc.set(o.Title, o) : acc, new Map())
+    .values()
+  );
+  result = uniqueresult;
   response.send(result.slice(0, 20));
   } catch (e) {
     response.status(500).send({message: e.message});
