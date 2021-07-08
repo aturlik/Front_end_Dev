@@ -78,11 +78,10 @@ $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
 <!--Section for button toggles-->
 var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel".replace('Microsoft Office','');
-window.alert(ret); 
 
 var dataTopicsPre = "{{result.[Data Topic Area]}}"+'';
 var dataTopics = Object.assign("", dataTopicsPre);
-
+window.alert(dataTopics);
 if (dataTopics.includes('Microsoft Office')) {
   dataTopics.replace('Microsoft Office', 'HIHIHIHII');
   window.alert(dataTopics);
