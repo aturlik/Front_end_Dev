@@ -81,10 +81,11 @@ var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel";
 ret2 = (ret.repeat(1)).replace('Microsoft Office','');
 
 var dataTopics= "{{result.[Data Topic Area]}}".repeat(1);
-window.alert(dataTopics);
+var dataTop = dataTopics.repeat(1);
+window.alert(dataTop);
 if (dataTopics.includes('Microsoft Office')) {
-  dataTopics.replace('Microsoft Office', 'HIHIHIHII');
-  window.alert(dataTopics);
+  dataTop.replace('Microsoft Office', 'HIHIHIHII');
+  window.alert(dataTop);
 };
 
 <!------------------------------>
