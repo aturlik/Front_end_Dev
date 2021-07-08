@@ -76,8 +76,13 @@
 <script>
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
+<!--Section for button toggles-->
+let dataTopics, programLanguage;
 
+dataTopics = (' ' + "{{result.[Data Topic Area]}}").slice(1);
+window.alert('dataTopics');
 
+<!------------------------------>
 window.onload = function () {
   var element = document.getElementById(112233);
   if (idscript !== "") {
