@@ -79,8 +79,8 @@ var idscript = "{{result._id}}";
 <!--Section for button toggles-->
 var ret = "data-123".replace('data-','');
 window.alert(ret); 
-let dataTopics, programLanguage;
-dataTopics = (' ' + "{{result.[Data Topic Area]}}").slice(1);
+
+var dataTopics = (' ' + "{{result.[Data Topic Area]}}").slice(1);
 if (dataTopics.includes('Microsoft Office')) {
   dataTopics.replace('Microsoft Office', 'HIHIHIHII');
   window.alert(dataTopics);
