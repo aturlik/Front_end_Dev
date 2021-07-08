@@ -92,7 +92,7 @@ window.onload = function () {
   ret2 = (ret.repeat(1)).replace('Microsoft Office','');
 
   var dataTopics= "{{{result.[Data Topic Area]}}}".split(',').join(' ');
-  if (newVar.includes('Microsoft Office')) {
+  if (dataTopics.includes('Microsoft Office')) {
     var testie = document.getElementById('LPSOffice');
     window.alert(testie);
   };
