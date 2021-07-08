@@ -80,7 +80,7 @@ var idscript = "{{result._id}}";
 var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel".replace('Microsoft Office','');
 window.alert(ret); 
 
-var dataTopics = (' ' + "{{result.[Data Topic Area]}}").slice(1);
+var dataTopics = "{{result.[Data Topic Area]}}");
 if (dataTopics.includes('Microsoft Office')) {
   dataTopics.replace('Microsoft Office', 'HIHIHIHII');
   window.alert(dataTopics);
