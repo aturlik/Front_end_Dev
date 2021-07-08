@@ -77,12 +77,13 @@
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
 <!--Section for button toggles-->
+
 var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel";
 ret2 = (ret.repeat(1)).replace('Microsoft Office','');
 
 var dataTopics= "{{{result.[Data Topic Area]}}}".split(',').join(' ');
 if (newVar.includes('Microsoft Office')) {
-  document.getElementById("LPSOffice").checked = true;
+ $("#LPSOffice").prop("checked", true);
 };
 <!------------------------------>
 window.onload = function () {
