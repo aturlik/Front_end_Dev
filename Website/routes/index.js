@@ -238,7 +238,32 @@ router.post('/insert', function(req, res, next) {
 
 router.post('/specify', function(req, res, next) {
   specdata = req.body.SpefString;
-  res.redirect("/get-data?data=" + specdata);
+  var cost = req.body.TST;
+  var level = req.body.LVL;
+  var public = req.body.PDOD;
+  var remote = req.body.RIP;
+  var selfp = req.body.SPIL;
+  var learn = req.body.LRN;
+  var urladditives = "";
+  if(cost != null){
+    urladditives = urladditives.concat("&cost=" + cost)
+  };
+  if(level != null){
+    urladditives = urladditives.concat("&level=" + level)
+  };
+  if(public != null){
+    urladditives = urladditives.concat("&public=" + public)
+  };
+  if(remote != null){
+    urladditives = urladditives.concat("&remote=" + remote)
+  };
+  if(selfp != null){
+    urladditives = urladditives.concat("&self=" + selfp)
+  };
+  if(learn != null){
+    urladditives = urladditives.concat("&learn=" + learn)
+  };
+  res.redirect("/get-data?data=" + specdata + urladditives);
 });
 
 
@@ -363,5 +388,25 @@ router.post('/delete', function(req, res, next) {
   });
   res.redirect('/others');
 });
+
+router.post('/report', function(req, res, next) {
+  var items = req.body.report;
+  console.log(String(typeof(items)));
+  if(String(typeof(items)) != "string"){
+    items = items.filter(test => test.length > 1);
+    items = items.join(", ");
+  };
+  var item = {"Report": items};
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings');
+    assert.strictEqual(null, err);
+    db.collection('User Reports').insertOne(item, function(err, result) {
+      assert.strictEqual(null, err);
+      client.close();
+    });
+  });
+  res.redirect('/get-data?data=data');
+});
+
 
 module.exports = router;
