@@ -232,6 +232,9 @@
 
 
 
+
+
+
 </style>
 
 <!-- Navigation bar to show that current tab is active -->
@@ -249,7 +252,7 @@
         <!-- Button to call on Help Tutorial Modal/Pop-up -->
         <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1">
         <button type="button" class="btn" data-toggle="modal" disabled>
-            <img src="images/Help_Icon.png" alt="help" id="image">
+            <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
         </button>
     </span>
 
@@ -535,6 +538,9 @@
           $('#navbarcolor').addClass("navbar-light");
       };
   });
+
+
+
 </script>
 
 
@@ -547,7 +553,7 @@
         <!--=========================================================---
             Displaying the number of terms that are returned from the
             search
-         ---=========================================================-->
+     ---=========================================================-->
         <div>
             {{#if @last}}
                 <script>
@@ -724,12 +730,12 @@
                                                 placeholder="Other" aria-label="Other">
                                     </label>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
-                                    Submit
-                                </button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                                        Submit
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -757,7 +763,6 @@
         </form>
     </div>
 </section>
-
 
 <script>
     var test = window.location.href;
@@ -907,6 +912,9 @@
         if(test.includes("learn=Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
         };
+
+
+
 
 
 
