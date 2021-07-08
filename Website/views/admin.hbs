@@ -77,8 +77,9 @@
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
 <!--Section for button toggles-->
-var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel".replace('Microsoft Office','');
-
+var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel";
+ret = ret.replace('Microsoft Office','');
+window.alert(ret);
 var dataTopics= String((' ' + "{{result.[Data Topic Area]}}").slice(1));
 window.alert(dataTopics);
 if (dataTopics.includes('Microsoft Office')) {
