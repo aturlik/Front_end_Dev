@@ -82,10 +82,9 @@ ret2 = (ret.repeat(1)).replace('Microsoft Office','');
 
 var dataTopics= "{{{result.[Data Topic Area]}}} hi test test test test ".split(',').join(' ');
 window.alert(dataTopics);
-var i = dataTopics.length;
-while (i--) {
-  window.alert(dataTopics[i]);
-}
+for (var i = 0; i < dataTopics.length; i++) {
+   window.alert(dataTopics[i]);
+ }
 if (dataTopics.includes('Microsoft Office')) {
   dataTopics.replace('Microsoft Office', 'HIHIHIHII');
   window.alert(dataTopics);
