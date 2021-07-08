@@ -88,6 +88,7 @@ window.onload = function () {
   
   <!--Section for button toggles-->
   var dataTopics= "{{{result.[Data Topic Area]}}} {{{result.[Programming Language]}}}".split(',').join(' ');
+  window.alert(dataTopics);
   if (dataTopics.includes('Microsoft Office')) {
     document.getElementById('LPSOffice').checked=true;
     dataTopics = dataTopics.replace('Microsoft Office','').trim();
