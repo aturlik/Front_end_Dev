@@ -86,8 +86,10 @@ for (var i = 0; i < dataTopics.length; i++) {
    testplox = testplox.concat(dataTopics[i]); 
  }
  window.alert(testplox);
-if (testplox.includes('Microsoft Office')) {
-  testplox.replace('hihi ', 'HIHIHIHII');
+ var newVar = testplox.repeat(1);
+if (newVar.includes('Microsoft Office')) {
+  newVar.replace('Excel', 'HIHIHIHII');
+  window.alert(newVar);
   window.alert(testplox);
 };
 
