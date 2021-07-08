@@ -30,6 +30,16 @@
                 <div class="invalid-tooltip" style="position: relative">Please input a request.</div>
             </div>
 
+            <script>
+                var reqLoc = window.location.href;
+
+                if(reqLoc.length != reqLoc.indexOf("request") + 7){
+                    var reqVal = reqLoc.slice(reqLoc.indexOf("=") + 1, reqLoc.length);
+                    reqVal = reqVal.replace(/%20/g, ' ');
+                    document.getElementById("request").value = reqVal;
+                }
+            </script>
+
             <!-- Comments Input Textbox -->
             <div class="col-sm">
                 <textarea class="form-control test" type="text" id="comments" name="comments" size="60"
