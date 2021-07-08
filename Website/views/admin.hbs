@@ -87,38 +87,30 @@ window.onload = function () {
   
   
   <!--Section for button toggles-->
-  var dataTopics= "{{{result.[Data Topic Area]}}} {{{result.[Programming Language]}}}".split(',').join(' ');
-  window.alert(dataTopics);
+ var dataTopics= "{{{result.[Data Topic Area]}}} {{{result.[Programming Language]}}}".split(',').join(' ');
  while (dataTopics.includes('Microsoft Office')) {
     document.getElementById('LPSOffice').checked=true;
     dataTopics = dataTopics.replace('Microsoft Office','').trim();
-    window.alert(dataTopics);
   };
-  
   while (dataTopics.includes('Data Science')) {
     document.getElementById('DTADataSci').checked=true;
     dataTopics = dataTopics.replace('Data Science','').trim();
-    window.alert(dataTopics);
   };  
   while (dataTopics.includes('Tutorial')) {
     document.getElementById('DTATut').checked=true;
     dataTopics = dataTopics.replace('Tutorial','').trim();
-    window.alert(dataTopics);
   };  
   while (dataTopics.includes('AI/Machine Learning')) {
     document.getElementById('DTAAI').checked=true;
     dataTopics = dataTopics.replace('AI/Machine Learning','').trim();
-    window.alert(dataTopics);
   };  
   while (dataTopics.includes('Coding')) {
     document.getElementById('DTACode').checked=true;
     dataTopics = dataTopics.replace('Coding','').trim();
-    window.alert(dataTopics);
   };  
   while (dataTopics.includes('Computer Skills')) {
     document.getElementById('DTAComSkil').checked=true;
     dataTopics = dataTopics.replace('Computer Skills','').trim();
-    window.alert(dataTopics);
   };  
   while (dataTopics.includes('Program Skills')) {
     document.getElementById('DTAProSkil').checked=true;
@@ -193,8 +185,6 @@ window.onload = function () {
     dataTopics = dataTopics.replace('Rhino','').trim();
   };
   document.getElementById('DTAOther').value = dataTopics;
-  
-  window.alert(dataTopics);
   <!------------------------------>
 };
 </script>
