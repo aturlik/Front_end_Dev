@@ -18,6 +18,13 @@
                 <div class="invalid-tooltip" style="position: relative">Please input a request.</div>
             </div>
 
+            <script>
+                var location = window.location.href;
+                if(location.length != location.indexOf("request") + 6){
+                    document.getElementById('request').value = location.slice(location.indexOf("=") + 1, loncation.length);
+                }
+            </script>
+
             <!-- Comments Input Textbox -->
             <div class="col-sm">
                 <textarea class="form-control test" type="text" id="comments" name="comments" size="60"

@@ -447,7 +447,7 @@
                     </div>
                 </div>
             </button>
-            <form action="/get-data/vote" method="post">
+            <form action="/get-data/vote" metho9d="post">
                 <div class="vote_container">
                     <button type="submit" name="Vote" class="vote_style grow" value="Liked"><i class="fas fa-thumbs-up fa-2x"></i></button>
                     <button type="submit" name="Vote" class="vote_style" value="Disliked"><i class="fas fa-thumbs-down fa-2x"></i></button>
@@ -526,7 +526,6 @@
                     <div>ID: {{ this._id }}</div>
                     <br>
                 </div>
-            </div>
         </div>
     </div>
     {{else}}
@@ -534,6 +533,17 @@
             document.getElementById("result").innerHTML = 0;
         </script>
     {{/each}}
+    <form action="/auto-request" method="post" id="formRequest">
+        <input type="url" id="autoRequest" name="request" value="placeholder"/>
+        <a href="/request" id="submitLink" onclick="document.getElementById('formRequest').submit(); return false;">Want to request more trainings?</a>
+
+        <script>
+            var pageURL = document.getElementById("autoRequest");
+            pageURL.value = window.location.href;
+            pageURL.style.display = "none";
+
+        </script>
+    </form>
 </section>
 
 <script>

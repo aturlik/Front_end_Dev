@@ -234,6 +234,13 @@ router.post('/request', function(req, res, next) {
   res.redirect('/request');
 });
 
+router.post('/auto-request', function(req, res, next){
+	var currUrl = req.body.request;
+	var contents = currUrl.slice(currUrl.indexOf("=") + 1, currUrl.length);
+
+	res.redirect('/request?data=' + contents);
+})
+
 router.post('/comments', function(req, res, next) {
   var item = {
     Comments: req.body.bugs
