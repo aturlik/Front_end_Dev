@@ -155,6 +155,12 @@
    .darkmode--activated #filter {
   color: white;
 }
+.darkmode--activated .modal-title{
+    color:lightgrey;
+}
+.darkmode--activated .modal-body{
+    color:lightgrey;
+}
 
 .darkmode--activated #arrowcolor {
   -webkit-filter: invert(1); 
@@ -246,7 +252,7 @@
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content" id="modaldark">
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                     </div>
@@ -500,17 +506,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <div class="form-check form-switch" style="float: right;">
-    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
+    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
 </div>
 <script>
   const darkmode =  new Darkmode();
   if(darkmode.isActivated()) {
+        $('input[name="radioButton"][value="hello"]').prop('checked', true);
           $('#navbarcolor').removeClass("navbar-light");
           $('#navbarcolor').addClass("navbar-dark");
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
       };
       if(!darkmode.isActivated()) {
           $('#navbarcolor').removeClass("navbar-dark");
           $('#navbarcolor').addClass("navbar-light");
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
       };
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
       darkmode.toggle();
@@ -518,10 +529,14 @@
       if(darkmode.isActivated()) {
           $('#navbarcolor').removeClass("navbar-light");
           $('#navbarcolor').addClass("navbar-dark");
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
       };
       if(!darkmode.isActivated()) {
           $('#navbarcolor').removeClass("navbar-dark");
           $('#navbarcolor').addClass("navbar-light");
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
       };
   });
 </script>
@@ -663,6 +678,7 @@
                         data-target="#myModalRep{{this._id}}" data-toggle="modal">
                     Report
                 </button>
+                <form action="/report" method="post">
                 <div class="modal fade" id="myModalRep{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -674,37 +690,34 @@
                                 <p>What's wrong with this resource?</p>
                                 <div class="btn-group-vertical" role="group" aria-label="Reports" id="report">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                        <input class="form-check-input" type="checkbox" name="report" value="Expired/Obsolete"
                                                id="CBEO">
                                         <label class="form-check-label" for="CBEO">Expired/Obsolete</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                        <input class="form-check-input" type="checkbox" name="report" value="Duplicate"
                                                id="CBDup">
                                         <label class="form-check-label" for="CBDup">Duplicate</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                        <input class="form-check-input" type="checkbox" name="report" value="Not Useful"
                                                id="CBNU">
                                         <label class="form-check-label" for="CBNU">Not Useful</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
+                                        <input class="form-check-input" type="checkbox" name="report" value="Against DoD Standards"
                                                id="CBDoD">
                                         <label class="form-check-label" for="CBDoD">Against DoD Standards</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="Report" value=""
-                                               id="CBOther">
-                                        <label class="form-check-label" for="CBOther">
-                                            <input type="text" id="RPOther" name="other" class="form-control"
-                                                   placeholder="Other" aria-label="Other">
+                                        <input type="text" id="RPOther" name="report" class="form-control"
+                                            placeholder="Other" aria-label="Other">
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                                <button type="submit" class="btn btn-outline-primary">
                                     Submit
                                 </button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -712,6 +725,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     {{else}}

@@ -3,7 +3,12 @@
   -webkit-filter: invert(1); 
   filter: invert(1);
 }
-
+.darkmode--activated .modal-title{
+    color:lightgrey;
+}
+.darkmode--activated .modal-body{
+    color:lightgrey;
+}
 </style>
 
 <!-- Navigation bar function to highlight that Search is active -->
@@ -13,12 +18,20 @@
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <div class="form-check form-switch" style="float: right;">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
 </div>
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
       darkmode.toggle();  
+      if(darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
+      };
+      if(!darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
+      };
   });
 </script>
 
@@ -47,7 +60,7 @@
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                             </div>
@@ -340,6 +353,17 @@ document.getElementById("secondaryButton").click();
     </section>
 
 </div>
+<script>
+      if(darkmode.isActivated()) {
+          $('input[name="radioButton"][value="hello"]').prop('checked', true);
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
+      };
+  if(!darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
+      };
+</script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
