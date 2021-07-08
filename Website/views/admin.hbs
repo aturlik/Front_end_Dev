@@ -81,8 +81,8 @@ let dataTopics, programLanguage;
 dataTopics = (' ' + "{{result.[Data Topic Area]}}").slice(1);
 if (dataTopics.includes('Microsoft Office')) {
   dataTopics.replace('Microsoft Office', '');
-    window.alert('hit');
-  document.getElementById('LPSOffice').checked = true;
+  document.getElementById('LPSOffice').click();
+  window.alert('hit');
 };
 
 window.alert(dataTopics);
