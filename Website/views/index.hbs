@@ -1,6 +1,25 @@
+<style>
+    .darkmode--activated #image {
+  -webkit-filter: invert(1); 
+  filter: invert(1);
+}
+
+</style>
+
 <!-- Navigation bar function to highlight that Search is active -->
 <script>
     $('.nav-item-a a').addClass("active");
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<div class="form-check form-switch" style="float: right;">
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
+</div>
+<script>
+  const darkmode =  new Darkmode();
+  document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
+      darkmode.toggle();  
+  });
 </script>
 
 <div class="text-center">
@@ -20,7 +39,7 @@
                 <!-- Button to call on Help Modal -->
                 <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                     <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
-                        <img src="images/Help_Icon.png" alt="help">
+                        <img src="images/Help_Icon.png" alt="help" id="image">
                     </button>
                 </span>
 
