@@ -17,8 +17,28 @@ router.get('/insert', function(req, res, next) {
   res.render('add');
 });
 
-router.get('/admin', function(req, res, next) {
-  res.render('admin');
+router.get('/admin', async(req, res, next) => {
+  var id = req.query.idsearch;
+  var results = [];
+  if (id !="") {
+    try {
+    var client = new MongoClient(url);
+    await client.connect();
+    var data = await client.db("Trainings");
+    var o_id = objectId(id); 
+    var result = await data.collection("FormattedRawData").findOne({"_id":o_id});
+    }       
+    catch (e) {
+	   console.error(e);
+    }
+    finally {
+	    await client.close();
+	    res.render('admin', {id:id, result:result});
+    }
+  }
+  else {
+	res.render('admin', {id: "how you hit this"});
+  }
 });
 
 router.get('/request', function(req, res, next) {
