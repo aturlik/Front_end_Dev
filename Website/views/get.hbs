@@ -618,7 +618,7 @@
                     </div>
                 </div>
             </button>
-            <form action="/get-data/vote" metho9d="post">
+            <form action="/get-data/vote" method="post">
                 <div class="vote_container">
                     <button type="submit" name="Vote" class="vote_style grow" value="Liked"><i class="fas fa-thumbs-up fa-2x"></i></button>
                     <button type="submit" name="Vote" class="vote_style" value="Disliked"><i class="fas fa-thumbs-down fa-2x"></i></button>
@@ -706,6 +706,7 @@
                 data-target="#myModalRep{{this._id}}" data-toggle="modal">
                 Report
             </button>
+            <form action="/report" method="post">
             <div class="modal fade" id="myModalRep{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -745,11 +746,13 @@
                                     </label>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                                    <button type="submit" class="btn btn-outline-primary" data-dismiss="modal">
                                         Submit
                                     </button>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>
+                                <input type="text" id="reportid" name="reportid" value="{{this._id}}" style="display: none;">
+</input>
                             </div>
                         </div>
                     </div>
