@@ -46,7 +46,12 @@
   -webkit-filter: invert(1); 
   filter: invert(1);
 }
-
+.darkmode--activated .modal-title{
+    color:lightgrey;
+}
+.darkmode--activated .modal-body{
+    color:lightgrey;
+}
 .collapsible {
   background-color: #eee;
   color: #444;
@@ -55,7 +60,6 @@
   outline: none;
   padding: 10px;
   border: 0px;
-  margin: center;
 }
     .arrow {
         border: solid black;
@@ -84,12 +88,76 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <div class="form-check form-switch" style="float: right;">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
 </div>
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
       darkmode.toggle();  
+      if(darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
+          $('#modaldark2').removeClass("bg-light");
+          $('#modaldark2').addClass("bg-dark");
+          $('#modaldark3').removeClass("bg-light");
+          $('#modaldark3').addClass("bg-dark");
+          $('#modaldark4').removeClass("bg-light");
+          $('#modaldark4').addClass("bg-dark");
+          $('#modaldark5').removeClass("bg-light");
+          $('#modaldark5').addClass("bg-dark");
+          $('#modaldark6').removeClass("bg-light");
+          $('#modaldark6').addClass("bg-dark");
+          $('#modaldark7').removeClass("bg-light");
+          $('#modaldark7').addClass("bg-dark");
+          $('#modaldark8').removeClass("bg-light");
+          $('#modaldark8').addClass("bg-dark");
+          $('#modaldark9').removeClass("bg-light");
+          $('#modaldark9').addClass("bg-dark");
+          $('#modaldark10').removeClass("bg-light");
+          $('#modaldark10').addClass("bg-dark");
+          $('#modaldark11').removeClass("bg-light");
+          $('#modaldark11').addClass("bg-dark");
+          $('#modaldark12').removeClass("bg-light");
+          $('#modaldark12').addClass("bg-dark");
+          $('#modaldark13').removeClass("bg-light");
+          $('#modaldark13').addClass("bg-dark");
+          $('#modaldark14').removeClass("bg-light");
+          $('#modaldark14').addClass("bg-dark");
+      };
+      if(!darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-dark");
+          $('#modaldark1').addClass("bg-light");
+          $('#modaldark2').removeClass("bg-dark");
+          $('#modaldark2').addClass("bg-light");
+          $('#modaldark3').removeClass("bg-dark");
+          $('#modaldark3').addClass("bg-light");
+          $('#modaldark4').removeClass("bg-dark");
+          $('#modaldark4').addClass("bg-light");
+          $('#modaldark5').removeClass("bg-dark");
+          $('#modaldark5').addClass("bg-light");
+          $('#modaldark6').removeClass("bg-dark");
+          $('#modaldark6').addClass("bg-light");
+          $('#modaldark7').removeClass("bg-dark");
+          $('#modaldark7').addClass("bg-light");
+          $('#modaldark8').removeClass("bg-dark");
+          $('#modaldark8').addClass("bg-light");
+          $('#modaldark9').removeClass("bg-dark");
+          $('#modaldark9').addClass("bg-light");
+          $('#modaldark10').removeClass("bg-dark");
+          $('#modaldark10').addClass("bg-light");
+          $('#modaldark11').removeClass("bg-dark");
+          $('#modaldark11').addClass("bg-light");
+          $('#modaldark12').removeClass("bg-dark");
+          $('#modaldark12').addClass("bg-light");
+          $('#modaldark13').removeClass("bg-dark");
+          $('#modaldark13').addClass("bg-light");
+          $('#modaldark14').removeClass("bg-dark");
+          $('#modaldark14').addClass("bg-light");
+      };
   });
 </script>
 <script>
@@ -108,7 +176,7 @@ $('.nav-item-c a').addClass("active");
                 <!-- Button to call on Main Help Tutorial Modal -->
                 <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                     <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
-                        <img src="images/Help_Icon.png" alt="help" id="image">
+                        <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
                     </button>
                 </span>
 
@@ -116,7 +184,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                             </div>
@@ -210,7 +278,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalTitle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark1">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Title</h4>
                             </div>
@@ -233,7 +301,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalURL" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark2">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">URL</h4>
                             </div>
@@ -256,7 +324,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalTC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark3">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Time Commitment</h4>
                             </div>
@@ -281,7 +349,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalCost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark4">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Cost</h4>
                             </div>
@@ -305,7 +373,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalPacing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark5">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Pacing</h4>
                             </div>
@@ -334,7 +402,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalCert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark6">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Certifications</h4>
                             </div>
@@ -362,7 +430,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalExp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark7">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Experience Level</h4>
                             </div>
@@ -399,7 +467,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalClear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark8">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Clearance</h4>
                             </div>
@@ -426,7 +494,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalProvider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark9">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Provider</h4>
                             </div>
@@ -449,7 +517,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalLoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark10">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Location</h4>
                             </div>
@@ -474,7 +542,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalMed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark11">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Medium</h4>
                             </div>
@@ -501,7 +569,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalLearning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark12">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Learning Type</h4>
                             </div>
@@ -532,7 +600,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark13">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Keywords</h4>
                             </div>
@@ -557,7 +625,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModalCom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark14">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Comments</h4>
                             </div>
@@ -809,7 +877,7 @@ $('.nav-item-c a').addClass("active");
             </div>
 
             <!-- Button to insert data into database and call on submit Modal -->
-            <div class="d-grid gap-2 col-6 mx-auto">
+            <div class="d-grid gap-2 col-6 mx-auto darkmode-ignore">
                 <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
             </div>
         </form>
@@ -844,6 +912,73 @@ $('.nav-item-c a').addClass("active");
     </section>
 </div>
 
+<script>
+    if(darkmode.isActivated()) {
+        $('input[name="radioButton"][value="hello"]').prop('checked', true);
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
+          $('#modaldark2').removeClass("bg-light");
+          $('#modaldark2').addClass("bg-dark");
+          $('#modaldark3').removeClass("bg-light");
+          $('#modaldark3').addClass("bg-dark");
+          $('#modaldark4').removeClass("bg-light");
+          $('#modaldark4').addClass("bg-dark");
+          $('#modaldark5').removeClass("bg-light");
+          $('#modaldark5').addClass("bg-dark");
+          $('#modaldark6').removeClass("bg-light");
+          $('#modaldark6').addClass("bg-dark");
+          $('#modaldark7').removeClass("bg-light");
+          $('#modaldark7').addClass("bg-dark");
+          $('#modaldark8').removeClass("bg-light");
+          $('#modaldark8').addClass("bg-dark");
+          $('#modaldark9').removeClass("bg-light");
+          $('#modaldark9').addClass("bg-dark");
+          $('#modaldark10').removeClass("bg-light");
+          $('#modaldark10').addClass("bg-dark");
+          $('#modaldark11').removeClass("bg-light");
+          $('#modaldark11').addClass("bg-dark");
+          $('#modaldark12').removeClass("bg-light");
+          $('#modaldark12').addClass("bg-dark");
+          $('#modaldark13').removeClass("bg-light");
+          $('#modaldark13').addClass("bg-dark");
+          $('#modaldark14').removeClass("bg-light");
+          $('#modaldark14').addClass("bg-dark");
+      };
+      if(!darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-dark");
+          $('#modaldark1').addClass("bg-light");
+          $('#modaldark2').removeClass("bg-dark");
+          $('#modaldark2').addClass("bg-light");
+          $('#modaldark3').removeClass("bg-dark");
+          $('#modaldark3').addClass("bg-light");
+          $('#modaldark4').removeClass("bg-dark");
+          $('#modaldark4').addClass("bg-light");
+          $('#modaldark5').removeClass("bg-dark");
+          $('#modaldark5').addClass("bg-light");
+          $('#modaldark6').removeClass("bg-dark");
+          $('#modaldark6').addClass("bg-light");
+          $('#modaldark7').removeClass("bg-dark");
+          $('#modaldark7').addClass("bg-light");
+          $('#modaldark8').removeClass("bg-dark");
+          $('#modaldark8').addClass("bg-light");
+          $('#modaldark9').removeClass("bg-dark");
+          $('#modaldark9').addClass("bg-light");
+          $('#modaldark10').removeClass("bg-dark");
+          $('#modaldark10').addClass("bg-light");
+          $('#modaldark11').removeClass("bg-dark");
+          $('#modaldark11').addClass("bg-light");
+          $('#modaldark12').removeClass("bg-dark");
+          $('#modaldark12').addClass("bg-light");
+          $('#modaldark13').removeClass("bg-dark");
+          $('#modaldark13').addClass("bg-light");
+          $('#modaldark14').removeClass("bg-dark");
+          $('#modaldark14').addClass("bg-light");
+      };
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

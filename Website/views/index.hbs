@@ -1,9 +1,14 @@
 <style>
-    .darkmode--activated #image {
+.darkmode--activated #image {
   -webkit-filter: invert(1); 
   filter: invert(1);
 }
-
+.darkmode--activated .modal-title{
+    color:lightgrey;
+}
+.darkmode--activated .modal-body{
+    color:lightgrey;
+}
 </style>
 
 <!-- Navigation bar function to highlight that Search is active -->
@@ -13,12 +18,20 @@
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <div class="form-check form-switch" style="float: right;">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right"/>
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
 </div>
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
       darkmode.toggle();  
+      if(darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
+      };
+      if(!darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
+      };
   });
 </script>
 
@@ -39,7 +52,7 @@
                 <!-- Button to call on Help Modal -->
                 <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                     <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
-                        <img src="images/Help_Icon.png" alt="help" id="image">
+                        <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
                     </button>
                 </span>
 
@@ -47,7 +60,7 @@
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content" id="modaldark">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                             </div>
@@ -56,12 +69,6 @@
                                 <p>Enter the Training Resource you would like to acquire in "Search Terms".
                                 Next, Specify how that search term is related in "Search Field". Finally, click "Submit"
                                 to be shown a list of results.</p>
-                                <p><b>Have resource of your own that you would like to add to the database?</b>
-                                    <br>Click "Add Data" on the top of the page.</p>
-                                <p><b>Want more resources on a certain topic?</b>
-                                    <br>Click "Request" on the top of the page.</p>
-                                <p><b>Found any bugs or want any general changes to the website?</b>
-                                    <br>Click "Comments" on the top of the page.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -72,7 +79,7 @@
             </td>
         </table>
 
-        <form action="/specify" method="post">
+    <form action="/specify" method="post">
             <div class="row">
                 <!-- Search Field to specify to user where the search function wants to look -->
                 <!-- Search Textbox -->
@@ -82,14 +89,240 @@
 
             <!-- Search Submit Button -->
                 <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid">
-                    <form action="/get-data">
-                        <button type="submit" class="btn btn-outline-secondary">Submit</button>
-                    </form>
+                        <button type="button" class="btn btn-outline-secondary" onclick="fnc()">Submit</button>
                 </div>
-
+            
             </div>
-
+            
 </div>
+
+<nav class="navbar navbar-expand-md navbar-light d-none d-md-block">
+  <div class="container-fluid">
+         <div class="collapse navbar-collapse justify-content-center" id="navbarFilter" role="group">
+                <ul class="navbar-nav justify-content-center">
+                    <li class="nav-title"></li>
+                    <li class="nav-item-dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="CostDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Cost
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="CostDropdownMenuLink" role="group" id="TST">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="TST" id="FreedropdownCheck"
+                                           value="Free">
+                                    <label class="form-check-label" for="FreedropdownCheck">
+                                        Free
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="TST" id="PaiddropdownCheck"
+                                           value="Paid">
+                                    <label class="form-check-label" for="PaiddropdownCheck">
+                                        Paid
+                                    </label>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="BarrierDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Experience Level
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="BarrierDropdownMenuLink" role="group" id="LVL">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="BegindropdownCheck" name="LVL"
+                                           value="Beginner">
+                                    <label class="form-check-label" for="BegindropdownCheck">
+                                        Beginner
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="InterdropdownCheck" name="LVL"
+                                           value="Intermediate">
+                                    <label class="form-check-label" for="InterdropdownCheck">
+                                        Intermediate
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="AdvdropdownCheck" name="LVL"
+                                           value="Advanced">
+                                    <label class="form-check-label" for="AdvdropdownCheck">
+                                        Advanced
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="ExpdropdownCheck" name="LVL"
+                                           value="Expert">
+                                    <label class="form-check-label" for="ExpdropdownCheck">
+                                        Expert
+                                    </label>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ClearDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Clearance
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="ClearDropdownMenuLink" role="group" id="PDOD">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="PDOD" id="PublicdropdownCheck"
+                                           value="Public">
+                                    <label class="form-check-label" for="PublicdropdownCheck">
+                                        Public
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="PDOD" id="DODdropdownCheck"
+                                           value="DOD">
+                                    <label class="form-check-label" for="DODdropdownCheck">
+                                        DOD Only
+                                    </label>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="RDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Placement
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="RDropdownMenuLink" role="group" id="RIP">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="RIP" id="RdropdownCheck"
+                                           value="Remote">
+                                    <label class="form-check-label" for="RdropdownCheck">
+                                        Remote
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="RIP" id="IndropdownCheck"
+                                           value="In Person">
+                                    <label class="form-check-label" for="IndropdownCheck">
+                                        In Person
+                                    </label>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="PaceDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Pacing
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="PaceDropdownMenuLink" role="group" id="SPIL">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="SPIL" id="SelfdropdownCheck"
+                                           value="Self Paced">
+                                    <label class="form-check-label" for="SelfdropdownCheck">
+                                        Self Paced
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="SPIL"
+                                           id="InstructdropdownCheck" value="Instructor Led">
+                                    <label class="form-check-label" for="InstructdropdownCheck">
+                                        Instructor Led
+                                    </label>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="LearnDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Learning Type
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="LearnDropdownMenuLink" role="group" id="LRN">
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="BdropdownCheck"
+                                           value="Book">
+                                    <label class="form-check-label" for="BdropdownCheck">
+                                        Book
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="TdropdownCheck"
+                                           value="Text">
+                                    <label class="form-check-label" for="TdropdownCheck">
+                                        Text
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="VdropdownCheck"
+                                           value="Video">
+                                    <label class="form-check-label" for="VdropdownCheck">
+                                        Video
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="LdropdownCheck"
+                                           value="Lecture">
+                                    <label class="form-check-label" for="LdropdownCheck">
+                                        Lecture
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="CdropdownCheck"
+                                           value="Classroom">
+                                    <label class="form-check-label" for="CdropdownCheck">
+                                        Classroom
+                                    </label>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="LRN" id="IdropdownCheck"
+                                           value="Interactive">
+                                    <label class="form-check-label" for="IdropdownCheck">
+                                        Interactive
+                                    </label>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<input type="submit" id="secondaryButton" style="display: none;"/>
+
+<script>
+function fnc()
+{
+document.getElementById("secondaryButton").click();
+}
+</script>
                 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
                 <script>
                     $(document).ready(function() {
@@ -112,7 +345,19 @@
             </script>
         </form>
     </section>
+
 </div>
+<script>
+      if(darkmode.isActivated()) {
+          $('input[name="radioButton"][value="hello"]').prop('checked', true);
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
+      };
+  if(!darkmode.isActivated()) {
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
+      };
+</script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
