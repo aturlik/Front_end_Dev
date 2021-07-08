@@ -44,6 +44,16 @@
                 <div class="invalid-tooltip" style="position: relative">Please input a request.</div>
             </div>
 
+            <script>
+                var reqLoc = window.location.href;
+
+                if(reqLoc.length != reqLoc.indexOf("request") + 7){
+                    var reqVal = reqLoc.slice(reqLoc.indexOf("=") + 1, reqLoc.length);
+                    reqVal = reqVal.replace(/%20/g, ' ');
+                    document.getElementById("request").value = reqVal;
+                }
+            </script>
+
             <!-- Comments Input Textbox -->
             <div class="col-sm">
                 <textarea class="form-control test" type="text" id="comments" name="comments" size="60"
@@ -58,7 +68,7 @@
                             <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                                 <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
                                         disabled>
-                                    <img src="images/Help_Icon.png" alt="help" id="image">
+                                    <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
                                 </button>
                             </span>
 
