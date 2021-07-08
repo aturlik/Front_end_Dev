@@ -112,6 +112,7 @@
 
     .tag_style {
         font-size: 15px;
+        background-color: #003042;
     }
     /*****************************************************************
         Creating the specifications or other elements on the page
@@ -576,19 +577,23 @@
                     </div>
                     <div class="col-">
                         <i class="arrow up arrow_pos" id="arrow{{this._id}}"></i>
-                        <span class="tag_pos tag_style badge bg-secondary">Difficulty: {{ this.[Barrier to Entry]}}</span>
+                        <span class="tag_pos tag_style badge">Difficulty: {{ this.[Barrier to Entry]}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <span class="tag_pos2 tag_style badge bg-secondary">{{ this.[In person vs Remote] }}</span>
-                        <span class="tag_pos3 tag_style badge bg-secondary">{{ this.[Self Paced vs Instructor Led] }}</span>
-                        <span class="tag_pos4 tag_style badge bg-secondary">{{ this.[Public/DOD] }}</span>
+                        <span class="tag_pos2 tag_style badge">{{ this.[In person vs Remote] }}</span>
+                        <span class="tag_pos3 tag_style badge">{{ this.[Self Paced vs Instructor Led] }}</span>
+                        <span class="tag_pos4 tag_style badge">{{ this.[Public/DOD] }}</span>
                     </div>
                     <div class="col-">
-                        {{#if this.[Helpfullness Rating]}}
-                            <span class="tag_pos tag_style badge bg-secondary">Rating: {{ this.[Helpfullness Rating] }}%</span>
-                        {{/if}}
+                        <span class="tag_pos tag_style badge" id="ratingDisp{{this._id}}">Rating: {{ this.[Helpfullness Rating] }}%</span>
+
+                        <script>
+                            if("{{ this.[Helpfullness Rating] }}" == ""){
+                                document.getElementById("ratingDisp{{this._id}}").innerHTML = "Unrated"
+                            }
+                        </script>
                     </div>
                 </div>
             </button>
