@@ -80,8 +80,8 @@ var idscript = "{{result._id}}";
 let dataTopics, programLanguage;
 dataTopics = (' ' + "{{result.[Data Topic Area]}}").slice(1);
 if (dataTopics.includes('Microsoft Office')) {
-  window.alert(dataTopics);
   dataTopics.replace('Microsoft Office', '');
+    window.alert(dataTopics);
   document.getElementById('LPSOffice').checked = true;
 };
 
