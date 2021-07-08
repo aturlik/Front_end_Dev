@@ -76,17 +76,7 @@
 <script>
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
-<!--Section for button toggles-->
 
-var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel";
-ret2 = (ret.repeat(1)).replace('Microsoft Office','');
-
-var dataTopics= "{{{result.[Data Topic Area]}}}".split(',').join(' ');
-if (newVar.includes('Microsoft Office')) {
-  var testper document.getElementById('LPSOffice');
-  window.alert(testper);
-};
-<!------------------------------>
 window.onload = function () {
   var element = document.getElementById(112233);
   if (idscript !== "") {
@@ -94,6 +84,19 @@ window.onload = function () {
   } else {
     element.classList.add("d-none");
   }
+  
+  
+  <!--Section for button toggles-->
+
+  var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel";
+  ret2 = (ret.repeat(1)).replace('Microsoft Office','');
+
+  var dataTopics= "{{{result.[Data Topic Area]}}}".split(',').join(' ');
+  if (newVar.includes('Microsoft Office')) {
+    document.getElementById('LPSOffice').checked=true;
+  };
+  
+  <!------------------------------>
 };
 </script>
 
