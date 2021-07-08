@@ -19,9 +19,12 @@
             </div>
 
             <script>
-                var location = window.location.href;
-                if(location.length != location.indexOf("request") + 6){
-                    document.getElementById('request').value = location.slice(location.indexOf("=") + 1, loncation.length);
+                var reqLoc = window.location.href;
+
+                if(reqLoc.length != reqLoc.indexOf("request") + 7){
+                    var reqVal = reqLoc.slice(reqLoc.indexOf("=") + 1, reqLoc.length);
+                    reqVal = reqVal.replace(/%20/g, ' ');
+                    document.getElementById("request").value = reqVal;
                 }
             </script>
 

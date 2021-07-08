@@ -50,6 +50,10 @@
         position: relative;
     }
 
+    .endOfResults{
+        text-align: center;
+    }
+
     /* Container Style*/
     .item {
         border-width: 1px;
@@ -533,17 +537,19 @@
             document.getElementById("result").innerHTML = 0;
         </script>
     {{/each}}
-    <form action="/auto-request" method="post" id="formRequest">
-        <input type="url" id="autoRequest" name="request" value="placeholder"/>
-        <a href="/request" id="submitLink" onclick="document.getElementById('formRequest').submit(); return false;">Want to request more trainings?</a>
+    <div class="endOfResults">
+        <h5 style="color: #7a7a7a">End of Results</h5>
+        <form action="/auto-request" method="post" id="formRequest">
+            <input type="url" id="autoRequest" name="request" value="placeholder" />
+            <a href="/request" id="submitLink" onclick="document.getElementById('formRequest').submit(); return false;">Want to request more trainings?</a>
 
-        <script>
-            var pageURL = document.getElementById("autoRequest");
-            pageURL.value = window.location.href;
-            pageURL.style.display = "none";
-
-        </script>
-    </form>
+            <script>
+                var pageURL = document.getElementById("autoRequest");
+                pageURL.value = window.location.href;
+                pageURL.style.display = "none";
+            </script>
+        </form>
+    </div>
 </section>
 
 <script>
