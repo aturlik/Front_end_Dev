@@ -83,7 +83,8 @@ ret2 = (ret.repeat(1)).replace('Microsoft Office','');
 
 var dataTopics= "{{{result.[Data Topic Area]}}}".split(',').join(' ');
 if (newVar.includes('Microsoft Office')) {
- $("#LPSOffice").prop("checked", true);
+  var testper document.getElementById('LPSOffice');
+  window.alert(testper);
 };
 <!------------------------------>
 window.onload = function () {
