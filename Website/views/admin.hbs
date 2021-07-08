@@ -87,17 +87,15 @@ window.onload = function () {
   
   
   <!--Section for button toggles-->
-
-  var ret = "Microsoft Office, Basic Computer Skills, Microsoft Excel";
-  ret2 = (ret.repeat(1)).replace('Microsoft Office','');
-
   var dataTopics= "{{{result.[Data Topic Area]}}}".split(',').join(' ');
   if (dataTopics.includes('Microsoft Office')) {
     document.getElementById('LPSOffice').checked=true;
-    dataTopics = dataTopics.replace('Microsoft Office','');
-    window.alert(dataTopics);
+    dataTopics = dataTopics.replace('Microsoft Office','').trim();
   };
   
+  
+  
+  window.alert(dataTopics);
   <!------------------------------>
 };
 </script>
