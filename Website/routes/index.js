@@ -222,7 +222,32 @@ router.post('/insert', function(req, res, next) {
 
 router.post('/specify', function(req, res, next) {
   specdata = req.body.SpefString;
-  res.redirect("/get-data?data=" + specdata);
+  var cost = req.body.TST;
+  var level = req.body.LVL;
+  var public = req.body.PDOD;
+  var remote = req.body.RIP;
+  var selfp = req.body.SPIL;
+  var learn = req.body.LRN;
+  var urladditives = "";
+  if(cost != null){
+    urladditives = urladditives.concat("&cost=" + cost)
+  };
+  if(level != null){
+    urladditives = urladditives.concat("&level=" + level)
+  };
+  if(public != null){
+    urladditives = urladditives.concat("&public=" + public)
+  };
+  if(remote != null){
+    urladditives = urladditives.concat("&remote=" + remote)
+  };
+  if(selfp != null){
+    urladditives = urladditives.concat("&self=" + selfp)
+  };
+  if(learn != null){
+    urladditives = urladditives.concat("&learn=" + learn)
+  };
+  res.redirect("/get-data?data=" + specdata + urladditives);
 });
 
 
