@@ -262,7 +262,7 @@ router.post('/specify', function(req, res, next) {
     urladditives = urladditives.concat("&remote=" + remote)
   };
   if(selfp != null){
-    urladditives = urladditives.concat("&self=" + selfp)
+    urladditives = urladditives.concat("&pacing=" + selfp)
   };
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
@@ -336,7 +336,7 @@ router.post('/get_data', function(req, res, next) {
     urladditives = urladditives.concat("&remote=" + remote)
   };
   if(selfp != null){
-    urladditives = urladditives.concat("&self=" + selfp)
+    urladditives = urladditives.concat("&pacing=" + selfp)
   };
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
@@ -407,12 +407,13 @@ router.post('/delete', function(req, res, next) {
 
 router.post('/report', function(req, res, next) {
   var items = req.body.report;
+  var itemid = req.body.reportid;
   console.log(String(typeof(items)));
   if(String(typeof(items)) != "string"){
     items = items.filter(test => test.length > 1);
     items = items.join(", ");
   };
-  var item = {"Report": items};
+  var item = {"ReportedID": itemid, "Problem": items} ;
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.strictEqual(null, err);
@@ -423,6 +424,7 @@ router.post('/report', function(req, res, next) {
   });
   res.redirect('/get-data?data=data');
 });
+
 
 
 module.exports = router;
