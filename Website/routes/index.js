@@ -17,8 +17,28 @@ router.get('/insert', function(req, res, next) {
   res.render('add');
 });
 
-router.get('/admin', function(req, res, next) {
-  res.render('admin');
+router.get('/admin', async(req, res, next) => {
+  var id = req.query.idsearch;
+  var results = [];
+  if (id !="") {
+    try {
+    var client = new MongoClient(url);
+    await client.connect();
+    var data = await client.db("Trainings");
+    var o_id = objectId(id); 
+    var result = await data.collection("FormattedRawData").findOne({"_id":o_id});
+    }       
+    catch (e) {
+	   console.error(e);
+    }
+    finally {
+	    await client.close();
+	    res.render('admin', {id:id, result:result});
+    }
+  }
+  else {
+	res.render('admin', {id: "how you hit this"});
+  }
 });
 
 router.get('/request', function(req, res, next) {
@@ -132,7 +152,6 @@ router.get("/search", async (request, response) => {
 router.post('/get-data/vote', function(req, res, next){
 	var dataUrl = req.body.url;
 	var inital = 0;
-	console.log(req.body.id)
 
 	if(req.body.Vote == "Liked"){
 		inital = 1;
@@ -148,7 +167,6 @@ router.post('/get-data/vote', function(req, res, next){
 
 		async function run(){
 			const file =  await db.collection('FormattedRawData').find(query).toArray();
-			console.log(file);
 			
 			if(file.length > 0){
 				if(file[0].hasOwnProperty("voteCount")){
@@ -167,12 +185,10 @@ router.post('/get-data/vote', function(req, res, next){
 				}
 			}
 		}
-		run();
-
-		
+		run().then(()=>res.redirect(dataUrl));
 	});
 
-	res.redirect(dataUrl);
+	
 });
 
 router.post('/insert', function(req, res, next) {
@@ -222,7 +238,32 @@ router.post('/insert', function(req, res, next) {
 
 router.post('/specify', function(req, res, next) {
   specdata = req.body.SpefString;
-  res.redirect("/get-data?data=" + specdata);
+  var cost = req.body.TST;
+  var level = req.body.LVL;
+  var public = req.body.PDOD;
+  var remote = req.body.RIP;
+  var selfp = req.body.SPIL;
+  var learn = req.body.LRN;
+  var urladditives = "";
+  if(cost != null){
+    urladditives = urladditives.concat("&cost=" + cost)
+  };
+  if(level != null){
+    urladditives = urladditives.concat("&level=" + level)
+  };
+  if(public != null){
+    urladditives = urladditives.concat("&public=" + public)
+  };
+  if(remote != null){
+    urladditives = urladditives.concat("&remote=" + remote)
+  };
+  if(selfp != null){
+    urladditives = urladditives.concat("&self=" + selfp)
+  };
+  if(learn != null){
+    urladditives = urladditives.concat("&learn=" + learn)
+  };
+  res.redirect("/get-data?data=" + specdata + urladditives);
 });
 
 
@@ -243,6 +284,13 @@ router.post('/request', function(req, res, next) {
   });
   res.redirect('/request');
 });
+
+router.post('/auto-request', function(req, res, next){
+	var currUrl = req.body.request;
+	var contents = currUrl.slice(currUrl.indexOf("=") + 1, currUrl.length);
+
+	res.redirect('/request?data=' + contents);
+})
 
 router.post('/comments', function(req, res, next) {
   var item = {
@@ -340,5 +388,25 @@ router.post('/delete', function(req, res, next) {
   });
   res.redirect('/others');
 });
+
+router.post('/report', function(req, res, next) {
+  var items = req.body.report;
+  console.log(String(typeof(items)));
+  if(String(typeof(items)) != "string"){
+    items = items.filter(test => test.length > 1);
+    items = items.join(", ");
+  };
+  var item = {"Report": items};
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings');
+    assert.strictEqual(null, err);
+    db.collection('User Reports').insertOne(item, function(err, result) {
+      assert.strictEqual(null, err);
+      client.close();
+    });
+  });
+  res.redirect('/get-data?data=data');
+});
+
 
 module.exports = router;
