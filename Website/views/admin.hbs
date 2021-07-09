@@ -249,10 +249,12 @@ window.onload = function () {
 </script>
 
 <div class="container>
-    <form action="/updatesearch" method="post">
-      <input type="text" id="idsearch" class="form-control" name="idsearch" value="{{result._id}}">
-      <button type="submit" class="btn btn-primary">find</button>
-    </form>
+    <div class="row">
+      <form action="/updatesearch" method="post">
+        <input type="text" id="idsearch" class="form-control" name="idsearch" value="{{result._id}}">
+        <button type="submit" class="btn btn-primary">find</button>
+      </form>
+    </div>
 </div>
 
 
