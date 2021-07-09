@@ -186,9 +186,7 @@ window.onload = function () {
   };
   document.getElementById('DTAOther').value = dataTopics;
   <!--Section for other buttons-->
-  window.alert('other buttons');
    var SPILstr= "{{{result.[Self Paced vs Instructor Led]}}}".split(',').join(' ');
-   window.alert(SPILstr);
    if (SPILstr.includes('Self')) {
       document.getElementById('SPILself').checked=true;
    };
@@ -196,7 +194,6 @@ window.onload = function () {
       document.getElementById('SPILins').checked=true;
    };
    var CDPstr= "{{{result.[Certificate/Degree Program]}}}".split(',').join(' ');
-      window.alert(CDPstr);
    if (CDPstr.includes('Cert')) {
       document.getElementById('CDPCert').checked=true;
    };
@@ -204,7 +201,6 @@ window.onload = function () {
       document.getElementById('CDPDeg').checked=true;
    };
    var BEstr= "{{{result.[Barrier to Entry]}}}".split(',').join(' ');
-         window.alert(BEstr);
    if (BEstr.includes('Beginner')) {
       document.getElementById('BEBeg').checked=true;
    };
@@ -218,7 +214,6 @@ window.onload = function () {
       document.getElementById('BEExp').checked=true;
    };
    var PDODstr= "{{{result.[Public/DOD]}}}".split(',').join(' ');
-            window.alert(PDODstr);
    if (PDODstr.includes('Public')) {
       document.getElementById('PDODP').checked=true;
    };
@@ -226,7 +221,6 @@ window.onload = function () {
       document.getElementById('PDODD').checked=true;
    };
    var PRstr= "{{{result.[In person vs Remote]}}}".split(',').join(' ');
-               window.alert(PRstr);
    if (PRstr.includes('Remote')) {
       document.getElementById('PRR').checked=true;
    };
@@ -234,7 +228,6 @@ window.onload = function () {
       document.getElementById('PRP').checked=true;
    };
    var LTstr= "{{{result.[Learning type]}}}".split(',').join(' ');
-                  window.alert(LTstr);
    if (LTstr.includes('Text')) {
       document.getElementById('LTT').checked=true;
    };
