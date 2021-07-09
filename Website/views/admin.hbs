@@ -186,7 +186,9 @@ window.onload = function () {
   };
   document.getElementById('DTAOther').value = dataTopics;
   <!--Section for other buttons-->
+  window.alert('other buttons');
    var SPILstr= "{{{result.[Self Paced vs Instructor Led]}}}".split(',').join(' ');
+   window.alert(SPILstr);
    if (SPILstr.includes('Self')) {
       document.getElementById('SPILself').checked=true;
    };
