@@ -253,9 +253,12 @@ window.onload = function () {
   <section class="update">
     <h3 class='title'>Update Data</h3>
     <form action"/updatesearch" method="post>
-            <label for="idsearch">ID</label>
-            <input type="text" id="idsearch" class="form-control" name="idsearch" value="{{result._id}}">
-      <button type="submit" class="btn btn-primary">find</button>
+      <div class="col-sm">
+        <input type="text" id="idsearch" class="form-control" name="idsearch" placeholder="ID" value="{{result._id}}">
+      </div>
+      <div class"col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid">
+        <button type="submit" class="btn btn-primary">find</button>
+      </div>
     </form>
     </div>
     <div class="container d-none" id="112233">
@@ -496,11 +499,12 @@ window.onload = function () {
       <section class="delete">
           <h3>Delete Data</h3>
           <form action="/delete" method="post">
-              <div class="input">
-                  <label for="id">ID</label>
-                  <input type="text" id="id" name="id" class="form-control">
+              <div class="col-sm">
+                  <input type="text" id="id" name="id" placeholder="ID" class="form-control">
               </div>
-              <button type="submit" class="btn btn-primary">DELETE</button>
+              <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid">
+                <button type="submit" class="btn btn-primary">Delete</button>
+              </div>
           </form>
       </section>
   </div>
