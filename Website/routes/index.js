@@ -215,18 +215,17 @@ router.post('/insert', function(req, res, next) {
     URL: req.body.url,
     Provider: req.body.provider,
     Cost: req.body.cost,
-    PublicOrDOD: req.body.PDOD,
-    TimeCommitment: req.body.TCH,
-    Cert_Degree: req.body.CDP,
-    Data_Topics: topic,
-    Programming_Language: language,
-    Base_of_Operations: req.body.BOO,
-    Barrier: req.body.BE,
-    Self_Paced: req.body.SPIL,
-    Learning_Type: learning,
-    InPerson: req.body.PR,
+    "Public/DOD": req.body.PDOD,
+    "Time Commitment (Hours)": req.body.TCH,
+    "Certificate/Degree Program": req.body.CDP,
+    "Data Topic Area": topic,
+    "Programming Language": language,
+    "Base of Operations": req.body.BOO,
+    "Barrier to Entry": req.body.BE,
+    "Self Paced vs Instructor Led": req.body.SPIL,
+    "Learning type": learning,
+    "In person vs Remote": req.body.PR,
     Comment: req.body.comment,
-    Topics: req.body.TG
   };
   
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
