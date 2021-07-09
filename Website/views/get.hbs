@@ -177,8 +177,14 @@
 .darkmode--activated .modal-body{
     color:lightgrey;
 }
+.darkmode--activated #darktitle{
+    color:lightgrey;
+}
+.darkmode--activated #darklearning{
+    color:lightgrey;
+}
 
-.darkmode--activated #arrowcolor {
+.darkmode--activated .arrow {
   -webkit-filter: invert(1); 
   filter: invert(1);
 }
@@ -232,7 +238,13 @@
     color: white;
 }
 
-
+.darkmode--activated .dropdown-menu{
+    background-color:rgb(10, 10, 10);
+    border-color: grey;
+}
+.darkmode--activated .form-check-label{
+    color:white;
+}
 
 
 
@@ -586,7 +598,7 @@
             <button class="collapsible" id="collapse_button{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
                 <div class="row">
                     <div class="col-sm">
-                        <span class="collapsible-heading_pos"> <span class="collapsible-heading"> {{this.Title}} : </span> <span class="collapsible-heading2"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
+                        <span class="collapsible-heading_pos"> <span class="collapsible-heading" id="darktitle"> {{this.Title}} : </span> <span class="collapsible-heading2" id="darklearning"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
                         <script>
                             var tag =  document.getElementById("Cert/Deg{{this._id}}");
                             if("{{ this.[Certificate/Degree Program] }}" != "No"){
