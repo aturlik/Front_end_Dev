@@ -86,7 +86,7 @@ window.onload = function () {
   }
   
   
-  <!--Section for button toggles-->
+  <!--Section for data topic button toggles-->
  var dataTopics= "{{{result.[Data Topic Area]}}} {{{result.[Programming Language]}}}".split(',').join(' ');
  while (dataTopics.includes('Microsoft Office')) {
     document.getElementById('LPSOffice').checked=true;
@@ -185,6 +185,65 @@ window.onload = function () {
     dataTopics = dataTopics.replace('Rhino','').trim();
   };
   document.getElementById('DTAOther').value = dataTopics;
+  <!--Section for other buttons-->
+   var SPILstr= "{{{result.[Self Paced vs Instructor Led]}}}".split(',').join(' ');
+   if (SPILstr.includes('Self')) {
+      document.getElementById('SPILself').checked=true;
+   };
+   if (SPILstr.includes('Instruct')) {
+      document.getElementById('SPILins').checked=true;
+   };
+   var CDPstr= "{{{result.[Certificate/Degree Program]}}}".split(',').join(' ');
+   if (CDPstr.includes('Cert')) {
+      document.getElementById('CDPCert').checked=true;
+   };
+   if (CDPstr.includes('Degree')) {
+      document.getElementById('CDPDeg').checked=true;
+   };
+   var BEstr= "{{{result.[Barrier to Entry]}}}".split(',').join(' ');
+   if (BEstr.includes('Beginner')) {
+      document.getElementById('BEBeg').checked=true;
+   };
+  if (BEstr.includes('Intermediate')) {
+      document.getElementById('BEInter').checked=true;
+   };
+  if (BEstr.includes('Advanced')) {
+      document.getElementById('BEAdv').checked=true;
+   };
+   if (BEstr.includes('Expert')) {
+      document.getElementById('BEExp').checked=true;
+   };
+   var PDODstr= "{{{result.[Public/DOD]}}}".split(',').join(' ');
+   if (PDODstr.includes('Public')) {
+      document.getElementById('PDODP').checked=true;
+   };
+   if (PDODstr.includes('DOD')) {
+      document.getElementById('PDODD').checked=true;
+   };
+   var PRstr= "{{{result.[In person vs Remote]}}}".split(',').join(' ');
+   if (PRstr.includes('Remote')) {
+      document.getElementById('PRR').checked=true;
+   };
+   if (PRstr.includes('Person')) {
+      document.getElementById('PRP').checked=true;
+   };
+   var LTstr= "{{{result.[In person vs Remote]}}}".split(',').join(' ');
+   if (LTstr.includes('Text')) {
+      document.getElementById('LTT').checked=true;
+   };
+   if (LTstr.includes('Video')) {
+      document.getElementById('LTV').checked=true;
+   };
+   if (LTstr.includes('Book')) {
+      document.getElementById('LTB').checked=true;
+   };
+   if (LTstr.includes('Lecture')) {
+      document.getElementById('LTL').checked=true;
+   };
+   if (LTstr.includes('Interactive')) {
+      document.getElementById('LTI').checked=true;
+   };
+   
   <!------------------------------>
 };
 </script>
