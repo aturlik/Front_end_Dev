@@ -245,6 +245,23 @@
 .darkmode--activated .form-check-label{
     color:white;
 }
+ul1 {
+  list-style: none;
+  padding: 5px; 
+}
+li1{
+    display: inline;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px; 
+}
+
+.close {
+  cursor: pointer;
+  padding: 2px;
+}
+
+.close:hover {background: #bbb;}
 
 
 
@@ -521,7 +538,7 @@
                             </a>
                         </div>
                     </li>
-                    <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                    <button type="submit" class="btn btn-outline-secondary" id="submitbutton">Submit</button>
                 </ul>
         </div>
         <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
@@ -566,9 +583,17 @@
       };
   });
 
-
-
 </script>
+
+<p>   Chosen Filters:</p>
+<ul1 id="ulid">
+  
+</ul1>
+
+
+
+
+
 
 
 <!--===========================================================---
@@ -793,154 +818,282 @@
 
 <script>
     var test = window.location.href;
+    var counter = 0;
         if(test.includes("cost=Free")){
             $('#FreedropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Free</li1>');
+            counter = counter + 1;
             if(test.includes("Paid")){
                 $('#PaiddropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Paid</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("cost=Paid")){
             $('#PaiddropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Paid</li1>');
+            counter = counter + 1;
             if(test.includes("Free")){
                 $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
+                $('ul1').append('<li1>Free</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("level=Beginner")){
             $('#BegindropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Beginner</li1>');
+            counter = counter + 1;
             if(test.includes("Intermediate")){
                 $('#InterdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Intermediate</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Advanced")){
                 $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Advanced</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Expert")){
                 $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Expert</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("level=Intermediate")){
             $('#InterdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Intermediate</li1>');
+            counter = counter + 1;
             if(test.includes("Advanced")){
                 $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Advanced</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Expert")){
                 $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Expert</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("level=Advanced")){
             $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Advanced</li1>');
+            counter = counter + 1;
             if(test.includes("Expert")){
                 $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Expert</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("level=Expert")){
                 $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Expert</li1>');
+                counter = counter + 1;
             };
 
 
 
         if(test.includes("public=Public")){
             $('#PublicdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Public</li1>');
+            counter = counter + 1;
             if(test.includes("DOD")){
                 $('#DODdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>DOD</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("public=DOD")){
             $('#DODdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>DOD</li1>');
+            counter = counter + 1;
             if(test.includes("Public")){
                 $('#PublicdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Public</li1>');
+                counter = counter + 1;
             };
         };
 
         if(test.includes("remote=Remote")){
             $('#RdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Remote</li1>');
+            counter = counter + 1;
             if(test.includes("In")){
                 $('#IndropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>In Person</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("remote=In")){
             $('#IndropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>In Person</li1>');
+            counter = counter + 1;
             if(test.includes("Remote")){
                 $('#RdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Remote</li1>');
+                counter = counter + 1;
             };
         };
 
         if(test.includes("pacing=Self")){
             $('#SelfdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Self Paced</li1>');
+            counter = counter + 1;
             if(test.includes("Instructor")){
                 $('#InstructdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Instructor Led</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("pacing=Instructor")){
             $('#InstructdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Instructor Led</li1>');
+            counter = counter + 1;
             if(test.includes("Self")){
                 $('#SelfdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Self Paced</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Book")){
             $('#BdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Book</li1>');
+            counter = counter + 1;
             if(test.includes("Text")){
                 $('#TdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Text</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Video")){
                 $('#VdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Video</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Lecture")){
                 $('#LdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Lecture</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Text")){
             $('#TdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Text</li1>');
+            counter = counter + 1;
             if(test.includes("Video")){
                 $('#VdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Video</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Lecture")){
                 $('#LdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Lecture</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Video")){
             $('#VdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Video</li1>');
+            counter = counter + 1;
             if(test.includes("Lecture")){
                 $('#LdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Lecture</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Lecture")){
             $('#LdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Lecture</li1>');
+            counter = counter + 1;
             if(test.includes("Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
+        };
+        if(counter != 0){
+            $('ul1').append('<li1><span class="close" id="closebutton">reset filters</span></li1>');
         };
 
 
+    /* Get all elements with class="close" */
+var closebtns = document.getElementsByClassName("close");
+var i;
+
+/* Loop through the elements, and hide the parent, when clicked on */
+for (i = 0; i < closebtns.length; i++) {
+  closebtns[i].addEventListener("click", function() {
+    this.parentElement.style.display = 'none';
+     $('#FreedropdownCheck.form-check-input').prop('checked', false);
+     $('#PaiddropdownCheck.form-check-input').prop('checked', false);
+     $('#BegindropdownCheck.form-check-input').prop('checked', false);
+     $('#InterdropdownCheck.form-check-input').prop('checked', false);
+     $('#AdvdropdownCheck.form-check-input').prop('checked', false);
+     $('#ExpdropdownCheck.form-check-input').prop('checked', false);
+     $('#PublicdropdownCheck.form-check-input').prop('checked', false);
+     $('#DODdropdownCheck.form-check-input').prop('checked', false);
+     $('#RdropdownCheck.form-check-input').prop('checked', false);
+     $('#IndropdownCheck.form-check-input').prop('checked', false);
+     $('#SelfdropdownCheck.form-check-input').prop('checked', false);
+     $('#InstructdropdownCheck.form-check-input').prop('checked', false);
+     $('#BdropdownCheck.form-check-input').prop('checked', false);        
+     $('#TdropdownCheck.form-check-input').prop('checked', false);
+     $('#VdropdownCheck.form-check-input').prop('checked', false);
+     $('#LdropdownCheck.form-check-input').prop('checked', false);
+     $('#CdropdownCheck.form-check-input').prop('checked', false);
+     $('#IdropdownCheck.form-check-input').prop('checked', false);
+     document.getElementById('ulid').style.display = "none";
+     document.getElementById('submitbutton').click();
+  });
+}
 
 
 
