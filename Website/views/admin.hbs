@@ -488,7 +488,9 @@ window.onload = function () {
                               rows="3">{{result.Comment}}</textarea>
                 </div>
             </div>
-
+            <div class="row d-none">
+              <input type="text" id="idsearchinput" name="idsearchinput" class="form-control d-none" value="{{result._id}}">
+            </div>
             <!-- Button to insert data into database and call on submit Modal -->
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
