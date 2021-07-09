@@ -378,7 +378,7 @@ router.post('/update', function(req, res, next) {
     Topics: req.body.TG
   };
   
-  var id = req.body.idsearch;
+  var id = req.body.idsearchinput;
   console.log(id);
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
