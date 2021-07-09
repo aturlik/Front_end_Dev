@@ -249,8 +249,7 @@ window.onload = function () {
 </script>
 
 <div class="container">
-  <section class="update">
-    <form action"/updatesearch" method="post>
+  <form action"/updatesearch" method="post>
       <div class="row text-center mb-5">
         <div class="col-sm">
           <input type="text" id="idsearch" class="form-control" name="idsearch" placeholder="ID" value="{{result._id}}">
@@ -259,9 +258,9 @@ window.onload = function () {
           <button type="submit" class="btn btn-primary">find</button>
         </div>
       </div>
-    </form>
-    </div>
-    <div class="container d-none" id="112233">
+  </form>
+</div>
+  <div class="container d-none" id="112233">
     <form action="/update" method="post">
         <div class="row mb-2">
                 <div class="col darkmode-ignore">
@@ -492,11 +491,9 @@ window.onload = function () {
                 <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
             </div>
     </form>
-</section>
   </div>
 
   <div class="row text-center">
-      <section class="delete">
           <h3>Delete Data</h3>
           <form action="/delete" method="post">
               <div class="col-sm">
@@ -506,7 +503,6 @@ window.onload = function () {
                 <button type="submit" class="btn btn-primary">Delete</button>
               </div>
           </form>
-      </section>
   </div>
 </div>
 
