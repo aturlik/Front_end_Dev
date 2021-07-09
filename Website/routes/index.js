@@ -389,7 +389,7 @@ router.post('/update', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/admid?idsearch=' + id);
+  res.redirect('/admin?idsearch=' + id);
 });
 
 router.post('/delete', function(req, res, next) {
