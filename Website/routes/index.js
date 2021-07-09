@@ -346,37 +346,50 @@ router.post('/get_data', function(req, res, next) {
 });
 
 router.post('/update', function(req, res, next) {
+ var learning = req.body.LT
+  if(learning != null){
+    learning = learning.join(", ");
+  };
+  var language = req.body.LPS;
+  var topic = req.body.DTA;
+  if(language != null){
+    language = language.join(", ");
+  };
+  if(topic.length != 0){
+    topic.pop();
+    topic = topic.join(", ");
+  };
   var item = {
-    title: req.body.title,
-    url: req.body.url,
-    provider: req.body.provider,
-    cost: req.body.cost,
-    PublicDOD: req.body.PDOD,
-    TimeCom: req.body.TCH,
-    Cert: req.body.CDP,
-    Data: req.body.DTA,
-    Program: req.body.PL,
-    Base: req.body.BOO,
+    Title: req.body.title,
+    URL: req.body.url,
+    Provider: req.body.provider,
+    Cost: req.body.cost,
+    PublicOrDOD: req.body.PDOD,
+    TimeCommitment: req.body.TCH,
+    Cert_Degree: req.body.CDP,
+    Data_Topics: topic,
+    Programming_Language: language,
+    Base_of_Operations: req.body.BOO,
     Barrier: req.body.BE,
-    Pacing: req.body.SPIL,
-    Learning: req.body.LT,
-    Person: req.body.PR,
-    Useful: req.body.UT,
+    Self_Paced: req.body.SPIL,
+    Learning_Type: learning,
+    InPerson: req.body.PR,
     Comment: req.body.comment,
     Topics: req.body.TG
   };
-  var id = req.body.id;
+  
+  var id = req.body.idsearch;
 
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    db.collection('User Inputs').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
+    db.collection('FormattedRawData').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
       assert.equal(null, err);
       console.log('Item updated');
       client.close();
     });
   });
-  res.redirect('/others');
+  res.redirect('/admid?idsearch=' + id);
 });
 
 router.post('/delete', function(req, res, next) {
