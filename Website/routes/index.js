@@ -17,6 +17,11 @@ router.get('/insert', function(req, res, next) {
   res.render('add');
 });
 
+router.post('/adminsearch', function(req, res, next) {
+   var id = req.body.idsearch;
+   res.redirect('/admin?idsearch=' + id);
+});
+
 router.get('/admin', async(req, res, next) => {
   var id = req.query.idsearch;
   var results = [];
