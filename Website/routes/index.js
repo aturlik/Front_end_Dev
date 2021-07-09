@@ -402,7 +402,7 @@ router.post('/delete', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/others');
+  res.redirect('/admin');
 });
 
 router.post('/report', function(req, res, next) {
