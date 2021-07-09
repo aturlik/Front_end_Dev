@@ -396,7 +396,7 @@ router.post('/delete', function(req, res, next) {
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    db.collection('User Inputs').deleteOne({"_id": objectId(id)}, function(err, result) {
+    db.collection('FormattedRawData').deleteOne({"_id": objectId(id)}, function(err, result) {
       assert.equal(null, err);
       console.log('Item deleted');
       client.close();
