@@ -198,12 +198,12 @@ router.post('/get-data/vote', function(req, res, next){
 
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null){
+  if(learning != null && learning.length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null){
+  if(language != null && language.length>1){
     language = language.join(", ");
   };
   if(topic.length != 0){
@@ -346,13 +346,13 @@ router.post('/get_data', function(req, res, next) {
 });
 
 router.post('/update', function(req, res, next) {
- var learning = req.body.LT
-  if(learning != null){
+  var learning = req.body.LT
+  if(learning != null && learning.length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null){
+  if(language != null && language.length>1){
     language = language.join(", ");
   };
   if(topic.length != 0){
@@ -379,7 +379,7 @@ router.post('/update', function(req, res, next) {
   };
   
   var id = req.body.idsearch;
-
+  window.alert(id);
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
