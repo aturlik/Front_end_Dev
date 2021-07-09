@@ -379,7 +379,7 @@ router.post('/update', function(req, res, next) {
   };
   
   var id = req.body.idsearch;
-  window.alert(id);
+  console.log(id);
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
