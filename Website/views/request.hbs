@@ -44,21 +44,100 @@
                 <div class="invalid-tooltip" style="position: relative">Please input a request.</div>
             </div>
 
-            <script>
-                var reqLoc = window.location.href;
-
-                if(reqLoc.length != reqLoc.indexOf("request") + 7){
-                    var reqVal = reqLoc.slice(reqLoc.indexOf("=") + 1, reqLoc.length);
-                    reqVal = reqVal.replace(/%20/g, ' ');
-                    document.getElementById("request").value = reqVal;
-                }
-            </script>
-
             <!-- Comments Input Textbox -->
             <div class="col-sm">
                 <textarea class="form-control test" type="text" id="comments" name="comments" size="60"
                           placeholder="Comments"></textarea>
             </div>
+
+            <script>
+                var reqLoc = window.location.href;
+
+                if(reqLoc.length != reqLoc.indexOf("request") + 7){
+                    var resNum = reqLoc.slice(reqLoc.length - 1);
+                    var reqData = reqLoc.slice(reqLoc.indexOf("data=") + 5, reqLoc.length - 1);
+                    var requestText;
+                    var commentText;
+                    
+                    reqData = reqData.split("&");
+
+                    for(i = 0; i < reqData.length; i++){
+                        reqData[i] = reqData[i].replace(/%20/g, ' ');
+                    }
+
+                    var reqCost = reqData[reqData.findIndex((element) => element.includes("cost"))];
+                    if(reqCost != undefined){
+                        reqCost = reqCost.slice(reqCost.indexOf('=') + 1);
+                    }else{ 
+                        reqCost = "";
+                    }
+
+                    var reqExp = reqData[reqData.findIndex((element) => element.includes("level"))];
+                    if(reqExp != undefined){
+                        reqExp = reqExp.slice(reqExp.indexOf('=') + 1);
+                    }else{ 
+                        reqExp = "";
+                    }
+
+                    var reqMedia = reqData[reqData.findIndex((element) => element.includes("learn"))];
+                    if(reqMedia != undefined){
+                        reqMedia = reqMedia.slice(reqMedia.indexOf('=') + 1);
+                    }else{ 
+                        reqMedia = "";
+                    }
+
+                    var reqPace = reqData[reqData.findIndex((element) => element.includes("self"))];
+                    if(reqPace != undefined){
+                        reqPace = reqPace.slice(reqPace.indexOf('=') + 1);
+                    }else{ 
+                        reqPace = "";
+                    }
+
+                    var reqConnect = reqData[reqData.findIndex((element) => element.includes("remote"))];
+                    if(reqConnect != undefined){
+                        reqConnect = reqConnect.slice(reqConnect.indexOf('=') + 1);
+                    }else{ 
+                        reqConnect = "";
+                    }
+
+                    var reqClear = reqData[reqData.findIndex((element) => element.includes("public"))];
+                    if(reqClear != undefined){
+                        reqClear = reqClear.slice(reqClear.indexOf('=') + 1);
+                    }else{ 
+                        reqClear = "";
+                    }
+                    
+                    if(resNum == 0 || resNum > 10){
+                        if(reqLoc.indexOf("&") == -1){
+                            requestText = reqData[0];
+                            commentText = "There are " + resNum + " " + reqData[0] + " resources";
+                        }else{
+                            requestText = reqExp + " " + reqData[0] + " " + reqMedia;
+                            if(reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")){
+                                commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more?"
+                            }else{
+                                commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more that are " + reqPace + ", " + reqConnect + " and " + reqClear + "?";
+                            }
+                        }
+                    }else{
+                        if(reqLoc.indexOf("&") == -1){
+                            requestText = reqData[0];
+                            commentText = "There are only" + resNum + " " + reqData[0] + " resources";
+                        }else{
+                            requestText = reqExp + " " + reqData[0] + " " + reqMedia;
+                            if(reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")){
+                                commentText = "There are only" + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more?"
+                            }else{
+                                commentText = "There are only" + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more that are " + reqPace + ", " + reqConnect + " and " + reqClear + "?";
+                            }
+                        }
+                    }
+
+                    document.getElementById("request").value = requestText;
+                    document.getElementById("comments").value = commentText;
+                }
+
+            </script>
 
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
@@ -89,7 +168,8 @@
                                             for you.
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Close
                                             </button>
                                         </div>
                                     </div>
@@ -102,25 +182,25 @@
 
                             <!-- WIP: Contents of Request Submit Modal -->
                             <script>
-                            // Validation JS
+                                // Validation JS
                                 (function () {
-                                  'use strict'
+                                'use strict'
 
-                                  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                  var forms = document.querySelectorAll('.needs-validation')
+                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                var forms = document.querySelectorAll('.needs-validation')
 
-                                  // Loop over them and prevent submission
-                                  Array.prototype.slice.call(forms)
-                                    .forEach(function (form) {
-                                      form.addEventListener('submit', function (event) {
-                                        if (!form.checkValidity()) {
-                                          event.preventDefault()
-                                          event.stopPropagation()
-                                        }
+                                // Loop over them and prevent submission
+                                Array.prototype.slice.call(forms)
+                                .forEach(function (form) {
+                                form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                                }
 
-                                        form.classList.add('was-validated')
-                                      }, false)
-                                    })
+                                form.classList.add('was-validated')
+                                }, false)
+                                })
                                 })()
                             </script>
                         </td>

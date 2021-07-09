@@ -19,6 +19,7 @@
         float: right;
         position: relative;
         right: 10px;
+        bottom: 10px;
     }
 
     .tag_pos2 {
@@ -108,6 +109,10 @@
         font-size: 25px;
         color: #232354;
         font-weight: 200;
+    }
+
+    .comment-syle{
+        text-align: left;
     }
 
     .tag_style {
@@ -602,12 +607,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm">
-                        <span class="tag_pos2 tag_style badge">{{ this.[In person vs Remote] }}</span>
-                        <span class="tag_pos3 tag_style badge">{{ this.[Self Paced vs Instructor Led] }}</span>
-                        <span class="tag_pos4 tag_style badge">{{ this.[Public/DOD] }}</span>
+                    <div class="col-sm comment-syle">
+                        {{ this.Comment }}
                     </div>
-                    <div class="col-">
+                    <div class="col-sm">
                         <span class="tag_pos tag_style badge" id="ratingDisp{{this._id}}">Rating: {{ this.[Helpfullness Rating] }}%</span>
 
                         <script>
@@ -618,6 +621,11 @@
                     </div>
                 </div>
             </button>
+            <div>
+                <span class="tag_pos2 tag_style badge">{{ this.[In person vs Remote] }}</span>
+                <span class="tag_pos3 tag_style badge">{{ this.[Self Paced vs Instructor Led] }}</span>
+                <span class="tag_pos4 tag_style badge">{{ this.[Public/DOD] }}</span>
+            </div>
             <form action="/get-data/vote" metho9d="post">
                 <div class="vote_container">
                     <button type="submit" name="Vote" class="vote_style grow" value="Liked"><i class="fas fa-thumbs-up fa-2x"></i></button>
@@ -686,7 +694,6 @@
                 <div><b>Programming Language:</b> {{ this.[Programming Language] }}</div>
                 <div><b>Provider:</b> {{ this.Provider }}</div>
                 <div><b>Cost:</b> ${{ this.Cost }}</div>
-                <div><b>Comment:</b> {{ this.Comment }}</div>
             </div>
             <button class="inner_collapse" id="collapsAdmin{{this._id}}" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseItemAdmin{{this._id}}" aria-expanded="false"
@@ -761,6 +768,7 @@
     {{else}}
         <script>
             document.getElementById("result").innerHTML = 0;
+            var position = -1;
         </script>
 
     {{/each}}
@@ -772,7 +780,7 @@
 
             <script>
                 var pageURL = document.getElementById("autoRequest");
-                pageURL.value = window.location.href;
+                pageURL.value = window.location.href + (position + 1);6
                 pageURL.style.display = "none";
             </script>
         </form>

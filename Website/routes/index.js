@@ -291,9 +291,9 @@ router.post('/request', function(req, res, next) {
 
 router.post('/auto-request', function(req, res, next){
 	var currUrl = req.body.request;
-	var contents = currUrl.slice(currUrl.indexOf("=") + 1, currUrl.length);
+	var contents = currUrl.slice(currUrl.indexOf("?"), currUrl.length);
 
-	res.redirect('/request?data=' + contents);
+	res.redirect('/request' + contents);
 })
 
 router.post('/comments', function(req, res, next) {
