@@ -1,16 +1,4 @@
-<style>.test{
-    height: 200px;}
-.darkmode--activated #image {
-  -webkit-filter: invert(1); 
-  filter: invert(1);
-}
-.darkmode--activated .modal-title{
-    color:lightgrey;
-}
-.darkmode--activated .modal-body{
-    color:lightgrey;
-}
-</style>
+
 
 <!-- Call to Navigation Bar to show current page is active -->
 <script>
@@ -19,12 +7,10 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
+
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<div class="form-check form-switch" style="float: right;">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
-</div>
+
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
@@ -32,12 +18,17 @@
       if(darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-light");
           $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
       };
       if(!darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-dark");
           $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-dark");
+          $('#modaldark1').addClass("bg-light");
       };
   });
+
 </script>
 <div class="container overflow-hidden">
     <section class="specify">
@@ -47,7 +38,9 @@
             <div class="col-sm mb-2 mt-4">
                 <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
                           placeholder="Comments or Bugs" required></textarea>
-                <div class="invalid-tooltip" style="position: relative">Please input a comment or bug about the website.</div>
+                <div class="invalid-tooltip" style="position: relative">Please input a comment or bug about the
+                    website.
+                </div>
             </div>
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
@@ -55,10 +48,16 @@
                         <td>
 
                             <!-- Button to call on Help Tutorial Modal -->
+<<<<<<< HEAD
                             <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
+=======
+                            <span class="d-inline-block" data-toggle="modal" data-target="#myModal1"
+                                  title="Click This For More Help">
+>>>>>>> d310b00bd753f85f73c83c0b935b807a4db5b525
                                 <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
                                         disabled>
-                                    <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
+                                    <img src="images/Help_Icon.png" alt="help" id="image"> <small
+                                        id="image">Help</small>
                                 </button>
                             </span>
 
@@ -67,15 +66,15 @@
                                  aria-labelledby="myModalLabel"
                                  aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <div class="modal-content" id="modaldark">
+                                    <div class="modal-content" id="modaldark1">
                                         <div class="modal-header">
                                             <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                                         </div>
 
                                         <div class="modal-body">
                                             If you have found any bugs or want any changes to the site, you can request
-                                            it here. The Developers will read you request and see what can be done.  
-                                      </div>
+                                            it here. The Developers will read you request and see what can be done.
+                                        </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                             </button>
@@ -110,6 +109,7 @@
                                 })
                             })()
 
+
                         </script>
                     </table>
                 </div>
@@ -121,13 +121,18 @@
 <script>
     if(darkmode.isActivated()) {
         $('input[name="radioButton"][value="hello"]').prop('checked', true);
-          $('#modaldark').removeClass("bg-light");
-          $('#modaldark').addClass("bg-dark");
+        $('#modaldark').removeClass("bg-light");
+        $('#modaldark').addClass("bg-dark");
+        $('#modaldark1').removeClass("bg-light");
+        $('#modaldark1').addClass("bg-dark");
       };
       if(!darkmode.isActivated()) {
-          $('#modaldark').removeClass("bg-dark");
-          $('#modaldark').addClass("bg-light");
+        $('#modaldark').removeClass("bg-dark");
+        $('#modaldark').addClass("bg-light");
+        $('#modaldark1').removeClass("bg-dark");
+        $('#modaldark1').addClass("bg-light");
       };
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
