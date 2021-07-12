@@ -7,6 +7,9 @@ let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
 var jssanitizer = require('sanitize')();
 const { MongoClient } = require("mongodb");
+const helmet = require('helmet');
+const app = express();
+app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 /* GET home page. */
@@ -242,7 +245,7 @@ router.post('/insert', function(req, res, next) {
 });
 
 router.post('/specify', function(req, res, next) {
-  specdata = req.body.SpefString;
+  specdata = jssanitizer.value(req.body.SpefString, 'str');
   var cost = req.body.TST;
   var level = req.body.LVL;
   var public = req.body.PDOD;
