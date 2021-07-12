@@ -434,5 +434,16 @@ li1{
 .darkmode--activated .navbar-custom .nav-item:hover .nav-link{
     color: white;
 }
-
+.test{
+    height: 200px;}
+.darkmode--activated #image {
+  -webkit-filter: invert(1); 
+  filter: invert(1);
+}
+.darkmode--activated .modal-title{
+    color:lightgrey;
+}
+.darkmode--activated .modal-body{
+    color:lightgrey;
+}
 
