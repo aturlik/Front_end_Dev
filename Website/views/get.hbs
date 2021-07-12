@@ -1,3 +1,32 @@
+
+<script>
+  const darkmode =  new Darkmode();
+  document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
+      darkmode.toggle();
+      if(darkmode.isActivated()) {
+          $('#navbarcolor').removeClass("navbar-light");
+          $('#navbarcolor').addClass("navbar-dark");
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
+          $('#modaldark2').removeClass("bg-light");
+          $('#modaldark2').addClass("bg-dark");
+      };
+      if(!darkmode.isActivated()) {
+          $('#navbarcolor').removeClass("navbar-dark");
+          $('#navbarcolor').addClass("navbar-light");
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-dark");
+          $('#modaldark1').addClass("bg-light");
+          $('#modaldark2').removeClass("bg-dark");
+          $('#modaldark2').addClass("bg-light");
+      };
+  });
+
+</script>
+
 <!-- Navigation bar to show that current tab is active -->
 <script>
     $('.nav-item-a a').addClass("active");
@@ -8,8 +37,8 @@
 
 
 <head>
-    <div class="sticky-top navbar-custom navbar-container">
     <!-- Filter Navigation Bar -->
+<div class="sticky-top navbar-custom navbar-container">  
     <nav class="navbar navbar-expand-lg navbar-custom" id="navbarcolor">
         <!-- Button to call on Help Tutorial Modal/Pop-up -->
         <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1" title="Click This For More Help">
@@ -22,7 +51,7 @@
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content" id="modaldark">
+                <div class="modal-content" id="modaldark1">
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                     </div>
@@ -281,51 +310,13 @@
             </form>
         </div>
     </nav>
-    
+
         <p class="ml-2 navbar-text" style="float">Chosen Filters:</p>
         <ul1 id="ulid" class=""></ul1>
     </div>
 
 </head>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<div class="form-check form-switch" style="float: right;">
-    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello" />
-</div>
-
-<script>
-  const darkmode =  new Darkmode();
-  if(darkmode.isActivated()) {
-        $('input[name="radioButton"][value="hello"]').prop('checked', true);
-          $('#navbarcolor').removeClass("navbar-light");
-          $('#navbarcolor').addClass("navbar-dark");
-          $('#modaldark').removeClass("bg-light");
-          $('#modaldark').addClass("bg-dark");
-      };
-      if(!darkmode.isActivated()) {
-          $('#navbarcolor').removeClass("navbar-dark");
-          $('#navbarcolor').addClass("navbar-light");
-          $('#modaldark').removeClass("bg-dark");
-          $('#modaldark').addClass("bg-light");
-      };
-  document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
-      darkmode.toggle();
-      console.log(darkmode.isActivated());
-      if(darkmode.isActivated()) {
-          $('#navbarcolor').removeClass("navbar-light");
-          $('#navbarcolor').addClass("navbar-dark");
-          $('#modaldark').removeClass("bg-light");
-          $('#modaldark').addClass("bg-dark");
-      };
-      if(!darkmode.isActivated()) {
-          $('#navbarcolor').removeClass("navbar-dark");
-          $('#navbarcolor').addClass("navbar-light");
-          $('#modaldark').removeClass("bg-dark");
-          $('#modaldark').addClass("bg-light");
-      };
-  });
-
-</script>
 
 
 
@@ -486,7 +477,7 @@
             <div class="modal fade" id="myModalRep{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" id="modaldark2">
                         <div class="modal-header">
                             <h4 class="modal-title" id="myModalLabel">Report Resource</h4>
                         </div>
@@ -836,7 +827,27 @@ for (i = 0; i < closebtns.length; i++) {
 }
 
 
-
+  if(darkmode.isActivated()) {
+        $('input[name="radioButton"][value="hello"]').prop('checked', true);
+          $('#navbarcolor').removeClass("navbar-light");
+          $('#navbarcolor').addClass("navbar-dark");
+          $('#modaldark').removeClass("bg-light");
+          $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
+          $('#modaldark2').removeClass("bg-light");
+          $('#modaldark2').addClass("bg-dark");
+      };
+      if(!darkmode.isActivated()) {
+          $('#navbarcolor').removeClass("navbar-dark");
+          $('#navbarcolor').addClass("navbar-light");
+          $('#modaldark').removeClass("bg-dark");
+          $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
+          $('#modaldark2').removeClass("bg-dark");
+          $('#modaldark2').addClass("bg-light");
+      };
 
 
 
