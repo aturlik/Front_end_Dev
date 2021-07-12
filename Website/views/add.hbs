@@ -86,10 +86,7 @@
 
 
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<div class="form-check form-switch" style="float: right;">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
-</div>
+
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
@@ -97,6 +94,8 @@
       if(darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-light");
           $('#modaldark').addClass("bg-dark");
+          $('#modaldark_1').removeClass("bg-light");
+          $('#modaldark_1').addClass("bg-dark");
           $('#modaldark1').removeClass("bg-light");
           $('#modaldark1').addClass("bg-dark");
           $('#modaldark2').removeClass("bg-light");
@@ -129,6 +128,8 @@
       if(!darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-dark");
           $('#modaldark').addClass("bg-light");
+          $('#modaldark_1').removeClass("bg-dark");
+          $('#modaldark_1').addClass("bg-light");
           $('#modaldark1').removeClass("bg-dark");
           $('#modaldark1').addClass("bg-light");
           $('#modaldark2').removeClass("bg-dark");
@@ -184,7 +185,7 @@ $('.nav-item-c a').addClass("active");
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content" id="modaldark">
+                        <div class="modal-content" id="modaldark_1">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                             </div>
@@ -917,6 +918,8 @@ $('.nav-item-c a').addClass("active");
         $('input[name="radioButton"][value="hello"]').prop('checked', true);
           $('#modaldark').removeClass("bg-light");
           $('#modaldark').addClass("bg-dark");
+          $('#modaldark_1').removeClass("bg-light");
+          $('#modaldark_1').addClass("bg-dark");
           $('#modaldark1').removeClass("bg-light");
           $('#modaldark1').addClass("bg-dark");
           $('#modaldark2').removeClass("bg-light");
@@ -949,6 +952,8 @@ $('.nav-item-c a').addClass("active");
       if(!darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-dark");
           $('#modaldark').addClass("bg-light");
+          $('#modaldark_1').removeClass("bg-dark");
+          $('#modaldark_1').addClass("bg-light");
           $('#modaldark1').removeClass("bg-dark");
           $('#modaldark1').addClass("bg-light");
           $('#modaldark2').removeClass("bg-dark");
