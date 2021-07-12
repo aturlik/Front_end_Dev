@@ -1,7 +1,7 @@
 <script>
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
-
+<!--Script that loads the update section if there is a document found-->
 window.onload = function () {
   var element = document.getElementById(112233);
   if (idscript !== "") {
@@ -186,6 +186,17 @@ window.onload = function () {
       };
   });
 </script>
+
+<div class="alert alert-primary d-none visually-hidden" role="alert" id="win">
+  A simple primary alert—check it out!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="alert alert-danger d-none visually-hidden" role="alert" id="lose">
+  A simple danger alert—check it out!
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 
 <div class="container">
     <form action="/adminsearch" method="post">
