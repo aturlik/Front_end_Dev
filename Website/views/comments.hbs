@@ -1,18 +1,3 @@
-<style>.test{
-    height: 200px;}
-.darkmode--activated #image {
-  -webkit-filter: invert(1); 
-  filter: invert(1);
-}
-.darkmode--activated .modal-title{
-    color:lightgrey;
-}
-.darkmode--activated .modal-body{
-    color:lightgrey;
-}
-
-
-</style>
 
 <!-- Call to Navigation Bar to show current page is active -->
 <script>
@@ -24,11 +9,7 @@
 
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<div class="form-check form-switch" style="float: right;">
-    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton"
-           value="hello"/>
-</div>
+
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
@@ -36,10 +17,14 @@
       if(darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-light");
           $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
       };
       if(!darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-dark");
           $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-dark");
+          $('#modaldark1').addClass("bg-light");
       };
   });
 
@@ -76,7 +61,7 @@
                                  aria-labelledby="myModalLabel"
                                  aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <div class="modal-content" id="modaldark">
+                                    <div class="modal-content" id="modaldark1">
                                         <div class="modal-header">
                                             <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                                         </div>
@@ -131,12 +116,16 @@
 <script>
     if(darkmode.isActivated()) {
         $('input[name="radioButton"][value="hello"]').prop('checked', true);
-          $('#modaldark').removeClass("bg-light");
-          $('#modaldark').addClass("bg-dark");
+        $('#modaldark').removeClass("bg-light");
+        $('#modaldark').addClass("bg-dark");
+        $('#modaldark1').removeClass("bg-light");
+        $('#modaldark1').addClass("bg-dark");
       };
       if(!darkmode.isActivated()) {
-          $('#modaldark').removeClass("bg-dark");
-          $('#modaldark').addClass("bg-light");
+        $('#modaldark').removeClass("bg-dark");
+        $('#modaldark').addClass("bg-light");
+        $('#modaldark1').removeClass("bg-dark");
+        $('#modaldark1').addClass("bg-light");
       };
 
 </script>
