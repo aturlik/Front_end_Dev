@@ -17,9 +17,9 @@
     /* Position */
     .tag_pos {
         float: right;
-        position: relative;
+        /*position: relative;
         right: 10px;
-        bottom: 10px;
+        bottom: 10px;*/
     }
 
     .tag_pos2 {
@@ -38,6 +38,12 @@
         float: left;
         position: relative;
         left: 14px;
+    }
+
+    .tag_pos_rating{
+        float: right;
+        position: relative;
+        right: 10px;
     }
 
     .collapsible-heading_pos {
@@ -88,6 +94,11 @@
 
     .hover_collapsible {
         background-color: #aaa;
+    }
+
+    .navbar-container{
+        border-bottom: solid;
+        border-bottom-width: 1px
     }
 
     /* Text Attributes */
@@ -221,7 +232,8 @@
 }
 
 /* change the background color */
-.darkmode--activated .navbar-custom{
+.darkmode--activated .navbar-custom,
+.darkmode--activated .nav_contents{
     background-color: rgb(12, 12, 12);
 }
 
@@ -288,14 +300,15 @@ li1{
 
 
 <head>
+    <div class="sticky-top navbar-custom navbar-container">
     <!-- Filter Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-custom" id="navbarcolor">
         <!-- Button to call on Help Tutorial Modal/Pop-up -->
         <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1" title="Click This For More Help">
-        <button type="button" class="btn" data-toggle="modal" disabled>
-            <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
-        </button>
-    </span>
+            <button type="button" class="btn" data-toggle="modal" disabled>
+                <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
+            </button>
+        </span>
 
         <!-- Modal for the Help Tutorial Contents -->
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -307,11 +320,15 @@ li1{
                     </div>
 
                     <div class="modal-body">
-                        <p>Here are the results of training resources from your search. Click on each resource to see
+                        <p>
+                            Here are the results of training resources from your search. Click on each resource to see
                             the details
-                            of said resource.</p>
-                        <p>Use the filters at the top of the page and below the navigation bar to specify your search
-                            even further.</p>
+                            of said resource.
+                        </p>
+                        <p>
+                            Use the filters at the top of the page and below the navigation bar to specify your search
+                            even further.
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -321,10 +338,15 @@ li1{
         </div>
 
         <!-- Filter Categories -->
-        <a class="navbar-brand" style="margin-left: 10px" id="filter"> <b>Filters </b> <br> <small
-                class="text-muted"><span id="result">
-        <div class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span>
-            </div></span> results</small></a>
+        <a class="navbar-brand" style="margin-left: 10px" id="filter">
+            <b>Filters </b> <br> <small class="text-muted">
+                <span id="result">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </span> results
+            </small>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="dropbutton">
             <span class="navbar-toggler-icon"></span>
@@ -546,17 +568,23 @@ li1{
                     </li>
                     <button type="submit" class="btn btn-outline-secondary" id="submitbutton">Submit</button>
                 </ul>
+                <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
+                <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
+            </form>
         </div>
-        <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
-        <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
-        </form>
     </nav>
+    
+        <p class="ml-2 navbar-text" style="float">Chosen Filters:</p>
+        <ul1 id="ulid" class=""></ul1>
+    </div>
+
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <div class="form-check form-switch" style="float: right;">
-    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
+    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello" />
 </div>
+
 <script>
   const darkmode =  new Darkmode();
   if(darkmode.isActivated()) {
@@ -590,10 +618,7 @@ li1{
   });
 
 </script>
-<div class="sticky-top">
-  <p class="ml-2">Chosen Filters:</p>
-  <ul1 id="ulid" class=""></ul1>
-</div>
+
 
 
 
@@ -647,7 +672,7 @@ li1{
                         {{ this.Comment }}
                     </div>
                     <div class="col-sm">
-                        <span class="tag_pos tag_style badge" id="ratingDisp{{this._id}}">Rating: {{ this.[Helpfullness Rating] }}%</span>
+                        <span class="tag_pos_rating tag_style badge" id="ratingDisp{{this._id}}">Rating: {{ this.[Helpfullness Rating] }}%</span>
 
                         <script>
                             if("{{ this.[Helpfullness Rating] }}" == ""){
