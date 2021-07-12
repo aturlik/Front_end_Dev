@@ -11,8 +11,8 @@ window.onload = function () {
     element.classList.add("d-none");
   }
  const urlId = new URLSearchParams(window.location.search);
- window.alert(urlId);
- if (idscript==='tetris') {
+ if (idscript.get('idsearch')==='tetris') {
+   window.alert('hit');
    element.classList.add("d-none");
    document.getElementById("tetris").remove("d-none");
    $('.game').blockrain();
