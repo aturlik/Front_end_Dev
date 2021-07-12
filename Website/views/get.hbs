@@ -1,3 +1,6 @@
+<style>
+    .modal-backdrop{     z-index:1; }
+</style>
 
 <script>
   const darkmode =  new Darkmode();
@@ -49,7 +52,7 @@
         </span>
         <!-- Modal for the Help Tutorial Contents -->
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
+             aria-hidden="true" style="z-index:1;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" id="modaldark1">
                     <div class="modal-header">
@@ -74,25 +77,22 @@
             </div>
         </div>
 
+
         <!-- Filter Categories -->
-        <a class="navbar-brand" style="margin-left: 10px" id="filter">
-            <b>Filters </b> <br> <small class="text-muted">
-                <span id="result">
-                    <div class="spinner-border spinner-border-sm" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </span> results
-            </small>
-        </a>
+        <a class="navbar-brand" id="filter"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="dropbutton">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-
         <div class="collapse navbar-collapse" id="navbarFilter" role="group">
             <form action="/get_data" method="post">
                 <ul class="navbar-nav">
+                    <li>
+                        <div class="col">
+                            <input class="form-control" type="text" id="SpefString" name="SpefString" placeholder="New Search">
+                        </div>
+                    </li>
                     <li class="nav-item-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="CostDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -304,15 +304,23 @@
                         </div>
                     </li>
                     <button type="submit" class="btn btn-outline-secondary" id="submitbutton">Submit</button>
+                    <li>
+                    <small class="text-muted" style="position: absolute; right: 5px;">
+                        <span id="result">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        </span> results
+                    </small>
+                    </li>
                 </ul>
                 <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
                 <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
             </form>
         </div>
-    </nav>
 
-        <p class="ml-2 navbar-text" style="float">Chosen Filters:</p>
-        <ul1 id="ulid" class=""></ul1>
+    </nav>
+    <ul1 id="ulid" class="" ></ul1>
     </div>
 
 </head>
@@ -400,7 +408,7 @@
 
                             </script>
                         </div>
-                        <div class="col-">
+                        <div class="col darkmode-ignore">
                             <i class="arrow up arrow_pos" id="arrow{{this._id}}"></i>
                             <span class="tag_pos tag_style badge">Difficulty: {{ this.[Barrier to Entry]}}</span>
                         </div>
@@ -409,7 +417,7 @@
                         <div class="col-sm comment-syle">
                             {{ this.Comment }}
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm darkmode-ignore">
                             <span class="tag_pos tag_style badge"
                                   id="ratingDisp{{this._id}}">Rating: {{ this.[Helpfullness Rating] }}%</span>
                             <script>
