@@ -1,6 +1,7 @@
 <script src="/images/blocks/blockrain.js"></script>
 <script>
 $('.nav-item-d a').addClass("active");
+$('.game').blockrain();
 var idscript = "{{result._id}}";
 <!--Script that loads the update section if there is a document found-->
 window.onload = function () {
@@ -10,7 +11,6 @@ window.onload = function () {
   } else {
     element.classList.add("d-none");
   }
-    $('.game').blockrain();
  const urlId = new URLSearchParams(window.location.search);
  window.alert(urlId);
  if (urlId.has('tetris')) {
