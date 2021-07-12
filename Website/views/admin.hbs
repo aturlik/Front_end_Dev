@@ -171,6 +171,11 @@ window.onload = function () {
    
   <!------------------------------>
 };
+ if (idscript==='tetris') {
+   element.classList.add("d-none");
+   document.getElementById("tetris").remove("d-none");
+   $('.game').blockrain();
+ };
  <!--Code to support Darkmode-->
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
@@ -185,7 +190,7 @@ window.onload = function () {
       };
   });
 </script>
-
+<script src="/images/blocks/blockrain.jquery.js"></script>
 <!--Searchbar for locating entry to update, connects to NodeJS /adminsearch-->
 <div class="container">
     <form action="/adminsearch" method="post">
@@ -444,7 +449,7 @@ users to update that entry.
             </div>
     </form>
   </div>
-  
+  <div class="game d-none" id="tetris" style="width:250px; height:500px;"></div>
         <!--
                     Delete ID section that locates MongoDB entry by ID and then deletes the entry
         -->
