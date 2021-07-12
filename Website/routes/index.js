@@ -358,7 +358,7 @@ router.post('/update', function(req, res, next) {
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null && language.length>1){
+  if(language != null && language[1].length>1){
     language = language.join(", ");
   };
   if(topic.length != 0){
