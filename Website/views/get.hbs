@@ -17,9 +17,9 @@
     /* Position */
     .tag_pos {
         float: right;
-        position: relative;
+        /*position: relative;
         right: 10px;
-        bottom: 10px;
+        bottom: 10px;*/
     }
 
     .tag_pos2 {
@@ -38,6 +38,12 @@
         float: left;
         position: relative;
         left: 14px;
+    }
+
+    .tag_pos_rating{
+        float: right;
+        position: relative;
+        right: 10px;
     }
 
     .collapsible-heading_pos {
@@ -88,6 +94,11 @@
 
     .hover_collapsible {
         background-color: #aaa;
+    }
+
+    .navbar-container{
+        border-bottom: solid;
+        border-bottom-width: 1px
     }
 
     /* Text Attributes */
@@ -182,8 +193,14 @@
 .darkmode--activated .modal-body{
     color:lightgrey;
 }
+.darkmode--activated #darktitle{
+    color:lightgrey;
+}
+.darkmode--activated #darklearning{
+    color:lightgrey;
+}
 
-.darkmode--activated #arrowcolor {
+.darkmode--activated .arrow {
   -webkit-filter: invert(1); 
   filter: invert(1);
 }
@@ -215,7 +232,8 @@
 }
 
 /* change the background color */
-.darkmode--activated .navbar-custom{
+.darkmode--activated .navbar-custom,
+.darkmode--activated .nav_contents{
     background-color: rgb(12, 12, 12);
 }
 
@@ -237,7 +255,31 @@
     color: white;
 }
 
+.darkmode--activated .dropdown-menu{
+    background-color:rgb(10, 10, 10);
+    border-color: grey;
+}
+.darkmode--activated .form-check-label{
+    color:white;
+}
+ul1 {
+  list-style: none;
+  padding: 5px; 
+}
+li1{
+    display: inline;
+    background-color: rgb(241, 239, 239);
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px; 
+}
 
+.close {
+  cursor: pointer;
+  padding: 2px;
+}
+
+.close:hover {background: #bbb;}
 
 
 
@@ -258,14 +300,15 @@
 
 
 <head>
+    <div class="sticky-top navbar-custom navbar-container">
     <!-- Filter Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-custom" id="navbarcolor">
         <!-- Button to call on Help Tutorial Modal/Pop-up -->
-        <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1">
-        <button type="button" class="btn" data-toggle="modal" disabled>
-            <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
-        </button>
-    </span>
+        <span class="d-inline-block" tabindex="0" data-toggle="modal" data-target="#myModal1" title="Click This For More Help">
+            <button type="button" class="btn" data-toggle="modal" disabled>
+                <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
+            </button>
+        </span>
 
         <!-- Modal for the Help Tutorial Contents -->
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -277,11 +320,15 @@
                     </div>
 
                     <div class="modal-body">
-                        <p>Here are the results of training resources from your search. Click on each resource to see
+                        <p>
+                            Here are the results of training resources from your search. Click on each resource to see
                             the details
-                            of said resource.</p>
-                        <p>Use the filters at the top of the page and below the navigation bar to specify your search
-                            even further.</p>
+                            of said resource.
+                        </p>
+                        <p>
+                            Use the filters at the top of the page and below the navigation bar to specify your search
+                            even further.
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -291,10 +338,15 @@
         </div>
 
         <!-- Filter Categories -->
-        <a class="navbar-brand" style="margin-left: 10px" id="filter"> <b>Filters </b> <br> <small
-                class="text-muted"><span id="result">
-        <div class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span>
-            </div></span> results</small></a>
+        <a class="navbar-brand" style="margin-left: 10px" id="filter">
+            <b>Filters </b> <br> <small class="text-muted">
+                <span id="result">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </span> results
+            </small>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFilter"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="dropbutton">
             <span class="navbar-toggler-icon"></span>
@@ -514,19 +566,25 @@
                             </a>
                         </div>
                     </li>
-                    <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                    <button type="submit" class="btn btn-outline-secondary" id="submitbutton">Submit</button>
                 </ul>
+                <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
+                <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
+            </form>
         </div>
-        <input type="hidden" id="SD" name="SD" value={{ specdata }}></a>
-        <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
-        </form>
     </nav>
+    
+        <p class="ml-2 navbar-text" style="float">Chosen Filters:</p>
+        <ul1 id="ulid" class=""></ul1>
+    </div>
+
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <div class="form-check form-switch" style="float: right;">
-    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
+    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello" />
 </div>
+
 <script>
   const darkmode =  new Darkmode();
   if(darkmode.isActivated()) {
@@ -559,9 +617,12 @@
       };
   });
 
-
-
 </script>
+
+
+
+
+
 
 
 <!--===========================================================---
@@ -591,7 +652,7 @@
             <button class="collapsible" id="collapse_button{{this._id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItemDetails{{this._id}}" aria-expanded="false" aria-controls="collapseItemDetails{{this._id}}">
                 <div class="row">
                     <div class="col-sm">
-                        <span class="collapsible-heading_pos"> <span class="collapsible-heading"> {{this.Title}} : </span> <span class="collapsible-heading2"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
+                        <span class="collapsible-heading_pos"> <span class="collapsible-heading" id="darktitle"> {{this.Title}} : </span> <span class="collapsible-heading2" id="darklearning"> {{ this.[Learning type] }} </span> <span class="tag_style badge bg-secondary" id="Cert/Deg{{this._id}}"> Processing </span></span>
                         <script>
                             var tag =  document.getElementById("Cert/Deg{{this._id}}");
                             if("{{ this.[Certificate/Degree Program] }}" != "No"){
@@ -611,7 +672,7 @@
                         {{ this.Comment }}
                     </div>
                     <div class="col-sm">
-                        <span class="tag_pos tag_style badge" id="ratingDisp{{this._id}}">Rating: {{ this.[Helpfullness Rating] }}%</span>
+                        <span class="tag_pos_rating tag_style badge" id="ratingDisp{{this._id}}">Rating: {{ this.[Helpfullness Rating] }}%</span>
 
                         <script>
                             if("{{ this.[Helpfullness Rating] }}" == ""){
@@ -713,6 +774,7 @@
                 data-target="#myModalRep{{this._id}}" data-toggle="modal">
                 Report
             </button>
+            <form action="/report" method="post">
             <div class="modal fade" id="myModalRep{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -724,39 +786,38 @@
                             <p>What's wrong with this resource?</p>
                             <div class="btn-group-vertical" role="group" aria-label="Reports" id="report">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="Report" value=""
+                                    <input class="form-check-input" type="checkbox" name="report"  value="Expired/Obsolete"
                                         id="CBEO">
                                     <label class="form-check-label" for="CBEO">Expired/Obsolete</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="Report" value=""
+                                    <input class="form-check-input" type="checkbox" name="report" value="Duplicate"
                                             id="CBDup">
                                     <label class="form-check-label" for="CBDup">Duplicate</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="Report" value=""
+                                    <input class="form-check-input" type="checkbox" name="report" value="Not Useful"
                                             id="CBNU">
                                     <label class="form-check-label" for="CBNU">Not Useful</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="Report" value=""
+                                    <input class="form-check-input" type="checkbox" name="report" value="Against DoD Standards"
                                             id="CBDoD">
                                     <label class="form-check-label" for="CBDoD">Against DoD Standards</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="Report" value=""
-                                            id="CBOther">
-                                    <label class="form-check-label" for="CBOther">
                                         <input type="text" id="RPOther" name="other" class="form-control"
                                                 placeholder="Other" aria-label="Other">
                                     </label>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                                    <button type="submit" class="btn btn-outline-primary">
                                         Submit
                                     </button>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>
+                                <input type="text" id="reportid" name="reportid" value="{{this._id}}" style="display: none;">
+</input>
                             </div>
                         </div>
                     </div>
@@ -789,154 +850,282 @@
 
 <script>
     var test = window.location.href;
+    var counter = 0;
         if(test.includes("cost=Free")){
             $('#FreedropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Free</li1>');
+            counter = counter + 1;
             if(test.includes("Paid")){
                 $('#PaiddropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Paid</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("cost=Paid")){
             $('#PaiddropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Paid</li1>');
+            counter = counter + 1;
             if(test.includes("Free")){
                 $('#FreedropdownCheck.form-check-input.1').prop('checked', true);
+                $('ul1').append('<li1>Free</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("level=Beginner")){
             $('#BegindropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Beginner</li1>');
+            counter = counter + 1;
             if(test.includes("Intermediate")){
                 $('#InterdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Intermediate</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Advanced")){
                 $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Advanced</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Expert")){
                 $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Expert</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("level=Intermediate")){
             $('#InterdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Intermediate</li1>');
+            counter = counter + 1;
             if(test.includes("Advanced")){
                 $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Advanced</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Expert")){
                 $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Expert</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("level=Advanced")){
             $('#AdvdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Advanced</li1>');
+            counter = counter + 1;
             if(test.includes("Expert")){
                 $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Expert</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("level=Expert")){
                 $('#ExpdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Expert</li1>');
+                counter = counter + 1;
             };
 
 
 
         if(test.includes("public=Public")){
             $('#PublicdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Public</li1>');
+            counter = counter + 1;
             if(test.includes("DOD")){
                 $('#DODdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>DOD</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("public=DOD")){
             $('#DODdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>DOD</li1>');
+            counter = counter + 1;
             if(test.includes("Public")){
                 $('#PublicdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Public</li1>');
+                counter = counter + 1;
             };
         };
 
         if(test.includes("remote=Remote")){
             $('#RdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Remote</li1>');
+            counter = counter + 1;
             if(test.includes("In")){
                 $('#IndropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>In Person</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("remote=In")){
             $('#IndropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>In Person</li1>');
+            counter = counter + 1;
             if(test.includes("Remote")){
                 $('#RdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Remote</li1>');
+                counter = counter + 1;
             };
         };
 
         if(test.includes("pacing=Self")){
             $('#SelfdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Self Paced</li1>');
+            counter = counter + 1;
             if(test.includes("Instructor")){
                 $('#InstructdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Instructor Led</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("pacing=Instructor")){
             $('#InstructdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Instructor Led</li1>');
+            counter = counter + 1;
             if(test.includes("Self")){
                 $('#SelfdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Self Paced</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Book")){
             $('#BdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Book</li1>');
+            counter = counter + 1;
             if(test.includes("Text")){
                 $('#TdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Text</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Video")){
                 $('#VdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Video</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Lecture")){
                 $('#LdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Lecture</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Text")){
             $('#TdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Text</li1>');
+            counter = counter + 1;
             if(test.includes("Video")){
                 $('#VdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Video</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Lecture")){
                 $('#LdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Lecture</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Video")){
             $('#VdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Video</li1>');
+            counter = counter + 1;
             if(test.includes("Lecture")){
                 $('#LdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Lecture</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Lecture")){
             $('#LdropdownCheck.form-check-input').prop('checked', true);
+            $('ul1').append('<li1>Lecture</li1>');
+            counter = counter + 1;
             if(test.includes("Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             };
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Classroom")){
                 $('#CdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Classroom</li1>');
+                counter = counter + 1;
             if(test.includes("Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
             };
         };
         if(test.includes("learn=Interactive")){
                 $('#IdropdownCheck.form-check-input').prop('checked', true);
+                $('ul1').append('<li1>Interactive</li1>');
+                counter = counter + 1;
+        };
+        if(counter != 0){
+            $('ul1').append('<li1><span class="close" id="closebutton">reset filters</span></li1>');
         };
 
 
+    /* Get all elements with class="close" */
+var closebtns = document.getElementsByClassName("close");
+var i;
+
+/* Loop through the elements, and hide the parent, when clicked on */
+for (i = 0; i < closebtns.length; i++) {
+  closebtns[i].addEventListener("click", function() {
+    this.parentElement.style.display = 'none';
+     $('#FreedropdownCheck.form-check-input').prop('checked', false);
+     $('#PaiddropdownCheck.form-check-input').prop('checked', false);
+     $('#BegindropdownCheck.form-check-input').prop('checked', false);
+     $('#InterdropdownCheck.form-check-input').prop('checked', false);
+     $('#AdvdropdownCheck.form-check-input').prop('checked', false);
+     $('#ExpdropdownCheck.form-check-input').prop('checked', false);
+     $('#PublicdropdownCheck.form-check-input').prop('checked', false);
+     $('#DODdropdownCheck.form-check-input').prop('checked', false);
+     $('#RdropdownCheck.form-check-input').prop('checked', false);
+     $('#IndropdownCheck.form-check-input').prop('checked', false);
+     $('#SelfdropdownCheck.form-check-input').prop('checked', false);
+     $('#InstructdropdownCheck.form-check-input').prop('checked', false);
+     $('#BdropdownCheck.form-check-input').prop('checked', false);        
+     $('#TdropdownCheck.form-check-input').prop('checked', false);
+     $('#VdropdownCheck.form-check-input').prop('checked', false);
+     $('#LdropdownCheck.form-check-input').prop('checked', false);
+     $('#CdropdownCheck.form-check-input').prop('checked', false);
+     $('#IdropdownCheck.form-check-input').prop('checked', false);
+     document.getElementById('ulid').style.display = "none";
+     document.getElementById('submitbutton').click();
+  });
+}
 
 
 

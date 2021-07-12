@@ -5,6 +5,7 @@ var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
+var jssanitizer = require('sanitize')();
 const { MongoClient } = require("mongodb");
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
@@ -15,6 +16,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/insert', function(req, res, next) {
   res.render('add');
+});
+
+router.post('/adminsearch', function(req, res, next) {
+   var id = req.body.idsearch;
+   res.redirect('/admin?idsearch=' + id);
 });
 
 router.get('/admin', async(req, res, next) => {
@@ -193,12 +199,12 @@ router.post('/get-data/vote', function(req, res, next){
 
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null){
+  if(learning != null && learning.length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null){
+  if(language != null && language.length>1){
     language = language.join(", ");
   };
   if(topic.length != 0){
@@ -210,18 +216,17 @@ router.post('/insert', function(req, res, next) {
     URL: req.body.url,
     Provider: req.body.provider,
     Cost: req.body.cost,
-    PublicOrDOD: req.body.PDOD,
-    TimeCommitment: req.body.TCH,
-    Cert_Degree: req.body.CDP,
-    Data_Topics: topic,
-    Programming_Language: language,
-    Base_of_Operations: req.body.BOO,
-    Barrier: req.body.BE,
-    Self_Paced: req.body.SPIL,
-    Learning_Type: learning,
-    InPerson: req.body.PR,
+    "Public/DOD": req.body.PDOD,
+    "Time Commitment (Hours)": req.body.TCH,
+    "Certificate/Degree Program": req.body.CDP,
+    "Data Topic Area": topic,
+    "Programming Language": language,
+    "Base of Operations": req.body.BOO,
+    "Barrier to Entry": req.body.BE,
+    "Self Paced vs Instructor Led": req.body.SPIL,
+    "Learning type": learning,
+    "In person vs Remote": req.body.PR,
     Comment: req.body.comment,
-    Topics: req.body.TG
   };
   
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
@@ -258,7 +263,7 @@ router.post('/specify', function(req, res, next) {
     urladditives = urladditives.concat("&remote=" + remote)
   };
   if(selfp != null){
-    urladditives = urladditives.concat("&self=" + selfp)
+    urladditives = urladditives.concat("&pacing=" + selfp)
   };
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
@@ -332,7 +337,7 @@ router.post('/get_data', function(req, res, next) {
     urladditives = urladditives.concat("&remote=" + remote)
   };
   if(selfp != null){
-    urladditives = urladditives.concat("&self=" + selfp)
+    urladditives = urladditives.concat("&pacing=" + selfp)
   };
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
@@ -341,37 +346,49 @@ router.post('/get_data', function(req, res, next) {
 });
 
 router.post('/update', function(req, res, next) {
-  var item = {
-    title: req.body.title,
-    url: req.body.url,
-    provider: req.body.provider,
-    cost: req.body.cost,
-    PublicDOD: req.body.PDOD,
-    TimeCom: req.body.TCH,
-    Cert: req.body.CDP,
-    Data: req.body.DTA,
-    Program: req.body.PL,
-    Base: req.body.BOO,
-    Barrier: req.body.BE,
-    Pacing: req.body.SPIL,
-    Learning: req.body.LT,
-    Person: req.body.PR,
-    Useful: req.body.UT,
-    Comment: req.body.comment,
-    Topics: req.body.TG
+  var learning = req.body.LT
+  if(learning != null && learning.length>1){
+    learning = learning.join(", ");
   };
-  var id = req.body.id;
-
+  var language = req.body.LPS;
+  var topic = req.body.DTA;
+  if(language != null && language.length>1){
+    language = language.join(", ");
+  };
+  if(topic.length != 0){
+    topic.pop();
+    topic = topic.join(", ");
+  };
+  var item = {
+    Title: req.body.title,
+    URL: req.body.url,
+    Provider: req.body.provider,
+    Cost: req.body.cost,
+    "Public/DOD": req.body.PDOD,
+    "Time Commitment (Hours)": req.body.TCH,
+    "Certificate/Degree Program": req.body.CDP,
+    "Data Topic Area": topic,
+    "Programming Language": language,
+    "Base of Operations": req.body.BOO,
+    "Barrier to Entry": req.body.BE,
+    "Self Paced vs Instructor Led": req.body.SPIL,
+    "Learning type": learning,
+    "In person vs Remote": req.body.PR,
+    Comment: req.body.comment,
+  };
+  
+  var id = req.body.idsearchinput;
+  console.log(id);
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    db.collection('User Inputs').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
+    db.collection('FormattedRawData').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
       assert.equal(null, err);
       console.log('Item updated');
       client.close();
     });
   });
-  res.redirect('/others');
+  res.redirect('/admin?idsearch=' + id);
 });
 
 router.post('/delete', function(req, res, next) {
@@ -380,23 +397,24 @@ router.post('/delete', function(req, res, next) {
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    db.collection('User Inputs').deleteOne({"_id": objectId(id)}, function(err, result) {
+    db.collection('FormattedRawData').deleteOne({"_id": objectId(id)}, function(err, result) {
       assert.equal(null, err);
       console.log('Item deleted');
       client.close();
     });
   });
-  res.redirect('/others');
+  res.redirect('/admin');
 });
 
 router.post('/report', function(req, res, next) {
   var items = req.body.report;
+  var itemid = req.body.reportid;
   console.log(String(typeof(items)));
   if(String(typeof(items)) != "string"){
     items = items.filter(test => test.length > 1);
     items = items.join(", ");
   };
-  var item = {"Report": items};
+  var item = {"ReportedID": itemid, "Problem": items} ;
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.strictEqual(null, err);
@@ -407,6 +425,7 @@ router.post('/report', function(req, res, next) {
   });
   res.redirect('/get-data?data=data');
 });
+
 
 
 module.exports = router;
