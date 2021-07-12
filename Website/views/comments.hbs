@@ -11,6 +11,7 @@
     color:lightgrey;
 }
 
+
 </style>
 
 <!-- Call to Navigation Bar to show current page is active -->
@@ -20,11 +21,13 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <div class="form-check form-switch" style="float: right;">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
+    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton"
+           value="hello"/>
 </div>
 <script>
   const darkmode =  new Darkmode();
@@ -39,6 +42,7 @@
           $('#modaldark').addClass("bg-light");
       };
   });
+
 </script>
 <div class="container overflow-hidden">
     <section class="specify">
@@ -48,7 +52,9 @@
             <div class="col-sm mb-2 mt-4">
                 <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
                           placeholder="Comments or Bugs" required></textarea>
-                <div class="invalid-tooltip" style="position: relative">Please input a comment or bug about the website.</div>
+                <div class="invalid-tooltip" style="position: relative">Please input a comment or bug about the
+                    website.
+                </div>
             </div>
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
@@ -56,10 +62,12 @@
                         <td>
 
                             <!-- Button to call on Help Tutorial Modal -->
-                            <span class="d-inline-block" data-toggle="modal" data-target="#myModal1" title="Click This For More Help">
+                            <span class="d-inline-block" data-toggle="modal" data-target="#myModal1"
+                                  title="Click This For More Help">
                                 <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
                                         disabled>
-                                    <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
+                                    <img src="images/Help_Icon.png" alt="help" id="image"> <small
+                                        id="image">Help</small>
                                 </button>
                             </span>
 
@@ -75,8 +83,8 @@
 
                                         <div class="modal-body">
                                             If you have found any bugs or want any changes to the site, you can request
-                                            it here. The Developers will read you request and see what can be done.  
-                                      </div>
+                                            it here. The Developers will read you request and see what can be done.
+                                        </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                             </button>
@@ -111,6 +119,7 @@
                                 })
                             })()
 
+
                         </script>
                     </table>
                 </div>
@@ -129,6 +138,7 @@
           $('#modaldark').removeClass("bg-dark");
           $('#modaldark').addClass("bg-light");
       };
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
