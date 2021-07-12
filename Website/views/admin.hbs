@@ -11,6 +11,8 @@ window.onload = function () {
     element.classList.add("d-none");
   }
  const urlId = new URLSearchParams(window.location.search);
+ urlId = idscript.get('idsearch');
+ window.alert(urlId);
  if (idscript.get('idsearch')==='tetris') {
    window.alert('hit');
    element.classList.add("d-none");
