@@ -1,4 +1,6 @@
-
+<!--
+            Darkmode Javascript
+-->
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
@@ -72,8 +74,6 @@
           $('#modaldark14').addClass("bg-light");
       };
   });
-</script>
-<script>
 //Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
 </script>
@@ -824,6 +824,9 @@ $('.nav-item-c a').addClass("active");
     </section>
 </div>
 
+<!--
+            Possibly redundant code for darkmode
+-->
 <script>
     if(darkmode.isActivated()) {
         $('input[name="radioButton"][value="hello"]').prop('checked', true);
