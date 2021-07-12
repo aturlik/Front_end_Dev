@@ -6,10 +6,8 @@ window.onload = function () {
   var element = document.getElementById(112233);
   if (idscript !== "") {
     element.classList.remove("d-none");
-    document.getElementById("win").remove("d-none");
   } else {
     element.classList.add("d-none");
-    document.getElementById("lose").remove("d-none");
   }
   
   
@@ -173,8 +171,7 @@ window.onload = function () {
    
   <!------------------------------>
 };
-</script>
-<script>
+ <!--Code to support Darkmode-->
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
       darkmode.toggle();  
@@ -189,17 +186,7 @@ window.onload = function () {
   });
 </script>
 
-<div class="alert alert-primary d-none visually-hidden" role="alert" id="win">
-  A simple primary alert—check it out!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-<div class="alert alert-danger d-none visually-hidden" role="alert" id="lose">
-  A simple danger alert—check it out!
-   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-
+<!--Searchbar for locating entry to update, connects to NodeJS /adminsearch-->
 <div class="container">
     <form action="/adminsearch" method="post">
       <div class="row mt-5 mb-5">
@@ -214,7 +201,11 @@ window.onload = function () {
 </div>
 
 
-
+<!--
+Section that shows if the ID searched for is found, contains code that 
+prefills sections that already are contained within the entry and allows
+users to update that entry.
+-->
 <div class="container d-none" id="112233">
     <form action="/update" method="post">
         <div class="row mb-2">
@@ -351,6 +342,10 @@ window.onload = function () {
                                     <i class="arrow down arrow_pos"></i>
                                 </button>
                             </h2>
+                            <!--
+                                        Accordion section that appears for data topics and languages 
+                                        auto-seperates the two into different categories in MongoDB
+                            -->
                             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
@@ -449,6 +444,10 @@ window.onload = function () {
             </div>
     </form>
   </div>
+  
+        <!--
+                    Delete ID section that locates MongoDB entry by ID and then deletes the entry
+        -->
   <div class="container">
     <form action="/delete" method="post">
         <div class="row mt-5 mb-5">
