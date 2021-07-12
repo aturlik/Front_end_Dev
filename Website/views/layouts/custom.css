@@ -5,7 +5,7 @@ select {
 h1 {
 	color: blue;
 }
-  .box{ width: 800px;
+box{ width: 800px;
     height: 100px;
     border-radius: 25px;
     padding: 10px;
@@ -13,12 +13,12 @@ h1 {
     margin: 0 auto;
     display: block;
   }
-  .translucent{
+translucent{
     border-radius: 5px;
     border: 1px solid rgb(194, 194, 194);
     width: 765px
   }
-.darkmode--activated #cost {
+darkmode--activated #cost {
   background-color: black;
   border-color: grey;
 }
