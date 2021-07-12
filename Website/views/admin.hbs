@@ -6,8 +6,10 @@ window.onload = function () {
   var element = document.getElementById(112233);
   if (idscript !== "") {
     element.classList.remove("d-none");
+    document.getElementById("win").remove("d-none");
   } else {
     element.classList.add("d-none");
+    document.getElementById("lose").remove("d-none");
   }
   
   
