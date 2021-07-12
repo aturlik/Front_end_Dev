@@ -12,7 +12,7 @@ window.onload = function () {
   }
  const urlId = new URLSearchParams(window.location.search);
  window.alert(urlId);
- if (urlId.includes('tetris')) {
+ if (urlId.has('tetris')) {
    window.alert('hit');
    element.classList.add("d-none");
    document.getElementById("tetris").remove("d-none");
