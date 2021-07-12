@@ -354,6 +354,9 @@ router.post('/update', function(req, res, next) {
   if(learning != null && learning.length>1){
     learning = learning.join(", ");
   };
+  if (learning.length==0) {
+    learning = learning[0];  
+  };
   var language = req.body.LPS;
   var topic = req.body.DTA;
   if(language != null && language.length>1){
