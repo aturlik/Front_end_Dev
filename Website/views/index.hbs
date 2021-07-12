@@ -9,66 +9,6 @@
 .darkmode--activated .modal-body{
     color:lightgrey;
 }
-
-.clicky {
-    cursor: pointer;
-}
-
-.darkmode--activated .dropdown-menu{
-    background-color:rgb(10, 10, 10);
-    border-color: grey;
-}
-.darkmode--activated .form-check-label{
-    color:white;
-}
-
-/* change the background color */
-.navbar-custom {
-    background-color: white;
-}
-
-/* change the brand and text color */
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-text {
-    color: black;
-}
-
-/* change the link color */
-.navbar-custom .navbar-nav .nav-link {
-    color: black;
-}
-
-/* change the color of active or hovered links */
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:focus .nav-link,
-.navbar-custom .nav-item:hover .nav-link {
-    color: black;
-}
-
-/* change the background color */
-.darkmode--activated .navbar-custom{
-    background-color: black;
-}
-
-/* change the brand and text color */
-.darkmode--activated .navbar-custom .navbar-brand ,
-.darkmode--activated .navbar-custom .navbar-text{
-    color: white;
-}
-
-/* change the link color */
-.darkmode--activated .navbar-custom .navbar-nav .nav-link{
-    color: white;
-}
-
-/* change the color of active or hovered links */
-.darkmode--activated .navbar-custom .nav-item.active .nav-link,
-.darkmode--activated .navbar-custom .nav-item:focus .nav-link,
-.darkmode--activated .navbar-custom .nav-item:hover .nav-link{
-    color: white;
-}
-
-
 </style>
 
 <!-- Navigation bar function to highlight that Search is active -->
@@ -110,7 +50,7 @@
             <td><h3>Search</h3></td>
             <td>
                 <!-- Button to call on Help Modal -->
-                <span class="d-inline-block clicky" data-toggle="modal" data-target="#myModal1" title="Click This For More Help">
+                <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                     <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
                         <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
                     </button>
@@ -156,7 +96,7 @@
             
 </div>
 
-<nav class="navbar navbar-expand-md d-none d-md-block navbar-custom">
+<nav class="navbar navbar-expand-md navbar-light d-none d-md-block">
   <div class="container-fluid">
          <div class="collapse navbar-collapse justify-content-center" id="navbarFilter" role="group">
                 <ul class="navbar-nav justify-content-center">
