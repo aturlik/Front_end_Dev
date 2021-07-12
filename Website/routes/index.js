@@ -204,7 +204,7 @@ router.post('/get-data/vote', function(req, res, next){
 manual validation of data before moving into the main collection */
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null && learning.length>1){
+  if(learning != null && learning.length>2){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
