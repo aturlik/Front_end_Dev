@@ -22,41 +22,41 @@ darkmode--activated #cost {
   background-color: black;
   border-color: grey;
 }
-.darkmode--activated #title {
+darkmode--activated #title {
   background-color: black;
   border-color: grey;
 }
-.darkmode--activated #url {
+darkmode--activated #url {
   background-color: black;
   border-color: grey;
 }
-.darkmode--activated #comment {
+darkmode--activated #comment {
   background-color: black;
   border-color: grey;
 }
-.darkmode--activated #provider {
+darkmode--activated #provider {
   background-color: black;
   border-color: grey;
 }
-.darkmode--activated #TCH {
+darkmode--activated #TCH {
   background-color: black;
   border-color: grey;
 }
-.darkmode--activated #BOO {
+darkmode--activated #BOO {
   background-color: black;
   border-color: grey;
 }
-.darkmode--activated #image {
+darkmode--activated #image {
   -webkit-filter: invert(1); 
   filter: invert(1);
 }
-.darkmode--activated .modal-title{
+darkmode--activated .modal-title{
     color:lightgrey;
 }
-.darkmode--activated .modal-body{
+darkmode--activated .modal-body{
     color:lightgrey;
 }
-.collapsible {
+collapsible {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -65,21 +65,21 @@ darkmode--activated #cost {
   padding: 10px;
   border: 0px;
 }
-    .arrow {
+    arrow {
         border: solid black;
         border-width: 0 4px 4px 0;
         display: inline-block;
         padding: 7px;
     }
-    .down {
+    down {
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
     }
-    .up {
+    up {
         transform: rotate(-135deg);
         -webkit-transform: rotate(-135deg);
     }
-    .arrow_pos {
+    arrow_pos {
         float: right;
         position: relative;
     }
