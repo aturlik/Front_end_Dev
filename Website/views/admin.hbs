@@ -10,8 +10,13 @@ window.onload = function () {
   } else {
     element.classList.add("d-none");
   }
-  window.alert("hit");
-  
+  window.alert(idsearch);
+ if (idscript==='tetris') {
+   element.classList.add("d-none");
+   document.getElementById("tetris").remove("d-none");
+   $('.game').blockrain();
+
+ };
   <!--Section for data topic button toggles-->
  var dataTopics= "{{{result.[Data Topic Area]}}} {{{result.[Programming Language]}}}".split(',').join(' ');
  while (dataTopics.includes('Microsoft Office')) {
@@ -172,13 +177,7 @@ window.onload = function () {
    
   <!------------------------------>
 };
- window.alert(idscript);
- if (idscript==='tetris') {
-   element.classList.add("d-none");
-   document.getElementById("tetris").remove("d-none");
-   $('.game').blockrain();
-
- };
+ 
  <!--Code to support Darkmode-->
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
