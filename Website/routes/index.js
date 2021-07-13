@@ -353,18 +353,18 @@ router.post('/get_data', function(req, res, next) {
 
 router.post('/update', function(req, res, next) {
   var learning = req.body.LT
+      console.log(learning);
   if(learning != null && learning[1].length>1){
-    console.log(learning);
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
+	    console.log(language);
   if(language != null && language[1].length>1){
-    console.log(language);
     language = language.join(", ");
   };
+      console.log(topic);
   if(topic != null && topic[1].length>1){
-    console.log(topic);
     topic.pop();
     topic = topic.join(", ");
   };
