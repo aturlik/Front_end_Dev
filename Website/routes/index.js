@@ -1,3 +1,4 @@
+/* Required Imports */
 var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb').MongoClient;
@@ -10,54 +11,54 @@ const { MongoClient } = require("mongodb");
 const helmet = require('helmet');
 const app = express();
 app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
-var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; /* Connection string for our specific cluster */
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
-
+/* Add Data Page */
 router.get('/insert', function(req, res, next) {
   res.render('add');
 });
-
+/* Function for putting idsearch into admin ID */
 router.post('/adminsearch', function(req, res, next) {
    var id = req.body.idsearch;
    res.redirect('/admin?idsearch=' + id);
 });
-
+/* Admin page renders here, if idsearch is in url then searches for that id in database */
 router.get('/admin', async(req, res, next) => {
   var id = req.query.idsearch;
-  var results = [];
+  var results = []; /* array to put result in if object with id is found */
   if (id !="") {
     try {
-    var client = new MongoClient(url);
-    await client.connect();
-    var data = await client.db("Trainings");
-    var o_id = objectId(id); 
-    var result = await data.collection("FormattedRawData").findOne({"_id":o_id});
+    var client = new MongoClient(url); /* Connect to the cluster */
+    await client.connect(); /* Pauses and allows for the connection */
+    var data = await client.db("Trainings"); /* Pauses and enters the Trainings database */
+    var o_id = objectId(id); /* Converts the string id into an ObjectID for database search */
+    var result = await data.collection("FormattedRawData").findOne({"_id":o_id}); /* Enters our collection for the resources, then searches for the ID */
     }       
     catch (e) {
-	   console.error(e);
+	   console.error(e); /* error catch */
     }
     finally {
-	    await client.close();
-	    res.render('admin', {id:id, result:result});
+	    await client.close(); /* Closes connection to the database */
+	    res.render('admin', {id:id, result:result}); 
     }
   }
   else {
 	res.render('admin', {id: "how you hit this"});
   }
 });
-
+/* Request page renders here */
 router.get('/request', function(req, res, next) {
   res.render('request');
 });
-
+/* Comments page renders here */
 router.get('/comments', function(req, res, next) {
   res.render('comments');
 });
-
+/* Renders get data page and collections various datapoints into an array that can be accessed in the html/hbs file */
 router.get("/get-data", function(req, res, next) {
   var specdata = req.query.data; 
   var resultArray = [];
@@ -138,14 +139,14 @@ router.get("/get-data", function(req, res, next) {
     });
   });
 });
-
+/* Search function that takes the search bar input and searches MongoDB for things that fit search terms */
 router.get("/search", async (request, response) => {
   try {
     const client = new MongoClient('mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useUnifiedTopology: true });
     await client.connect();
     var db = client.db('Trainings');
     let result = await db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': `${request.query.term}`,'path': {'wildcard': '*'}, 'fuzzy': {"maxEdits": 1}}}}
-  ]).toArray();
+  ]).toArray(); /* Searches using built in MongoDB search engine feature 'MongoDB Atlas Search.' Has many different features and tools that can be adjusted */
   const uniqueresult = Array.from(
     result.reduce((acc, o) =>
       !acc.has(o.Title) || o.amount > 0 ? acc.set(o.Title, o) : acc, new Map())
@@ -157,7 +158,7 @@ router.get("/search", async (request, response) => {
     response.status(500).send({message: e.message});
   }
 })
-
+/* Function that sets up the voting features of the results page */
 router.post('/get-data/vote', function(req, res, next){
 	var dataUrl = req.body.url;
 	var inital = 0;
@@ -199,10 +200,11 @@ router.post('/get-data/vote', function(req, res, next){
 
 	
 });
-
+/* Section that renders Add Data page and puts it into a seperate collection for 
+manual validation of data before moving into the main collection */
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null && learning.length>1){
+  if(learning != null && learning.length>2){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
@@ -235,9 +237,8 @@ router.post('/insert', function(req, res, next) {
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.strictEqual(null, err);
-    db.collection('User Inputs').insertOne(item, function(err, result) {
+    db.collection('User Inputs').insertOne(item, function(err, result) { /* Inserts the data into 'User Inputs' Collection here */
       assert.strictEqual(null, err);
-      console.log('Item inserted');
       client.close();
     });
   });
@@ -354,12 +355,14 @@ router.post('/get_data', function(req, res, next) {
 
 router.post('/update', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null && learning.length>1){
+  console.log(learning);
+  console.log(learning.length);
+  if(learning != null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null && language.length>1){
+  if(language != null && language[1].length>1){
     language = language.join(", ");
   };
   if(topic.length != 0){
