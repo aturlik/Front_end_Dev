@@ -1,4 +1,3 @@
-<script src="/images/blocks/blockrain.js"></script>
 <script>
 $('.nav-item-d a').addClass("active");
 $('.game').blockrain();
@@ -11,13 +10,6 @@ window.onload = function () {
   } else {
     element.classList.add("d-none");
   }
- const urlId = new URLSearchParams(window.location.search);
- window.alert(urlId);
- if (urlId.has('tetris')) {
-   window.alert('hit');
-   element.classList.add("d-none");
-   document.getElementById("tetris").remove("d-none");
-
  };
   <!--Section for data topic button toggles-->
  var dataTopics= "{{{result.[Data Topic Area]}}} {{{result.[Programming Language]}}}".split(',').join(' ');
@@ -452,7 +444,6 @@ users to update that entry.
             </div>
     </form>
   </div>
-  <div class="game" id="tetris" style="width:250px; height:500px;"></div>
         <!--
                     Delete ID section that locates MongoDB entry by ID and then deletes the entry
         -->
