@@ -63,7 +63,7 @@ window.onload = function () {
     document.getElementById('LPSPy').checked=true;
     dataTopics = dataTopics.replace('Python','').trim();
   };  
-  while (dataTopics.includes('Java ')) {
+  while (dataTopics.includes('Java') && !dataTopics.includes('Javascript')) {
     document.getElementById('LPSJava').checked=true;
     dataTopics = dataTopics.replace('Java ','').trim();
   };  
@@ -75,9 +75,9 @@ window.onload = function () {
     document.getElementById('LPSC').checked=true;
     dataTopics = dataTopics.replace('C / C+','').trim();
   };  
-  while (dataTopics.includes(' R ')) {
+  while (dataTopics.includes(' R')) {
     document.getElementById('LPSR').checked=true;
-    dataTopics = dataTopics.replace(' R ','').trim();
+    dataTopics = dataTopics.replace(' R','').trim();
   };  
   while (dataTopics.includes('Julia')) {
     document.getElementById('LPSJulia').checked=true;
