@@ -37,7 +37,6 @@ router.get('/admin', async(req, res, next) => {
     var data = await client.db("Trainings"); /* Pauses and enters the Trainings database */
     var o_id = objectId(id); /* Converts the string id into an ObjectID for database search */
     var result = await data.collection("FormattedRawData").findOne({"_id":o_id}); /* Enters our collection for the resources, then searches for the ID */
-    console.log(id);
     }       
     catch (e) {
 	   console.error(e); /* error catch */
@@ -119,7 +118,6 @@ router.get("/get-data", function(req, res, next) {
   if (learnornah != null){
     if(learnornah.includes(",")){
       learnornah = learnornah.split(",");
-      console.log(learnornah);
       query["Learning type"] = {$in : learnornah};
     }
     else{
@@ -288,7 +286,6 @@ router.post('/request', function(req, res, next) {
     assert.strictEqual(null, err);
     db.collection('User Requests').insertOne(item, function(err, result) {
       assert.strictEqual(null, err);
-      console.log('Item inserted');
       client.close();
     });
   });
@@ -327,7 +324,6 @@ router.post('/get_data', function(req, res, next) {
   var learn = req.body.LRN;
   var sd = req.body.SD; 
   sd = sd.replace(/_/g, " ")
-  console.log(sd);
   var urladditives = "";
   if(cost != null){
     urladditives = urladditives.concat("&cost=" + cost)
@@ -352,8 +348,6 @@ router.post('/get_data', function(req, res, next) {
 
 router.post('/update', function(req, res, next) {
   var learning = req.body.LT
-  console.log(learning);
-  console.log(learning.length);
   if(learning != null && learning[1].length>1){
     learning = learning.join(", ");
   };
@@ -385,13 +379,11 @@ router.post('/update', function(req, res, next) {
   };
   
   var id = req.body.idsearchinput;
-  console.log(id);
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
     db.collection('FormattedRawData').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
       assert.equal(null, err);
-      console.log('Item updated');
       client.close();
     });
   });
@@ -406,7 +398,6 @@ router.post('/delete', function(req, res, next) {
     assert.equal(null, err);
     db.collection('FormattedRawData').deleteOne({"_id": objectId(id)}, function(err, result) {
       assert.equal(null, err);
-      console.log('Item deleted');
       client.close();
     });
   });
@@ -416,7 +407,6 @@ router.post('/delete', function(req, res, next) {
 router.post('/report', function(req, res, next) {
   var items = req.body.report;
   var itemid = req.body.reportid;
-  console.log(String(typeof(items)));
   if(String(typeof(items)) != "string"){
     items = items.filter(test => test.length > 1);
     items = items.join(", ");
