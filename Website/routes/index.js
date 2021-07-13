@@ -211,6 +211,7 @@ router.post('/insert', function(req, res, next) {
   if(language != null && language.length>1){
     language = language.join(", ");
   };
+	console.log(topic);
   if(topic.length != 0){
     topic.pop();
     topic = topic.join(", ");
