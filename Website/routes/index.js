@@ -203,16 +203,18 @@ router.post('/get-data/vote', function(req, res, next){
 manual validation of data before moving into the main collection */
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null && learning.length>2){
+  if(learning != null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null && language.length>1){
+  if(language != null && language[1].length>1){
     language = language.join(", ");
   };
-  if(topic.length != 0){
-    topic.pop();
+  if (topic === '') {
+    topic = null;
+  };
+  if(topic != null && topic[1].length>1){
     topic = topic.join(", ");
   };
   var item = {
