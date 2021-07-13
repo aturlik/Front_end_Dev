@@ -37,6 +37,7 @@ router.get('/admin', async(req, res, next) => {
     var data = await client.db("Trainings"); /* Pauses and enters the Trainings database */
     var o_id = objectId(id); /* Converts the string id into an ObjectID for database search */
     var result = await data.collection("FormattedRawData").findOne({"_id":o_id}); /* Enters our collection for the resources, then searches for the ID */
+    console.log(id);
     }       
     catch (e) {
 	   console.error(e); /* error catch */
