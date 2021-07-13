@@ -211,8 +211,6 @@ router.post('/insert', function(req, res, next) {
   if(language != null && language.length>1){
     language = language.join(", ");
   };
-	console.log(topic);
-	console.log('TEST');
   if(topic.length != 0){
     topic.pop();
     topic = topic.join(", ");
@@ -366,6 +364,7 @@ router.post('/update', function(req, res, next) {
     language = language.join(", ");
   };
   console.log(topic);
+  console.log('test');
   if (topic === '') {
     topic = null;
   };
