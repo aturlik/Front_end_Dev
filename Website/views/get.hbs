@@ -69,6 +69,10 @@
                             Use the filters at the top of the page and below the navigation bar to specify your search
                             even further.
                         </p>
+                        <p>
+                            If you press submit with only new filters and no search entered, it will add the filters to
+                            your current search.
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -166,7 +170,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="ClearDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Clearance
+                            Forum
                         </a>
                         <div class="dropdown-menu" aria-labelledby="ClearDropdownMenuLink" role="group" id="PDOD">
                             <a class="dropdown-item">
@@ -192,7 +196,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="RDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Placement
+                            Location
                         </a>
                         <div class="dropdown-menu" aria-labelledby="RDropdownMenuLink" role="group" id="RIP">
                             <a class="dropdown-item">
@@ -244,7 +248,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="LearnDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Learning Type
+                            Learning Media
                         </a>
                         <div class="dropdown-menu" aria-labelledby="LearnDropdownMenuLink" role="group" id="LRN">
                             <a class="dropdown-item">
@@ -318,13 +322,10 @@
                 <input type="hidden" id="ST" name="ST" value={{ spectopic }}></a>
             </form>
         </div>
-
     </nav>
     <ul1 id="ulid" class="" ></ul1>
     </div>
-
 </head>
-
 <script>
   const darkmode =  new Darkmode();
   if(darkmode.isActivated()) {
@@ -342,7 +343,6 @@
       };
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
       darkmode.toggle();
-      console.log(darkmode.isActivated());
       if(darkmode.isActivated()) {
           $('#navbarcolor').removeClass("navbar-light");
           $('#navbarcolor').addClass("navbar-dark");
@@ -356,12 +356,7 @@
           $('#modaldark').addClass("bg-light");
       };
   });
-
-
 </script>
-
-
-
 <!--===========================================================---
     Styling the results so that they are presented as accordion
     elements
@@ -377,7 +372,6 @@
                 <script>
                     var position = {{@index}}
                     document.getElementById("result").innerHTML = position + 1;
-
                 </script>
             {{/if}}
         </div>
@@ -424,7 +418,6 @@
                             if("{{ this.[Helpfullness Rating] }}" == ""){
                                 document.getElementById("ratingDisp{{this._id}}").innerHTML = "Unrated"
                             }
-
                             </script>
                         </div>
                     </div>
