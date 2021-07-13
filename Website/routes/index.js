@@ -368,6 +368,7 @@ router.post('/update', function(req, res, next) {
   if (topic === '') {
     topic = null;
   };
+  console.log(topic);
   if(topic != null){
     topic.pop();
     topic = topic.join(", ");
