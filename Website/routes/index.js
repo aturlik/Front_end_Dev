@@ -369,8 +369,7 @@ router.post('/update', function(req, res, next) {
     topic = null;
   };
   console.log(topic);
-  if(topic != null){
-    topic.pop();
+  if(topic != null && topic[1].length>1){
     topic = topic.join(", ");
   };
   var item = {
