@@ -364,7 +364,7 @@ router.post('/update', function(req, res, next) {
     language = language.join(", ");
   };
       console.log(topic);
-  if(topic != null && topic[1].length>1){
+  if(topic != null){
     topic.pop();
     topic = topic.join(", ");
   };
