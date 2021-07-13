@@ -212,6 +212,7 @@ router.post('/insert', function(req, res, next) {
     language = language.join(", ");
   };
 	console.log(topic);
+	console.log('TEST');
   if(topic.length != 0){
     topic.pop();
     topic = topic.join(", ");
