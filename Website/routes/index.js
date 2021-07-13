@@ -322,8 +322,13 @@ router.post('/get_data', function(req, res, next) {
   var remote = req.body.RIP;
   var selfp = req.body.SPIL;
   var learn = req.body.LRN;
-  var sd = req.body.SD; 
-  sd = sd.replace(/_/g, " ")
+  if (req.body.SpefString != ""){
+    sd = req.body.SpefString;
+  }
+  else{
+    var sd = req.body.SD; 
+    sd = sd.replace(/_/g, " ")
+  }
   var urladditives = "";
   if(cost != null){
     urladditives = urladditives.concat("&cost=" + cost)
