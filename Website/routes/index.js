@@ -118,7 +118,6 @@ router.get("/get-data", function(req, res, next) {
   if (learnornah != null){
     if(learnornah.includes(",")){
       learnornah = learnornah.split(",");
-      console.log(learnornah);
       query["Learning type"] = {$in : learnornah};
     }
     else{
@@ -204,16 +203,18 @@ router.post('/get-data/vote', function(req, res, next){
 manual validation of data before moving into the main collection */
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null && learning.length>2){
+  if(learning != null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null && language.length>1){
+  if(language != null && language[1].length>1){
     language = language.join(", ");
   };
-  if(topic.length != 0){
-    topic.pop();
+  if (topic === '') {
+    topic = null;
+  };
+  if(topic != null && topic[1].length>1){
     topic = topic.join(", ");
   };
   var item = {
@@ -287,7 +288,6 @@ router.post('/request', function(req, res, next) {
     assert.strictEqual(null, err);
     db.collection('User Requests').insertOne(item, function(err, result) {
       assert.strictEqual(null, err);
-      console.log('Item inserted');
       client.close();
     });
   });
@@ -355,8 +355,6 @@ router.post('/get_data', function(req, res, next) {
 
 router.post('/update', function(req, res, next) {
   var learning = req.body.LT
-  console.log(learning);
-  console.log(learning.length);
   if(learning != null && learning[1].length>1){
     learning = learning.join(", ");
   };
@@ -365,8 +363,10 @@ router.post('/update', function(req, res, next) {
   if(language != null && language[1].length>1){
     language = language.join(", ");
   };
-  if(topic.length != 0){
-    topic.pop();
+  if (topic === '') {
+    topic = null;
+  };
+  if(topic != null && topic[1].length>1){
     topic = topic.join(", ");
   };
   var item = {
@@ -388,13 +388,11 @@ router.post('/update', function(req, res, next) {
   };
   
   var id = req.body.idsearchinput;
-  console.log(id);
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
     db.collection('FormattedRawData').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
       assert.equal(null, err);
-      console.log('Item updated');
       client.close();
     });
   });
@@ -409,7 +407,6 @@ router.post('/delete', function(req, res, next) {
     assert.equal(null, err);
     db.collection('FormattedRawData').deleteOne({"_id": objectId(id)}, function(err, result) {
       assert.equal(null, err);
-      console.log('Item deleted');
       client.close();
     });
   });
@@ -419,7 +416,6 @@ router.post('/delete', function(req, res, next) {
 router.post('/report', function(req, res, next) {
   var items = req.body.report;
   var itemid = req.body.reportid;
-  console.log(String(typeof(items)));
   if(String(typeof(items)) != "string"){
     items = items.filter(test => test.length > 1);
     items = items.join(", ");
