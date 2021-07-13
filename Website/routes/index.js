@@ -5,6 +5,7 @@ var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
+var jssanitizer = require('sanitize');
 const { MongoClient } = require("mongodb");
 const helmet = require('helmet');
 const app = express();
@@ -240,7 +241,7 @@ router.post('/insert', function(req, res, next) {
 });
 
 router.post('/specify', function(req, res, next) {
-  specdata = jssanitizer.value(req.body.SpefString, 'str');
+  specdata = req.body.SpefString;
   var cost = req.body.TST;
   var level = req.body.LVL;
   var public = req.body.PDOD;
