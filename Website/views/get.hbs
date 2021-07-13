@@ -1,5 +1,9 @@
 <style>
     .modal-backdrop{     z-index:1; }
+    .invert {
+        -webkit-filter: invert(1); 
+        filter: invert(1);
+    }
 </style>
 
 <script>
@@ -15,6 +19,7 @@
           $('#modaldark1').addClass("bg-dark");
           $('#modaldark2').removeClass("bg-light");
           $('#modaldark2').addClass("bg-dark");
+          $('#submitbutton').addClass("invert");
       };
       if(!darkmode.isActivated()) {
           $('#navbarcolor').removeClass("navbar-dark");
@@ -25,6 +30,7 @@
           $('#modaldark1').addClass("bg-light");
           $('#modaldark2').removeClass("bg-dark");
           $('#modaldark2').addClass("bg-light");
+          $('#submitbutton').removeClass("invert");
       };
   });
 </script>
@@ -893,6 +899,7 @@ for (i = 0; i < closebtns.length; i++) {
           $('#modaldark1').addClass("bg-dark");
           $('#modaldark2').removeClass("bg-light");
           $('#modaldark2').addClass("bg-dark");
+          $('#submitbutton').addClass("invert");
       };
       if(!darkmode.isActivated()) {
           $('#navbarcolor').removeClass("navbar-dark");
@@ -903,6 +910,7 @@ for (i = 0; i < closebtns.length; i++) {
           $('#modaldark1').addClass("bg-dark");
           $('#modaldark2').removeClass("bg-dark");
           $('#modaldark2').addClass("bg-light");
+          $('#submitbutton').removeClass("invert");
       };
 
 
