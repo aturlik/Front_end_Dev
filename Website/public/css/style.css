@@ -17,30 +17,37 @@
 .darkmode--activated #cost {
   background-color: black;
   border-color: grey;
+  color: white;
 }
 .darkmode--activated #title {
   background-color: black;
   border-color: grey;
+  color: white;
 }
 .darkmode--activated #url {
   background-color: black;
   border-color: grey;
+  color: white;
 }
 .darkmode--activated #comment {
   background-color: black;
   border-color: grey;
+  color: white;
 }
 .darkmode--activated #provider {
   background-color: black;
   border-color: grey;
+  color: white;
 }
 .darkmode--activated #TCH {
   background-color: black;
   border-color: grey;
+  color: white;
 }
 .darkmode--activated #BOO {
   background-color: black;
   border-color: grey;
+  color: white;
 }
 .darkmode--activated #image {
   -webkit-filter: invert(1); 
@@ -343,6 +350,7 @@
     background-color:rgb(10, 10, 10);
     border-color: grey;
 }
+
 .darkmode--activated .form-check-label{
     color:white;
 }

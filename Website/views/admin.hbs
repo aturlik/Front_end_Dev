@@ -186,8 +186,13 @@ window.onload = function () {
       };
   });
 </script>
+
 <!--Searchbar for locating entry to update, connects to NodeJS /adminsearch-->
 <div class="container">
+    <div class="col d-flex justify-content-center">
+        <!-- Title Header -->
+        <h1 class="display-3">Update or Delete Data</h1>
+    </div>
     <form action="/adminsearch" method="post">
       <div class="row mt-5 mb-5">
         <div class="col-sm">
@@ -451,7 +456,7 @@ users to update that entry.
     <form action="/delete" method="post">
         <div class="row mt-5 mb-5">
             <div class="col-sm">
-                <input type="text" id="id" name="id" placeholder="ID" class="form-control">
+                <input type="text" id="id" name="id" placeholder="ID" class="form-control a">
             </div>
             <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid">
               <button type="submit" class="btn btn-outline-primary">delete</button>
