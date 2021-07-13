@@ -362,6 +362,7 @@ router.post('/update', function(req, res, next) {
     language = language.join(", ");
   };
   if(topic.length != 0 && topic[1].length>1){
+    console.log(topic);
     topic.pop();
     topic = topic.join(", ");
   };
