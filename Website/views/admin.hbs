@@ -1,3 +1,21 @@
+<style>
+.darkmode--activated .btn-outline-primary {
+  color: #f2a600;
+  border-color: #f2a600;
+}
+.darkmode--activated .btn-outline-primary:hover{
+  background-color: #f2a600;
+  color: black;
+  border-color: #f2a600; 
+}
+.darkmode--activated .btn-check:checked+.btn-outline-primary{
+  background-color:#f2a600;
+  color: black;
+  border-color: #f2a600;
+}
+</style>
+
+
 <script>
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
@@ -198,7 +216,7 @@ window.onload = function () {
         <div class="col-sm">
           <input type="text" id="idsearch" class="form-control" name="idsearch" placeholder="ID" value="{{result._id}}">
         </div>
-        <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid">
+        <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid darkmode-ignore">
           <button type="submit" class="btn btn-outline-primary">find</button>
         </div>
       </div>
@@ -444,7 +462,7 @@ users to update that entry.
               <input type="text" id="idsearchinput" name="idsearchinput" class="form-control d-none" value="{{result._id}}">
             </div>
             <!-- Button to insert data into database and call on submit Modal -->
-            <div class="d-grid gap-2 col-6 mx-auto darkmode-ignore">
+            <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
             </div>
     </form>
@@ -458,7 +476,7 @@ users to update that entry.
             <div class="col-sm">
                 <input type="text" id="id" name="id" placeholder="ID" class="form-control a">
             </div>
-            <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid">
+            <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid darkmode-ignore">
               <button type="submit" class="btn btn-outline-primary">delete</button>
             </div>
         </div>
