@@ -12,6 +12,10 @@ const helmet = require('helmet');
 const app = express();
 app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; /* Connection string for our specific cluster */
+const mongodb = require("mongodb").MongoClient;
+const fastcsv = require("fast-csv");
+const fs = require("fs");
+const ws = fs.createWriteStream("public/files/FullDatabase.csv");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -156,7 +160,28 @@ router.get("/search", async (request, response) => {
   } catch (e) {
     response.status(500).send({message: e.message});
   }
-})
+});
+
+
+router.get("/csv", async (request, response) => {
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
+    var db = client.db('Trainings').collection("FormattedRawData")
+    .find({})
+    .toArray((err, data) => {
+      if (err) throw err;
+      fastcsv
+        .write(data, { headers: true })
+        .on("finish", function() {
+          console.log("Write to FullDatabase.csv successfully!");
+        })
+        .pipe(ws);
+      client.close();
+    });
+  })
+  response.redirect('/');
+});
+
+
 /* Function that sets up the voting features of the results page */
 router.post('/get-data/vote', function(req, res, next){
 	var dataUrl = req.body.url;

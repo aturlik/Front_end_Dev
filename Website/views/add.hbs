@@ -4,8 +4,25 @@
 <style>
     .darkmode--activated .form-control{
     color: white;
+}  
+.darkmode--activated .btn-outline-primary {
+  color: #f2a600;
+  border-color: #f2a600;
 }
+.darkmode--activated .btn-outline-primary:hover{
+  background-color: #f2a600;
+  color: black;
+  border-color: #f2a600;
+  
+}
+.darkmode--activated .btn-check:checked+.btn-outline-primary{
+  background-color:#f2a600;
+  color: black;
+  border-color: #f2a600;
+}
+
 </style>
+
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
@@ -793,7 +810,7 @@ $('.nav-item-c a').addClass("active");
             </div>
 
             <!-- Button to insert data into database and call on submit Modal -->
-            <div class="d-grid gap-2 col-6 mx-auto darkmode-ignore">
+            <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
             </div>
         </form>
