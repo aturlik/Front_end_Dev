@@ -6,8 +6,12 @@ var logger = require('morgan');
 var hbs = require('express-handlebars');
 var sanitize = require('mongo-sanitize');
 const Handlebars = require('handlebars')
-
-
+var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; /* Connection string for our specific cluster */
+const mongodb = require("mongodb").MongoClient;
+var mongo = require('mongodb').MongoClient;
+const fastcsv = require("fast-csv");
+const fs = require("fs");
+const ws = fs.createWriteStream("public/files/FullDatabase.csv");
 var indexRouter = require('./routes/index');
 
 
@@ -27,6 +31,19 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', indexRouter);
 
 
+// This section downloads the whole database into a csv on start up for the website
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) { // If you want to change connection string change variable up at the top
+    var db = client.db('Trainings').collection("FormattedRawData") // Here is where you can select the Database and Collections of the download
+    .find({})
+    .toArray((err, data) => {
+      if (err) throw err;
+      fastcsv
+        .write(data, { headers: true })
+        .pipe(ws);
+      client.close();
+    });
+  });
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -44,5 +61,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

@@ -150,6 +150,7 @@
 
     .endOfResults{
         text-align: center;
+        z-index:-1;
     }
 
     /* Container Style*/
