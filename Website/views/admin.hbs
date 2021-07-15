@@ -207,7 +207,6 @@ window.onload = function () {
       };
   });
 </script>
-<br>
 <!--Searchbar for locating entry to update, connects to NodeJS /adminsearch-->
 <div class="container">
     <div class="col d-flex justify-content-center">
@@ -488,6 +487,12 @@ users to update that entry.
 
 </div>
 
+<center> 
+  <form action="/csv" method="get">
+    <p>Click here to reload the downloadable database</p>
+    <button type="submit" class="btn btn-outline-primary darkmode-ignore">Reset</button>
+  </form>
+</center>
 
 <script>
   if(darkmode.isActivated()) {
