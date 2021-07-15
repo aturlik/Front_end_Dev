@@ -1,4 +1,3 @@
-
 <!-- Call to Navigation Bar to show current page is active -->
 <script>
     $('.nav-item-b a').addClass("active");
@@ -11,28 +10,58 @@
 
 
 <script>
-  const darkmode =  new Darkmode();
-  document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
-      darkmode.toggle();  
-      if(darkmode.isActivated()) {
-          $('#modaldark').removeClass("bg-light");
-          $('#modaldark').addClass("bg-dark");
-          $('#modaldark1').removeClass("bg-light");
-          $('#modaldark1').addClass("bg-dark");
-      };
-      if(!darkmode.isActivated()) {
-          $('#modaldark').removeClass("bg-dark");
-          $('#modaldark').addClass("bg-light");
-          $('#modaldark1').removeClass("bg-dark");
-          $('#modaldark1').addClass("bg-light");
-      };
-  });
+    const darkmode = new Darkmode();
+    document.getElementById("flexSwitchCheckDefault").addEventListener("click", function () {
+        darkmode.toggle();
+        if (darkmode.isActivated()) {
+            $('#modaldark').removeClass("bg-light");
+            $('#modaldark').addClass("bg-dark");
+            $('#modaldark1').removeClass("bg-light");
+            $('#modaldark1').addClass("bg-dark");
+        };
+        if (!darkmode.isActivated()) {
+            $('#modaldark').removeClass("bg-dark");
+            $('#modaldark').addClass("bg-light");
+            $('#modaldark1').removeClass("bg-dark");
+            $('#modaldark1').addClass("bg-light");
+        };
+    });
 
 </script>
 <div class="container overflow-hidden">
     <div class="col d-flex justify-content-center">
         <!-- Title Header -->
         <h1 class="display-1">Comments or Bugs</h1>
+
+        <!-- Button to call on Help Tutorial Modal -->
+        <span class="d-inline-block clicky" data-toggle="modal" data-target="#myModal1" title="Click This For Page Tutorial">
+            <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
+                <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
+            </button>
+        </span>
+
+        <!-- Contents of Help Tutorial Modal -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="modaldark1">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        If you have found any bugs or want any changes to the site, you can request
+                        it here. The developers will read you request and see what can be done.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <section class="specify">
         <form action="/comments" method="post" class="needs-validation" novalidate>
@@ -41,76 +70,36 @@
             <div class="col-sm mb-2 mt-4">
                 <textarea class="form-control test" type="text" id="bugs" name="comments" size="60"
                           placeholder="Please enter any bugs you have found or comments about the site" required></textarea>
-                <div class="invalid-tooltip" style="position: relative">Please input a comment or bug about the
+                <div class="invalid-tooltip" style="position: relative">
+                    Please input a comment or bug about the
                     website.
                 </div>
             </div>
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
-                    <table>
-                        <td>
-
-                            <!-- Button to call on Help Tutorial Modal -->
-                            <span class="d-inline-block" data-toggle="modal" data-target="#myModal1"
-                                  title="Click This For More Help">
-                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
-                                        disabled>
-                                    <img src="images/Help_Icon.png" alt="help" id="image"> <small
-                                        id="image">Help</small>
-                                </button>
-                            </span>
-
-                            <!-- Contents of Help Tutorial Modal -->
-                            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
-                                 aria-labelledby="myModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" id="modaldark1">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
-                                        </div>
-
-                                        <div class="modal-body">
-                                            If you have found any bugs or want any changes to the site, you can request
-                                            it here. The Developers will read you request and see what can be done.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <button type="submit" id='submit' class="btn btn-outline-primary">Submit</button>
-                        </td>
-
-                        <script>
+                    <button type="submit" id='submit' class="btn btn-outline-primary">Submit</button>
+                    <script>
                         // Validation JS
-                            (function () {
-                              'use strict'
+                        (function () {
+                            'use strict'
 
-                              // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                              var forms = document.querySelectorAll('.needs-validation')
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.querySelectorAll('.needs-validation')
 
-                              // Loop over them and prevent submission
-                              Array.prototype.slice.call(forms)
+                            // Loop over them and prevent submission
+                            Array.prototype.slice.call(forms)
                                 .forEach(function (form) {
-                                  form.addEventListener('submit', function (event) {
-                                    if (!form.checkValidity()) {
-                                      event.preventDefault()
-                                      event.stopPropagation()
-                                    }
+                                    form.addEventListener('submit', function (event) {
+                                        if (!form.checkValidity()) {
+                                            event.preventDefault()
+                                            event.stopPropagation()
+                                        }
 
-                                    form.classList.add('was-validated')
-                                  }, false)
+                                        form.classList.add('was-validated')
+                                    }, false)
                                 })
-                            })()
-
-
-                        </script>
-                    </table>
+                        })()
+                    </script>
                 </div>
             </div>
         </form>
@@ -118,19 +107,19 @@
 </div>
 
 <script>
-    if(darkmode.isActivated()) {
+    if (darkmode.isActivated()) {
         $('input[name="radioButton"][value="hello"]').prop('checked', true);
         $('#modaldark').removeClass("bg-light");
         $('#modaldark').addClass("bg-dark");
         $('#modaldark1').removeClass("bg-light");
         $('#modaldark1').addClass("bg-dark");
-      };
-      if(!darkmode.isActivated()) {
+    };
+    if (!darkmode.isActivated()) {
         $('#modaldark').removeClass("bg-dark");
         $('#modaldark').addClass("bg-light");
         $('#modaldark1').removeClass("bg-dark");
         $('#modaldark1').addClass("bg-light");
-      };
+    };
 
 </script>
 
