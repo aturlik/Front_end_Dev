@@ -44,14 +44,10 @@
 <!-- Navigation bar to show that current tab is active -->
 <script>
     $('.nav-item-a a').addClass("active");
-    window.alert("HIHIHIHI");
-    var url = window.location.href; // or window.location.href for current url
-    window.alert(url);
-    var captured = /data=([^&]+)/.exec(url)[1]; // Value is in [1] ('384' in our case)
-        window.alert(captured);
-    var result = captured ? captured : 'test';
-    window.alert(result);
     window.onload = function () {
+      var url = window.location.href; // or window.location.href for current url
+      var captured = /data=([^&]+)/.exec(url)[1]; // Value is in [1] ('384' in our case)
+      var result = captured ? captured : null ;
       document.getElementById("SpefString").value = result;
     };
 </script>
