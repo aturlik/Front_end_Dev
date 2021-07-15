@@ -1,3 +1,4 @@
+# Document required to use the cloud hosting by Google.
 runtime: nodejs
 env: flex
 
