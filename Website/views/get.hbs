@@ -47,6 +47,8 @@
     window.onload = function () {
       var url = window.location.href; // or window.location.href for current url
       var captured = /data=([^&]+)/.exec(url)[1]; // Value is in [1] ('384' in our case)
+      captured = captured.replace('%20', " ");
+      console.log(captured);
       var result = captured ? captured : null ;
       document.getElementById("SpefString").value = result;
     };
