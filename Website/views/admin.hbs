@@ -13,8 +13,8 @@
   color: black;
   border-color: #f2a600;
 }
-.a{
-    font-size:calc(70% + .6vw);
+.btn-outline-primary{
+    font-size:calc(70% + .4vw);
 }
 </style>
 
@@ -269,11 +269,11 @@ users to update that entry.
                 <div class="col" align="center">
                     <div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
                         <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced" checked>
-                        <label class="btn btn-outline-primary a" for="SPILself">
+                        <label class="btn btn-outline-primary" for="SPILself">
                             Self-Paced
                         </label>
                         <input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led">
-                        <label class="btn btn-outline-primary a" for="SPILins">
+                        <label class="btn btn-outline-primary" for="SPILins">
                             Instructor Led
                         </label>
                     </div>
@@ -282,11 +282,11 @@ users to update that entry.
                     <div class="btn-group d-flex" role="group" aria-label="Does training offer Certificate or Degree"
                          id="CDP">
                         <input class="btn-check" type="checkbox" name="CDP" value="Certificate" id="CDPCert">
-                        <label class="btn btn-outline-primary a" for="CDPCert">
+                        <label class="btn btn-outline-primary" for="CDPCert">
                             Certificate
                         </label>
                         <input class="btn-check" type="checkbox" name="CDP" value="Degree" id="CDPDeg">
-                        <label class="btn btn-outline-primary a" for="CDPDeg">
+                        <label class="btn btn-outline-primary" for="CDPDeg">
                             Degree
                         </label>
                     </div>
@@ -296,14 +296,14 @@ users to update that entry.
                 <div class="btn-group d-flex" role="group" aria-label="Barrier to Entry Select" id="BE">	
                     <input type="radio" class="btn-check" name="BE" id="BEBeg" autocomplete="off" value="Beginner"
                            checked>
-                    <label class="btn btn-outline-primary a" for="BEBeg">Beginner</label>
+                    <label class="btn btn-outline-primary" for="BEBeg">Beginner</label>
                     <input type="radio" class="btn-check" name="BE" id="BEInter" autocomplete="off"
                            value="Intermediate">
-                    <label class="btn btn-outline-primary a" for="BEInter">Intermediate</label>
+                    <label class="btn btn-outline-primary" for="BEInter">Intermediate</label>
                     <input type="radio" class="btn-check" name="BE" id="BEAdv" autocomplete="off" value="Advanced">
-                    <label class="btn btn-outline-primary a" for="BEAdv">Advanced</label>
+                    <label class="btn btn-outline-primary" for="BEAdv">Advanced</label>
                     <input type="radio" class="btn-check" name="BE" id="BEExp" autocomplete="off" value="Expert">
-                    <label class="btn btn-outline-primary a" for="BEExp">Expert</label>
+                    <label class="btn btn-outline-primary" for="BEExp">Expert</label>
  		</div> 
             </div>
             <div class="row mb-2">
@@ -311,9 +311,9 @@ users to update that entry.
                     <div class="btn-group d-flex" role="group" aria-label="Public or DOD" id="PDOD">
                         <input type="radio" class="btn-check" name="PDOD" id="PDODP" autocomplete="off" value="Public"
                                checked>
-                        <label class="btn btn-outline-primary a" for="PDODP">Public</label>
+                        <label class="btn btn-outline-primary" for="PDODP">Public</label>
                         <input type="radio" class="btn-check" name="PDOD" id="PDODD" autocomplete="off" value="DOD">
-                        <label class="btn btn-outline-primary a" for="PDODD">DOD</label>
+                        <label class="btn btn-outline-primary" for="PDODD">DOD</label>
                     </div>
                 </div>
                 <div class="col darkmode-ignore">
@@ -336,23 +336,23 @@ users to update that entry.
                     <div class="btn-group d-flex" role="group" aria-label="In Person or Remote" id="PR">
                         <input type="radio" class="btn-check" name="PR" id="PRR" autocomplete="off" value="Remote"
                                checked>
-                        <label class="btn btn-outline-primary a" for="PRR">Remote</label>
+                        <label class="btn btn-outline-primary" for="PRR">Remote</label>
                         <input type="radio" class="btn-check" name="PR" id="PRP" autocomplete="off" value="In Person">
-                        <label class="btn btn-outline-primary a" for="PRP">In Person</label>
+                        <label class="btn btn-outline-primary" for="PRP">In Person</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="btn-group  d-flex" role="group" aria-label="Learning Type" id="LT">
                         <input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT">
-                        <label class="btn btn-outline-primary a" for="LTT">Text</label>
+                        <label class="btn btn-outline-primary" for="LTT">Text</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV">
-                        <label class="btn btn-outline-primary a" for="LTV">Video</label>
+                        <label class="btn btn-outline-primary" for="LTV">Video</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Book" id="LTB">
-                        <label class="btn btn-outline-primary a" for="LTB">Book</label>
+                        <label class="btn btn-outline-primary" for="LTB">Book</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL">
-                        <label class="btn btn-outline-primary a" for="LTL">Lecture</label>
+                        <label class="btn btn-outline-primary" for="LTL">Lecture</label>
                         <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI">
-                        <label class="btn btn-outline-primary a" for="LTI">Interactive</label>
+                        <label class="btn btn-outline-primary" for="LTI">Interactive</label>
                     </div>
                 </div>
             </div>
@@ -486,18 +486,8 @@ users to update that entry.
     </form>
   </div>
 
-  <div class="container">
-    <form action="/csv" method="get">
-        <center>
-            <p>Use this button to update the downloadable database.</p>
-            <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid darkmode-ignore">
-              <button type="submit" class="btn btn-outline-primary">Reset</button>
-            </div>
-        </center>
-    </form>
-  </div>
-
 </div>
+
 
 <script>
   if(darkmode.isActivated()) {
