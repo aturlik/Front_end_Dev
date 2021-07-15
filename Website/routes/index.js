@@ -5,17 +5,19 @@ var mongo = require('mongodb').MongoClient;
 var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
+var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; /* Connection string for our specific cluster */
+const mongodb = require("mongodb").MongoClient;
+const fastcsv = require("fast-csv");
+const fs = require("fs");
+const ws = fs.createWriteStream("public/files/FullDatabase.csv");
+
+/* Security Packages */
 var sanitize = require('mongo-sanitize');
 var jssanitizer = require('sanitize')();
 const { MongoClient } = require("mongodb");
 const helmet = require('helmet');
 const app = express();
 app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
-var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; /* Connection string for our specific cluster */
-const mongodb = require("mongodb").MongoClient;
-const fastcsv = require("fast-csv");
-const fs = require("fs");
-const ws = fs.createWriteStream("public/files/FullDatabase.csv");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -271,6 +273,8 @@ router.post('/insert', function(req, res, next) {
   res.redirect('/insert');
 });
 
+/* Section that search bar on main page redirects to. Just cleans the search input
+   and puts it into the url and redirects to get data page                          */
 router.post('/specify', function(req, res, next) {
   specdata = jssanitizer.value(req.body.SpefString, 'str');
   var cost = req.body.TST;
@@ -280,6 +284,7 @@ router.post('/specify', function(req, res, next) {
   var selfp = req.body.SPIL;
   var learn = req.body.LRN;
   var urladditives = "";
+  /* Section to add filters (if chosen) to URL */
   if(cost != null){
     urladditives = urladditives.concat("&cost=" + cost)
   };
@@ -301,7 +306,8 @@ router.post('/specify', function(req, res, next) {
   res.redirect("/get-data?data=" + specdata + urladditives);
 });
 
-
+/* Enables users to request data on the request page and inputs the requets
+   into a collection                                                        */
 router.post('/request', function(req, res, next) {
   var item = {
     Request: req.body.request,
@@ -311,21 +317,21 @@ router.post('/request', function(req, res, next) {
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.strictEqual(null, err);
-    db.collection('User Requests').insertOne(item, function(err, result) {
+    db.collection('User Requests').insertOne(item, function(err, result) { /* Here is where you would change the name of the collection to intended name */
       assert.strictEqual(null, err);
       client.close();
     });
   });
   res.redirect('/request');
 });
-
+/* Interfaces with button at bottom of Get Data page to auto fill requests*/
 router.post('/auto-request', function(req, res, next){
 	var currUrl = req.body.request;
 	var contents = currUrl.slice(currUrl.indexOf("?"), currUrl.length);
 
 	res.redirect('/request' + contents);
 })
-
+/* Does the same thing as the requests page but this time with comments */
 router.post('/comments', function(req, res, next) {
   var item = {
     Comments: req.body.bugs
@@ -334,21 +340,24 @@ router.post('/comments', function(req, res, next) {
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.strictEqual(null, err);
-    db.collection('Bugs and Comments').insertOne(item, function(err, result) {
+    db.collection('Bugs and Comments').insertOne(item, function(err, result) { /* The collection here should be changed when needed */
       assert.strictEqual(null, err);
       client.close();
     });
   });
   res.redirect('/comments');
 });
-
+/* Makes the Get Data page obtain the neccessary data from the database
+   to allow the rendering of the site in the html later */
 router.post('/get_data', function(req, res, next) {
+  /* These variables are for filters */
   var cost = req.body.TST;
   var level = req.body.LVL;
   var public = req.body.PDOD;
   var remote = req.body.RIP;
   var selfp = req.body.SPIL;
   var learn = req.body.LRN;
+  /* Null check for search term */
   if (req.body.SpefString != ""){
     sd = req.body.SpefString;
   }
@@ -356,6 +365,7 @@ router.post('/get_data', function(req, res, next) {
     var sd = req.body.SD; 
     sd = sd.replace(/_/g, " ")
   }
+  /* section creates a long string to add to end of url to keep track of filters and variables */
   var urladditives = "";
   if(cost != null){
     urladditives = urladditives.concat("&cost=" + cost)
@@ -377,8 +387,11 @@ router.post('/get_data', function(req, res, next) {
   };
   res.redirect("/get-data?data=" + sd + urladditives);
 });
-
+/* This page is accessed by the admin page to do back end work
+   to pull information needed after getting the id from admin  */
 router.post('/update', function(req, res, next) {
+  /* gets learn and cleans it up here and makes it one string if there 
+  are multiple languages. Does the same for languages and topics */
   var learning = req.body.LT
   if(learning != null && learning[1].length>1){
     learning = learning.join(", ");
@@ -411,45 +424,48 @@ router.post('/update', function(req, res, next) {
     "In person vs Remote": req.body.PR,
     Comment: req.body.comment,
   };
-  
+  /* Consolidates the form inputs into one array to reference */
   var id = req.body.idsearchinput;
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    db.collection('FormattedRawData').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
-      assert.equal(null, err);
+    db.collection('FormattedRawData').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) { // Inputs created array into selected collection
+      assert.equal(null, err);										     // (collection should be changed to collection used in final product)
       client.close();
     });
   });
   res.redirect('/admin?idsearch=' + id);
 });
-
+/* Backend for delete functionality accessed by the admin page */
 router.post('/delete', function(req, res, next) {
+  /* Puts id from form into variable */
   var id = req.body.id;
-
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    db.collection('FormattedRawData').deleteOne({"_id": objectId(id)}, function(err, result) {
+    db.collection('FormattedRawData').deleteOne({"_id": objectId(id)}, function(err, result) { /* Deletes item with ID from collection, here change collection in future */
       assert.equal(null, err);
       client.close();
     });
   });
   res.redirect('/admin');
 });
-
+/* Fuctionality for report button accessed through the Get Data page */
 router.post('/report', function(req, res, next) {
+  /* Puts id and item into variable from report button */
   var items = req.body.report;
   var itemid = req.body.reportid;
+  /* Functionality to convert the items to string if not a string */
   if(String(typeof(items)) != "string"){
     items = items.filter(test => test.length > 1);
     items = items.join(", ");
   };
+  /* Make an array of items and ids */
   var item = {"ReportedID": itemid, "Problem": items} ;
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.strictEqual(null, err);
-    db.collection('User Reports').insertOne(item, function(err, result) {
+    db.collection('User Reports').insertOne(item, function(err, result) { /* Add array to its own reports collection, should be changed when implemented final */
       assert.strictEqual(null, err);
       client.close();
     });
