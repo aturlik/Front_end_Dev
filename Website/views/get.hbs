@@ -1,5 +1,5 @@
 <style>
-    .modal-backdrop{     z-index:1; }
+    .modal-backdrop{ z-index:1; }
     .invert {
         color: #f2a600;
         border-color: #f2a600;
@@ -44,7 +44,10 @@
 <!-- Navigation bar to show that current tab is active -->
 <script>
     $('.nav-item-a a').addClass("active");
-
+    var url = window.location.href; // or window.location.href for current url
+    var captured = /data=([^&]+)/.exec(url)[1]; // Value is in [1] ('384' in our case)
+    var result = captured ? captured : 'test';
+    window.alert(test);
 </script>
 
 <!DOCTYPE html>
