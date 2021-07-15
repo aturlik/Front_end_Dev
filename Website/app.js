@@ -31,17 +31,14 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', indexRouter);
 
 
-
-  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
-    var db = client.db('Trainings').collection("FormattedRawData")
+// This section downloads the whole database into a csv on start up for the website
+  mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) { // If you want to change connection string change variable up at the top
+    var db = client.db('Trainings').collection("FormattedRawData") // Here is where you can select the Database and Collections of the download
     .find({})
     .toArray((err, data) => {
       if (err) throw err;
       fastcsv
         .write(data, { headers: true })
-        .on("finish", function() {
-          console.log("Write to FullDatabase.csv successfully!");
-        })
         .pipe(ws);
       client.close();
     });
