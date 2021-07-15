@@ -178,7 +178,7 @@ router.get("/csv", async (request, response) => {
       client.close();
     });
   })
-  response.redirect('/');
+  response.redirect('/admin');
 });
 
 
