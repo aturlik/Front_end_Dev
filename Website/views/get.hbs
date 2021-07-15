@@ -46,9 +46,11 @@
     $('.nav-item-a a').addClass("active");
     window.alert("HIHIHIHI");
     var url = window.location.href; // or window.location.href for current url
+    window.alert(url);
     var captured = /data=([^&]+)/.exec(url)[1]; // Value is in [1] ('384' in our case)
+        window.alert(captured);
     var result = captured ? captured : 'test';
-    window.alert(test);
+    window.alert(result);
 </script>
 
 <!DOCTYPE html>
