@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Website",
+    "\\Website\\public",
+    "\\Website\\public\\css",
+    "\\Website\\views",
+    "\\Website\\views\\layouts"
+  ],
+  "SelectedNode": "\\Website\\views\\request.hbs",
+  "PreviewInSolutionExplorer": false
+}

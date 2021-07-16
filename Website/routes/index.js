@@ -5,8 +5,11 @@ var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 let mongoose = require('mongoose');
 var sanitize = require('mongo-sanitize');
-var jssanitizer = require('sanitize')();
+var jssanitizer = require('sanitize');
 const { MongoClient } = require("mongodb");
+const helmet = require('helmet');
+const app = express();
+app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
 var url = 'mongodb+srv://dtbishop:testpass@data01.8o2pb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 /* GET home page. */
@@ -16,11 +19,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/insert', function(req, res, next) {
   res.render('add');
-});
-
-router.post('/adminsearch', function(req, res, next) {
-   var id = req.body.idsearch;
-   res.redirect('/admin?idsearch=' + id);
 });
 
 router.get('/admin', async(req, res, next) => {
@@ -125,14 +123,45 @@ router.get("/get-data", function(req, res, next) {
     var db = client.db('Trainings');
     assert.equal(null, err);
     var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': specdata,'path': {'wildcard': '*'}}}}, {'$match': query}]);
-    cursor.forEach(function(doc, err) {
-      assert.equal(null, err);
-      resultArray.push(doc);
-    }, function() {
-      client.close();
-      specdata = specdata.replace(/ /g, "_");
-      res.render('get', {items: resultArray, specdata});
-    });
+
+	/*cursor.forEach(function(doc){
+		console.log(typeof(doc.Cost));
+		if(typeof(doc.Cost) == 'string'){
+			db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(req.body.id)}, {"$set": {"Cost": parseInt(doc.Cost)}});
+			console.log(doc.Cost);
+		}
+	})*/
+	
+	if(req.query.sort == "Cost"){
+		cursor.sort({"Cost" : 1});
+	}else if(req.query.sort == "Experience"){
+		cursor.sort({"Barrier to Entry" : 1});
+	}else if(req.query.sort == "Time"){
+		cursor.sort({"Time Commitment (Hours)" : 1});
+	}else if(req.query.sort == "Rating"){
+		cursor.sort({"Helpfullness Rating" : 1});
+	}
+	
+	cursor.forEach(function(doc, err) {
+		assert.equal(null, err);
+		if(typeof doc.Cost == 'string'){
+			db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {"$set": {"Cost": parseInt(doc.Cost)}}, function(err, result){
+				console.log("Cost" + err);
+			});
+		}
+
+		if(!doc.hasOwnProperty("voteCount")){
+			db.collection('FormattedRawData').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": parseInt((0).toFixed()), vote: 0, voteCount: 0}}, function(err, result) {
+				console.log("UT" + err);
+			});
+		}
+
+		resultArray.push(doc);
+	}, function() {
+		console.log("made it to the second function");
+		specdata = specdata.replace(/ /g, "_");
+		res.render('get', {items: resultArray, specdata});
+	});
   });
 });
 
@@ -175,20 +204,13 @@ router.post('/get-data/vote', function(req, res, next){
 			const file =  await db.collection('FormattedRawData').find(query).toArray();
 			
 			if(file.length > 0){
-				if(file[0].hasOwnProperty("voteCount")){
-					var voteVal = file[0].vote + inital;
-					var countVal = file[0].voteCount + 1;
+				var voteVal = file[0].vote + inital;
+				var countVal = file[0].voteCount + 1;
 				
-					db.collection('FormattedRawData').updateOne(query, {$inc: {vote: inital , voteCount: 1}, $set: {"Helpfullness Rating": ((voteVal/countVal)*100).toFixed()}}, function(err, result) {
-						assert.strictEqual(null, err);
-						client.close();
-					});
-				}else{
-					db.collection('FormattedRawData').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": ((inital/1)*100).toFixed(), vote: inital, voteCount: 1}}, function(err, result) {
-						assert.strictEqual(null, err);
-						client.close();
-					});
-				}
+				db.collection('FormattedRawData').updateOne(query, {$inc: {vote: inital , voteCount: 1}, $set: {"Helpfullness Rating": parseInt(((voteVal/countVal)*100).toFixed())}}, function(err, result) {
+					assert.strictEqual(null, err);
+					client.close();
+				});
 			}
 		}
 		run().then(()=>res.redirect(dataUrl));
@@ -199,12 +221,12 @@ router.post('/get-data/vote', function(req, res, next){
 
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null && learning.length>1){
+  if(learning != null){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null && language.length>1){
+  if(language != null){
     language = language.join(", ");
   };
   if(topic.length != 0){
@@ -216,17 +238,18 @@ router.post('/insert', function(req, res, next) {
     URL: req.body.url,
     Provider: req.body.provider,
     Cost: req.body.cost,
-    "Public/DOD": req.body.PDOD,
-    "Time Commitment (Hours)": req.body.TCH,
-    "Certificate/Degree Program": req.body.CDP,
-    "Data Topic Area": topic,
-    "Programming Language": language,
-    "Base of Operations": req.body.BOO,
-    "Barrier to Entry": req.body.BE,
-    "Self Paced vs Instructor Led": req.body.SPIL,
-    "Learning type": learning,
-    "In person vs Remote": req.body.PR,
+    PublicOrDOD: req.body.PDOD,
+    TimeCommitment: req.body.TCH,
+    Cert_Degree: req.body.CDP,
+    Data_Topics: topic,
+    Programming_Language: language,
+    Base_of_Operations: req.body.BOO,
+    Barrier: req.body.BE,
+    Self_Paced: req.body.SPIL,
+    Learning_Type: learning,
+    InPerson: req.body.PR,
     Comment: req.body.comment,
+    Topics: req.body.TG
   };
   
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
@@ -263,7 +286,7 @@ router.post('/specify', function(req, res, next) {
     urladditives = urladditives.concat("&remote=" + remote)
   };
   if(selfp != null){
-    urladditives = urladditives.concat("&pacing=" + selfp)
+    urladditives = urladditives.concat("&self=" + selfp)
   };
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
@@ -320,9 +343,14 @@ router.post('/get_data', function(req, res, next) {
   var remote = req.body.RIP;
   var selfp = req.body.SPIL;
   var learn = req.body.LRN;
-  var sd = req.body.SD; 
-  sd = sd.replace(/_/g, " ")
-  console.log(sd);
+  var sort = req.body.sort;
+  if (req.body.SpefString != ""){
+    sd = req.body.SpefString;
+  }
+  else{
+    var sd = req.body.SD; 
+    sd = sd.replace(/_/g, " ")
+  }
   var urladditives = "";
   if(cost != null){
     urladditives = urladditives.concat("&cost=" + cost)
@@ -337,58 +365,50 @@ router.post('/get_data', function(req, res, next) {
     urladditives = urladditives.concat("&remote=" + remote)
   };
   if(selfp != null){
-    urladditives = urladditives.concat("&pacing=" + selfp)
+    urladditives = urladditives.concat("&self=" + selfp)
   };
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
   };
+  if(sort != null){
+  	urladditives = urladditives.concat("&sort=" + sort);
+  }
+
   res.redirect("/get-data?data=" + sd + urladditives);
 });
 
 router.post('/update', function(req, res, next) {
-  var learning = req.body.LT
-  if(learning != null && learning.length>1){
-    learning = learning.join(", ");
-  };
-  var language = req.body.LPS;
-  var topic = req.body.DTA;
-  if(language != null && language.length>1){
-    language = language.join(", ");
-  };
-  if(topic.length != 0){
-    topic.pop();
-    topic = topic.join(", ");
-  };
   var item = {
-    Title: req.body.title,
-    URL: req.body.url,
-    Provider: req.body.provider,
-    Cost: req.body.cost,
-    "Public/DOD": req.body.PDOD,
-    "Time Commitment (Hours)": req.body.TCH,
-    "Certificate/Degree Program": req.body.CDP,
-    "Data Topic Area": topic,
-    "Programming Language": language,
-    "Base of Operations": req.body.BOO,
-    "Barrier to Entry": req.body.BE,
-    "Self Paced vs Instructor Led": req.body.SPIL,
-    "Learning type": learning,
-    "In person vs Remote": req.body.PR,
+    title: req.body.title,
+    url: req.body.url,
+    provider: req.body.provider,
+    cost: req.body.cost,
+    PublicDOD: req.body.PDOD,
+    TimeCom: req.body.TCH,
+    Cert: req.body.CDP,
+    Data: req.body.DTA,
+    Program: req.body.PL,
+    Base: req.body.BOO,
+    Barrier: req.body.BE,
+    Pacing: req.body.SPIL,
+    Learning: req.body.LT,
+    Person: req.body.PR,
+    Useful: req.body.UT,
     Comment: req.body.comment,
+    Topics: req.body.TG
   };
-  
-  var id = req.body.idsearchinput;
-  console.log(id);
+  var id = req.body.id;
+
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    db.collection('FormattedRawData').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
+    db.collection('User Inputs').updateOne({"_id": objectId(id)}, {$set: item}, function(err, result) {
       assert.equal(null, err);
       console.log('Item updated');
       client.close();
     });
   });
-  res.redirect('/admin?idsearch=' + id);
+  res.redirect('/others');
 });
 
 router.post('/delete', function(req, res, next) {
@@ -397,24 +417,23 @@ router.post('/delete', function(req, res, next) {
   mongo.connect(url, function(err, client) {
     var db = client.db('Trainings');
     assert.equal(null, err);
-    db.collection('FormattedRawData').deleteOne({"_id": objectId(id)}, function(err, result) {
+    db.collection('User Inputs').deleteOne({"_id": objectId(id)}, function(err, result) {
       assert.equal(null, err);
       console.log('Item deleted');
       client.close();
     });
   });
-  res.redirect('/admin');
+  res.redirect('/others');
 });
 
 router.post('/report', function(req, res, next) {
   var items = req.body.report;
-  var itemid = req.body.reportid;
   console.log(String(typeof(items)));
   if(String(typeof(items)) != "string"){
     items = items.filter(test => test.length > 1);
     items = items.join(", ");
   };
-  var item = {"ReportedID": itemid, "Problem": items} ;
+  var item = {"Report": items};
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
     var db = client.db('Trainings');
     assert.strictEqual(null, err);
@@ -425,7 +444,6 @@ router.post('/report', function(req, res, next) {
   });
   res.redirect('/get-data?data=data');
 });
-
 
 
 module.exports = router;

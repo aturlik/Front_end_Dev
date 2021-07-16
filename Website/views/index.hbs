@@ -1,85 +1,9 @@
-<style>
-.darkmode--activated #image {
-  -webkit-filter: invert(1); 
-  filter: invert(1);
-}
-.darkmode--activated .modal-title{
-    color:lightgrey;
-}
-.darkmode--activated .modal-body{
-    color:lightgrey;
-}
-
-.clicky {
-    cursor: pointer;
-}
-
-.darkmode--activated .dropdown-menu{
-    background-color:rgb(10, 10, 10);
-    border-color: grey;
-}
-.darkmode--activated .form-check-label{
-    color:white;
-}
-
-/* change the background color */
-.navbar-custom {
-    background-color: white;
-}
-
-/* change the brand and text color */
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-text {
-    color: black;
-}
-
-/* change the link color */
-.navbar-custom .navbar-nav .nav-link {
-    color: black;
-}
-
-/* change the color of active or hovered links */
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:focus .nav-link,
-.navbar-custom .nav-item:hover .nav-link {
-    color: black;
-}
-
-/* change the background color */
-.darkmode--activated .navbar-custom{
-    background-color: black;
-}
-
-/* change the brand and text color */
-.darkmode--activated .navbar-custom .navbar-brand ,
-.darkmode--activated .navbar-custom .navbar-text{
-    color: white;
-}
-
-/* change the link color */
-.darkmode--activated .navbar-custom .navbar-nav .nav-link{
-    color: white;
-}
-
-/* change the color of active or hovered links */
-.darkmode--activated .navbar-custom .nav-item.active .nav-link,
-.darkmode--activated .navbar-custom .nav-item:focus .nav-link,
-.darkmode--activated .navbar-custom .nav-item:hover .nav-link{
-    color: white;
-}
-
-
-</style>
 
 <!-- Navigation bar function to highlight that Search is active -->
 <script>
     $('.nav-item-a a').addClass("active");
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<div class="form-check form-switch" style="float: right;">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" align="right" name="radioButton" value="hello"/>
-</div>
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
@@ -87,10 +11,14 @@
       if(darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-light");
           $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
       };
       if(!darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-dark");
           $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-dark");
+          $('#modaldark1').addClass("bg-light");
       };
   });
 </script>
@@ -110,7 +38,7 @@
             <td><h3>Search</h3></td>
             <td>
                 <!-- Button to call on Help Modal -->
-                <span class="d-inline-block clicky" data-toggle="modal" data-target="#myModal1" title="Click This For More Help">
+                <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
                     <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
                         <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
                     </button>
@@ -120,7 +48,7 @@
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content" id="modaldark">
+                        <div class="modal-content" id="modaldark1">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                             </div>
@@ -149,14 +77,14 @@
 
             <!-- Search Submit Button -->
                 <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid">
-                        <button type="button" class="btn btn-outline-secondary" onclick="fnc()">Submit</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="fnc()">Submit</button>
                 </div>
             
             </div>
             
 </div>
 
-<nav class="navbar navbar-expand-md d-none d-md-block navbar-custom">
+<nav class="navbar navbar-expand-md navbar-light d-none d-md-block">
   <div class="container-fluid">
          <div class="collapse navbar-collapse justify-content-center" id="navbarFilter" role="group">
                 <ul class="navbar-nav justify-content-center">
@@ -388,7 +316,7 @@ document.getElementById("secondaryButton").click();
                     $(document).ready(function() {
                         $("#SpefString").autocomplete({
                             source: async function(request, response) {
-                                let data = await fetch(`http://localhost:8000/search?term=${request.term}`)
+                                let data = await fetch(`/search?term=${request.term}`)
                                     .then(results => results.json())
                                     .then(results => results.map(result => {
                                         return { label: result.Title, value: result.Title, id: result._id};
@@ -412,10 +340,14 @@ document.getElementById("secondaryButton").click();
           $('input[name="radioButton"][value="hello"]').prop('checked', true);
           $('#modaldark').removeClass("bg-light");
           $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
       };
   if(!darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-dark");
           $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-dark");
+          $('#modaldark1').addClass("bg-light");
       };
 </script>
 
