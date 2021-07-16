@@ -3,27 +3,58 @@
     $('.nav-item-e a').addClass("active");
 </script>
 <script>
-  const darkmode =  new Darkmode();
-  document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
-      darkmode.toggle();  
-      if(darkmode.isActivated()) {
-          $('#modaldark').removeClass("bg-light");
-          $('#modaldark').addClass("bg-dark");
-          $('#modaldark1').removeClass("bg-light");
-          $('#modaldark1').addClass("bg-dark");
-      };
-      if(!darkmode.isActivated()) {
-          $('#modaldark').removeClass("bg-dark");
-          $('#modaldark').addClass("bg-light");
-          $('#modaldark1').removeClass("bg-dark");
-          $('#modaldark1').addClass("bg-light");
-      };
-  });
+    const darkmode = new Darkmode();
+    document.getElementById("flexSwitchCheckDefault").addEventListener("click", function () {
+        darkmode.toggle();
+        if (darkmode.isActivated()) {
+            $('#modaldark').removeClass("bg-light");
+            $('#modaldark').addClass("bg-dark");
+            $('#modaldark1').removeClass("bg-light");
+            $('#modaldark1').addClass("bg-dark");
+        };
+        if (!darkmode.isActivated()) {
+            $('#modaldark').removeClass("bg-dark");
+            $('#modaldark').addClass("bg-light");
+            $('#modaldark1').removeClass("bg-dark");
+            $('#modaldark1').addClass("bg-light");
+        };
+    });
 </script>
 <div class="container overflow-hidden">
     <div class="col d-flex justify-content-center">
         <!-- Title Header -->
         <h1 class="display-1">Request More Data</h1>
+
+        <!-- Button to call on Help Tutorial Modal -->
+        <span class="d-inline-block clicky" data-toggle="modal" data-target="#myModal1" title="Click This For Page Tutorial">
+            <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
+                    disabled>
+                <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
+            </button>
+        </span>
+
+        <!-- Contents of Help Modal -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="modaldark1">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        Input in the "Request" box what topic you would like to see more training
+                        resources of. Add any additional comments to help those find the right
+                        resource
+                        for you.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <section class="specify">
         <form action="/request" method="post" class="needs-validation" novalidate>
@@ -43,81 +74,81 @@
             <script>
                 var reqLoc = window.location.href;
 
-                if(reqLoc.length != reqLoc.indexOf("request") + 7){
+                if (reqLoc.length != reqLoc.indexOf("request") + 7) {
                     var resNum = reqLoc.slice(reqLoc.length - 1);
                     var reqData = reqLoc.slice(reqLoc.indexOf("data=") + 5, reqLoc.length - 1);
                     var requestText;
                     var commentText;
-                    
+
                     reqData = reqData.split("&");
 
-                    for(i = 0; i < reqData.length; i++){
+                    for (i = 0; i < reqData.length; i++) {
                         reqData[i] = reqData[i].replace(/%20/g, ' ');
                     }
 
                     var reqCost = reqData[reqData.findIndex((element) => element.includes("cost"))];
-                    if(reqCost != undefined){
+                    if (reqCost != undefined) {
                         reqCost = reqCost.slice(reqCost.indexOf('=') + 1);
-                    }else{ 
+                    } else {
                         reqCost = "";
                     }
 
                     var reqExp = reqData[reqData.findIndex((element) => element.includes("level"))];
-                    if(reqExp != undefined){
+                    if (reqExp != undefined) {
                         reqExp = reqExp.slice(reqExp.indexOf('=') + 1);
-                    }else{ 
+                    } else {
                         reqExp = "";
                     }
 
                     var reqMedia = reqData[reqData.findIndex((element) => element.includes("learn"))];
-                    if(reqMedia != undefined){
+                    if (reqMedia != undefined) {
                         reqMedia = reqMedia.slice(reqMedia.indexOf('=') + 1);
-                    }else{ 
+                    } else {
                         reqMedia = "";
                     }
 
                     var reqPace = reqData[reqData.findIndex((element) => element.includes("self"))];
-                    if(reqPace != undefined){
+                    if (reqPace != undefined) {
                         reqPace = reqPace.slice(reqPace.indexOf('=') + 1);
-                    }else{ 
+                    } else {
                         reqPace = "";
                     }
 
                     var reqConnect = reqData[reqData.findIndex((element) => element.includes("remote"))];
-                    if(reqConnect != undefined){
+                    if (reqConnect != undefined) {
                         reqConnect = reqConnect.slice(reqConnect.indexOf('=') + 1);
-                    }else{ 
+                    } else {
                         reqConnect = "";
                     }
 
                     var reqClear = reqData[reqData.findIndex((element) => element.includes("public"))];
-                    if(reqClear != undefined){
+                    if (reqClear != undefined) {
                         reqClear = reqClear.slice(reqClear.indexOf('=') + 1);
-                    }else{ 
+                    } else {
                         reqClear = "";
                     }
-                    
-                    if(resNum == 0 || resNum > 10){
-                        if(reqLoc.indexOf("&") == -1){
+
+                    if (resNum == 0 || resNum > 10) {
+                        if (reqLoc.indexOf("&") == -1) {
                             requestText = reqData[0];
                             commentText = "There are " + resNum + " " + reqData[0] + " resources";
-                        }else{
+                        } else {
                             requestText = reqExp + " " + reqData[0] + " " + reqMedia;
-                            if(reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")){
+                            if (reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")) {
                                 commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more?"
-                            }else{
+                            } else {
                                 commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more that are " + reqPace + ", " + reqConnect + " and " + reqClear + "?";
                             }
                         }
-                    }else{
-                        if(reqLoc.indexOf("&") == -1){
+                    } else {
+                        if (reqLoc.indexOf("&") == -1) {
                             requestText = reqData[0];
                             commentText = "There are only" + resNum + " " + reqData[0] + " resources";
-                        }else{
+                        } else {
                             requestText = reqExp + " " + reqData[0] + " " + reqMedia;
-                            if(reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")){
+                            if (reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")) {
                                 commentText = "There are only" + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more?"
-                            }else{
+                            } else {
                                 commentText = "There are only" + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more that are " + reqPace + ", " + reqConnect + " and " + reqClear + "?";
                             }
                         }
@@ -131,70 +162,32 @@
 
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
-                    <table>
-                        <td>
-                            <!-- Button to call on Help Tutorial Modal -->
-                            <span class="d-inline-block" data-toggle="modal" data-target="#myModal1" title="Click This For More Help">
-                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
-                                        disabled>
-                                    <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
-                                </button>
-                            </span>
+                    <!-- Button to submit request and call on Modal -->
+                    <button type="submit" id="submit" class="btn btn-outline-primary">Submit</button>
 
-                            <!-- Contents of Help Modal -->
-                            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
-                                 aria-labelledby="myModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" id="modaldark1">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
-                                        </div>
+                    <!-- WIP: Contents of Request Submit Modal -->
+                    <script>
+                        // Validation JS
+                        (function () {
+                            'use strict'
 
-                                        <div class="modal-body">
-                                            Input in the "Request" box what topic you would like to see more training
-                                            resources of. Add any additional comments to help those find the right
-                                            resource
-                                            for you.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <!-- Button to submit request and call on Modal -->
-                            <button type="submit" id="submit" class="btn btn-outline-primary">Submit</button>
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.querySelectorAll('.needs-validation')
 
-                            <!-- WIP: Contents of Request Submit Modal -->
-                            <script>
-                                // Validation JS
-                                (function () {
-                                'use strict'
-
-                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                var forms = document.querySelectorAll('.needs-validation')
-
-                                // Loop over them and prevent submission
-                                Array.prototype.slice.call(forms)
+                            // Loop over them and prevent submission
+                            Array.prototype.slice.call(forms)
                                 .forEach(function (form) {
-                                form.addEventListener('submit', function (event) {
-                                if (!form.checkValidity()) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                                }
+                                    form.addEventListener('submit', function (event) {
+                                        if (!form.checkValidity()) {
+                                            event.preventDefault()
+                                            event.stopPropagation()
+                                        }
 
-                                form.classList.add('was-validated')
-                                }, false)
+                                        form.classList.add('was-validated')
+                                    }, false)
                                 })
-                                })()
-                            </script>
-                        </td>
-                    </table>
+                        })()
+                    </script>
                 </div>
             </div>
         </form>
@@ -202,19 +195,19 @@
 </div>
 
 <script>
-  if(darkmode.isActivated()) {
-    $('input[name="radioButton"][value="hello"]').prop('checked', true);
-      $('#modaldark').removeClass("bg-light");
-      $('#modaldark').addClass("bg-dark");
-      $('#modaldark1').removeClass("bg-light");
-      $('#modaldark1').addClass("bg-dark");
-  };
-  if(!darkmode.isActivated()) {
-      $('#modaldark').removeClass("bg-dark");
-      $('#modaldark').addClass("bg-light");
-      $('#modaldark1').removeClass("bg-dark");
-      $('#modaldark1').addClass("bg-light");
-  };
+    if (darkmode.isActivated()) {
+        $('input[name="radioButton"][value="hello"]').prop('checked', true);
+        $('#modaldark').removeClass("bg-light");
+        $('#modaldark').addClass("bg-dark");
+        $('#modaldark1').removeClass("bg-light");
+        $('#modaldark1').addClass("bg-dark");
+    };
+    if (!darkmode.isActivated()) {
+        $('#modaldark').removeClass("bg-dark");
+        $('#modaldark').addClass("bg-light");
+        $('#modaldark1').removeClass("bg-dark");
+        $('#modaldark1').addClass("bg-light");
+    };
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

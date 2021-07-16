@@ -13,7 +13,7 @@ const ws = fs.createWriteStream("public/files/FullDatabase.csv");
 
 /* Security Packages */
 var sanitize = require('mongo-sanitize');
-var jssanitizer = require('sanitize')();
+//var jssanitizer = require('sanitize')();
 const { MongoClient } = require("mongodb");
 const helmet = require('helmet');
 const app = express();
