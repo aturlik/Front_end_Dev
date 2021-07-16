@@ -173,14 +173,11 @@ router.get("/csv", async (request, response) => {
       if (err) throw err;
       fastcsv
         .write(data, { headers: true })
-        .on("finish", function() {
-          console.log("Write to FullDatabase.csv successfully!");
-        })
         .pipe(ws);
       client.close();
     });
   })
-  response.redirect('/');
+  response.redirect('/admin');
 });
 
 
