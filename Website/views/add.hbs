@@ -1,3 +1,28 @@
+<!--
+            Darkmode Javascript
+-->
+<style>
+.darkmode--activated .btn-outline-primary {
+  color: #f2a600;
+  border-color: #f2a600;
+}
+.darkmode--activated .btn-outline-primary:hover{
+  background-color: #f2a600;
+  color: black;
+  border-color: #f2a600;
+  
+}
+.darkmode--activated .btn-check:checked+.btn-outline-primary{
+  background-color:#f2a600;
+  color: black;
+  border-color: #f2a600;
+}
+
+.btn-outline-primary{
+    font-size:calc(70% + .4vw);
+}
+
+</style>
 
 <script>
   const darkmode =  new Darkmode();
@@ -72,18 +97,15 @@
           $('#modaldark14').addClass("bg-light");
       };
   });
-</script>
-<script>
 //Call to Navigation Bar to show current page is active
 $('.nav-item-c a').addClass("active");
 </script>
 <div class="container">
     <section class="insert">
-        <br>
         <div class="row">
             <div class="col d-flex justify-content-center">
                 <!-- Title Header -->
-                <h1 class="display-3">New Data Point</h1>
+                <h1 class="display-1">New Data Point</h1>
 
                 <!-- Button to call on Main Help Tutorial Modal -->
                 <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
@@ -143,7 +165,7 @@ $('.nav-item-c a').addClass("active");
                                 <div class="btn-group d-flex" role="group" aria-label="Fourth Row">
                                     <button type="button" class="btn btn-outline-primary" data-target="#myModalClear"
                                             data-toggle="modal" data-dismiss="modal">
-                                        Clearance
+                                        Forum
                                     </button>
                                     <button type="button" class="btn btn-outline-primary"
                                             data-target="#myModalProvider" data-toggle="modal" data-dismiss="modal">
@@ -161,7 +183,7 @@ $('.nav-item-c a').addClass("active");
                                     </button>
                                     <button type="button" class="btn btn-outline-primary"
                                             data-target="#myModalLearning" data-toggle="modal" data-dismiss="modal">
-                                        Learning Type
+                                        Learning Media
                                     </button>
                                 </div>
                                 <div class="btn-group d-flex" role="group" aria-label="Sixth Row">
@@ -381,7 +403,7 @@ $('.nav-item-c a').addClass("active");
                     <div class="modal-dialog" role="document">
                         <div class="modal-content" id="modaldark8">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Clearance</h4>
+                                <h4 class="modal-title" id="myModalLabel">Forum</h4>
                             </div>
                             <div class="modal-body">
                                 <p>The "Public" and "DOD" button are used to specify where you are able to access this
@@ -483,10 +505,10 @@ $('.nav-item-c a').addClass("active");
                     <div class="modal-dialog" role="document">
                         <div class="modal-content" id="modaldark12">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Learning Type</h4>
+                                <h4 class="modal-title" id="myModalLabel">Learning Media</h4>
                             </div>
                             <div class="modal-body">
-                                <p>The Learning Type buttons is where you specify what way does the resource teach a
+                                <p>The Learning Media buttons is where you specify what way does the resource teach a
                                     user.
                                     Some resources may need to be under multiple types.</p>
                                 <p><b>Text</b> is for resources that teach by online text dialogs.</p>
@@ -789,7 +811,7 @@ $('.nav-item-c a').addClass("active");
             </div>
 
             <!-- Button to insert data into database and call on submit Modal -->
-            <div class="d-grid gap-2 col-6 mx-auto darkmode-ignore">
+            <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
             </div>
         </form>
@@ -824,6 +846,9 @@ $('.nav-item-c a').addClass("active");
     </section>
 </div>
 
+<!--
+            Possibly redundant code for darkmode
+-->
 <script>
     if(darkmode.isActivated()) {
         $('input[name="radioButton"][value="hello"]').prop('checked', true);

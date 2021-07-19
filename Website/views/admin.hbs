@@ -1,7 +1,28 @@
+<style>
+.darkmode--activated .btn-outline-primary {
+  color: #f2a600;
+  border-color: #f2a600;
+}
+.darkmode--activated .btn-outline-primary:hover{
+  background-color: #f2a600;
+  color: black;
+  border-color: #f2a600; 
+}
+.darkmode--activated .btn-check:checked+.btn-outline-primary{
+  background-color:#f2a600;
+  color: black;
+  border-color: #f2a600;
+}
+.btn-outline-primary{
+    font-size:calc(70% + .4vw);
+}
+</style>
+
+
 <script>
 $('.nav-item-d a').addClass("active");
 var idscript = "{{result._id}}";
-
+<!--Script that loads the update section if there is a document found-->
 window.onload = function () {
   var element = document.getElementById(112233);
   if (idscript !== "") {
@@ -9,9 +30,7 @@ window.onload = function () {
   } else {
     element.classList.add("d-none");
   }
-  
-  
-  <!--Section for button toggles-->
+  <!--Section for data topic button toggles-->
  var dataTopics= "{{{result.[Data Topic Area]}}} {{{result.[Programming Language]}}}".split(',').join(' ');
  while (dataTopics.includes('Microsoft Office')) {
     document.getElementById('LPSOffice').checked=true;
@@ -20,104 +39,164 @@ window.onload = function () {
   while (dataTopics.includes('Data Science')) {
     document.getElementById('DTADataSci').checked=true;
     dataTopics = dataTopics.replace('Data Science','').trim();
-  };  
+  };
   while (dataTopics.includes('Tutorial')) {
     document.getElementById('DTATut').checked=true;
     dataTopics = dataTopics.replace('Tutorial','').trim();
-  };  
+  };
   while (dataTopics.includes('AI/Machine Learning')) {
     document.getElementById('DTAAI').checked=true;
     dataTopics = dataTopics.replace('AI/Machine Learning','').trim();
-  };  
+  };
   while (dataTopics.includes('Coding')) {
     document.getElementById('DTACode').checked=true;
     dataTopics = dataTopics.replace('Coding','').trim();
-  };  
+  };
   while (dataTopics.includes('Computer Skills')) {
     document.getElementById('DTAComSkil').checked=true;
     dataTopics = dataTopics.replace('Computer Skills','').trim();
-  };  
+  };
   while (dataTopics.includes('Program Skills')) {
     document.getElementById('DTAProSkil').checked=true;
     dataTopics = dataTopics.replace('Program Skills','').trim();
-  };  
+  };
   while (dataTopics.includes('Excel')) {
     document.getElementById('LPSExcel').checked=true;
     dataTopics = dataTopics.replace('Excel','').trim();
-  };  
+  };
   while (dataTopics.includes('Word')) {
     document.getElementById('LPSWord').checked=true;
     dataTopics = dataTopics.replace('Word','').trim();
-  };  
+  };
   while (dataTopics.includes('Flank Speed')) {
     document.getElementById('LPSFlank').checked=true;
     dataTopics = dataTopics.replace('Flank Speed','').trim();
-  };  
+  };
   while (dataTopics.includes('PowerPoint')) {
     document.getElementById('LPSPower').checked=true;
     dataTopics = dataTopics.replace('PowerPoint','').trim();
-  };  
+  };
   while (dataTopics.includes('OneDrive')) {
     document.getElementById('LPSOneD').checked=true;
     dataTopics = dataTopics.replace('OneDrive','').trim();
-  };  
+  };
   while (dataTopics.includes('Python')) {
     document.getElementById('LPSPy').checked=true;
     dataTopics = dataTopics.replace('Python','').trim();
-  };  
+  };
   while (dataTopics.includes('Java ')) {
     document.getElementById('LPSJava').checked=true;
     dataTopics = dataTopics.replace('Java ','').trim();
-  };  
+  };
   while (dataTopics.includes('Javascript')) {
     document.getElementById('LPSJavas').checked=true;
     dataTopics = dataTopics.replace('Javascript','').trim();
-  };  
+  };
   while (dataTopics.includes('C / C+')) {
     document.getElementById('LPSC').checked=true;
     dataTopics = dataTopics.replace('C / C+','').trim();
-  };  
-  while (dataTopics.includes(' R ')) {
+  };
+  while (dataTopics.includes(' R')) {
     document.getElementById('LPSR').checked=true;
-    dataTopics = dataTopics.replace(' R ','').trim();
-  };  
+    dataTopics = dataTopics.replace(' R','').trim();
+  };
   while (dataTopics.includes('Julia')) {
     document.getElementById('LPSJulia').checked=true;
     dataTopics = dataTopics.replace('Julia','').trim();
-  };  
+  };
   while (dataTopics.includes('Matlab')) {
     document.getElementById('LPSMat').checked=true;
     dataTopics = dataTopics.replace('Matlab','').trim();
-  };  
+  };
   while (dataTopics.includes('LabVIEW')) {
     document.getElementById('LPSLabv').checked=true;
     dataTopics = dataTopics.replace('LabVIEW','').trim();
-  };  
+  };
   while (dataTopics.includes('Simulink')) {
     document.getElementById('LPSSimu').checked=true;
     dataTopics = dataTopics.replace('Simulink','').trim();
-  };  
+  };
   while (dataTopics.includes('SAS')) {
     document.getElementById('LPSSAS').checked=true;
     dataTopics = dataTopics.replace('SAS','').trim();
-  };  
+  };
   while (dataTopics.includes('COMSOL')) {
     document.getElementById('LPSCOMSOL').checked=true;
     dataTopics = dataTopics.replace('COMSOL','').trim();
-  };  
+  };
   while (dataTopics.includes('Rhino')) {
     document.getElementById('LPSRhino').checked=true;
     dataTopics = dataTopics.replace('Rhino','').trim();
   };
-  document.getElementById('DTAOther').value = dataTopics;
+
+  document.getElementById('DTAOther').value = dataTopics.trim();
+
+  <!--Section for other buttons-->
+   var SPILstr= "{{{result.[Self Paced vs Instructor Led]}}}".split(',').join(' ');
+   if (SPILstr.includes('Self')) {
+      document.getElementById('SPILself').checked=true;
+   };
+   if (SPILstr.includes('Instruct')) {
+      document.getElementById('SPILins').checked=true;
+   };
+   var CDPstr= "{{{result.[Certificate/Degree Program]}}}".split(',').join(' ');
+   if (CDPstr.includes('Cert')) {
+      document.getElementById('CDPCert').checked=true;
+   };
+   if (CDPstr.includes('Degree')) {
+      document.getElementById('CDPDeg').checked=true;
+   };
+   var BEstr= "{{{result.[Barrier to Entry]}}}".split(',').join(' ');
+   if (BEstr.includes('Beginner')) {
+      document.getElementById('BEBeg').checked=true;
+   };
+  if (BEstr.includes('Intermediate')) {
+      document.getElementById('BEInter').checked=true;
+   };
+  if (BEstr.includes('Advanced')) {
+      document.getElementById('BEAdv').checked=true;
+   };
+   if (BEstr.includes('Expert')) {
+      document.getElementById('BEExp').checked=true;
+   };
+   var PDODstr= "{{{result.[Public/DOD]}}}".split(',').join(' ');
+   if (PDODstr.includes('Public')) {
+      document.getElementById('PDODP').checked=true;
+   };
+   if (PDODstr.includes('DOD')) {
+      document.getElementById('PDODD').checked=true;
+   };
+   var PRstr= "{{{result.[In person vs Remote]}}}".split(',').join(' ');
+   if (PRstr.includes('Remote')) {
+      document.getElementById('PRR').checked=true;
+   };
+   if (PRstr.includes('Person')) {
+      document.getElementById('PRP').checked=true;
+   };
+   var LTstr= "{{{result.[Learning type]}}}".split(',').join(' ');
+   if (LTstr.includes('Text')) {
+      document.getElementById('LTT').checked=true;
+   };
+   if (LTstr.includes('Video')) {
+      document.getElementById('LTV').checked=true;
+   };
+   if (LTstr.includes('Book')) {
+      document.getElementById('LTB').checked=true;
+   };
+   if (LTstr.includes('Lecture')) {
+      document.getElementById('LTL').checked=true;
+   };
+   if (LTstr.includes('Interactive')) {
+      document.getElementById('LTI').checked=true;
+   };
+
   <!------------------------------>
 };
-</script>
 
-<script>
+ <!--Code to support Darkmode-->
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
-      darkmode.toggle();  
+      darkmode.toggle();
       if(darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-light");
           $('#modaldark').addClass("bg-dark");
@@ -128,250 +207,321 @@ window.onload = function () {
       };
   });
 </script>
-
+<!--Searchbar for locating entry to update, connects to NodeJS /adminsearch-->
 <div class="container">
-  <div class="row text-center mb-5">
-  <section class="update">
-    <h3 class='title'>Update Data</h3>
-    <form action"/updatesearch" method="post>
-            <label for="idsearch">ID</label>
-            <input type="text" id="idsearch" class="form-control" name="idsearch" value="{{result._id}}">
-      <button type="submit" class="btn btn-primary">find</button>
-    </form>
+    <div class="col d-flex justify-content-center">
+        <!-- Title Header -->
+        <h1 class="display-1">Update or Delete Data</h1>
+        <!-- Button to call on Help Tutorial Modal -->
+        <span class="d-inline-block clicky" data-toggle="modal" data-target="#myModal1" title="Click This For Page Tutorial">
+            <button type="button" class="btn" data-container="body" data-toggle="modal" id="help" disabled>
+                <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
+            </button>
+        </span>
+
+        <!-- Contents of Help Tutorial Modal -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="image">
+                <div class="modal-content" id="modaldark1">
+                    <div class="modal-header" id="image">
+                        <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
+                    </div>
+
+                    <div class="modal-body" id="image">
+                        <p><b>Need to Update a Training Resource?</b>
+                        <br> Find the Database ID for that resource and input in the <u>first</u> textbox. Click "Find" and change the resource shown below.</p>
+                        <p><b>Need to Delete a Training Resource?</b>
+                        <br>Find the Database ID for that resoure and input it in the <u>second</u> textbox. Click "Delete" and the resource is removed from the database. <b>Please note that resource removal are permanent and connet be reverted</b></p>
+                        <p><b>Need to Update the Downloadable Database?</b>
+                        <br> Click the reset button at the bottom of the page and it will reload the downloadable database</p>
+                    </div>
+                    <div class="modal-footer" id="image">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="container d-none" id="112233">
+    <form action="/adminsearch" method="post">
+        <div class="row mt-5 mb-5">
+            <div class="col-sm">
+                <input type="text" id="idsearch" class="form-control" name="idsearch" placeholder="ID" value="{{result._id}}">
+            </div>
+            <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid darkmode-ignore">
+                <button type="submit" class="btn btn-outline-primary">Find</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--
+Section that shows if the ID searched for is found, contains code that
+prefills sections that already are contained within the entry and allows
+users to update that entry.
+-->
+<div class="container d-none" id="112233">
     <form action="/update" method="post">
         <div class="row mb-2">
-                <div class="col darkmode-ignore">
-                    <input type="text" id="title" name="title" class="form-control" placeholder="Title"
-                           aria-label="title" required value="{{result.Title}}">
-                    <div class="invalid-feedback">
-                        Please put in a Title.
-                    </div>
-                    </span>
+            <div class="col darkmode-ignore">
+                <input type="text" id="title" name="title" class="form-control" placeholder="Title"
+                       aria-label="title" required value="{{result.Title}}">
+                <div class="invalid-feedback">
+                    Please put in a Title.
                 </div>
-                <div class="col darkmode-ignore">
-                    <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url"
-                           required value="{{result.URL}}">
-                    <div class="invalid-feedback">
-                        Please put in a URL.
-                    </div>
+                </span>
+            </div>
+            <div class="col darkmode-ignore">
+                <input type="text" id="url" name="url" class="form-control" placeholder="URL" aria-label="url"
+                       required value="{{result.URL}}">
+                <div class="invalid-feedback">
+                    Please put in a URL.
                 </div>
             </div>
-            <div class="row mb-2">
-                <div class="col darkmode-ignore">
-                    <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
-                           aria-label="TCH" required value="{{result.[Time Commitment (Hours)]}}">
-                    <div class="invalid-feedback">
-                        Please put the Time Commitment.
-                    </div>
-                </div>
-                <div class="col darkmode-ignore">
-                    <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
-                           aria-label="cost" required value="{{result.Cost}}">
-                    <div class="invalid-feedback">
-                        Please put in the Cost.
-                    </div>
-                </div>
-                <div class="col" align="center">
-                    <div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
-                        <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced" checked>
-                        <label class="btn btn-outline-primary" for="SPILself">
-                            Self-Paced
-                        </label>
-                        <input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led">
-                        <label class="btn btn-outline-primary" for="SPILins">
-                            Instructor Led
-                        </label>
-                    </div>
-                </div>
-                <div class="col" align="center">
-                    <div class="btn-group d-flex" role="group" aria-label="Does training offer Certificate or Degree"
-                         id="CDP">
-                        <input class="btn-check" type="checkbox" name="CDP" value="Certificate" id="CDPCert">
-                        <label class="btn btn-outline-primary" for="CDPCert">
-                            Certificate
-                        </label>
-                        <input class="btn-check" type="checkbox" name="CDP" value="Degree" id="CDPDeg">
-                        <label class="btn btn-outline-primary" for="CDPDeg">
-                            Degree
-                        </label>
-                    </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col darkmode-ignore">
+                <input type="text" id="TCH" name="TCH" class="form-control" placeholder="Time Commitment (Hours)"
+                       aria-label="TCH" required value="{{result.[Time Commitment (Hours)]}}">
+                <div class="invalid-feedback">
+                    Please put the Time Commitment.
                 </div>
             </div>
-            <div class="row mb-2">
-                <div class="btn-group d-flex" role="group" aria-label="Barrier to Entry Select" id="BE">	
-                    <input type="radio" class="btn-check" name="BE" id="BEBeg" autocomplete="off" value="Beginner"
+            <div class="col darkmode-ignore">
+                <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost in $"
+                       aria-label="cost" required value="{{result.Cost}}">
+                <div class="invalid-feedback">
+                    Please put in the Cost.
+                </div>
+            </div>
+            <div class="col" align="center">
+                <div class="btn-group d-flex" role="group" aria-label="Self paced or instructor led">
+                    <input class="btn-check" type="radio" name="SPIL" id="SPILself" value="Self-Paced" checked>
+                    <label class="btn btn-outline-primary" for="SPILself">
+                        Self-Paced
+                    </label>
+                    <input class="btn-check" type="radio" name="SPIL" id="SPILins" value="Instructor Led">
+                    <label class="btn btn-outline-primary" for="SPILins">
+                        Instructor Led
+                    </label>
+                </div>
+            </div>
+            <div class="col" align="center">
+                <div class="btn-group d-flex" role="group" aria-label="Does training offer Certificate or Degree"
+                     id="CDP">
+                    <input class="btn-check" type="checkbox" name="CDP" value="Certificate" id="CDPCert">
+                    <label class="btn btn-outline-primary" for="CDPCert">
+                        Certificate
+                    </label>
+                    <input class="btn-check" type="checkbox" name="CDP" value="Degree" id="CDPDeg">
+                    <label class="btn btn-outline-primary" for="CDPDeg">
+                        Degree
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="btn-group d-flex" role="group" aria-label="Barrier to Entry Select" id="BE">
+                <input type="radio" class="btn-check" name="BE" id="BEBeg" autocomplete="off" value="Beginner"
+                       checked>
+                <label class="btn btn-outline-primary" for="BEBeg">Beginner</label>
+                <input type="radio" class="btn-check" name="BE" id="BEInter" autocomplete="off"
+                       value="Intermediate">
+                <label class="btn btn-outline-primary" for="BEInter">Intermediate</label>
+                <input type="radio" class="btn-check" name="BE" id="BEAdv" autocomplete="off" value="Advanced">
+                <label class="btn btn-outline-primary" for="BEAdv">Advanced</label>
+                <input type="radio" class="btn-check" name="BE" id="BEExp" autocomplete="off" value="Expert">
+                <label class="btn btn-outline-primary" for="BEExp">Expert</label>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <div class="btn-group d-flex" role="group" aria-label="Public or DOD" id="PDOD">
+                    <input type="radio" class="btn-check" name="PDOD" id="PDODP" autocomplete="off" value="Public"
                            checked>
-                    <label class="btn btn-outline-primary" for="BEBeg">Beginner</label>
-                    <input type="radio" class="btn-check" name="BE" id="BEInter" autocomplete="off"
-                           value="Intermediate">
-                    <label class="btn btn-outline-primary" for="BEInter">Intermediate</label>
-                    <input type="radio" class="btn-check" name="BE" id="BEAdv" autocomplete="off" value="Advanced">
-                    <label class="btn btn-outline-primary" for="BEAdv">Advanced</label>
-                    <input type="radio" class="btn-check" name="BE" id="BEExp" autocomplete="off" value="Expert">
-                    <label class="btn btn-outline-primary" for="BEExp">Expert</label>
- 		</div> 
-            </div>
-            <div class="row mb-2">
-                <div class="col">
-                    <div class="btn-group d-flex" role="group" aria-label="Public or DOD" id="PDOD">
-                        <input type="radio" class="btn-check" name="PDOD" id="PDODP" autocomplete="off" value="Public"
-                               checked>
-                        <label class="btn btn-outline-primary" for="PDODP">Public</label>
-                        <input type="radio" class="btn-check" name="PDOD" id="PDODD" autocomplete="off" value="DOD">
-                        <label class="btn btn-outline-primary" for="PDODD">DOD</label>
-                    </div>
-                </div>
-                <div class="col darkmode-ignore">
-                    <input type="text" id="provider" name="provider" class="form-control"
-                           placeholder="Service/Training Provider" aria-label="Provider" required value="{{result.Provider}}">
-                    <div class="invalid-feedback" >
-                        Please put in the Provider.
-                    </div>
-                </div>
-                <div class="col darkmode-ignore">
-                    <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
-                           aria-label="Location of Provider"  required value="{{result.[Base of Operations]}}">
-                    <div class="invalid-feedback">
-                        Please put in the Location of the Provider.
-                    </div>
+                    <label class="btn btn-outline-primary" for="PDODP">Public</label>
+                    <input type="radio" class="btn-check" name="PDOD" id="PDODD" autocomplete="off" value="DOD">
+                    <label class="btn btn-outline-primary" for="PDODD">DOD</label>
                 </div>
             </div>
-            <div class="row mb-2">
-                <div class="col">
-                    <div class="btn-group d-flex" role="group" aria-label="In Person or Remote" id="PR">
-                        <input type="radio" class="btn-check" name="PR" id="PRR" autocomplete="off" value="Remote"
-                               checked>
-                        <label class="btn btn-outline-primary" for="PRR">Remote</label>
-                        <input type="radio" class="btn-check" name="PR" id="PRP" autocomplete="off" value="In Person">
-                        <label class="btn btn-outline-primary" for="PRP">In Person</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="btn-group  d-flex" role="group" aria-label="Learning Type" id="LT">
-                        <input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT">
-                        <label class="btn btn-outline-primary" for="LTT">Text</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV">
-                        <label class="btn btn-outline-primary" for="LTV">Video</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Book" id="LTB">
-                        <label class="btn btn-outline-primary" for="LTB">Book</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL">
-                        <label class="btn btn-outline-primary" for="LTL">Lecture</label>
-                        <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI">
-                        <label class="btn btn-outline-primary" for="LTI">Interactive</label>
-                    </div>
+            <div class="col darkmode-ignore">
+                <input type="text" id="provider" name="provider" class="form-control"
+                       placeholder="Service/Training Provider" aria-label="Provider" required value="{{result.Provider}}">
+                <div class="invalid-feedback">
+                    Please put in the Provider.
                 </div>
             </div>
-            <div class="row mb-2">
-                <div class="col">
-                    <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="collapsible" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    <small class="text-muted" style="vertical-align: top;">Programs, Languages, and
-                                        other Data Topics</small>
-                                    <i class="arrow down arrow_pos"></i>
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                                 data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group"
-                                         aria-label="Data Topic Select Menus">
-                                        <input class="btn-check" type="checkbox" name="DTA" value="Data Science"
-                                               id="DTADataSci">
-                                        <label class="btn btn-outline-primary" for="DTADataSci">Data Science</label>
-                                        <input class="btn-check" type="checkbox" name="DTA" value="Tutorial"
-                                               id="DTATut">
-                                        <label class="btn btn-outline-primary" for="DTATut">Tutorial</label>
-                                        <input class="btn-check" type="checkbox" name="DTA" value="AI/Machine Learning"
-                                               id="DTAAI">
-                                        <label class="btn btn-outline-primary" for="DTAAI">Machine Learning</label>
-                                        <input class="btn-check" type="checkbox" name="DTA" value="Coding" id="DTACode">
-                                        <label class="btn btn-outline-primary" for="DTACode">Coding</label>
-                                        <input class="btn-check" type="checkbox" name="DTA" value="Computer Skills"
-                                               id="DTAComSkil">
-                                        <label class="btn btn-outline-primary" for="DTAComSkil">Computer
-                                            Skills</label>
-                                        <input class="btn-check" type="checkbox" name="DTA" value="Program Skills"
-                                               id="DTAProSkil">
-                                        <label class="btn btn-outline-primary" for="DTAProSkil">Program Skills</label>
-                                    </div>
-                                    <div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group"
-                                         aria-label="Language and Program Select Menus">
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Microsoft Office"
-                                               id="LPSOffice">
-                                        <label class="btn btn-outline-primary" for="LPSOffice">Microsoft
-                                            Office</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Excel" id="LPSExcel">
-                                        <label class="btn btn-outline-primary" for="LPSExcel">Excel</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Word" id="LPSWord">
-                                        <label class="btn btn-outline-primary" for="LPSWord">Word</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Flank Speed"
-                                               id="LPSFlank">
-                                        <label class="btn btn-outline-primary" for="LPSFlank">Flank Speed</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="PowerPoint"
-                                               id="LPSPower">
-                                        <label class="btn btn-outline-primary" for="LPSPower">PowerPoint</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="OneDrive"
-                                               id="LPSOneD">
-                                        <label class="btn btn-outline-primary" for="LPSOneD">OneDrive</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Python" id="LPSPy">
-                                        <label class="btn btn-outline-primary" for="LPSPy">Python</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Java" id="LPSJava">
-                                        <label class="btn btn-outline-primary" for="LPSJava">Java</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Javascript"
-                                               id="LPSJavas">
-                                        <label class="btn btn-outline-primary" for="LPSJavas">Javascript</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="C / C+" id="LPSC">
-                                        <label class="btn btn-outline-primary" for="LPSC">C/C++</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="R" id="LPSR">
-                                        <label class="btn btn-outline-primary" for="LPSR">R</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Julia" id="LPSJulia">
-                                        <label class="btn btn-outline-primary" for="LPSJulia">Julia</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Matlab" id="LPSMat">
-                                        <label class="btn btn-outline-primary" for="LPSMat">Matlab</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="LabVIEW"
-                                               id="LPSLabv">
-                                        <label class="btn btn-outline-primary" for="LPSLabv">Labview</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Simulink"
-                                               id="LPSSimu">
-                                        <label class="btn btn-outline-primary" for="LPSSimu">Simulink</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="SAS" id="LPSSAS">
-                                        <label class="btn btn-outline-primary" for="LPSSAS">SAS</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="COMSOL"
-                                               id="LPSCOMSOL">
-                                        <label class="btn btn-outline-primary" for="LPSCOMSOL">COMSOL</label>
-                                        <input class="btn-check" type="checkbox" name="LPS" value="Rhino" id="LPSRhino">
-                                        <label class="btn btn-outline-primary" for="LPSRhino">Rhino</label>
-                                    </div>
-                                    <div class="row mx-auto mt-3">
-                                        <input type="text" id="DTAOther" name="DTA" class="form-control"
-                                               placeholder="Other" aria-label="Other">
-                                    </div>
+            <div class="col darkmode-ignore">
+                <input type="text" id="BOO" name="BOO" class="form-control" placeholder="Location of Provider"
+                       aria-label="Location of Provider" required value="{{result.[Base of Operations]}}">
+                <div class="invalid-feedback">
+                    Please put in the Location of the Provider.
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <div class="btn-group d-flex" role="group" aria-label="In Person or Remote" id="PR">
+                    <input type="radio" class="btn-check" name="PR" id="PRR" autocomplete="off" value="Remote"
+                           checked>
+                    <label class="btn btn-outline-primary" for="PRR">Remote</label>
+                    <input type="radio" class="btn-check" name="PR" id="PRP" autocomplete="off" value="In Person">
+                    <label class="btn btn-outline-primary" for="PRP">In Person</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="btn-group  d-flex" role="group" aria-label="Learning Type" id="LT">
+                    <input class="btn-check" type="checkbox" name="LT" value="Text" id="LTT">
+                    <label class="btn btn-outline-primary" for="LTT">Text</label>
+                    <input class="btn-check" type="checkbox" name="LT" value="Video" id="LTV">
+                    <label class="btn btn-outline-primary" for="LTV">Video</label>
+                    <input class="btn-check" type="checkbox" name="LT" value="Book" id="LTB">
+                    <label class="btn btn-outline-primary" for="LTB">Book</label>
+                    <input class="btn-check" type="checkbox" name="LT" value="Lecture" id="LTL">
+                    <label class="btn btn-outline-primary" for="LTL">Lecture</label>
+                    <input class="btn-check" type="checkbox" name="LT" value="Interactive" id="LTI">
+                    <label class="btn btn-outline-primary" for="LTI">Interactive</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="collapsible" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                <small class="text-muted" style="vertical-align: top;">
+                                    Programs, Languages, and
+                                    other Data Topics
+                                </small>
+                                <i class="arrow down arrow_pos"></i>
+                            </button>
+                        </h2>
+                        <!--
+                                    Accordion section that appears for data topics and languages
+                                    auto-seperates the two into different categories in MongoDB
+                        -->
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group"
+                                     aria-label="Data Topic Select Menus">
+                                    <input class="btn-check" type="checkbox" name="DTA" value="Data Science"
+                                           id="DTADataSci">
+                                    <label class="btn btn-outline-primary" for="DTADataSci">Data Science</label>
+                                    <input class="btn-check" type="checkbox" name="DTA" value="Tutorial"
+                                           id="DTATut">
+                                    <label class="btn btn-outline-primary" for="DTATut">Tutorial</label>
+                                    <input class="btn-check" type="checkbox" name="DTA" value="AI/Machine Learning"
+                                           id="DTAAI">
+                                    <label class="btn btn-outline-primary" for="DTAAI">Machine Learning</label>
+                                    <input class="btn-check" type="checkbox" name="DTA" value="Coding" id="DTACode">
+                                    <label class="btn btn-outline-primary" for="DTACode">Coding</label>
+                                    <input class="btn-check" type="checkbox" name="DTA" value="Computer Skills"
+                                           id="DTAComSkil">
+                                    <label class="btn btn-outline-primary" for="DTAComSkil">
+                                        Computer
+                                        Skills
+                                    </label>
+                                    <input class="btn-check" type="checkbox" name="DTA" value="Program Skills"
+                                           id="DTAProSkil">
+                                    <label class="btn btn-outline-primary" for="DTAProSkil">Program Skills</label>
+                                </div>
+                                <div class="btn-group d-flex row row-cols-lg-6 row-cols-auto" role="group"
+                                     aria-label="Language and Program Select Menus">
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Microsoft Office"
+                                           id="LPSOffice">
+                                    <label class="btn btn-outline-primary" for="LPSOffice">
+                                        Microsoft
+                                        Office
+                                    </label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Excel" id="LPSExcel">
+                                    <label class="btn btn-outline-primary" for="LPSExcel">Excel</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Word" id="LPSWord">
+                                    <label class="btn btn-outline-primary" for="LPSWord">Word</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Flank Speed"
+                                           id="LPSFlank">
+                                    <label class="btn btn-outline-primary" for="LPSFlank">Flank Speed</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="PowerPoint"
+                                           id="LPSPower">
+                                    <label class="btn btn-outline-primary" for="LPSPower">PowerPoint</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="OneDrive"
+                                           id="LPSOneD">
+                                    <label class="btn btn-outline-primary" for="LPSOneD">OneDrive</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Python" id="LPSPy">
+                                    <label class="btn btn-outline-primary" for="LPSPy">Python</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Java" id="LPSJava">
+                                    <label class="btn btn-outline-primary" for="LPSJava">Java</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Javascript"
+                                           id="LPSJavas">
+                                    <label class="btn btn-outline-primary" for="LPSJavas">Javascript</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="C / C+" id="LPSC">
+                                    <label class="btn btn-outline-primary" for="LPSC">C/C++</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="R" id="LPSR">
+                                    <label class="btn btn-outline-primary" for="LPSR">R</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Julia" id="LPSJulia">
+                                    <label class="btn btn-outline-primary" for="LPSJulia">Julia</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Matlab" id="LPSMat">
+                                    <label class="btn btn-outline-primary" for="LPSMat">Matlab</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="LabVIEW"
+                                           id="LPSLabv">
+                                    <label class="btn btn-outline-primary" for="LPSLabv">Labview</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Simulink"
+                                           id="LPSSimu">
+                                    <label class="btn btn-outline-primary" for="LPSSimu">Simulink</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="SAS" id="LPSSAS">
+                                    <label class="btn btn-outline-primary" for="LPSSAS">SAS</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="COMSOL"
+                                           id="LPSCOMSOL">
+                                    <label class="btn btn-outline-primary" for="LPSCOMSOL">COMSOL</label>
+                                    <input class="btn-check" type="checkbox" name="LPS" value="Rhino" id="LPSRhino">
+                                    <label class="btn btn-outline-primary" for="LPSRhino">Rhino</label>
+                                </div>
+                                <div class="row mx-auto mt-3">
+                                    <input type="text" id="DTAOther" name="DTA" class="form-control"
+                                           placeholder="Other" aria-label="Other">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="row mb-2">
-                <div class="col darkmode-ignore">
-                    <textarea class="form-control" id="comment" name="comment" placeholder="Put any comments here"
-                              rows="3">{{result.Comment}}</textarea>
-                </div>
-            </div>
 
-            <!-- Button to insert data into database and call on submit Modal -->
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
+        <div class="row mb-2">
+            <div class="col darkmode-ignore">
+                <textarea class="form-control" id="comment" name="comment" placeholder="Put any comments here"
+                          rows="3">{{result.Comment}}</textarea>
             </div>
+        </div>
+        <div class="row d-none">
+            <input type="text" id="idsearchinput" name="idsearchinput" class="form-control d-none" value="{{result._id}}">
+        </div>
+        <!-- Button to insert data into database and call on submit Modal -->
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" id="submit" style="margin:20px" class="btn btn-primary">Submit</button>
+        </div>
     </form>
-</section>
-  </div>
+</div>
+<!--
+            Delete ID section that locates MongoDB entry by ID and then deletes the entry
+-->
+<div class="container">
+    <form action="/delete" method="post">
+        <div class="row mt-5 mb-5">
+            <div class="col-sm">
+                <input type="text" id="id" name="id" placeholder="ID" class="form-control a">
+            </div>
+            <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 d-grid darkmode-ignore">
+                <button type="submit" class="btn btn-outline-primary">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
 
   <div class="row text-center">
       <section class="delete">
@@ -386,6 +536,25 @@ window.onload = function () {
       </section>
   </div>
 </div>
+
+<center> 
+  <form action="/csv" method="get">
+    <p>Click here to reload the downloadable database</p>
+    <button type="submit" class="btn btn-outline-primary darkmode-ignore">Reset</button>
+  </form>
+</center>
+
+<script>
+    if (darkmode.isActivated()) {
+        $('input[name="radioButton"][value="hello"]').prop('checked', true);
+        $('#modaldark').removeClass("bg-light");
+        $('#modaldark').addClass("bg-dark");
+    };
+    if (!darkmode.isActivated()) {
+        $('#modaldark').removeClass("bg-dark");
+        $('#modaldark').addClass("bg-light");
+    };
+</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

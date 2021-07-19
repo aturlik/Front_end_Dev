@@ -3,7 +3,9 @@
 <script>
     $('.nav-item-a a').addClass("active");
 </script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- Dark Mode Script -->
 <script>
   const darkmode =  new Darkmode();
   document.getElementById("flexSwitchCheckDefault").addEventListener("click", function() {
@@ -26,12 +28,8 @@
 <div class="text-center">
     <!-- Title Header -->
     <h1 class="display-1">Training Database</h1>
-    <p class="lead">I guess just search for your trainings</p>
+    <p class="lead">Search for your Trainings</p>
 </div>
-
-<link rel="stylesheet" type="text/css" href="layouts/custom.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <div class="container overflow-hidden">
     <section class="specify">
         <table>
@@ -84,7 +82,8 @@
             
 </div>
 
-<nav class="navbar navbar-expand-md navbar-light d-none d-md-block">
+<!-- Filters Bar -->
+<nav class="navbar navbar-expand-md d-none d-md-block navbar-custom">
   <div class="container-fluid">
          <div class="collapse navbar-collapse justify-content-center" id="navbarFilter" role="group">
                 <ul class="navbar-nav justify-content-center">
@@ -162,7 +161,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="ClearDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Clearance
+                            Forum
                         </a>
                         <div class="dropdown-menu" aria-labelledby="ClearDropdownMenuLink" role="group" id="PDOD">
                             <a class="dropdown-item">
@@ -188,7 +187,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="RDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Placement
+                            Location
                         </a>
                         <div class="dropdown-menu" aria-labelledby="RDropdownMenuLink" role="group" id="RIP">
                             <a class="dropdown-item">
@@ -240,7 +239,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="LearnDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Learning Type
+                            Learning Media
                         </a>
                         <div class="dropdown-menu" aria-labelledby="LearnDropdownMenuLink" role="group" id="LRN">
                             <a class="dropdown-item">
@@ -335,6 +334,13 @@ document.getElementById("secondaryButton").click();
     </section>
 
 </div>
+<div class="endOfResults position-absolute bottom-0 start-50 translate-middle-x mb-3">
+        <h5 style="color: #7a7a7a">Want to Download the whole database?</h5>
+        <h5 style="color: #7a7a7a">Click the link below</h5>
+        <a href="/files/FullDatabase.csv" download> Download Database</a>
+</div>
+
+
 <script>
       if(darkmode.isActivated()) {
           $('input[name="radioButton"][value="hello"]').prop('checked', true);
