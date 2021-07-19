@@ -1,6 +1,6 @@
 # Training Database Website
 
-The goal of this project is to create a website UI/webapp to interface with a MongoDB database.
+The goal of this project is to create a webapp to interface with a MongoDB Atlas cluster.
 
 ## Setup
 
