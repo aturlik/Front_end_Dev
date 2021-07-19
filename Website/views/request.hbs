@@ -46,7 +46,7 @@
                     var commentText;
                     
                     reqData = reqData.split("&");
-
+                    console.log(reqData);
                     for(i = 0; i < reqData.length; i++){
                         reqData[i] = reqData[i].replace(/%20/g, ' ');
                     }
@@ -54,6 +54,7 @@
                     var reqCost = reqData[reqData.findIndex((element) => element.includes("cost"))];
                     if(reqCost != undefined){
                         reqCost = reqCost.slice(reqCost.indexOf('=') + 1);
+                        reqCost = reqCost.concat(" ");
                     }else{ 
                         reqCost = "";
                     }
@@ -61,6 +62,8 @@
                     var reqExp = reqData[reqData.findIndex((element) => element.includes("level"))];
                     if(reqExp != undefined){
                         reqExp = reqExp.slice(reqExp.indexOf('=') + 1);
+                        reqExp = reqExp.replace(/,/g, " or ");
+                        reqExp = reqExp.concat(" ");
                     }else{ 
                         reqExp = "";
                     }
@@ -68,6 +71,8 @@
                     var reqMedia = reqData[reqData.findIndex((element) => element.includes("learn"))];
                     if(reqMedia != undefined){
                         reqMedia = reqMedia.slice(reqMedia.indexOf('=') + 1);
+                        reqMedia = reqMedia.replace(/,/g , "s or ");
+                        reqMedia = reqMedia.concat("s");
                     }else{ 
                         reqMedia = "";
                     }
@@ -75,6 +80,9 @@
                     var reqPace = reqData[reqData.findIndex((element) => element.includes("self"))];
                     if(reqPace != undefined){
                         reqPace = reqPace.slice(reqPace.indexOf('=') + 1);
+                        if(reqData.find(e => e.includes("public")) || reqData.find(e => e.includes("remote"))){
+                            reqPace = reqPace.concat(", ");
+                        }
                     }else{ 
                         reqPace = "";
                     }
@@ -82,6 +90,12 @@
                     var reqConnect = reqData[reqData.findIndex((element) => element.includes("remote"))];
                     if(reqConnect != undefined){
                         reqConnect = reqConnect.slice(reqConnect.indexOf('=') + 1);
+                        if(reqData.find(e => e.includes("public"))){
+                            reqConnect = reqConnect.concat(", ");
+                        }else if(reqData.find(e => e.includes("self")) && !reqData.find(e => e.includes("public"))){
+                            var tempstr = "and ";
+                            reqConnect = tempstr.concat(reqConnect);
+                        }
                     }else{ 
                         reqConnect = "";
                     }
@@ -89,6 +103,11 @@
                     var reqClear = reqData[reqData.findIndex((element) => element.includes("public"))];
                     if(reqClear != undefined){
                         reqClear = reqClear.slice(reqClear.indexOf('=') + 1);
+                        if(reqPace != "" || reqConnect != ""){
+                            var tempstr = "and ";
+                            reqClear = tempstr.concat(reqClear);
+                        }
+                        reqClear = reqClear.concat(" clearence");
                     }else{ 
                         reqClear = "";
                     }
@@ -98,11 +117,11 @@
                             requestText = reqData[0];
                             commentText = "There are " + resNum + " " + reqData[0] + " resources";
                         }else{
-                            requestText = reqExp + " " + reqData[0] + " " + reqMedia;
+                            requestText = reqExp + reqData[0] + " " + reqMedia;
                             if(reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")){
-                                commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more?"
+                                commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + reqExp + reqMedia + ". Could you please add more?"
                             }else{
-                                commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more that are " + reqPace + ", " + reqConnect + " and " + reqClear + "?";
+                                commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + reqExp + reqMedia + ". Could you please add more that are " + reqPace + reqConnect + reqClear + "?";
                             }
                         }
                     }else{
@@ -110,11 +129,11 @@
                             requestText = reqData[0];
                             commentText = "There are only" + resNum + " " + reqData[0] + " resources";
                         }else{
-                            requestText = reqExp + " " + reqData[0] + " " + reqMedia;
+                            requestText = reqExp + reqData[0] + " " + reqMedia;
                             if(reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")){
-                                commentText = "There are only" + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more?"
+                                commentText = "There are only " + resNum + " " + reqData[0] + " resources that are " + reqCost + reqExp + reqMedia + ". Could you please add more?"
                             }else{
-                                commentText = "There are only" + resNum + " " + reqData[0] + " resources that are " + reqCost + " " + reqExp + " " + reqMedia + "s. Could you please add more that are " + reqPace + ", " + reqConnect + " and " + reqClear + "?";
+                                commentText = "There are only " + resNum + " " + reqData[0] + " resources that are " + reqCost + reqExp + reqMedia + ". Could you please add more that are " + reqPace + reqConnect + reqClear + "?";
                             }
                         }
                     }
