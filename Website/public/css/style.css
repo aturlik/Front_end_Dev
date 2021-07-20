@@ -369,7 +369,6 @@ li1{
 
 .close {
   cursor: pointer;
-  padding: 2px;
 }
 
 .close:hover {background: #bbb;}
