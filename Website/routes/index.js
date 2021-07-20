@@ -227,18 +227,18 @@ router.post('/get-data/vote', function(req, res, next){
 manual validation of data before moving into the main collection */
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null && learning[1].length>1){
+  if(learning != null && learning[1]!=null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null && language[1].length>1){
+  if(language != null && language[1]!=null && language[1].length>1){
     language = language.join(", ");
   };
   if (topic === '') {
     topic = null;
   };
-  if(topic != null && topic[1].length>1){
+  if(topic != null && topic[1]!=null && topic[1].length>1){
     topic = topic.join(", ");
   };
   var item = {
@@ -390,18 +390,18 @@ router.post('/update', function(req, res, next) {
   /* gets learn and cleans it up here and makes it one string if there 
   are multiple languages. Does the same for languages and topics */
   var learning = req.body.LT
-  if(learning != null && learning[1].length>1){
+  if(learning != null && learning[1]!=null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null && language[1].length>1){
+  if(language != null && language[1]!=null && language[1].length>1){
     language = language.join(", ");
   };
   if (topic === '') {
     topic = null;
   };
-  if(topic != null && topic[1].length>1){
+  if(topic != null && topic[1]!=null && topic[1].length>1){
     topic = topic.join(", ");
   };
   var item = {
