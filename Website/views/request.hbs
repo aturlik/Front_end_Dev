@@ -90,7 +90,7 @@
                     if (reqCost != undefined) {
                         reqCost = reqCost.slice(reqCost.indexOf('=') + 1);
                         reqCost = reqCost.concat(" ");
-                    }else{ 
+                    }else{
                         reqCost = "";
                     }
 
@@ -99,7 +99,7 @@
                         reqExp = reqExp.slice(reqExp.indexOf('=') + 1);
                         reqExp = reqExp.replace(/,/g, " or ");
                         reqExp = reqExp.concat(" ");
-                    }else{ 
+                    }else{
                         reqExp = "";
                     }
 
@@ -108,7 +108,7 @@
                         reqMedia = reqMedia.slice(reqMedia.indexOf('=') + 1);
                         reqMedia = reqMedia.replace(/,/g , "s or ");
                         reqMedia = reqMedia.concat("s");
-                    }else{ 
+                    }else{
                         reqMedia = "";
                     }
 
@@ -117,9 +117,9 @@
                         reqPace = reqPace.slice(reqPace.indexOf('=') + 1);
                         if(reqData.find(e => e.includes("public")) || reqData.find(e => e.includes("remote"))){
                             reqPace = reqPace.concat(", ");
-                        }
-                    }else{ 
-                        reqPace = "";
+                        }       
+                    }else{
+                         reqPace = "";
                     }
 
                     var reqConnect = reqData[reqData.findIndex((element) => element.includes("remote"))];
@@ -131,7 +131,7 @@
                             var tempstr = "and ";
                             reqConnect = tempstr.concat(reqConnect);
                         }
-                    }else{ 
+                    }else{
                         reqConnect = "";
                     }
 
@@ -143,7 +143,7 @@
                             reqClear = tempstr.concat(reqClear);
                         }
                         reqClear = reqClear.concat(" clearence");
-                    }else{ 
+                    }else{
                         reqClear = "";
                     }
 

@@ -135,14 +135,6 @@ router.get("/get-data", function(req, res, next) {
     var db = client.db('Trainings');
     assert.equal(null, err);
     var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': specdata,'path': {'wildcard': '*'}}}}, {'$match': query}]);
-
-	/*cursor.forEach(function(doc){
-		console.log(typeof(doc.Cost));
-		if(typeof(doc.Cost) == 'string'){
-			db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(req.body.id)}, {"$set": {"Cost": parseInt(doc.Cost)}});
-			console.log(doc.Cost);
-		}
-	})*/
 	
 	if(req.query.sort == "Cost"){
 		cursor.sort({"Cost" : 1});
@@ -156,15 +148,16 @@ router.get("/get-data", function(req, res, next) {
 	
 	cursor.forEach(function(doc, err) {
 		assert.equal(null, err);
+		
 		if(typeof doc.Cost == 'string'){
 			db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {"$set": {"Cost": parseInt(doc.Cost)}}, function(err, result){
-				console.log("Cost" + err);
+				assert.strictEqual(null, err);
 			});
 		}
 
 		if(!doc.hasOwnProperty("voteCount")){
 			db.collection('FormattedRawData').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": parseInt((0).toFixed()), vote: 0, voteCount: 0}}, function(err, result) {
-				console.log("UT" + err);
+				assert.strictEqual(null, err);
 			});
 		}
 
