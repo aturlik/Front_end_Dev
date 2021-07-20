@@ -75,7 +75,7 @@ router.get("/get-data", function(req, res, next) {
     query["Cost"] = 0;
   }
   else if (FOP == "Paid" ) {
-    query["Cost"] = {'$ne': '0'};
+    query["Cost"] = {'$ne': 0};
   }
   else{
     null;
