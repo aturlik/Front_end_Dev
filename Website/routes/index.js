@@ -423,17 +423,14 @@ router.post('/update', function(req, res, next) {
   /* gets learn and cleans it up here and makes it one string if there 
   are multiple languages. Does the same for languages and topics */
   var learning = req.body.LT
-  console.log(learning);
   if(learning != null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-	  console.log(language);
   if(language != null && language[1].length>1){
     language = language.join(", ");
   };
-	  console.log(topic);
   if (topic === '') {
     topic = null;
   };
@@ -441,23 +438,21 @@ router.post('/update', function(req, res, next) {
     topic = topic.join(", ");
   };
   var item = {
-    title: req.body.title,
-    url: req.body.url,
-    provider: req.body.provider,
-    cost: req.body.cost,
-    PublicDOD: req.body.PDOD,
-    TimeCom: req.body.TCH,
-    Cert: req.body.CDP,
-    Data: req.body.DTA,
-    Program: req.body.PL,
-    Base: req.body.BOO,
-    Barrier: req.body.BE,
-    Pacing: req.body.SPIL,
-    Learning: req.body.LT,
-    Person: req.body.PR,
-    Useful: req.body.UT,
+    Title: req.body.title,
+    URL: req.body.url,
+    Provider: req.body.provider,
+    Cost: req.body.cost,
+    "Public/DOD": req.body.PDOD,
+    "Time Commitment (Hours)": req.body.TCH,
+    "Certificate/Degree Program": req.body.CDP,
+    "Data Topic Area": topic,
+    "Programming Language": language,
+    "Base of Operations": req.body.BOO,
+    "Barrier to Entry": req.body.BE,
+    "Self Paced vs Instructor Led": req.body.SPIL,
+    "Learning type": learning,
+    "In person vs Remote": req.body.PR,
     Comment: req.body.comment,
-    Topics: req.body.TG
   };
   /* Consolidates the form inputs into one array to reference */
   var id = req.body.idsearchinput;
@@ -483,7 +478,7 @@ router.post('/delete', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/others');
+  res.redirect('/admin');
 });
 /* Fuctionality for report button accessed through the Get Data page */
 router.post('/report', function(req, res, next) {
