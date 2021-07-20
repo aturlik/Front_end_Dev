@@ -134,14 +134,39 @@ router.get("/get-data", function(req, res, next) {
     var db = client.db('Trainings');
     assert.equal(null, err);
     var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': specdata,'path': {'wildcard': '*'}}}}, {'$match': query}]);
-    cursor.forEach(function(doc, err) {
-      assert.equal(null, err);
-      resultArray.push(doc);
-    }, function() {
-      client.close();
-      specdata = specdata.replace(/ /g, "_");
-      res.render('get', {items: resultArray, specdata});
-    });
+
+	if(req.query.sort == "Cost"){
+		cursor.sort({"Cost" : 1});
+	}else if(req.query.sort == "Experience"){
+		cursor.sort({"Barrier to Entry" : 1});
+	}else if(req.query.sort == "Time"){
+		cursor.sort({"Time Commitment (Hours)" : 1});
+	}else if(req.query.sort == "Rating"){
+		cursor.sort({"Helpfullness Rating" : 1});
+	}
+	
+	cursor.forEach(function(doc, err) {
+		assert.equal(null, err);
+		
+		if(typeof doc.Cost == 'string'){
+			db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {"$set": {"Cost": parseInt(doc.Cost)}}, function(err, result){
+				assert.strictEqual(null, err);
+			});
+		}
+
+		if(!doc.hasOwnProperty("voteCount")){
+			db.collection('FormattedRawData').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": parseInt((0).toFixed()), vote: 0, voteCount: 0}}, function(err, result) {
+				assert.strictEqual(null, err);
+			});
+		}
+
+		resultArray.push(doc);
+	}, function() {
+		console.log("made it to the second function");
+		specdata = specdata.replace(/ /g, "_");
+		res.render('get', {items: resultArray, specdata});
+	});
+
   });
 });
 /* Search function that takes the search bar input and searches MongoDB for things that fit search terms */
