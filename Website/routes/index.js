@@ -73,10 +73,10 @@ router.get("/get-data", function(req, res, next) {
   var FOP = req.query.cost;
   var convertFOP = '';
   if (FOP == "Free"){
-    query["Cost"] = "0";
+    query["Cost"] = 0;
   }
   else if (FOP == "Paid" ) {
-    query["Cost"] = {'$ne': '0'};
+    query["Cost"] = {'$ne': 0};
   }
   else{
     null;
@@ -149,21 +149,27 @@ router.get("/get-data", function(req, res, next) {
 	cursor.forEach(function(doc, err) {
 		assert.equal(null, err);
 		
-		if(typeof doc.Cost == 'string'){
-			db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {"$set": {"Cost": parseInt(doc.Cost)}}, function(err, result){
-				assert.strictEqual(null, err);
-			});
-		}
+		async function run(){
+			if(typeof doc.Cost == 'string'){
+				db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {"$set": {"Cost": parseInt(doc.Cost)}}, function(err, result){
+					//assert.strictEqual(null, err);
+					console.log(err);
+					console.log(doc.Title);
+				});
+			}
 
-		if(!doc.hasOwnProperty("voteCount")){
-			db.collection('FormattedRawData').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": parseInt((0).toFixed()), vote: 0, voteCount: 0}}, function(err, result) {
-				assert.strictEqual(null, err);
-			});
+			if(!doc.hasOwnProperty("voteCount")){
+				db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": parseInt((0).toFixed()), vote: 0, voteCount: 0}}, function(err, result) {
+					console.log(err);
+					console.log(doc.Title);
+				});
+			}
 		}
+		run();
 
 		resultArray.push(doc);
 	}, function() {
-		console.log("made it to the second function");
+		
 		specdata = specdata.replace(/ /g, "_");
 		res.render('get', {items: resultArray, specdata});
 	});
