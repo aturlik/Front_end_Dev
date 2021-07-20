@@ -660,7 +660,7 @@
     var counter = 0;
         if(test.includes("cost=Free")){
             $('#FreedropdownCheck.form-check-input').prop('checked', true);
-            $('ul1').append('<li1>Free</li1>');
+            $('ul1').append('<span class="badge bg-light text-dark">Free</span>');
             counter = counter + 1;
             if(test.includes("Paid")){
                 $('#PaiddropdownCheck.form-check-input').prop('checked', true);
