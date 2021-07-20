@@ -428,13 +428,14 @@ router.post('/update', function(req, res, next) {
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
-  if(language != null && language[1].length>1){
+  if(language != null && language[1]!=null && language[1].length>1){
     language = language.join(", ");
   };
   if (topic === '') {
     topic = null;
   };
-  if(topic != null && topic[1].length>1){
+
+  if(topic != null && topic[1]!=null && topic[1].length>1){
     topic = topic.join(", ");
   };
   var item = {
