@@ -13,7 +13,7 @@ const ws = fs.createWriteStream("public/files/FullDatabase.csv");
 
 /* Security Packages */
 var sanitize = require('mongo-sanitize');
-var jssanitizer = require('sanitize');
+var jssanitizer = require('sanitize')();
 const { MongoClient } = require("mongodb");
 const helmet = require('helmet');
 const app = express();
@@ -27,7 +27,6 @@ router.get('/', function(req, res, next) {
 router.get('/insert', function(req, res, next) {
   res.render('add');
 });
-
 /* Function for putting idsearch into admin ID */
 router.post('/adminsearch', function(req, res, next) {
    var id = req.body.idsearch;
@@ -135,7 +134,7 @@ router.get("/get-data", function(req, res, next) {
     var db = client.db('Trainings');
     assert.equal(null, err);
     var cursor = db.collection('FormattedRawData').aggregate([{'$search': {"index" : "SearchFormatted", 'text': {'query': specdata,'path': {'wildcard': '*'}}}}, {'$match': query}]);
-	
+
 	if(req.query.sort == "Cost"){
 		cursor.sort({"Cost" : 1});
 	}else if(req.query.sort == "Experience"){
@@ -173,6 +172,7 @@ router.get("/get-data", function(req, res, next) {
 		specdata = specdata.replace(/ /g, "_");
 		res.render('get', {items: resultArray, specdata});
 	});
+
   });
 });
 /* Search function that takes the search bar input and searches MongoDB for things that fit search terms */
@@ -233,13 +233,20 @@ router.post('/get-data/vote', function(req, res, next){
 			const file =  await db.collection('FormattedRawData').find(query).toArray();
 			
 			if(file.length > 0){
-				var voteVal = file[0].vote + inital;
-				var countVal = file[0].voteCount + 1;
+				if(file[0].hasOwnProperty("voteCount")){
+					var voteVal = file[0].vote + inital;
+					var countVal = file[0].voteCount + 1;
 				
-				db.collection('FormattedRawData').updateOne(query, {$inc: {vote: inital , voteCount: 1}, $set: {"Helpfullness Rating": parseInt(((voteVal/countVal)*100).toFixed())}}, function(err, result) {
-					assert.strictEqual(null, err);
-					client.close();
-				});
+					db.collection('FormattedRawData').updateOne(query, {$inc: {vote: inital , voteCount: 1}, $set: {"Helpfullness Rating": ((voteVal/countVal)*100).toFixed()}}, function(err, result) {
+						assert.strictEqual(null, err);
+						client.close();
+					});
+				}else{
+					db.collection('FormattedRawData').updateOne(query, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": ((inital/1)*100).toFixed(), vote: inital, voteCount: 1}}, function(err, result) {
+						assert.strictEqual(null, err);
+						client.close();
+					});
+				}
 			}
 		}
 		run().then(()=>res.redirect(dataUrl));
@@ -251,7 +258,7 @@ router.post('/get-data/vote', function(req, res, next){
 manual validation of data before moving into the main collection */
 router.post('/insert', function(req, res, next) {
   var learning = req.body.LT
-  if(learning != null && learning[1].length>1){
+  if(learning != null && learning[1]!=null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
@@ -262,7 +269,6 @@ router.post('/insert', function(req, res, next) {
   if (topic === '') {
     topic = null;
   };
-
   if(topic != null && topic[1]!=null && topic[1].length>1){
     topic = topic.join(", ");
   };
@@ -271,18 +277,17 @@ router.post('/insert', function(req, res, next) {
     URL: req.body.url,
     Provider: req.body.provider,
     Cost: req.body.cost,
-    PublicOrDOD: req.body.PDOD,
-    TimeCommitment: req.body.TCH,
-    Cert_Degree: req.body.CDP,
-    Data_Topics: topic,
-    Programming_Language: language,
-    Base_of_Operations: req.body.BOO,
-    Barrier: req.body.BE,
-    Self_Paced: req.body.SPIL,
-    Learning_Type: learning,
-    InPerson: req.body.PR,
+    "Public/DOD": req.body.PDOD,
+    "Time Commitment (Hours)": req.body.TCH,
+    "Certificate/Degree Program": req.body.CDP,
+    "Data Topic Area": topic,
+    "Programming Language": language,
+    "Base of Operations": req.body.BOO,
+    "Barrier to Entry": req.body.BE,
+    "Self Paced vs Instructor Led": req.body.SPIL,
+    "Learning type": learning,
+    "In person vs Remote": req.body.PR,
     Comment: req.body.comment,
-    Topics: req.body.TG
   };
   
   mongo.connect(url,  {useUnifiedTopology: true}, function(err, client) {
@@ -299,7 +304,7 @@ router.post('/insert', function(req, res, next) {
 /* Section that search bar on main page redirects to. Just cleans the search input
    and puts it into the url and redirects to get data page                          */
 router.post('/specify', function(req, res, next) {
-  specdata = req.body.SpefString;
+  specdata = jssanitizer.value(req.body.SpefString, 'str');
   var cost = req.body.TST;
   var level = req.body.LVL;
   var public = req.body.PDOD;
@@ -321,7 +326,7 @@ router.post('/specify', function(req, res, next) {
     urladditives = urladditives.concat("&remote=" + remote)
   };
   if(selfp != null){
-    urladditives = urladditives.concat("&self=" + selfp)
+    urladditives = urladditives.concat("&pacing=" + selfp)
   };
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
@@ -380,8 +385,6 @@ router.post('/get_data', function(req, res, next) {
   var remote = req.body.RIP;
   var selfp = req.body.SPIL;
   var learn = req.body.LRN;
-  var sort = req.body.sort;
-
   /* Null check for search term */
   if (req.body.SpefString != ""){
     sd = req.body.SpefString;
@@ -410,20 +413,15 @@ router.post('/get_data', function(req, res, next) {
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
   };
-  if(sort != null){
-  	urladditives = urladditives.concat("&sort=" + sort);
-  }
-
   res.redirect("/get-data?data=" + sd + urladditives);
 });
-/* This page is accessed by the 
-page to do back end work
+/* This page is accessed by the admin page to do back end work
    to pull information needed after getting the id from admin  */
 router.post('/update', function(req, res, next) {
   /* gets learn and cleans it up here and makes it one string if there 
   are multiple languages. Does the same for languages and topics */
   var learning = req.body.LT
-  if(learning != null && learning[1].length>1){
+  if(learning != null && learning[1]!=null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
@@ -434,7 +432,6 @@ router.post('/update', function(req, res, next) {
   if (topic === '') {
     topic = null;
   };
-
   if(topic != null && topic[1]!=null && topic[1].length>1){
     topic = topic.join(", ");
   };
@@ -503,6 +500,7 @@ router.post('/report', function(req, res, next) {
   });
   res.redirect('/get-data?data=data');
 });
+
 
 
 module.exports = router;
