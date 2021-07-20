@@ -405,7 +405,7 @@ router.post('/get_data', function(req, res, next) {
     urladditives = urladditives.concat("&remote=" + remote)
   };
   if(selfp != null){
-    urladditives = urladditives.concat("&self=" + selfp)
+    urladditives = urladditives.concat("&pacing=" + selfp)
   };
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
