@@ -416,20 +416,24 @@ router.post('/get_data', function(req, res, next) {
 
   res.redirect("/get-data?data=" + sd + urladditives);
 });
-/* This page is accessed by the admin page to do back end work
+/* This page is accessed by the 
+page to do back end work
    to pull information needed after getting the id from admin  */
 router.post('/update', function(req, res, next) {
   /* gets learn and cleans it up here and makes it one string if there 
   are multiple languages. Does the same for languages and topics */
   var learning = req.body.LT
+  window.alert(learning);
   if(learning != null && learning[1].length>1){
     learning = learning.join(", ");
   };
   var language = req.body.LPS;
   var topic = req.body.DTA;
+	  window.alert(language);
   if(language != null && language[1].length>1){
     language = language.join(", ");
   };
+	  window.alert(topic);
   if (topic === '') {
     topic = null;
   };
