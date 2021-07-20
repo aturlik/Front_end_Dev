@@ -72,7 +72,7 @@ router.get("/get-data", function(req, res, next) {
   var FOP = req.query.cost;
   var convertFOP = '';
   if (FOP == "Free"){
-    query["Cost"] = "0";
+    query["Cost"] = 0;
   }
   else if (FOP == "Paid" ) {
     query["Cost"] = {'$ne': '0'};
