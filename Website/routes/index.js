@@ -469,7 +469,7 @@ router.post('/update', function(req, res, next) {
       client.close();
     });
   });
-  res.redirect('/others');
+  res.redirect('/admin?idsearch=' + id);
 });
 /* Backend for delete functionality accessed by the admin page */
 router.post('/delete', function(req, res, next) {
