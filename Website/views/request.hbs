@@ -82,7 +82,7 @@
 
                     reqData = reqData.split("&");
 
-                    for(i = 0; i < reqData.length; i++){
+                    for (i = 0; i < reqData.length; i++) {
                         reqData[i] = reqData[i].replace(/%20/g, ' ');
                     }
 
@@ -90,7 +90,7 @@
                     if (reqCost != undefined) {
                         reqCost = reqCost.slice(reqCost.indexOf('=') + 1);
                         reqCost = reqCost.concat(" ");
-                    }else{ 
+                    } else {
                         reqCost = "";
                     }
 
@@ -99,51 +99,51 @@
                         reqExp = reqExp.slice(reqExp.indexOf('=') + 1);
                         reqExp = reqExp.replace(/,/g, " or ");
                         reqExp = reqExp.concat(" ");
-                    }else{ 
+                    } else {
                         reqExp = "";
                     }
 
                     var reqMedia = reqData[reqData.findIndex((element) => element.includes("learn"))];
                     if (reqMedia != undefined) {
                         reqMedia = reqMedia.slice(reqMedia.indexOf('=') + 1);
-                        reqMedia = reqMedia.replace(/,/g , "s or ");
+                        reqMedia = reqMedia.replace(/,/g, "s or ");
                         reqMedia = reqMedia.concat("s");
-                    }else{ 
+                    } else {
                         reqMedia = "";
                     }
 
                     var reqPace = reqData[reqData.findIndex((element) => element.includes("self"))];
                     if (reqPace != undefined) {
                         reqPace = reqPace.slice(reqPace.indexOf('=') + 1);
-                        if(reqData.find(e => e.includes("public")) || reqData.find(e => e.includes("remote"))){
+                        if (reqData.find(e => e.includes("public")) || reqData.find(e => e.includes("remote"))) {
                             reqPace = reqPace.concat(", ");
                         }
-                    }else{ 
+                    } else {
                         reqPace = "";
                     }
 
                     var reqConnect = reqData[reqData.findIndex((element) => element.includes("remote"))];
                     if (reqConnect != undefined) {
                         reqConnect = reqConnect.slice(reqConnect.indexOf('=') + 1);
-                        if(reqData.find(e => e.includes("public"))){
+                        if (reqData.find(e => e.includes("public"))) {
                             reqConnect = reqConnect.concat(", ");
-                        }else if(reqData.find(e => e.includes("self")) && !reqData.find(e => e.includes("public"))){
+                        } else if (reqData.find(e => e.includes("self")) && !reqData.find(e => e.includes("public"))) {
                             var tempstr = "and ";
                             reqConnect = tempstr.concat(reqConnect);
                         }
-                    }else{ 
+                    } else {
                         reqConnect = "";
                     }
 
                     var reqClear = reqData[reqData.findIndex((element) => element.includes("public"))];
                     if (reqClear != undefined) {
                         reqClear = reqClear.slice(reqClear.indexOf('=') + 1);
-                        if(reqPace != "" || reqConnect != ""){
+                        if (reqPace != "" || reqConnect != "") {
                             var tempstr = "and ";
                             reqClear = tempstr.concat(reqClear);
                         }
                         reqClear = reqClear.concat(" clearence");
-                    }else{ 
+                    } else {
                         reqClear = "";
                     }
 
@@ -151,11 +151,11 @@
                         if (reqLoc.indexOf("&") == -1) {
                             requestText = reqData[0];
                             commentText = "There are " + resNum + " " + reqData[0] + " resources";
-                        }else{
+                        } else {
                             requestText = reqExp + reqData[0] + " " + reqMedia;
-                            if(reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")){
+                            if (reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")) {
                                 commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + reqExp + reqMedia + ". Could you please add more?"
-                            }else{
+                            } else {
                                 commentText = "There are " + resNum + " " + reqData[0] + " resources that are " + reqCost + reqExp + reqMedia + ". Could you please add more that are " + reqPace + reqConnect + reqClear + "?";
                             }
                         }
@@ -163,11 +163,11 @@
                         if (reqLoc.indexOf("&") == -1) {
                             requestText = reqData[0];
                             commentText = "There are only" + resNum + " " + reqData[0] + " resources";
-                        }else{
+                        } else {
                             requestText = reqExp + reqData[0] + " " + reqMedia;
-                            if(reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")){
+                            if (reqLoc.indexOf("&", reqLoc.indexOf("level")) + 1 == reqLoc.indexOf("learn")) {
                                 commentText = "There are only " + resNum + " " + reqData[0] + " resources that are " + reqCost + reqExp + reqMedia + ". Could you please add more?"
-                            }else{
+                            } else {
                                 commentText = "There are only " + resNum + " " + reqData[0] + " resources that are " + reqCost + reqExp + reqMedia + ". Could you please add more that are " + reqPace + reqConnect + reqClear + "?";
                             }
                         }
@@ -181,56 +181,20 @@
 
             <div class="row justify-content-end mt-2 align-self-end">
                 <div class="col col-sm-auto d-grid">
-                    <table>
-                        <td>
-                            <!-- Button to call on Help Tutorial Modal -->
-                            <span class="d-inline-block" data-toggle="modal" data-target="#myModal1">
-                                <button type="button" class="btn" data-container="body" data-toggle="modal" id="help"
-                                        disabled>
-                                    <img src="images/Help_Icon.png" alt="help" id="image"> <small id="image">Help</small>
-                                </button>
-                            </span>
 
-                            <!-- Contents of Help Modal -->
-                            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
-                                 aria-labelledby="myModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" id="modaldark1">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
-                                        </div>
+                    <!-- Button to submit request and call on Modal -->
+                    <button type="submit" id="submit" class="btn btn-outline-primary">Submit</button>
 
-                                        <div class="modal-body">
-                                            Input in the "Request" box what topic you would like to see more training
-                                            resources of. Add any additional comments to help those find the right
-                                            resource
-                                            for you.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <!-- Button to submit request and call on Modal -->
-                            <button type="submit" id="submit" class="btn btn-outline-primary">Submit</button>
+                    <script>
+                        // Validation JS
+                        (function () {
+                            'use strict'
 
-                            <!-- WIP: Contents of Request Submit Modal -->
-                            <script>
-                                // Validation JS
-                                (function () {
-                                'use strict'
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.querySelectorAll('.needs-validation')
 
-                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                var forms = document.querySelectorAll('.needs-validation')
-
-                                // Loop over them and prevent submission
-                                Array.prototype.slice.call(forms)
+                            // Loop over them and prevent submission
+                            Array.prototype.slice.call(forms)
                                 .forEach(function (form) {
                                     form.addEventListener('submit', function (event) {
                                         if (!form.checkValidity()) {
