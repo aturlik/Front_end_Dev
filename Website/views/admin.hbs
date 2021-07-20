@@ -200,15 +200,19 @@ window.onload = function () {
       if(darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-light");
           $('#modaldark').addClass("bg-dark");
+          $('#modaldark1').removeClass("bg-light");
+          $('#modaldark1').addClass("bg-dark");
       };
       if(!darkmode.isActivated()) {
           $('#modaldark').removeClass("bg-dark");
           $('#modaldark').addClass("bg-light");
+          $('#modaldark1').removeClass("bg-dark");
+          $('#modaldark1').addClass("bg-light");
       };
   });
 </script>
 <!--Searchbar for locating entry to update, connects to NodeJS /adminsearch-->
-<div class="container">
+<div class="container overflow-hidden">
     <div class="col d-flex justify-content-center">
         <!-- Title Header -->
         <h1 class="display-1">Update or Delete Data</h1>
@@ -220,14 +224,16 @@ window.onload = function () {
         </span>
 
         <!-- Contents of Help Tutorial Modal -->
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" id="image">
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content" id="modaldark1">
-                    <div class="modal-header" id="image">
+                    <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">Tutorial Help</h4>
                     </div>
 
-                    <div class="modal-body" id="image">
+                    <div class="modal-body">
                         <p><b>Need to Update a Training Resource?</b>
                         <br> Find the Database ID for that resource and input in the <u>first</u> textbox. Click "Find" and change the resource shown below.</p>
                         <p><b>Need to Delete a Training Resource?</b>
@@ -235,7 +241,7 @@ window.onload = function () {
                         <p><b>Need to Update the Downloadable Database?</b>
                         <br> Click the reset button at the bottom of the page and it will reload the downloadable database</p>
                     </div>
-                    <div class="modal-footer" id="image">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
                             Close
                         </button>
@@ -534,10 +540,14 @@ users to update that entry.
         $('input[name="radioButton"][value="hello"]').prop('checked', true);
         $('#modaldark').removeClass("bg-light");
         $('#modaldark').addClass("bg-dark");
+        $('#modaldark1').removeClass("bg-light");
+        $('#modaldark1').addClass("bg-dark");
     };
     if (!darkmode.isActivated()) {
         $('#modaldark').removeClass("bg-dark");
         $('#modaldark').addClass("bg-light");
+        $('#modaldark1').removeClass("bg-dark");
+        $('#modaldark1').addClass("bg-light");
     };
 </script>
 
