@@ -163,12 +163,13 @@ router.get("/get-data", function(req, res, next) {
 					console.log(doc.Title);
 				});
 			}
+
+			return new Promise
 		}
-		run();
 
 		resultArray.push(doc);
 	}, function() {
-		
+		run().then(client.close(););
 		specdata = specdata.replace(/ /g, "_");
 		res.render('get', {items: resultArray, specdata});
 	});
