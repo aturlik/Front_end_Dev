@@ -144,38 +144,34 @@ router.get("/get-data", function(req, res, next) {
 	}else if(req.query.sort == "Rating"){
 		cursor.sort({"Helpfullness Rating" : 1});
 	}
+
+	async function updateData(doc){
+		if(typeof doc.Cost == 'string'){
+			db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {"$set": {"Cost": parseInt(doc.Cost)}}, function(err, result){
+				//assert.strictEqual(null, err);
+				console.log("Cost -" + err);
+			});
+		}
+
+		if(!doc.hasOwnProperty("voteCount")){
+			db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": parseInt((0).toFixed()), vote: 0, voteCount: 0}}, function(err, result) {
+				console.log("Helpfullness - " + err);
+			});
+		}
+	}
 	
 	cursor.forEach(function(doc, err) {
 		assert.equal(null, err);
-		
-		async function run(){
-			if(typeof doc.Cost == 'string'){
-				db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {"$set": {"Cost": parseInt(doc.Cost)}}, function(err, result){
-					//assert.strictEqual(null, err);
-					console.log(err);
-					console.log(doc.Title);
-				});
-			}
-
-			if(!doc.hasOwnProperty("voteCount")){
-				db.collection('FormattedRawData').updateOne({"_id": mongoose.Types.ObjectId(doc._id)}, {$unset: {"Useful Training?": ""}, $set: {"Helpfullness Rating": parseInt((0).toFixed()), vote: 0, voteCount: 0}}, function(err, result) {
-					console.log(err);
-					console.log(doc.Title);
-				});
-			}
-
-			return new Promise
-		}
-
+		updateData(doc);
 		resultArray.push(doc);
 	}, function() {
-		run().then(client.close(););
+		client.close(); 
 		specdata = specdata.replace(/ /g, "_");
 		res.render('get', {items: resultArray, specdata});
 	});
-
   });
 });
+
 /* Search function that takes the search bar input and searches MongoDB for things that fit search terms */
 router.get("/search", async (request, response) => {
   try {
