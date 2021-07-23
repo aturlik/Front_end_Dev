@@ -333,10 +333,7 @@
                     <li>
                     <small class="text-muted" style="position: absolute; right: 5px;">
                         <span id="result">
-                        <div class="spinner-border spinner-border-sm" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                        </span> results
+                        </span> {{ lengthofarray }}  results
                     </small>
                     </li>
                 </ul>
@@ -426,7 +423,6 @@
             {{#if @last}}
                 <script>
                     var position = {{@index}}
-                    document.getElementById("result").innerHTML = position + 1;
                 </script>
             {{/if}}
         </div>
@@ -633,14 +629,39 @@
         </div>
         </div>
         </div>
-    {{else}}
-        <script>
-            document.getElementById("result").innerHTML = 0;
-            var position = -1;
-
-        </script>
-
     {{/each}}
+    <center>
+        <a id="lastpage"> Last Page </a>
+        <a id="nextpage" value={{ lengthofarray }}> Next Page </a>
+    </center>
+    <script>
+        var test = window.location.href;
+        var pager = test.indexOf("page");
+        var pagenum = test[pager+5] + test[pager+6];
+        var a = document.getElementById('nextpage'); //or grab it by tagname etc
+        var b = document.getElementById('lastpage');
+        console.log(test.slice(0, -2));
+        if (parseInt(pagenum) != 1){
+            if(parseInt(pagenum) > 9){
+                b.href = test.slice(0, -2) + (parseInt(pagenum)-1);
+            } else{
+                b.href = test.slice(0, -1) + (parseInt(pagenum)-1);
+            }
+        } else{
+            document.getElementById("lastpage").style.display = "none";
+        }
+        if (test.includes("page")) {
+            if(parseInt(pagenum) > 9){
+                a.href = test.slice(0, -2) + (parseInt(pagenum)+1);
+            } else{
+            a.href = test.slice(0, -1) + (parseInt(pagenum)+1);
+            }
+        }
+        if(parseInt(pagenum)*10 > {{lengthofarray }}){
+            document.getElementById("nextpage").style.display = "none";
+        }
+    </script>
+    
     <div class="endOfResults">
         <h5 style="color: #7a7a7a">End of Results</h5>
         <form action="/auto-request" method="post" id="formRequest">

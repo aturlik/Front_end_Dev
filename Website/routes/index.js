@@ -66,6 +66,9 @@ router.get('/comments', function(req, res, next) {
 });
 /* Renders get data page and collections various datapoints into an array that can be accessed in the html/hbs file */
 router.get("/get-data", function(req, res, next) {
+  var pages = req.query.page;
+  var first = (0 + (10*(pages-1)));
+  var last = (10 + (10*(pages-1)));
   var specdata = req.query.data; 
   var resultArray = [];
   var query = {};
@@ -168,9 +171,17 @@ router.get("/get-data", function(req, res, next) {
 
 		resultArray.push(doc);
 	}, function() {
-		
+		var i = 0;
+    var newArray = [];
+    while(i < last){
+      if(i >= first && i < resultArray.length){
+        newArray.push(resultArray[i]);
+      }
+      i+=1;
+    }
+    var lengthofarray = resultArray.length;
 		specdata = specdata.replace(/ /g, "_");
-		res.render('get', {items: resultArray, specdata});
+		res.render('get', {items: newArray, specdata, lengthofarray});
 	});
 
   });
@@ -331,6 +342,7 @@ router.post('/specify', function(req, res, next) {
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
   };
+  urladditives = urladditives.concat("&page=1")
   res.redirect("/get-data?data=" + specdata + urladditives);
 });
 
@@ -413,6 +425,7 @@ router.post('/get_data', function(req, res, next) {
   if(learn != null){
     urladditives = urladditives.concat("&learn=" + learn)
   };
+  urladditives = urladditives.concat("&page=1")
   res.redirect("/get-data?data=" + sd + urladditives);
 });
 /* This page is accessed by the admin page to do back end work
